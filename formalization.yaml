@@ -1,0 +1,125 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: v0.4
+project:
+  name: Unrestricted Boolean multiplicative complexity of the 3x3 low-half multiplier
+  description: >-
+    Formalizes the target lowMul3, the three low bits of the product of two
+    3-bit integers (the product modulo 8), in the unrestricted XOR--AND
+    circuit model of arXiv:2608.30238v1, where XOR and constants are free and
+    either input of a paid AND gate may reuse arbitrary earlier nonlinear
+    wires. Phase 1 proves that the three ANF coordinates agree with integer
+    multiplication modulo 8 on all 64 inputs, and gives an explicit six-gate
+    circuit, one of whose gates reuses two earlier nonlinear wires. Phase 2
+    adds the derivative lemma (Lemma 8 of the attached note) for the three
+    directions a2, b2, a2+b2. The claim MC(lowMul3) = 6 is only stated, as a
+    deliberate hole; the matching lower bound is not formalized.
+  authors: [Bishara]
+  responsible_maintainers: [Bishara]
+  license: MIT
+classification:
+  arxiv: [cs.CC]
+  msc2020: [68Q06, 68Q17, 94D10]
+sources:
+  - title: >-
+      Unrestricted Boolean Multiplicative Complexity of Four-Term Binary
+      Polynomial Multiplication: Rational Places, Hasse Jets, and the
+      Failure of Nonlinear Feedback
+    authors: [Gregory Morse]
+    id: arXiv:2608.30238v1
+    location: https://arxiv.org/html/2608.30238v1
+    type: paper
+    relationship: uses-model-of
+    note: >-
+      Definition 2.1 supplies the circuit model. The target here is not a
+      target of that paper: lowMul3 keeps only the three low coefficients of
+      the three-term product and adds the integer carry a0a1b0b1 to
+      coefficient 2. No result of that paper is restated or reproved.
+    license: CC-BY-4.0
+    author_endorsement: none
+  - title: A human proof of the four-linear-gate case for the 3x3 low-half multiplier
+    authors: [Bishara]
+    id: lambda4_proof.tex
+    type: preprint
+    relationship: formalizes
+    note: >-
+      Lemma 8 (the derivative lemma) is formalized in LowHalfMul3.Derivative,
+      with its hypothesis iota_e(Q) = 0 replaced by the two consequences the
+      proof uses (degree at most two, constant derivative along e); the
+      equivalence of the two formulations needs a pi_2 / iota_e layer for six
+      variables, which is not formalized. Nothing else from this note is
+      formalized: Lemmas 1, 4, 5, 6, 10, Proposition 7 and Theorem 11 are open
+      in Lean.
+related_formalizations:
+  - id: https://github.com/GregoryMorse/unrestricted-boolean-mul
+    relationship: depends-on
+    note: >-
+      The model, the ANF layer, the Circuit structure, MC and the aVar/bVar/Mul
+      targets are imported from that package at the revision pinned in
+      lake-manifest.json; they are not re-formalized here.
+status:
+  scope: >-
+    Two proved theorems carry the content of phase 1: lowMul3_eval checks the
+    three ANF coordinates against integer multiplication modulo 8 on all 64
+    inputs, and upper exhibits a six-gate unrestricted circuit computing
+    lowMul3. The exact value MC(lowMul3) = 6 is NOT proved: no lower bound
+    argument is formalized, and the equality appears only as the single
+    deliberate hole in Challenge.lean, which the library does not import.
+    Phase 2 adds derivative_lemma and its three instances
+    derivative_lemma_dirA2 / _dirB2 / _dirA2B2; these are lower-bound
+    machinery and on their own exclude nothing. All 23 proved theorems share
+    the axiom closure [propext, Classical.choice, Quot.sound]. No use of
+    native_decide or ofReduceBool, and no custom axiom.
+  sorry_count: 1
+  sorry_in_definitions: 0
+  axioms: [propext, Classical.choice, Quot.sound]
+automation:
+  methods:
+    - method: agent
+      models:
+        - AI coding assistant session, directed and reviewed by the author
+      framework: Lean 4.33.1 with Mathlib
+      tool_setup: >-
+        Ordinary Lean tactics and kernel checking only. The 64-input
+        correctness check and the Boolean identity for the last recombination
+        are discharged by the `decide` tactic over the finite input type,
+        which the kernel replays; no decision bridge and no custom axiom.
+      cost:
+        wall_time: not tracked
+        spend_usd: not tracked
+        hardware: local Windows build, lake build with the prebuilt Mathlib cache
+      prompting_notes: >-
+        Human-directed, commit-sized steps; proof-boundary audits recorded in
+        LEAN_LOG.md and AxiomAudit.lean.
+  notes: >-
+    The author directed and reviewed the development and assumes
+    responsibility. No independent human peer review is claimed.
+fidelity:
+  divergences: >-
+    lowMul3 is stated over ANF 6 while the imported aVar/bVar/Mul are stated
+    over ANF (2 * 3); these index types are definitionally equal and Lean
+    accepts the coercion-free statement. The SAT certificates and the human
+    case analysis behind the value 6 are outside this Lean development.
+review:
+  status: self-assessed
+  notes: >-
+    Phase 1 only. The upper bound is kernel-checked. The lower bound, and
+    therefore the exact value, is unverified in Lean.
+alignment:
+  namespace: UnrestrictedBooleanMul.LowHalfMul3
+  statements:
+    - source: lowMul3 definition, integer semantics
+      lean: UnrestrictedBooleanMul.LowHalfMul3.lowMul3_eval
+      module: LowHalfMul3.Target
+      status: proved
+    - source: six-gate upper bound
+      lean: UnrestrictedBooleanMul.LowHalfMul3.upper
+      module: LowHalfMul3.Upper
+      status: proved
+    - source: lambda4_proof.tex Lemma 8 (derivative lemma)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.derivative_lemma
+      module: LowHalfMul3.Derivative
+      status: proved-with-divergence
+    - source: exact unrestricted complexity of the 3x3 low-half product
+      lean: UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3
+      module: Challenge
+      status: stated
