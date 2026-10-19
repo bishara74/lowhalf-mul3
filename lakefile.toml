@@ -1,0 +1,14 @@
+name = "lowhalf_mul3"
+version = "0.1.0"
+defaultTargets = ["LowHalfMul3"]
+
+[leanOptions]
+autoImplicit = false
+
+[[require]]
+name = "unrestricted_boolean_mul"
+git = "https://github.com/GregoryMorse/unrestricted-boolean-mul.git"
+rev = "main"
+
+[[lean_lib]]
+name = "LowHalfMul3"
