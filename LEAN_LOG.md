@@ -305,3 +305,94 @@ As instructed, stopping before the main theorem (Theorem 11 of
 2. a `π₂`/`ι_e` layer for `ANF 6` — gives Lemma 8 verbatim, plus Lemmas 4, 5,
    6 and Proposition 7, which are all cross-part statements;
 3. the rank-2 type classification (Lemma 10), then Theorem 11.
+
+---
+
+## 2026-10-25 — migration to Lean 4.35.0-rc3
+
+Toolchain and dependency bump done by the author (`lake update` and
+`cache get` already run; no network used in this session, and `lake update`
+was not run here):
+
+| | before | after |
+| --- | --- | --- |
+| `lean-toolchain` | `leanprover/lean4:v4.33.1` | `leanprover/lean4:v4.35.0-rc3` |
+| mathlib | `0df444a3` (`v4.33.1`) | `c55e6e78` (`v4.35.0-rc3`) |
+| `unrestricted_boolean_mul` | `79a80176` (`inputRev = main`) | `c014e498` (pinned by rev in `lakefile.toml`) |
+
+### Changes to our files: none
+
+`lake build` succeeded on the new toolchain on the first attempt, with no
+error in `LowHalfMul3/*`, `Challenge.lean` or `AxiomAudit.lean`. **No source
+edit was needed, so no statement changed and nothing was weakened.** The
+reason is that the dependency bump keeps the API this development uses —
+`ANF`, `Monomial`, `eval`, `eval_injective`, `affine`, `wireSpace`,
+`Circuit`, `HasCircuit`, `MC`, `aVar`, `bVar`, `Mul`, `mulCoefficient` — and
+the Mathlib lemmas used here (`MonoidAlgebra.support_coeff_mul_subset`,
+`Finset.card_union_le`, `Submodule.span_induction`, the `Matrix.cons_val*`
+simp set, `Fin.sum_univ_succ`) are all unchanged under 4.35.0-rc3. Our files
+contain no `if_neg` and no `dif_pos`, the two names deprecated in this cycle
+(checked by grep).
+
+### The build was genuinely redone, not replayed from a stale cache
+
+A toolchain change invalidates traces, but it was worth confirming rather
+than assuming:
+
+* The three oleans were rewritten during this session —
+  `.lake/build/lib/lean/LowHalfMul3/{Target,Upper,Derivative}.olean` and
+  `LowHalfMul3.olean` carry 2026-10-25 timestamps against 2026-10-19 sources.
+* Independently of any cache, each file was re-elaborated from source with
+  `lake env lean` (which writes no olean and therefore cannot be served from
+  the build tree). All four exit 0 with **no warnings of any kind**, so there
+  is not even a deprecation notice in our own code.
+
+| file | `lake env lean` | wall |
+| --- | --- | --- |
+| `LowHalfMul3/Target.lean` | exit 0, no output | 202 s |
+| `LowHalfMul3/Upper.lean` | exit 0, no output | 30 s |
+| `LowHalfMul3/Derivative.lean` | exit 0, no output | 32 s |
+| `LowHalfMul3.lean` | exit 0, no output | 25 s |
+| `Challenge.lean` | exit 0, `Challenge.lean:126:8: declaration uses 'sorry'` (the deliberate hole) | 138 s |
+| `AxiomAudit.lean` | exit 0, axioms printed for all 23 theorems | — |
+
+`lake build` itself: `Build completed successfully (1691 jobs)`, exit 0
+(1691 jobs against 1614 under 4.33.1), 164 s.
+
+### Two deprecation warnings, both in the dependency
+
+```
+warning: UnrestrictedBooleanMul/ANF.lean:224:8: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: UnrestrictedBooleanMul/Circuit.lean:88:32: `dif_pos` has been deprecated: Use `dite_eq_left` instead
+```
+
+Both are inside `.lake/packages/unrestricted_boolean_mul`, which is not ours
+to edit (and `.lake/` is off limits by instruction). They are warnings only:
+the dependency builds and both `ANF.lean` and `Circuit.lean` produce oleans,
+so nothing downstream is affected. Worth passing upstream — `ANF.lean:224` is
+in `eval_pointIndicator` and `Circuit.lean:88` is in `mc_eq_of_lower_upper`,
+the lemma this project's eventual `MC(lowMul3) = 6` will be built on.
+
+### `#print axioms` after migration — unchanged
+
+All **23** proved theorems report exactly
+
+```
+[propext, Classical.choice, Quot.sound]
+```
+
+`Target`: `eval_lowMul3_zero`, `eval_lowMul3_one`, `eval_lowMul3_two`,
+`lowMul3_eval`.
+`Upper`: `leftFactor_five`, `rightFactor_five`, `circuit_gate`, `z0_eq`,
+`z1_eq`, `z2_eq`, `circuit_computes`, `upper`.
+`Derivative`: `DegreeLE.mul`, `degreeLE_one_of_mem_affine`, `anf_mul_self`,
+`coeff_lowMul3_two_carry`, `derivative_lemma`, `deriv_lowMul3_two_dirA2`,
+`deriv_lowMul3_two_dirB2`, `deriv_lowMul3_two_dirA2B2`,
+`derivative_lemma_dirA2`, `derivative_lemma_dirB2`,
+`derivative_lemma_dirA2B2`.
+
+No `sorryAx` outside `Challenge.lean`, no `native_decide`, no
+`ofReduceBool`, no new axiom. The library still has zero `sorry`, and the
+status is as before: the upper bound `HasCircuit lowMul3 6` and the
+derivative lemma are proved; `¬ HasCircuit lowMul3 5`, and hence
+`MC(lowMul3) = 6`, is not.

@@ -8,7 +8,7 @@ autoImplicit = false
 [[require]]
 name = "unrestricted_boolean_mul"
 git = "https://github.com/GregoryMorse/unrestricted-boolean-mul.git"
-rev = "79a801760668f52bb00a9e1a406e841375c58a6d"
+rev = "c014e498e51a98529877cc256b9bcdaf5faa2e4f"
 
 [[lean_lib]]
 name = "LowHalfMul3"
