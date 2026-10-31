@@ -10,9 +10,13 @@ project:
     wires. Phase 1 proves that the three ANF coordinates agree with integer
     multiplication modulo 8 on all 64 inputs, and gives an explicit six-gate
     circuit, one of whose gates reuses two earlier nonlinear wires. Phase 2
-    adds the derivative lemma (Lemma 8 of the attached note) for the three
-    directions a2, b2, a2+b2. The claim MC(lowMul3) = 6 is only stated, as a
-    deliberate hole; the matching lower bound is not formalized.
+    adds the derivative lemma (Lemma 8 of the attached note). Phase 3 proves
+    the normal form (Lemma 1), Lemma 2, the pi2 / iota layer with Lemma 8 in
+    the paper's form, Lemma 4 (kernel) and Lemma 6, excludes lambda = 5, and
+    reduces MC(lowMul3) = 6 to four explicit statements: LambdaCase 1, 2, 3
+    and StarFree (Theorem 11 of the note), via mc_eq_six_of_remaining_cases.
+    The unconditional claim MC(lowMul3) = 6 is only stated, as a deliberate
+    hole.
   authors: [Bishara]
   responsible_maintainers: [Bishara]
   license: MIT
@@ -42,13 +46,12 @@ sources:
     type: preprint
     relationship: formalizes
     note: >-
-      Lemma 8 (the derivative lemma) is formalized in LowHalfMul3.Derivative,
-      with its hypothesis iota_e(Q) = 0 replaced by the two consequences the
-      proof uses (degree at most two, constant derivative along e); the
-      equivalence of the two formulations needs a pi_2 / iota_e layer for six
-      variables, which is not formalized. Nothing else from this note is
-      formalized: Lemmas 1, 4, 5, 6, 10, Proposition 7 and Theorem 11 are open
-      in Lean.
+      Formalized: Lemma 1 (normal_form_five), Lemma 2 (wireSpace_eq_V4),
+      Lemma 4 kernel half (phi_eq_zero_iff), Lemma 6 (lemma6), Lemma 8 in the
+      paper's form (derivative_lemma_paper), and the reduction of the
+      four-linear-gate case to Theorem 11 (lambdaCase_four_of_starFree).
+      Open in Lean: Lemma 3, Lemma 4 dimension half, Lemma 5, Proposition 7,
+      Lemma 10, Theorem 11 (StarFree).
 related_formalizations:
   - id: https://github.com/GregoryMorse/unrestricted-boolean-mul
     relationship: depends-on
@@ -64,10 +67,12 @@ status:
     lowMul3. The exact value MC(lowMul3) = 6 is NOT proved: no lower bound
     argument is formalized, and the equality appears only as the single
     deliberate hole in Challenge.lean, which the library does not import.
-    Phase 2 adds derivative_lemma and its three instances
-    derivative_lemma_dirA2 / _dirB2 / _dirA2B2; these are lower-bound
-    machinery and on their own exclude nothing. All 23 proved theorems share
-    the axiom closure [propext, Classical.choice, Quot.sound]. No use of
+    Phases 2-3 add lower-bound machinery: the normal form, Lemma 2, Lemma 8,
+    the exclusion of lambda = 5, and mc_eq_six_of_remaining_cases, which
+    derives MC(lowMul3) = 6 from LambdaCase 1, LambdaCase 2, LambdaCase 3 and
+    StarFree; these four are not proved. All 69 proved theorems share the
+    axiom closure [propext, Classical.choice, Quot.sound]. Finite facts are
+    checked by plain decide (kernel-checked). No use of
     native_decide or ofReduceBool, and no custom axiom.
   sorry_count: 1
   sorry_in_definitions: 0
@@ -119,6 +124,22 @@ alignment:
       lean: UnrestrictedBooleanMul.LowHalfMul3.derivative_lemma
       module: LowHalfMul3.Derivative
       status: proved-with-divergence
+    - source: lambda4_proof.tex Lemma 8, paper form (hypothesis iota_e(Q) = 0)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.derivative_lemma_paper
+      module: LowHalfMul3.Contraction
+      status: proved
+    - source: lambda4_proof.tex Lemma 1 (normal form), five gates
+      lean: UnrestrictedBooleanMul.LowHalfMul3.normal_form_five
+      module: LowHalfMul3.NormalForm
+      status: proved
+    - source: lambda4_proof.tex Lemma 2
+      lean: UnrestrictedBooleanMul.LowHalfMul3.wireSpace_eq_V4
+      module: LowHalfMul3.LemmaTwo
+      status: proved
+    - source: MC(lowMul3) = 6 from LambdaCase 1, 2, 3 and Theorem 11
+      lean: UnrestrictedBooleanMul.LowHalfMul3.mc_eq_six_of_remaining_cases
+      module: LowHalfMul3.Assembly
+      status: proved
     - source: exact unrestricted complexity of the 3x3 low-half product
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3
       module: Challenge

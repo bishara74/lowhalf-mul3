@@ -396,3 +396,284 @@ No `sorryAx` outside `Challenge.lean`, no `native_decide`, no
 status is as before: the upper bound `HasCircuit lowMul3 6` and the
 derivative lemma are proved; `¬ HasCircuit lowMul3 5`, and hence
 `MC(lowMul3) = 6`, is not.
+
+---
+
+## 2026-10-31 — phase 3
+
+Same rules: no network, no `lake update`/`cache get`, no `native_decide`/
+`ofReduceBool`, `.lake/` and `lakefile.toml` untouched, `lake build` green
+after every step. Toolchain `v4.35.0-rc3`, dependency at `c014e498`.
+
+### Dependency build cost (one-off)
+
+At `c014e498` the dependency uses the Lean module system (`module`,
+`public import`, `@[expose] public section`), and its import closures grew:
+`CircuitPadding` 21 modules, `N4.Rewiring` 36 (it pulls in `N4.SevenGate`,
+`N4.LowProductBridge`, `N4.QuadraticLower`, `N4.Homogeneous`, the `N3.Product*`
+certificates, …). Only `ANF`, `Circuit`, `Mul` were prebuilt. Built once with
+`lake build UnrestrictedBooleanMul.CircuitPadding UnrestrictedBooleanMul.N4.Rewiring`:
+**994 s**, 1723 jobs, exit 0 (slowest: `N4.Homogeneous` 245 s, `N3.ProductC30/C31`
+and `N3.Coordinates` 175 s each). Warnings only, all inside the dependency.
+Subsequent `lake build` of our library: ~26 s.
+
+(Tooling note: in this sandbox `pathlib.Path.rglob` silently returns nothing
+under `.lake/packages`; `os.walk` works. The phase-2 closure counts were taken
+before the dependency switched to `public import`, which the old regex would
+also have missed.)
+
+### Step 1 — `LowHalfMul3/Reduction.lean`: `mc_eq_six_of_no_five` — PROVED
+
+```lean
+theorem mc_eq_six_of_no_five (h5 : ¬ HasCircuit lowMul3 5) : MC(lowMul3) = 6
+```
+
+`mc_eq_of_lower_upper upper`, and for the lower bound: if `s < 6` then
+`s ≤ 5`, so `hs.pad` (`HasCircuit.pad`) gives a 5-gate circuit, contradicting
+`h5`. The whole Challenge statement now reduces in Lean to the single
+proposition `¬ HasCircuit lowMul3 5`.
+
+### Step 2 — `LowHalfMul3/NormalForm.lean`: Lemma 1 — PROVED
+
+New definitions: `IsLinearGate C k := C.left k ∈ affine m ∧ C.right k ∈ affine m`
+and `SameGate D C k := D.gate k = C.gate k ∧ D.left k = C.left k ∧ D.right k = C.right k`.
+
+* **`exists_move_linear_gate_left`** — the strengthened move lemma asked for in
+  phase 2. Same `Nat.strong_induction_on` on `j - p` as the supervisor's
+  `N4.exists_move_direct_gate_left`, over his `N4.swapAdjacentDirectCircuit`
+  and `N4.swapAdjacentDirectCircuit_finalWire`, but the conclusion is now
+  `D.finalWire = C.finalWire ∧ D.gate p = C.gate j ∧ D.left p = C.left j ∧
+  D.right p = C.right j ∧ ∀ k < p, SameGate D C k`. The extra conjuncts come
+  from unfolding `swapAdjacentFun` at `k ∉ {a, a+1}`; no new mathematics.
+* **(a) `exists_g0_normal`** — the supervisor's chain verbatim at `m = 6`,
+  `t = a₀b₀`: `N4.exists_first_entry_gate` → `N4.circuit_first_entry_replacement`
+  → `N4.replaceFirstEntryCircuit` with `u = aVar 3 0`, `v = bVar 3 0` (and
+  `_finalWire`) → our move lemma at `p = 0`. Side conditions:
+  `a₀b₀ ∈ finalWire` from `hC 0` and `z0_eq` (`lowMul3_zero_eq_a0b0`);
+  `a₀b₀ ∉ affine 6` (`a0b0_not_mem_affine`) from
+  `coefficient_eq_zero_of_mem_affine` at the card-2 monomial `{0,3}` and
+  `coeff_a0b0 = 1`. `0 < r` falls out of the first-entry index, so the
+  statement needs no size hypothesis. The conclusion fixes the *factors*
+  `D.left 0 = a₀`, `D.right 0 = b₀`, not just the gate value.
+* **(b) `exists_linear_prefix`** — the sorting induction, by strong induction
+  on `r - i` with invariant "gates `0..i-1` are linear". If some gate at index
+  `≥ i` is linear, move it to `i` (gates below `i` keep their factors, so the
+  invariant holds for `i+1`); otherwise stop with `λ = i`, and then
+  `k < λ ↔ IsLinearGate D k` holds by construction. No permutation
+  bookkeeping is needed.
+* **`normal_form`** (any `r`) and **`normal_form_five`**:
+
+```lean
+theorem normal_form_five (C : Circuit 6 5) (hC : C.Computes lowMul3) :
+    ∃ D : Circuit 6 5, D.Computes lowMul3 ∧
+      D.gate 0 = aVar 3 0 * bVar 3 0 ∧ D.left 0 = aVar 3 0 ∧ D.right 0 = bVar 3 0 ∧
+      ∃ lam, 1 ≤ lam ∧ lam ≤ 5 ∧ ∀ k : Fin 5, (k.val < lam ↔ IsLinearGate D k)
+```
+
+Compiled on the second attempt (fixes: `simp` already closes `coeff_a0b0`;
+`omega` needs `show k.val = 0` to see through `Fin.mk`).
+
+### Step 4 (done before step 3) — `LowHalfMul3/LambdaFive.lean`: λ = 5 — PROVED
+
+Done first because it is short and closes a whole case.
+`degreeLESubmodule m d` packages `DegreeLE d` (from `Derivative.lean`) as a
+submodule; `finalWire_le_degreeTwo` shows an all-linear circuit's final wire
+space lies in degree ≤ 2 (via `Circuit.finalWire_eq`, `sup_le`,
+`Submodule.span_le`, `DegreeLE.mul`); `not_degreeLE_two_lowMul3_two` uses the
+carry coefficient. Result, stronger than asked (any number of gates):
+
+```lean
+theorem no_all_linear_circuit {r : Nat} (C : Circuit 6 r) (hC : C.Computes lowMul3)
+    (hlin : ∀ k, IsLinearGate C k) : False
+theorem not_lambda_five (D : Circuit 6 5) (hD : D.Computes lowMul3)
+    (hlam : ∀ k : Fin 5, (k.val < 5 ↔ IsLinearGate D k)) : False
+```
+
+`lake build` after steps 1, 2, 4: green each time (1710, 1731, 1732 jobs).
+
+### Step 3 — `LowHalfMul3/Contraction.lean`: π₂ / ι_e layer, bridge, Lemma 8 verbatim — PROVED
+
+Closes the phase-2 divergence: Lemma 8 is now stated with the paper's own
+hypothesis `ι_e(Q) = 0`.
+
+Definitions:
+
+* `TwoForm6 := Fin 6 → Fin 6 → F₂` (2-forms as symmetric zero-diagonal
+  matrices; characteristic two removes the signs).
+* `pi2 : ANF 6 →ₗ[F₂] TwoForm6`, `pi2 p i j = if i = j then 0 else coeff_{x_i x_j} p`
+  — the identification `x_i x_j ↔ x_i ∧ x_j`.
+* `iota e : TwoForm6 →ₗ[F₂] (Fin 6 → F₂)`, `(iota e ω) j = ∑ i, e i * ω i j`.
+  `iota_add_dir` / `iota_dirA2B2`: `ι_{a₂+b₂} = ι_{a₂} + ι_{b₂}`, the paper's definition.
+* `V4 Q := {p | DegreeLE 2 p ∧ pi2 p ∈ Q}` as a submodule.
+* `IsPaperDir e := e = dirA2 ∨ e = dirB2 ∨ e = dirA2B2`.
+
+Bridge (`deriv_add_deriv_zero_eq`): for `deg p ≤ 2` and a paper direction,
+`D_e p (x) + D_e p (0) = ∑ j, ι_e(π₂ p) j * x j` — i.e. `D_e p` is affine with
+linear part `ι_e(π₂ p)`. Then `constDeriv_iff_iota_pi2_eq_zero`: `D_e p`
+constant iff `ι_e(π₂ p) = 0` (`→` by evaluating at `Pi.single j 1`).
+
+Proof structure: `lhs_expand` and `rhs_expand` write both sides as
+`∑ s ∈ support, coeff s * term(s)` (generic; `rhs_expand` is a three-step
+`Finset.sum_comm` calc), and `deriv_add_deriv_zero_eq_of_termwise` reduces
+the identity to a *termwise* identity on single monomials `t` with
+`|t| ≤ 2`. That termwise identity is a finite statement (64 subsets × 64
+points per direction), discharged by plain `decide` — `termwise_dirA2`,
+`termwise_dirB2`, `termwise_dirA2B2` — with `maxRecDepth 100000`. A scratch
+timing test first: 25 s including imports for one direction; the whole file
+builds in 35 s. Kernel-checked; no `native_decide`, no `+kernel`.
+
+```lean
+theorem derivative_lemma_paper {e : Fin 6 → F₂} (he : IsPaperDir e)
+    (Q : Submodule F₂ TwoForm6) (hQ : Submodule.map (iota e) Q = ⊥)
+    (f h : ANF 6) (hf : f ∈ V4 Q) (hh : h ∈ V4 Q)
+    (hg : f * h + lowMul3 2 ∈ V4 Q) : False
+```
+
+(`ι_e(Q) = 0` is written literally as `Q.map (iota e) = ⊥`.)
+
+### Step 5 — what was done, in the brief's order
+
+**Numbering.** I use the numbering of the attached `lambda4_proof.tex`:
+Lemma 1 normal form, Lemma 2 `V₄ = V₄(Q)`, Lemma 3 support, Lemma 4 cross
+part, Lemma 5 (plane in `Λ²(U)`), Lemma 6 (no `q₂` cross part),
+Proposition 7, Lemma 8 derivative, Remark 9, **Lemma 10 types**, **Theorem 11
+main**. The brief's "Lemma 11 (types) and Theorem 12" are these two under a
+later numbering; the statements are identified by content.
+
+#### Lemma 2 — `LowHalfMul3/LemmaTwo.lean` — PROVED (both inclusions)
+
+```lean
+def gateQ {r : Nat} (C : Circuit 6 r) (j : Nat) : Submodule F₂ TwoForm6 :=
+  Submodule.span F₂ (pi2 '' prefixGates C.gate j)
+theorem wireSpace_eq_V4 {r : Nat} (C : Circuit 6 r) (j : Nat)
+    (hlin : ∀ i : Fin r, i.val < j → IsLinearGate C i) :
+    wireSpace C.gate j = V4 (gateQ C j)
+```
+
+More general than the paper (any prefix length `j`, any circuit size). The
+paper's last step "no quadratic part ⟹ affine" is
+`mem_affine_of_degreeLE_two_of_pi2_eq_zero`, which needed
+`anf_eq_sum_monomials : p = ∑ s ∈ support, coeff s • monomial s.vars`
+(by `eval_injective` and `Finset.induction_on`) and `monomial_empty : monomial ∅ = 1`.
+Fixes during compilation: `Finset.card_eq_two` needs an explicit `show`; the
+deprecated `if_neg` (Lean 4.35) replaced by `↓reduceIte`; `CharTwo.add_self_eq_zero`
+does not find `CharP` on the matrix type, so the cancellation is done pointwise.
+
+#### The `λ = 4` reduction and the case split — `LowHalfMul3/Assembly.lean` — PROVED
+
+Not a separate item in the brief, but it is the paragraph of the paper right
+after Lemma 2 ("Hence `z₀, z₁ ∈ V₄` iff `P₀, Z₁ ∈ Q`, and the remaining condition
+on the last gate is (★)"), and it is what makes the remaining gap an exact
+Lean statement.
+
+* `StarFree` is Theorem 11 in algebraic form (printed in full below). Its
+  `Q` is `span{π₂(Lᵢ Rᵢ)}` for **affine** `Lᵢ, Rᵢ`, `L₀ = a₀`, `R₀ = b₀`. It
+  deliberately allows degenerate products (rank `< 2`, `dim Q < 4`): that is
+  what a circuit can produce, and the paper's WLOG "every `Pᵢ` of rank 2,
+  `dim Q = 4`" then belongs to the *proof* of `StarFree`, not to this
+  reduction. Nothing is assumed here that the circuit does not give.
+* `lambdaCase_four_of_starFree : StarFree → LambdaCase 4`. Proof: Lemma 2
+  gives `wireSpace 4 ≤ V4 Q`; `finalWire = wireSpace 4 ⊔ span{g₄}`
+  (`N4.wireSpace_succ`); if `g₄` had degree ≤ 2 the whole final space would,
+  contradicting `z₂`; so the `z₁`-decomposition cannot use `g₄` (giving
+  `Z₁ ∈ Q`), and the `z₂`-decomposition must (giving `f h + z₂ ∈ V4 Q` with
+  `f, h` the factors of `g₄`, which lie in `wireSpace 4`). Only the inclusion
+  `wireSpace 4 ≤ V4 Q` of Lemma 2 is needed.
+* `starFree_instance_of_iota`: the part of Theorem 11 that Lemma 8 already
+  covers — any `Q` with `ι_e(Q) = 0`.
+* `not_hasCircuit_five_of_cases` and `mc_eq_six_of_remaining_cases` assemble
+  Lemma 1, the five cases (`λ = 5` proved), padding and `upper`.
+
+#### Lemma 4 (kernel half) and Lemma 6 — `LowHalfMul3/CrossPart.lean` — PROVED
+
+* `Phi := (ι_{a₂}, ι_{b₂})` carries the paper's cross part `(α, β, γ)`
+  (`γ = ω(a₂, b₂)` is a coordinate of each contraction).
+* `phi_eq_zero_iff`: on symmetric forms, `Φ ω = 0 ↔ ω ∈ Λ²(U)` — Lemma 4's
+  `ker Φ = Λ²(U)`. **Not done:** Lemma 4's dimension count
+  `dim Φ(Q) = 4 − d_U ≤ 2`.
+* `pi2_lowMul3_two : pi2 (lowMul3 2) = q2Form` (explicit matrix, 36 entries by
+  `simp`), `phi_q2` (`Φ(q₂) = (b₀, a₀, 0)`), and
+  `lemma6 : Phi (wedge l r) ≠ Phi (pi2 (lowMul3 2))` for **all** `l, r`
+  (rank 0 and 2 alike), from `lemma6_finite`, a `decide` over all 64 × 64
+  pairs `(l, r)`.
+
+#### Stopped here
+
+The rest of step 5 — Lemma 3, Lemma 5, Proposition 7, Lemma 10, Theorem 11 —
+sits on a layer that does not exist yet (see plan below) and is clearly over
+the 2-hour threshold, so per the brief I stop and report the plan.
+
+### Final verification (2026-10-31, end of phase 3)
+
+| command | result |
+| --- | --- |
+| `lake build` | `Build completed successfully (1736 jobs)`, exit 0; no warning in our files (the build also replays the dependency's own deprecation/lint warnings in `N4/Rewiring.lean`) |
+| grep `sorry\|native_decide\|ofReduceBool\|decide +native` in `LowHalfMul3/*.lean` | no hits |
+| `lake env lean AxiomAudit.lean` | exit 0; **69** theorems, every one `[propext, Classical.choice, Quot.sound]`; no `sorryAx`, no `ofReduceBool` |
+| `lake env lean Challenge.lean` | exit 0; single warning `Challenge.lean:126:8: declaration uses 'sorry'` (unchanged hole) |
+
+`lake build` was also green after each of steps 1, 2, 4, 3, Lemma 2,
+Assembly, CrossPart (1710 → 1731 → 1732 → 1733 → 1735 → 1736 jobs).
+
+### What is still missing for `¬ HasCircuit lowMul3 5` — exact Lean statements
+
+Proved: `not_hasCircuit_five_of_cases (h1 : LambdaCase 1) (h2 : LambdaCase 2)
+(h3 : LambdaCase 3) (h4 : LambdaCase 4) : ¬ HasCircuit lowMul3 5` and
+`mc_eq_six_of_remaining_cases (h1 h2 h3) (h4 : StarFree) : MC(lowMul3) = 6`.
+So exactly four statements remain:
+
+```lean
+def LambdaCase (lam : Nat) : Prop :=
+  ∀ D : Circuit 6 5, D.Computes lowMul3 →
+    D.gate 0 = aVar 3 0 * bVar 3 0 → D.left 0 = aVar 3 0 → D.right 0 = bVar 3 0 →
+    (∀ k : Fin 5, (k.val < lam ↔ IsLinearGate D k)) → False
+
+-- missing: LambdaCase 1, LambdaCase 2, LambdaCase 3, and
+
+def StarFree : Prop :=          -- Theorem 11, algebraic form; implies LambdaCase 4
+  ∀ (L R : Fin 4 → ANF 6), (∀ i, L i ∈ affine 6) → (∀ i, R i ∈ affine 6) →
+    L 0 = aVar 3 0 → R 0 = bVar 3 0 →
+    pi2 (lowMul3 1) ∈ quadSpan L R →
+    ∀ f h : ANF 6, f ∈ V4 (quadSpan L R) → h ∈ V4 (quadSpan L R) →
+      f * h + lowMul3 2 ∈ V4 (quadSpan L R) → False
+-- quadSpan L R := Submodule.span F₂ (Set.range fun i => pi2 (L i * R i))
+```
+
+(As expected: the `λ = 1, 2, 3` cases, plus Theorem 11 for `λ = 4`.)
+
+### Plan for `StarFree` (Theorem 11), with estimates
+
+Everything left in the `λ = 4` proof sits on one missing layer: coefficients
+of *products*. In dependency order:
+
+1. **Product-coefficient layer** (≈ 3–5 h). Linear part `lin : affine 6 → (Fin 6 → F₂)`;
+   `pi2 (L * R) = wedge (lin L) (lin R)` for affine `L, R` (this is what turns
+   `quadSpan` into a span of `l ∧ r`'s); for `deg f, deg h ≤ 2`, the cubic and
+   quartic parts of `f h` — in particular `π₄(f h) = f₂ ∧ h₂` (the Remark after
+   Lemma 2). Route: `MonoidAlgebra.coeff_mul` plus the `support`-expansion
+   technique already used in `Contraction.lean`; finite termwise identities
+   by `decide` where possible.
+2. **WLOG `dim Q = 4`, rank-2 basis containing `P₀`** (≈ 1–2 h): `V4_mono`
+   (done) and an exchange-lemma argument; or avoid it by stating the case
+   analysis for `dim Q ≤ 4` directly.
+3. **Lemma 4, dimension half** (≈ 1–2 h): rank–nullity for `Phi` restricted to
+   `Q`, with `P₀, Z₁ ∈ Q ∩ Λ²(U)` independent, giving `d_U ∈ {2, 3, 4}`.
+4. **Lemma 3 (support), Lemma 5, Proposition 7** (≈ 3–4 h). Lemma 3 only
+   needs the two instances `Z₁`, `Z₁ + P₀`, which are finite (pairs `(l, r)`
+   with `Z − l ∧ r` decomposable: decide via 4×4 Pfaffians, or by hand).
+   Lemma 5 needs step 1 (cubic part of `f h`). Prop 7 combines 4, 5, 6.
+5. **Lemma 10 (types)** (≈ 2 h): by hand from `π(⟨l, r⟩) ⊆ F₂²`.
+6. **Theorem 11 case analysis** (≈ 4–6 h): `d_U = 4` and `d_U = 3` type-`v`
+   via `starFree_instance_of_iota`; `d_U = 3` full via the `(f, h)` →
+   `(f, f+h)` normalisation and Prop 7; `d_U = 2` via the three-term structure
+   and the rank argument.
+
+Total ≈ 15–20 h of Lean. Alternative worth weighing before step 6: since
+`StarFree` quantifies over affine `L, R` (`2⁷` choices each), a direct
+`decide` is out of reach (≈ `10¹²` cases), but after steps 1–3 the residual
+`d_U = 3` full-type case (98 orbits) might be checkable by `decide` on an
+orbit-representative encoding, provided the orbit reduction itself is
+proved — that is a separate, probably comparable, cost.
+
+The `λ = 1, 2, 3` cases are not touched in Lean; their human proofs are the
+prerequisite (`λ = 3` has a written proof pending review; `λ = 2, 1` open).
