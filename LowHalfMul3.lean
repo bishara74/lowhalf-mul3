@@ -8,6 +8,7 @@ import LowHalfMul3.Contraction
 import LowHalfMul3.LemmaTwo
 import LowHalfMul3.Assembly
 import LowHalfMul3.CrossPart
+import LowHalfMul3.Product
 
 /-!
 # The 3 x 3 low-half multiplier
@@ -34,12 +35,15 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
 * `LowHalfMul3.LemmaTwo` proves Lemma 2: if the first `j` gates are linear,
   the wire space before gate `j` is `V₄(Q_j)`.
 * `LowHalfMul3.Assembly` defines the open cases `LambdaCase 1/2/3` and
-  `StarFree` (Theorem 11), proves `StarFree → LambdaCase 4`, and proves
+  `StarFree` (Theorem 12), proves `StarFree → LambdaCase 4`, and proves
   `mc_eq_six_of_remaining_cases`: those four statements imply `MC = 6`.
 
 * `LowHalfMul3.CrossPart` proves Lemma 4's kernel statement
   (`ker Φ = Λ²(U)` on symmetric forms) and Lemma 6 (no `l ∧ r` has the cross
   part of `q₂`).
+
+* `LowHalfMul3.Product` is the product-coefficient layer:
+  `π₂(L R) = ℓ(L) ∧ ℓ(R)` for affine `L, R`, via Möbius inversion on pairs.
 
 The lower bound is therefore reduced, in Lean, to exactly four statements:
 `LambdaCase 1`, `LambdaCase 2`, `LambdaCase 3` and `StarFree`.

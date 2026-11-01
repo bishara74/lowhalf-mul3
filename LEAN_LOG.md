@@ -297,14 +297,14 @@ So the statement is not vacuous.
 
 ### Stop point
 
-As instructed, stopping before the main theorem (Theorem 11 of
+As instructed, stopping before the main theorem (Theorem 12 of
 `lambda4_proof.tex`). The next formalization steps, in dependency order:
 
 1. strengthen `exists_move_direct_gate_left` (factors, not just gates) and add
    the sorting induction — gives Lemma 1;
 2. a `π₂`/`ι_e` layer for `ANF 6` — gives Lemma 8 verbatim, plus Lemmas 4, 5,
    6 and Proposition 7, which are all cross-part statements;
-3. the rank-2 type classification (Lemma 10), then Theorem 11.
+3. the rank-2 type classification (Lemma 11), then Theorem 12.
 
 ---
 
@@ -533,12 +533,7 @@ theorem derivative_lemma_paper {e : Fin 6 → F₂} (he : IsPaperDir e)
 
 ### Step 5 — what was done, in the brief's order
 
-**Numbering.** I use the numbering of the attached `lambda4_proof.tex`:
-Lemma 1 normal form, Lemma 2 `V₄ = V₄(Q)`, Lemma 3 support, Lemma 4 cross
-part, Lemma 5 (plane in `Λ²(U)`), Lemma 6 (no `q₂` cross part),
-Proposition 7, Lemma 8 derivative, Remark 9, **Lemma 10 types**, **Theorem 11
-main**. The brief's "Lemma 11 (types) and Theorem 12" are these two under a
-later numbering; the statements are identified by content.
+**Numbering.** Renumbered on 2026-11-01 to the revised `lambda4_proof.tex` (the user's version with Remark 10, "why restrictions cannot work"): Lemma 1 normal form, Lemma 2 `V₄ = V₄(Q)`, Lemma 3 support, Lemma 4 cross part, Lemma 5 (plane in `Λ²(U)`), Lemma 6 (no `q₂` cross part), Proposition 7, Lemma 8 derivative, Remarks 9 and 10, **Lemma 11 types**, **Theorem 12 main**. Earlier entries of this log that said "Lemma 11 / Theorem 12" have been updated to this numbering.
 
 #### Lemma 2 — `LowHalfMul3/LemmaTwo.lean` — PROVED (both inclusions)
 
@@ -566,7 +561,7 @@ after Lemma 2 ("Hence `z₀, z₁ ∈ V₄` iff `P₀, Z₁ ∈ Q`, and the rema
 on the last gate is (★)"), and it is what makes the remaining gap an exact
 Lean statement.
 
-* `StarFree` is Theorem 11 in algebraic form (printed in full below). Its
+* `StarFree` is Theorem 12 in algebraic form (printed in full below). Its
   `Q` is `span{π₂(Lᵢ Rᵢ)}` for **affine** `Lᵢ, Rᵢ`, `L₀ = a₀`, `R₀ = b₀`. It
   deliberately allows degenerate products (rank `< 2`, `dim Q < 4`): that is
   what a circuit can produce, and the paper's WLOG "every `Pᵢ` of rank 2,
@@ -579,7 +574,7 @@ Lean statement.
   `Z₁ ∈ Q`), and the `z₂`-decomposition must (giving `f h + z₂ ∈ V4 Q` with
   `f, h` the factors of `g₄`, which lie in `wireSpace 4`). Only the inclusion
   `wireSpace 4 ≤ V4 Q` of Lemma 2 is needed.
-* `starFree_instance_of_iota`: the part of Theorem 11 that Lemma 8 already
+* `starFree_instance_of_iota`: the part of Theorem 12 that Lemma 8 already
   covers — any `Q` with `ι_e(Q) = 0`.
 * `not_hasCircuit_five_of_cases` and `mc_eq_six_of_remaining_cases` assemble
   Lemma 1, the five cases (`λ = 5` proved), padding and `upper`.
@@ -599,7 +594,7 @@ Lean statement.
 
 #### Stopped here
 
-The rest of step 5 — Lemma 3, Lemma 5, Proposition 7, Lemma 10, Theorem 11 —
+The rest of step 5 — Lemma 3, Lemma 5, Proposition 7, Lemma 11, Theorem 12 —
 sits on a layer that does not exist yet (see plan below) and is clearly over
 the 2-hour threshold, so per the brief I stop and report the plan.
 
@@ -630,7 +625,7 @@ def LambdaCase (lam : Nat) : Prop :=
 
 -- missing: LambdaCase 1, LambdaCase 2, LambdaCase 3, and
 
-def StarFree : Prop :=          -- Theorem 11, algebraic form; implies LambdaCase 4
+def StarFree : Prop :=          -- Theorem 12, algebraic form; implies LambdaCase 4
   ∀ (L R : Fin 4 → ANF 6), (∀ i, L i ∈ affine 6) → (∀ i, R i ∈ affine 6) →
     L 0 = aVar 3 0 → R 0 = bVar 3 0 →
     pi2 (lowMul3 1) ∈ quadSpan L R →
@@ -639,9 +634,9 @@ def StarFree : Prop :=          -- Theorem 11, algebraic form; implies LambdaCas
 -- quadSpan L R := Submodule.span F₂ (Set.range fun i => pi2 (L i * R i))
 ```
 
-(As expected: the `λ = 1, 2, 3` cases, plus Theorem 11 for `λ = 4`.)
+(As expected: the `λ = 1, 2, 3` cases, plus Theorem 12 for `λ = 4`.)
 
-### Plan for `StarFree` (Theorem 11), with estimates
+### Plan for `StarFree` (Theorem 12), with estimates
 
 Everything left in the `λ = 4` proof sits on one missing layer: coefficients
 of *products*. In dependency order:
@@ -662,8 +657,8 @@ of *products*. In dependency order:
    needs the two instances `Z₁`, `Z₁ + P₀`, which are finite (pairs `(l, r)`
    with `Z − l ∧ r` decomposable: decide via 4×4 Pfaffians, or by hand).
    Lemma 5 needs step 1 (cubic part of `f h`). Prop 7 combines 4, 5, 6.
-5. **Lemma 10 (types)** (≈ 2 h): by hand from `π(⟨l, r⟩) ⊆ F₂²`.
-6. **Theorem 11 case analysis** (≈ 4–6 h): `d_U = 4` and `d_U = 3` type-`v`
+5. **Lemma 11 (types)** (≈ 2 h): by hand from `π(⟨l, r⟩) ⊆ F₂²`.
+6. **Theorem 12 case analysis** (≈ 4–6 h): `d_U = 4` and `d_U = 3` type-`v`
    via `starFree_instance_of_iota`; `d_U = 3` full via the `(f, h)` →
    `(f, f+h)` normalisation and Prop 7; `d_U = 2` via the three-term structure
    and the rank argument.
@@ -677,3 +672,72 @@ proved — that is a separate, probably comparable, cost.
 
 The `λ = 1, 2, 3` cases are not touched in Lean; their human proofs are the
 prerequisite (`λ = 3` has a written proof pending review; `λ = 2, 1` open).
+
+---
+
+## 2026-11-01 — phase 4: `StarFree` (Theorem 12, λ = 4)
+
+Reference: revised `lambda4_proof.tex` (11 October 2026, revised). Numbering
+throughout this repository updated to it (Lemma 11 types, Theorem 12 main).
+
+### Route decision (logged, not asked)
+
+The brief's order (1)–(6) follows the paper. Working through it, I found a
+shorter argument for Theorem 12 that removes the parts of the paper that are
+most expensive to formalize — the cubic/quartic parts of `fh`, `π₄(fh) = f₂ ∧ h₂`,
+Lemma 5, Proposition 7, the WLOG enlargement to `dim Q = 4` / rank 2, and the
+dimension half of Lemma 4 — and keeps Lemma 3 (instances), Lemma 6, Lemma 11 and
+the paper's three-term analysis. Validated by brute force *before* writing Lean
+(Python, 2026-11-01):
+
+* **Lemma 8′ (strengthened derivative lemma).** If `ι_e(Q) ⊆ span{ℓ}` for one
+  linear form `ℓ ≠ δ_e` (`δ_e = ι_e(q₂)`, i.e. `b₀, a₀, a₀+b₀`), then (★) has no
+  solution. `ℓ = 0` is Lemma 8. Proof: `D_e p = c_p + γ_p ℓ` for `p ∈ V₄(Q)`;
+  normalise `γ_f = 0` by `(f,h) → (h,f)` or `(f+h, h)` (which change `fh + z₂`
+  only by `h ∈ V₄(Q)`); then the product rule gives
+  `c_f h + (c_h + γ_h ℓ) f + c_f(c_h + γ_h ℓ) + δ_e = c_g + γ_g ℓ`. If `c_f = 1`,
+  `h = H(f+1) + A` and `fh = fA` has degree ≤ 3; if `c_f = 0`, `H f = A` pointwise,
+  and a finite fact (an affine `A ∋ δ_e` cannot vanish on the zero set of
+  `H = c_h + γ_h ℓ` unless `H ≡ 1`, because `δ_e ∉ span{1, ℓ}`) forces `H ≡ 1`,
+  so `f = A` is affine and `fh` has degree ≤ 3. Either way the carry
+  `a₀a₁b₀b₁` is missing. Finite fact checked: true for all 64 `ℓ ≠ δ_e`.
+* **Case A** (replaces Proposition 7 and the whole `d_U = 3` case). If the
+  nonzero cross parts `Φ(P₁), Φ(P₂), Φ(P₃)` coincide, say all in `{0, φ}`, then
+  every `ι_e(Q)` lies in `span{ι_e φ}`. By Lemma 6, `φ ≠ Φ(q₂)`, so `ι_{a₂}φ ≠ b₀`
+  or `ι_{b₂}φ ≠ a₀`, and Lemma 8′ applies along `a₂` or `b₂`.
+* **Otherwise** write `Z₁ = c₀P₀ + c₁P₁ + c₂P₂ + c₃P₃`. Zero or one `cᵢ = 1`
+  (i ≥ 1) contradicts rank (`Z₁`, `Z₁ + P₀` are not wedges: Pfaffian `Pf₀₁₃₄ = 1`);
+  two give Lemma 3, so both cross parts vanish and Case A applies; three give
+  `P₁ + P₂ + P₃ = Z₁ + c₀P₀`, and if one cross part vanishes the other two are
+  equal (Case A); if none vanishes, Lemma 11 and the paper's three-term
+  argument give either an `e` killing all of `Q` (Lemma 8) or a contradiction.
+* Brute-force check of the whole conclusion: all **96 528** triples of wedge
+  forms (including degenerate ones) with `Z₁ ∈ span{P₀, …, P₃}` admit such a
+  direction; **0** fail. Lemma 3 instance in Pfaffian form (all 15 Pfaffians of
+  `Z + l∧r` vanish ⟹ `Φ(l∧r) = 0`, `Z ∈ {Z₁, Z₁+P₀}`): true for all 4096 `(l, r)`.
+
+Consequences for the brief: step (1) is done for `π₂(L R)` only — the cubic and
+quartic parts of `fh` are not needed and not formalized; step (2) (WLOG) and
+step (3) (Lemma 4 dimension half) are not needed, because the case split is on
+the cross parts themselves and works for degenerate products and `dim Q < 4`;
+step (4) becomes Lemma 3 (instances) + Lemma 8′; Lemma 5 and Proposition 7 are
+not formalized. This also suggests a shorter human proof of Theorem 12 for the
+paper (Case A replaces Proposition 7 and Lemma 5).
+
+### Step 1 — `LowHalfMul3/Product.lean`: product layer — PROVED
+
+* `unitVec`, `dotv` (with `_add_left/_add_right/_smul_left` lemmas).
+* `lin p j := eval p (unitVec j) + eval p 0` (semantic linear part);
+  `eval_affine : L ∈ affine 6 → eval L x = eval L 0 + dotv (lin L) x`
+  (by `Submodule.span_induction`).
+* `pi2_eq_mobius`: for every ANF `p` and `i ≠ j`,
+  `pi2 p i j = p(0) + p(eᵢ) + p(eⱼ) + p(eᵢ+eⱼ)`. Same support-expansion
+  technique as the bridge; the termwise identity `sel_eq_mobius_termwise`
+  (64 subsets × 36 ordered pairs) is a plain `decide`.
+* **`pi2_mul_affine : L ∈ affine 6 → R ∈ affine 6 → pi2 (L * R) = wedge (lin L) (lin R)`.**
+  Off the diagonal: Möbius + `eval_affine` at the four points + a 6-variable
+  F₂ identity (`decide`).
+* `P0form := wedge (unitVec 0) (unitVec 3)`, `Z1form := wedge e₀ e₄ + wedge e₁ e₃`;
+  `pi2_a0b0`, `pi2_lowMul3_one` (via `z1_eq` and `pi2_mul_affine`).
+
+Compiled first time. `lake build`: 1737 jobs, green.

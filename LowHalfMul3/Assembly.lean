@@ -8,11 +8,11 @@ import LowHalfMul3.Reduction
 Lemma 1 with exactly `lam` linear gates. `LambdaCase 5` is proved
 (`LambdaFive.lean`).
 
-`StarFree` is Theorem 11 of `lambda4_proof.tex` in algebraic form: for four
+`StarFree` is Theorem 12 of `lambda4_proof.tex` in algebraic form: for four
 products of affine functions `Lᵢ Rᵢ` with `L₀ R₀ = a₀ b₀` and
 `Q = span {π₂(Lᵢ Rᵢ)} ∋ Z₁`, condition (★) has no solution. It deliberately
 allows degenerate products (`π₂(Lᵢ Rᵢ)` of rank `< 2`, `dim Q < 4`): the paper's
-reduction to rank-2 forms and `dim Q = 4` is part of the proof of Theorem 11,
+reduction to rank-2 forms and `dim Q = 4` is part of the proof of Theorem 12,
 not of the circuit-to-(★) reduction proved here.
 
 * `lambdaCase_four_of_starFree : StarFree → LambdaCase 4` is the paragraph
@@ -42,7 +42,7 @@ theorem lambdaCase_five : LambdaCase 5 :=
 def quadSpan (L R : Fin 4 → ANF 6) : Submodule F₂ TwoForm6 :=
   Submodule.span F₂ (Set.range fun i => pi2 (L i * R i))
 
-/-- **Theorem 11 of `lambda4_proof.tex`, algebraic form.** For affine
+/-- **Theorem 12 of `lambda4_proof.tex`, algebraic form.** For affine
 `L₀..L₃, R₀..R₃` with `L₀ = a₀`, `R₀ = b₀` and `Z₁ ∈ Q := span{π₂(Lᵢ Rᵢ)}`,
 there are no `f, h ∈ V₄(Q)` with `f h ∈ z₂ + V₄(Q)`. -/
 def StarFree : Prop :=
@@ -52,7 +52,7 @@ def StarFree : Prop :=
     ∀ f h : ANF 6, f ∈ V4 (quadSpan L R) → h ∈ V4 (quadSpan L R) →
       f * h + lowMul3 2 ∈ V4 (quadSpan L R) → False
 
-/-- The part of Theorem 11 already covered by Lemma 8: every `Q` annihilated
+/-- The part of Theorem 12 already covered by Lemma 8: every `Q` annihilated
 by some `ι_e` (685 of the 783 orbits in the paper's count). -/
 theorem starFree_instance_of_iota (L R : Fin 4 → ANF 6)
     {e : Fin 6 → F₂} (he : IsPaperDir e)
@@ -90,7 +90,7 @@ theorem finalWire_five_eq (D : Circuit 6 5) :
   rw [N4.wireSpace_succ D.gate (by norm_num)]
   rfl
 
-/-- **The `λ = 4` reduction.** Theorem 11 (`StarFree`) excludes the case of
+/-- **The `λ = 4` reduction.** Theorem 12 (`StarFree`) excludes the case of
 four linear gates. -/
 theorem lambdaCase_four_of_starFree (hstar : StarFree) : LambdaCase 4 := by
   intro D hD _ hl0 hr0 hlam
@@ -164,7 +164,7 @@ theorem not_hasCircuit_five_of_cases (h1 : LambdaCase 1) (h2 : LambdaCase 2)
 
 /-- **`MC(lowMul3) = 6` from the remaining cases.** What is still missing in
 Lean is exactly: `LambdaCase 1`, `LambdaCase 2`, `LambdaCase 3`, and
-`StarFree` (Theorem 11). -/
+`StarFree` (Theorem 12). -/
 theorem mc_eq_six_of_remaining_cases (h1 : LambdaCase 1) (h2 : LambdaCase 2)
     (h3 : LambdaCase 3) (h4 : StarFree) : MC(lowMul3) = 6 :=
   mc_eq_six_of_no_five

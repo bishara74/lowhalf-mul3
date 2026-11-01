@@ -167,6 +167,20 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #check @lemma6
 #print axioms lemma6
 
+-- Product: the product-coefficient layer.
+#check @eval_affine
+#print axioms eval_affine
+#check @sel_eq_mobius_termwise
+#print axioms sel_eq_mobius_termwise
+#check @pi2_eq_mobius
+#print axioms pi2_eq_mobius
+#check @pi2_mul_affine
+#print axioms pi2_mul_affine
+#check @pi2_a0b0
+#print axioms pi2_a0b0
+#check @pi2_lowMul3_one
+#print axioms pi2_lowMul3_one
+
 -- The open statements, printed in full.
 #print LambdaCase
 #print StarFree
