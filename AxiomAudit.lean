@@ -181,6 +181,52 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #check @pi2_lowMul3_one
 #print axioms pi2_lowMul3_one
 
+-- LineDerivative (Lemma 8') and LemmaThree (Lemma 3 instances).
+#check @eval_linANF
+#print axioms eval_linANF
+#check @deriv_add
+#print axioms deriv_add
+#check @deriv_mul
+#print axioms deriv_mul
+#check @not_degreeLE_three_of_star
+#print axioms not_degreeLE_three_of_star
+#check @line_core
+#print axioms line_core
+#check @PaperPair.deriv_z2
+#print axioms PaperPair.deriv_z2
+#check @line_finite_b0
+#print axioms line_finite_b0
+#check @line_finite_a0
+#print axioms line_finite_a0
+#check @line_finite_a0b0
+#print axioms line_finite_a0b0
+#check @PaperPair.fin
+#print axioms PaperPair.fin
+#check @deriv_line_of_mem
+#print axioms deriv_line_of_mem
+#check @starFree_of_goodDir
+#print axioms starFree_of_goodDir
+#check @wedge_comm
+#print axioms wedge_comm
+#check @wedge_self
+#print axioms wedge_self
+#check @pf_wedge
+#print axioms pf_wedge
+#check @allPfZero_wedge
+#print axioms allPfZero_wedge
+#check @Z1form_eq_lit
+#print axioms Z1form_eq_lit
+#check @Z1form_add_P0form_eq_lit
+#print axioms Z1form_add_P0form_eq_lit
+#check @wedge_ne_Z
+#print axioms wedge_ne_Z
+#check @lemma3_finite_Z1
+#print axioms lemma3_finite_Z1
+#check @lemma3_finite_Z1P0
+#print axioms lemma3_finite_Z1P0
+#check @lemma3
+#print axioms lemma3
+
 -- The open statements, printed in full.
 #print LambdaCase
 #print StarFree

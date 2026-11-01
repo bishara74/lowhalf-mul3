@@ -741,3 +741,45 @@ paper (Case A replaces Proposition 7 and Lemma 5).
   `pi2_a0b0`, `pi2_lowMul3_one` (via `z1_eq` and `pi2_mul_affine`).
 
 Compiled first time. `lake build`: 1737 jobs, green.
+
+### Steps 2 and 3 of the brief — not needed (see route decision)
+
+The case split below is on the cross parts `Φ(P_k)` themselves and holds for
+degenerate products and `dim Q < 4`, so neither the WLOG enlargement
+(`dim Q = 4`, rank-2 basis) nor the dimension half of Lemma 4 is used.
+
+### Step 4 — Lemma 8′ and Lemma 3 — PROVED
+
+`LowHalfMul3/LineDerivative.lean` (Lemma 8′):
+
+* `linANF`, `affANF c γ ℓ d = c + γ⟨ℓ,x⟩ + ⟨d,x⟩` (affine ANFs), `deriv_add`,
+  `deriv_mul` (product rule `D(fh) = Df·h + f·Dh + Df·Dh`, 4-variable `decide`),
+  `not_degreeLE_three_of_star` (if `fh + z₂` has degree ≤ 2 then `fh` does not
+  have degree ≤ 3: the carry).
+* `line_core`: the computation after normalising `γ_f = 0`, both branches
+  (`c_f = 1`: `h = H(f+1) + A`, `fh = fA`; `c_f = 0`: `H ≡ 1`, `f = A`).
+* `line_finite_b0`, `line_finite_a0`, `line_finite_a0b0`: the finite fact
+  "`δ_e ∉ span{1,ℓ}` ⟹ `H ≡ 1`", one plain `decide` each (64 `ℓ` × 16
+  constants × 2 inner ∀ over 64 points; ≈ 35 s each).
+* `PaperPair e d` (direction with its `δ_e`), `GoodDir Q :=
+  ∃ e d ℓ, PaperPair e d ∧ ℓ ≠ d ∧ ∀ ω ∈ Q, ∃ γ, ι_e ω = γ • ℓ`.
+* **`starFree_of_goodDir : GoodDir Q → ¬ (★)`** — the normalisation
+  (`(h,f)` or `(f+h, h)`) and `line_core`.
+
+`LowHalfMul3/LemmaThree.lean`:
+
+* `wedge` algebra (symmetric, bilinear, `l ∧ l = 0`), `pf` (4×4 Pfaffian),
+  `pf_wedge` (8-variable `decide`), `AllPfZero`.
+* `Z1lit`, `Z1P0lit` literal matrices, `Z1form_eq_lit`, `Z1form_add_P0form_eq_lit`.
+* `wedge_ne_Z : wedge l r ≠ Z₁ + c₀P₀` (`Pf₀₁₃₄ = 1`).
+* `lemma3_finite_Z1`, `lemma3_finite_Z1P0`: all 15 Pfaffians of `Z + l∧r` zero ⟹
+  rows 2 and 5 of `l∧r` zero; plain `decide` over 4096 pairs each, with
+  `maxHeartbeats 4000000` (≈ 50 s each; the default 200000 timed out with
+  symbolic `Z`, so `Z` is a literal matrix).
+* **`lemma3 : wedge l r + wedge l' r' = Z₁ + c₀P₀ → Φ(wedge l r) = 0`.**
+
+Fixes during compilation: `∀ q ∈ list` had no `Decidable` instance in this
+form, so the 15 Pfaffians are an explicit conjunction; a stray `rw`; missing
+parentheses in `dotv (unitVec 3)`.
+
+`lake build`: 1739 jobs, green.

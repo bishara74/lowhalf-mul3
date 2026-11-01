@@ -9,6 +9,8 @@ import LowHalfMul3.LemmaTwo
 import LowHalfMul3.Assembly
 import LowHalfMul3.CrossPart
 import LowHalfMul3.Product
+import LowHalfMul3.LineDerivative
+import LowHalfMul3.LemmaThree
 
 /-!
 # The 3 x 3 low-half multiplier
@@ -44,6 +46,11 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
 
 * `LowHalfMul3.Product` is the product-coefficient layer:
   `π₂(L R) = ℓ(L) ∧ ℓ(R)` for affine `L, R`, via Möbius inversion on pairs.
+
+* `LowHalfMul3.LineDerivative` proves Lemma 8′ (`starFree_of_goodDir`): if
+  `ι_e(Q) ⊆ span{ℓ}` with `ℓ ≠ δ_e` for a paper direction `e`, (★) fails.
+* `LowHalfMul3.LemmaThree` has the wedge algebra, Pfaffians, the two Lemma 3
+  instances (`lemma3`) and `wedge_ne_Z` (`Z₁ + c₀ P₀` is not a wedge).
 
 The lower bound is therefore reduced, in Lean, to exactly four statements:
 `LambdaCase 1`, `LambdaCase 2`, `LambdaCase 3` and `StarFree`.
