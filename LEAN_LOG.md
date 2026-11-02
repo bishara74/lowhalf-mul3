@@ -880,3 +880,28 @@ with `mc_eq_six_of_lambda_cases (h1 : LambdaCase 1) (h2 : LambdaCase 2)
 Note from earlier analysis (memory, not Lean): the `λ = 3` human proof's
 `z₁`-placing subcases reduce to the `λ = 4` star condition, so `starFree` and
 `starFree_of_goodDir` should be directly reusable there.
+
+---
+
+## 2026-11-02 — phase 5: write-up, then `LambdaCase 3`
+
+Reference: `lambda3_proof.tex` (AI-written draft, attached by the user) and the
+revised `lambda4_proof.tex`. Same rules as phase 4; after every green step the
+agent commits locally and stops for the user to push.
+
+### Step 0 — `session_log/theorem12_short.tex` (no Lean changes)
+
+"An alternative proof of Theorem 12", author line "AI-written draft, pending
+human review". It follows `LowHalfMul3/MainTheorem.lean`: Lemma 8′
+(`ι_e(Q) ⊆ ⟨ℓ⟩`, `ℓ ≠ δ_e`), Case A (via Lemma 6), and the split by
+`|S| = #{k ≥ 1 : c_k = 1}` in `Z₁ = Σ c_k P_k`, using Lemmas 3, 6, 11 of [L4].
+The statement proved is the strengthened one (`P₁, P₂, P₃` of rank ≤ 2, any
+`dim Q`), so the paper's WLOG step, Lemma 5, Proposition 7 and the dimension
+half of Lemma 4 are not used. The file closes with a table "paper step → Lean
+theorem → file"; all 74 Lean names it cites were checked against the sources.
+Two differences are stated in the text: Lemmas 3 and 6 are checked in Lean by
+`decide`, not by the human arguments of [L4].
+
+No PDF: no LaTeX engine is available. `pdflatex`, `xelatex`, `lualatex`,
+`tectonic` and `latexmk` are not on PATH, and the `latex` conda environment
+contains no tectonic binary.
