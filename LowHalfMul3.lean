@@ -13,6 +13,7 @@ import LowHalfMul3.LineDerivative
 import LowHalfMul3.LemmaThree
 import LowHalfMul3.Types
 import LowHalfMul3.MainTheorem
+import LowHalfMul3.LambdaThree
 
 /-!
 # The 3 x 3 low-half multiplier
@@ -59,6 +60,13 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
 
 * `LowHalfMul3.MainTheorem` proves Theorem 12 (`starFree`, the case `λ = 4`),
   hence `lambdaCase_four`, and `mc_eq_six_of_lambda_cases`.
+
+* `LowHalfMul3.LambdaThree` reduces `LambdaCase 3` to two claims
+  (`lambdaCase_three_of : BadClaim → B3Claim → LambdaCase 3`): `BadClaim`
+  (Lemmas A and C of `lambda3_proof.tex` for `Q₃` without a good direction) and
+  `B3Claim` (Proposition B3, `Q₃ ⊆ Λ²(U)`). Lemma C for spaces with a good
+  direction, the flow `z₁ ∈ V₄`, Lemma B3U and the last-gate argument via
+  `Q₃ + ⟨Z₁⟩` are proved there.
 
 The lower bound is therefore reduced, in Lean, to exactly three statements:
 `LambdaCase 1`, `LambdaCase 2` and `LambdaCase 3`

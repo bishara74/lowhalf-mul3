@@ -905,3 +905,48 @@ Two differences are stated in the text: Lemmas 3 and 6 are checked in Lean by
 No PDF: no LaTeX engine is available. `pdflatex`, `xelatex`, `lualatex`,
 `tectonic` and `latexmk` are not on PATH, and the `latex` conda environment
 contains no tectonic binary.
+
+### Step 1 – `LambdaCase 3` reduced to `BadClaim` and `B3Claim`
+
+New file `LowHalfMul3/LambdaThree.lean`. Proved:
+`lambdaCase_three_of : BadClaim → B3Claim → LambdaCase 3` and
+`mc_eq_six_of_claims : LambdaCase 1 → LambdaCase 2 → BadClaim → B3Claim → MC(lowMul3) = 6`.
+
+The two open claims, stated in full in the file:
+
+* `BadClaim`: for `Q₃ = span{P₀, l₁∧r₁, l₂∧r₂}` (`Q3span`) with `¬ GoodDir Q₃`,
+  `NoPlace Q₃ T` for `T = z₁, z₂, z₂ + z₁`. (`NoPlace Q T`: no `f, h ∈ V(Q)`
+  with `f h + T ∈ V(Q)`.)
+* `B3Claim`: if `Φ` vanishes on `Q` (i.e. `Q ⊆ Λ²(U)`), `f, h ∈ V(Q)`, and
+  `F, H ∈ V(Q) + ⟨fh⟩`, then `F H + z₂ ∉ V(Q) + ⟨fh⟩`.
+
+Route (divergence from `lambda3_proof.tex`, human-readable sketch):
+
+1. If `Q₃` has a good direction `e` (Lemma 8′: `ι_e(Q₃) ⊆ ⟨ℓ⟩`, `ℓ ≠ δ_e`),
+   so does `Q' = Q₃ + ⟨Z₁⟩`, because `ι_e Z₁ = 0` for `e ∈ E` (`iota_Z1`,
+   `goodDir_sup_Z1`). Since `z₁ ∈ V(Q')`, a solution of
+   `fh ∈ z₂ + εz₁ + V(Q₃)` is a solution of (★) for `Q'`, which Lemma 8′
+   excludes. This is Lemma C for such `Q₃` (`noPlace_of_goodDir`); the paper's
+   case split on `d_U` (Lemmas 5/6 of [L4], D1) is not needed here.
+2. Lemma C gives `z₂, z₁+z₂ ∉ V₄`, hence `z₁ ∈ V₄` and `g₄ ∈ z₂ + V₄`
+   (`flow`, same argument as §7 of the paper).
+3. If `z₁ ∈ V₃` then `Z₁ ∈ Q₃`, and Lemma 3 of [L4] puts both generators in
+   `Λ²(U)` (Lemma B3U, `phi_of_Z1_mem`; no dimension hypothesis needed): this
+   is `B3Claim`.
+4. Otherwise `g₃ ∈ z₁ + V₃`. For good `Q₃`, `V₄ ⊆ V(Q')` and the last gate
+   solves (★) for `Q'`: Lemma 8′ again (this replaces Proposition B, which
+   used Lemma A and Theorem 12). For bad `Q₃` this placement contradicts
+   `BadClaim`.
+5. Step (1) of the paper (`dim Q₃ = 3`) is not used anywhere.
+
+Computational evidence gathered for the open claims (Python, not Lean):
+of the 164,596 spaces `Q₃ = span{P₀, P₁, P₂}` (`P₁, P₂` wedges, rank 0
+allowed), 26,928 have no good direction. All of them are 3-dimensional with
+`Q₃ ∩ Λ²(U) = ⟨P₀⟩`: 26,880 are `span{P₀, R₁, R₂}` with `R₁, R₂` full, and 48
+consist of type-`v` forms. None contains `Z₁`, none contains an `Ω`-pair
+(`ω ∧ η = Ω`, Lemma D1), and for none is `Z₁ + q` (`q ∈ Q₃`) a wedge.
+The last fact follows in Lean from `goodDir_main`. It reduces Lemma A for
+bad `Q₃` to the product lemma (`deg(fh) ≤ 2 ⇒ (fh)₂ ∈ ⟨f₂, h₂⟩ + wedge`).
+
+`lake build` green (1742 jobs). The audit lists 143 theorems, all
+`[propext, Classical.choice, Quot.sound]`.

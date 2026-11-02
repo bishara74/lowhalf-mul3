@@ -76,7 +76,9 @@ status:
     the exclusion of lambda = 5, and Theorem 12 (starFree, the
     four-linear-gate case). mc_eq_six_of_lambda_cases derives MC(lowMul3) = 6
     from LambdaCase 1, LambdaCase 2 and LambdaCase 3; these three are not
-    proved. All 130 proved theorems share the
+    proved. Phase 5 reduces LambdaCase 3 to two named claims, BadClaim and
+    B3Claim (lambdaCase_three_of), which are not yet proved. All 143 audited
+    theorems share the
     axiom closure [propext, Classical.choice, Quot.sound]. Finite facts are
     checked by plain decide (kernel-checked). No use of
     native_decide or ofReduceBool, and no custom axiom.
@@ -110,6 +112,12 @@ fidelity:
     over ANF (2 * 3); these index types are definitionally equal and Lean
     accepts the coercion-free statement. The SAT certificates and the human
     case analysis behind the value 6 are outside this Lean development.
+    LambdaCase 3 (phase 5) follows lambda3_proof.tex with a shorter route:
+    the dim Q3 = 3 reduction is not used; Lemma C for Q3 with a good
+    direction and Proposition B (last gate after g3 places z1) are both
+    obtained from Lemma 8' applied to Q' = Q3 + <Z1> (iota_e Z1 = 0), instead
+    of Lemmas 5/6, D1 and Theorem 12; Lemmas A, C and D1 are needed only for
+    Q3 without a good direction (BadClaim).
 review:
   status: self-assessed
   notes: >-
@@ -158,6 +166,26 @@ alignment:
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_eq_six_of_lambda_cases
       module: LowHalfMul3.MainTheorem
       status: proved
+    - source: lambda3_proof.tex Theorem (lambda = 3), from BadClaim and B3Claim
+      lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_three_of
+      module: LowHalfMul3.LambdaThree
+      status: proved-with-divergence
+    - source: lambda3_proof.tex Lemma C, spaces with a good direction
+      lean: UnrestrictedBooleanMul.LowHalfMul3.noPlace_of_goodDir
+      module: LowHalfMul3.LambdaThree
+      status: proved-with-divergence
+    - source: lambda3_proof.tex Lemma B3U (Z1 in Q3 implies Q3 in Lambda^2(U))
+      lean: UnrestrictedBooleanMul.LowHalfMul3.phi_of_Z1_mem
+      module: LowHalfMul3.LambdaThree
+      status: proved
+    - source: lambda3_proof.tex Lemmas A and C for Q3 without a good direction
+      lean: UnrestrictedBooleanMul.LowHalfMul3.BadClaim
+      module: LowHalfMul3.LambdaThree
+      status: stated
+    - source: lambda3_proof.tex Proposition B3
+      lean: UnrestrictedBooleanMul.LowHalfMul3.B3Claim
+      module: LowHalfMul3.LambdaThree
+      status: stated
     - source: exact unrestricted complexity of the 3x3 low-half product
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3
       module: Challenge

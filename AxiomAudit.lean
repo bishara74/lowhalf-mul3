@@ -297,6 +297,38 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #check @mc_eq_six_of_lambda_cases
 #print axioms mc_eq_six_of_lambda_cases
 
+-- LambdaThree: LambdaCase 3 from BadClaim and B3Claim (phase 5).
+#check @iota_Z1
+#print axioms iota_Z1
+#check @goodDir_sup_Z1
+#print axioms goodDir_sup_Z1
+#check @z1_mem_V4_sup
+#print axioms z1_mem_V4_sup
+#check @noPlace_of_goodDir
+#print axioms noPlace_of_goodDir
+#check @not_degreeLE_two_z2_add_z1
+#print axioms not_degreeLE_two_z2_add_z1
+#check @not_mem_sup_of_noPlace
+#print axioms not_mem_sup_of_noPlace
+#check @flow
+#print axioms flow
+#check @f2_swap3
+#print axioms f2_swap3
+#check @phi_of_Z1_mem
+#print axioms phi_of_Z1_mem
+#check @gateQ_three
+#print axioms gateQ_three
+#check @wireSpace_four_eq
+#print axioms wireSpace_four_eq
+#check @lambdaCase_three_of
+#print axioms lambdaCase_three_of
+#check @mc_eq_six_of_claims
+#print axioms mc_eq_six_of_claims
+
 -- The open statements, printed in full.
+#print BadClaim
+#print B3Claim
+#print NoPlace
+#print Q3span
 #print LambdaCase
 #print StarFree
