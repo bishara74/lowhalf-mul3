@@ -227,6 +227,32 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #check @lemma3
 #print axioms lemma3
 
+-- Types (Lemma 11).
+#check @wedge_lincomb
+#print axioms wedge_lincomb
+#check @types_finite
+#print axioms types_finite
+#check @types
+#print axioms types
+#check @phi_eq_zero_of_rows
+#print axioms phi_eq_zero_of_rows
+#check @rows_v
+#print axioms rows_v
+#check @rows_full
+#print axioms rows_full
+#check @phi_of_NFzero
+#print axioms phi_of_NFzero
+#check @gamma_v
+#print axioms gamma_v
+#check @gamma_full
+#print axioms gamma_full
+#check @iota_dirA2_v
+#print axioms iota_dirA2_v
+#check @iota_dirB2_v
+#print axioms iota_dirB2_v
+#check @iota_dirA2B2_v
+#print axioms iota_dirA2B2_v
+
 -- The open statements, printed in full.
 #print LambdaCase
 #print StarFree

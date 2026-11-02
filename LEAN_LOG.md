@@ -783,3 +783,27 @@ form, so the 15 Pfaffians are an explicit conjunction; a stray `rw`; missing
 parentheses in `dotv (unitVec 3)`.
 
 `lake build`: 1739 jobs, green.
+
+### Step 5 — `LowHalfMul3/Types.lean`: Lemma 11 (types) — PROVED
+
+Stated as a normal form (with the zero-cross-part case the paper excludes by
+hypothesis), writing `π(x) = (x 2, x 5)`:
+
+```lean
+def NFzero (l r) := l 2 = 0 ∧ l 5 = 0 ∧ r 2 = 0 ∧ r 5 = 0
+def NFv    (l r) := r 2 = 0 ∧ r 5 = 0 ∧ ¬ (l 2 = 0 ∧ l 5 = 0)     -- r ∈ U, π(l) = v ≠ 0
+def NFfull (l r) := l 2 = 1 ∧ l 5 = 0 ∧ r 2 = 0 ∧ r 5 = 1          -- (a₂+x) ∧ (b₂+y)
+theorem types (l r : Fin 6 → F₂) :
+    ∃ l' r', wedge l' r' = wedge l r ∧ (NFzero l' r' ∨ NFv l' r' ∨ NFfull l' r')
+```
+
+* `wedge_lincomb`: `(a l + b r) ∧ (c l + d r) = (ad + bc)(l ∧ r)` (8-bit `decide`).
+* `types_finite`: for every `π(l), π(r)` an invertible `(a b; c d)` reaches a
+  normal form (`decide`, 16 × 16). Brute-force-checked in Python first.
+* Cross-part formulas: `rows_v` (rows 2, 5 of `l ∧ r` are `l 2 • r`, `l 5 • r`,
+  the paper's `Φ(R) = v ⊗ r`), `rows_full` (rows are `r`, `l`, the paper's
+  `(y, x, 1)`), `gamma_v` / `gamma_full` (`γ = 0` / `1`), `phi_of_NFzero`,
+  and `iota_dirA2_v` / `iota_dirB2_v` / `iota_dirA2B2_v` (for type `v`, `ι_e`
+  vanishes when `e` kills `v`).
+
+Compiled first time. `lake build`: 1740 jobs, green.

@@ -11,6 +11,7 @@ import LowHalfMul3.CrossPart
 import LowHalfMul3.Product
 import LowHalfMul3.LineDerivative
 import LowHalfMul3.LemmaThree
+import LowHalfMul3.Types
 
 /-!
 # The 3 x 3 low-half multiplier
@@ -51,6 +52,9 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
   `ι_e(Q) ⊆ span{ℓ}` with `ℓ ≠ δ_e` for a paper direction `e`, (★) fails.
 * `LowHalfMul3.LemmaThree` has the wedge algebra, Pfaffians, the two Lemma 3
   instances (`lemma3`) and `wedge_ne_Z` (`Z₁ + c₀ P₀` is not a wedge).
+
+* `LowHalfMul3.Types` proves Lemma 11 (types) as a normal form: every
+  `l ∧ r` equals some `l' ∧ r'` with cross part zero, of type `v`, or full.
 
 The lower bound is therefore reduced, in Lean, to exactly four statements:
 `LambdaCase 1`, `LambdaCase 2`, `LambdaCase 3` and `StarFree`.
