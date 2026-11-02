@@ -12,6 +12,7 @@ import LowHalfMul3.Product
 import LowHalfMul3.LineDerivative
 import LowHalfMul3.LemmaThree
 import LowHalfMul3.Types
+import LowHalfMul3.MainTheorem
 
 /-!
 # The 3 x 3 low-half multiplier
@@ -56,9 +57,10 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
 * `LowHalfMul3.Types` proves Lemma 11 (types) as a normal form: every
   `l ∧ r` equals some `l' ∧ r'` with cross part zero, of type `v`, or full.
 
-The lower bound is therefore reduced, in Lean, to exactly four statements:
-`LambdaCase 1`, `LambdaCase 2`, `LambdaCase 3` and `StarFree`.
+* `LowHalfMul3.MainTheorem` proves Theorem 12 (`starFree`, the case `λ = 4`),
+  hence `lambdaCase_four`, and `mc_eq_six_of_lambda_cases`.
 
-The unconditional claim `MC(lowMul3) = 6` is stated, as a deliberate hole,
-in `Challenge.lean`.
+The lower bound is therefore reduced, in Lean, to exactly three statements:
+`LambdaCase 1`, `LambdaCase 2` and `LambdaCase 3`
+(`mc_eq_six_of_lambda_cases : LambdaCase 1 → LambdaCase 2 → LambdaCase 3 → MC(lowMul3) = 6`).
 -/

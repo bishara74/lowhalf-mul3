@@ -13,10 +13,11 @@ project:
     adds the derivative lemma (Lemma 8 of the attached note). Phase 3 proves
     the normal form (Lemma 1), Lemma 2, the pi2 / iota layer with Lemma 8 in
     the paper's form, Lemma 4 (kernel) and Lemma 6, excludes lambda = 5, and
-    reduces MC(lowMul3) = 6 to four explicit statements: LambdaCase 1, 2, 3
-    and StarFree (Theorem 12 of the note), via mc_eq_six_of_remaining_cases.
-    The unconditional claim MC(lowMul3) = 6 is only stated, as a deliberate
-    hole.
+    reduces MC(lowMul3) = 6 to four explicit statements. Phase 4 proves the
+    fourth, StarFree (Theorem 12 of the note, the four-linear-gate case), so
+    MC(lowMul3) = 6 now follows in Lean from LambdaCase 1, 2, 3 alone
+    (mc_eq_six_of_lambda_cases). The unconditional claim MC(lowMul3) = 6 is
+    only stated, as a deliberate hole.
   authors: [Bishara]
   responsible_maintainers: [Bishara]
   license: MIT
@@ -47,11 +48,15 @@ sources:
     relationship: formalizes
     note: >-
       Formalized: Lemma 1 (normal_form_five), Lemma 2 (wireSpace_eq_V4),
-      Lemma 4 kernel half (phi_eq_zero_iff), Lemma 6 (lemma6), Lemma 8 in the
-      paper's form (derivative_lemma_paper), and the reduction of the
-      four-linear-gate case to Theorem 12 (lambdaCase_four_of_starFree).
-      Open in Lean: Lemma 3, Lemma 4 dimension half, Lemma 5, Proposition 7,
-      Lemma 11, Theorem 12 (StarFree).
+      Lemma 3 for the two instances used (lemma3), Lemma 4 kernel half
+      (phi_eq_zero_iff), Lemma 6 (lemma6), Lemma 8 in the paper's form
+      (derivative_lemma_paper), Lemma 11 as a normal form (types), and
+      Theorem 12 (starFree, hence lambdaCase_four). Theorem 12 is proved by a
+      shorter route than the note: a strengthened derivative lemma (Lemma 8',
+      starFree_of_goodDir) plus Lemma 6 replaces Lemma 5, Proposition 7, the
+      dimension half of Lemma 4 and the WLOG dim Q = 4; the three-term case
+      follows the note. Not formalized (not needed on this route): Lemma 4
+      dimension half, Lemma 5, Proposition 7.
 related_formalizations:
   - id: https://github.com/GregoryMorse/unrestricted-boolean-mul
     relationship: depends-on
@@ -67,10 +72,11 @@ status:
     lowMul3. The exact value MC(lowMul3) = 6 is NOT proved: no lower bound
     argument is formalized, and the equality appears only as the single
     deliberate hole in Challenge.lean, which the library does not import.
-    Phases 2-3 add lower-bound machinery: the normal form, Lemma 2, Lemma 8,
-    the exclusion of lambda = 5, and mc_eq_six_of_remaining_cases, which
-    derives MC(lowMul3) = 6 from LambdaCase 1, LambdaCase 2, LambdaCase 3 and
-    StarFree; these four are not proved. All 69 proved theorems share the
+    Phases 2-4 add lower-bound machinery: the normal form, Lemma 2, Lemma 8,
+    the exclusion of lambda = 5, and Theorem 12 (starFree, the
+    four-linear-gate case). mc_eq_six_of_lambda_cases derives MC(lowMul3) = 6
+    from LambdaCase 1, LambdaCase 2 and LambdaCase 3; these three are not
+    proved. All 130 proved theorems share the
     axiom closure [propext, Classical.choice, Quot.sound]. Finite facts are
     checked by plain decide (kernel-checked). No use of
     native_decide or ofReduceBool, and no custom axiom.
@@ -82,7 +88,7 @@ automation:
     - method: agent
       models:
         - AI coding assistant session, directed and reviewed by the author
-      framework: Lean 4.33.1 with Mathlib
+      framework: Lean 4.35.0-rc3 with Mathlib
       tool_setup: >-
         Ordinary Lean tactics and kernel checking only. The 64-input
         correctness check and the Boolean identity for the last recombination
@@ -139,6 +145,18 @@ alignment:
     - source: MC(lowMul3) = 6 from LambdaCase 1, 2, 3 and Theorem 12
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_eq_six_of_remaining_cases
       module: LowHalfMul3.Assembly
+      status: proved
+    - source: lambda4_proof.tex Lemma 11 (types), as a normal form
+      lean: UnrestrictedBooleanMul.LowHalfMul3.types
+      module: LowHalfMul3.Types
+      status: proved
+    - source: lambda4_proof.tex Theorem 12 (four linear gates)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.starFree
+      module: LowHalfMul3.MainTheorem
+      status: proved-with-divergence
+    - source: MC(lowMul3) = 6 from LambdaCase 1, 2, 3
+      lean: UnrestrictedBooleanMul.LowHalfMul3.mc_eq_six_of_lambda_cases
+      module: LowHalfMul3.MainTheorem
       status: proved
     - source: exact unrestricted complexity of the 3x3 low-half product
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3

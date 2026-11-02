@@ -253,6 +253,50 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #check @iota_dirA2B2_v
 #print axioms iota_dirA2B2_v
 
+-- MainTheorem (Theorem 12, StarFree).
+#check @goodDir_of_gens
+#print axioms goodDir_of_gens
+#check @goodDir_kill
+#print axioms goodDir_kill
+#check @goodDir_caseA
+#print axioms goodDir_caseA
+#check @iota_P0
+#print axioms iota_P0
+#check @phi_P0
+#print axioms phi_P0
+#check @Z_rows
+#print axioms Z_rows
+#check @phi_Z
+#print axioms phi_Z
+#check @row_sum
+#print axioms row_sum
+#check @zeroFull_finite
+#print axioms zeroFull_finite
+#check @zeroFull
+#print axioms zeroFull
+#check @twoFull
+#print axioms twoFull
+#check @triple_core
+#print axioms triple_core
+#check @none_false
+#print axioms none_false
+#check @single_false
+#print axioms single_false
+#check @pair_zero
+#print axioms pair_zero
+#check @decomposition_cases
+#print axioms decomposition_cases
+#check @goodDir_main
+#print axioms goodDir_main
+#check @starFree
+#print axioms starFree
+#check @lambdaCase_four
+#print axioms lambdaCase_four
+#check @not_hasCircuit_five_of_lambda_cases
+#print axioms not_hasCircuit_five_of_lambda_cases
+#check @mc_eq_six_of_lambda_cases
+#print axioms mc_eq_six_of_lambda_cases
+
 -- The open statements, printed in full.
 #print LambdaCase
 #print StarFree

@@ -8,12 +8,14 @@ import LowHalfMul3.Reduction
 Lemma 1 with exactly `lam` linear gates. `LambdaCase 5` is proved
 (`LambdaFive.lean`).
 
-`StarFree` is Theorem 12 of `lambda4_proof.tex` in algebraic form: for four
+`StarFree` is Theorem 12 of `lambda4_proof.tex` in algebraic form (proved in
+`LowHalfMul3.MainTheorem`): for four
 products of affine functions `Lᵢ Rᵢ` with `L₀ R₀ = a₀ b₀` and
 `Q = span {π₂(Lᵢ Rᵢ)} ∋ Z₁`, condition (★) has no solution. It deliberately
-allows degenerate products (`π₂(Lᵢ Rᵢ)` of rank `< 2`, `dim Q < 4`): the paper's
-reduction to rank-2 forms and `dim Q = 4` is part of the proof of Theorem 12,
-not of the circuit-to-(★) reduction proved here.
+allows degenerate products (`π₂(Lᵢ Rᵢ)` of rank `< 2`, `dim Q < 4`), since a
+circuit can produce them. The paper's reduction to rank-2 forms and `dim Q = 4`
+is not needed: the proof in `LowHalfMul3.MainTheorem` handles degenerate
+products directly.
 
 * `lambdaCase_four_of_starFree : StarFree → LambdaCase 4` is the paragraph
   after Lemma 2 ("Hence `z₀, z₁ ∈ V₄` iff `P₀, Z₁ ∈ Q`, and the remaining
@@ -162,9 +164,10 @@ theorem not_hasCircuit_five_of_cases (h1 : LambdaCase 1) (h2 : LambdaCase 2)
   · exact h4 D hD hg hl hr hlam
   · exact lambdaCase_five D hD hg hl hr hlam
 
-/-- **`MC(lowMul3) = 6` from the remaining cases.** What is still missing in
-Lean is exactly: `LambdaCase 1`, `LambdaCase 2`, `LambdaCase 3`, and
-`StarFree` (Theorem 12). -/
+/-- **`MC(lowMul3) = 6` from the remaining cases.** `StarFree` (Theorem 12) is
+proved in `LowHalfMul3.MainTheorem` (`starFree`), which also packages this as
+`mc_eq_six_of_lambda_cases`; what is still missing in Lean is exactly
+`LambdaCase 1`, `LambdaCase 2` and `LambdaCase 3`. -/
 theorem mc_eq_six_of_remaining_cases (h1 : LambdaCase 1) (h2 : LambdaCase 2)
     (h3 : LambdaCase 3) (h4 : StarFree) : MC(lowMul3) = 6 :=
   mc_eq_six_of_no_five

@@ -807,3 +807,76 @@ theorem types (l r : Fin 6 → F₂) :
   vanishes when `e` kills `v`).
 
 Compiled first time. `lake build`: 1740 jobs, green.
+
+### Step 6 — `LowHalfMul3/MainTheorem.lean`: Theorem 12, `StarFree` — PROVED
+
+```lean
+theorem starFree : StarFree
+theorem lambdaCase_four : LambdaCase 4
+theorem mc_eq_six_of_lambda_cases (h1 : LambdaCase 1) (h2 : LambdaCase 2)
+    (h3 : LambdaCase 3) : MC(lowMul3) = 6
+```
+
+Structure:
+
+* `goodDir_of_gens`: a good direction for a span follows from one for its four
+  generators (`Submodule.span_le` into `(span{ℓ}).comap (iota e)`).
+  `goodDir_kill` (`ℓ = 0`) and **`goodDir_caseA`** (all nonzero cross parts
+  equal one `Φ(a ∧ b)`; Lemma 6 picks `a₂` or `b₂` with `ℓ` that contraction).
+* `goodDir_main`: `Z₁ = ∑ cₖ Pₖ` (`Submodule.mem_span_range_iff_exists_fun`,
+  `Fin.sum_univ_four`), then `decomposition_cases` over `c₁, c₂, c₃`:
+  none/one → `none_false`/`single_false` (`wedge_ne_Z`); two → `pair_zero`
+  (Lemma 3) → Case A; three → `triple_core`.
+* `triple_core`: `P₁ + P₂ + P₃ = Z`, cross parts sum to zero (`phi_Z`). One
+  vanishing → the other two are equal → Case A. All nonzero → Lemma 11
+  (`types`) for each, `NFzero` excluded, eight combinations:
+  - `v v v` → `zeroFull`: finite check `zeroFull_finite` (6 bits, nested
+    ∀ over 3 bits; needed `synthInstance.maxSize 4096` for the `Decidable`
+    instance) gives a killing direction, or some `r_k = 0`, or all `r_k` equal
+    (then `Z = (l₁+l₂+l₃) ∧ r`, a wedge);
+  - one or three full → parity of the `a₂ ∧ b₂` coefficients (`gamma_v`,
+    `gamma_full`) contradicts row 2, entry 5 of `Z` being 0;
+  - two full → `twoFull`: `Z = (v₁ lᵢ + v₂ rᵢ + l_m) ∧ r_m` (10-variable
+    `decide` identity), a wedge.
+* `starFree`: `quadSpan L R = span{lin Lₖ ∧ lin Rₖ}` by `pi2_mul_affine`,
+  `P₀` from `lin_X`, `Z₁` from `pi2_lowMul3_one`, then `goodDir_main` and
+  Lemma 8′ (`starFree_of_goodDir`).
+
+Fixes during compilation: `Decidable` synthesis for `zeroFull_finite` (raised
+instance-search limits); `rw … at h₁ h₂ ⊢` fails if one location lacks the
+pattern (split per generator); `push_neg` is deprecated in this Mathlib
+(replaced by `by_cases`). Second compile clean, no warnings.
+
+Comment updates: `Assembly.lean` no longer says `StarFree` is open, and
+its note on the WLOG step now says that step is unnecessary on this route.
+`formalization.yaml`: phase 4 described, framework line corrected to
+Lean 4.35.0-rc3, alignment entries added for `types`, `starFree`
+(`proved-with-divergence`: different route from the note) and
+`mc_eq_six_of_lambda_cases`.
+
+### Final verification (2026-11-02, end of phase 4)
+
+| command | result |
+| --- | --- |
+| `lake build` | `Build completed successfully (1741 jobs)`, exit 0, no warnings in our files |
+| grep `sorry\|native_decide\|ofReduceBool\|decide +native\|decide +kernel` in `LowHalfMul3/*.lean` | no hits |
+| `lake env lean AxiomAudit.lean` | exit 0; **130** theorems, every one `[propext, Classical.choice, Quot.sound]`; no `sorryAx`, no `ofReduceBool` |
+| `lake env lean Challenge.lean` | exit 0; single warning `Challenge.lean:126:8: declaration uses 'sorry'` (unchanged hole) |
+
+### What remains for `¬ HasCircuit lowMul3 5` — exact Lean statements
+
+`StarFree` is proved, so exactly three statements remain:
+
+```lean
+def LambdaCase (lam : Nat) : Prop :=
+  ∀ D : Circuit 6 5, D.Computes lowMul3 →
+    D.gate 0 = aVar 3 0 * bVar 3 0 → D.left 0 = aVar 3 0 → D.right 0 = bVar 3 0 →
+    (∀ k : Fin 5, (k.val < lam ↔ IsLinearGate D k)) → False
+-- missing: LambdaCase 1, LambdaCase 2, LambdaCase 3
+```
+
+with `mc_eq_six_of_lambda_cases (h1 : LambdaCase 1) (h2 : LambdaCase 2)
+(h3 : LambdaCase 3) : MC(lowMul3) = 6` proved. Not started, as instructed.
+Note from earlier analysis (memory, not Lean): the `λ = 3` human proof's
+`z₁`-placing subcases reduce to the `λ = 4` star condition, so `starFree` and
+`starFree_of_goodDir` should be directly reusable there.
