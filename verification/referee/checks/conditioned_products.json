@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "random_pairs_satisfying_hypotheses": 1000000,
+  "seed": 611271,
+  "pool_factor_planes": 7560,
+  "branch_counts": {
+    "P1": 111468,
+    "P2": 444697,
+    "P3": 443835
+  },
+  "ordered_radical_implications_tested": 562573,
+  "positive_controls_detected": true,
+  "limitation": "random embeddings of four-coordinate quadratic pairs, not all six-variable pairs",
+  "seconds": 43.213
+}

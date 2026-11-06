@@ -1,0 +1,28 @@
+{
+  "status": "pass",
+  "families": {
+    "four_multipliers": {
+      "spaces": 581,
+      "all_k_tested": 297216,
+      "feasible_k": 2905,
+      "violations": []
+    },
+    "last_factor": {
+      "spaces": 580,
+      "all_k_tested": 593920,
+      "feasible_k": 1160,
+      "violations": []
+    },
+    "noncore_multiplier": {
+      "spaces": 1680,
+      "all_k_tested": 1720320,
+      "feasible_k": 3384,
+      "violations": []
+    }
+  },
+  "all_cubic_cosets": 1740,
+  "core_cubic_cosets": 60,
+  "noncore_cubic_cosets": 1680,
+  "positive_controls_detected": 3,
+  "seconds": 13.543
+}

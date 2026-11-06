@@ -1,0 +1,6 @@
+{
+  "status": "pass",
+  "random_crosschecks": 10000,
+  "positive_control_detected": true,
+  "seconds": 2.202
+}

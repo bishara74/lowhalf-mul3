@@ -1,0 +1,10 @@
+{"orbit": 0, "Q": [512], "g2_cosets": 606}
+{"orbit": 1, "Q": [512, 8], "g2_cosets": 1983}
+{"orbit": 2, "Q": [512, 32], "g2_cosets": 1983}
+{"orbit": 3, "Q": [512, 40], "g2_cosets": 1983}
+{"orbit": 4, "Q": [512, 64], "g2_cosets": 2252}
+{"orbit": 5, "Q": [512, 96], "g2_cosets": 2252}
+{"orbit": 6, "Q": [1024, 512], "g2_cosets": 1983}
+{"orbit": 7, "Q": [1032, 512], "g2_cosets": 1983}
+{"orbit": 8, "Q": [4096, 512], "g2_cosets": 1983}
+{"lambda1_quotient_exploration": {"counterexamples": [{"Q": [4096, 512], "first_target_tt": 1469951019806642176, "g2_tt": 9570733332627490, "orbit": 8}], "counts": {"g2_cosets": 15055}, "human_proof_status": "OPEN", "orbits_checked": 9, "orbits_total": 83, "positive_controls_detected": 1, "seconds": 5.746, "status": "RELAXATION_HAS_SOLUTION"}}

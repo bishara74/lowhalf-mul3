@@ -1,0 +1,30 @@
+{
+  "status": "pass",
+  "weights": {
+    "4": {
+      "all_functions": 2048,
+      "minimum_nonzero_weight": 4,
+      "full_rank_weights": [
+        6,
+        10
+      ]
+    },
+    "6": {
+      "all_functions": 4194304,
+      "minimum_nonzero_weight": 16,
+      "full_rank_weights": [
+        28,
+        36
+      ]
+    }
+  },
+  "product_lemma_four_variable_domain": {
+    "planes": 174251,
+    "quadratic_products": 7560,
+    "P1": 840,
+    "P2": 3360,
+    "P3": 3360
+  },
+  "positive_controls_detected": true,
+  "seconds": 9.946
+}

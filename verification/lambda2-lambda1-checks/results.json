@@ -1,0 +1,2121 @@
+{
+  "algebra_symmetry": {
+    "Q2_orbits": 83,
+    "Q2_spaces": 606,
+    "group_compositions": 1024,
+    "group_elements": 32,
+    "monomial_products": 4096,
+    "point_bijection_tests": 2048,
+    "positive_controls_detected": 2,
+    "rank_two_forms": 651,
+    "seconds": 0.173,
+    "status": "PASS"
+  },
+  "annihilator_four_factors": {
+    "Q_raw_spaces": 581,
+    "Q_representatives": 68,
+    "factor_occurrences": {
+      "1": 68,
+      "513": 68,
+      "515": 68,
+      "769": 68,
+      "770": 68
+    },
+    "full_arbitrary_quadratic_domain_checked": false,
+    "identities_found": 37344,
+    "pairs_checked": 17629184,
+    "positive_controls_detected": 68,
+    "scope": "exact stated application domain, all k and R; not all pairs of arbitrary quadratic functions",
+    "seconds": 3.41,
+    "status": "PASS",
+    "weighted_pairs": 152109056
+  },
+  "core_cubic": {
+    "counts": {
+      "first_cubic_plane_weight": 96,
+      "first_product_cosets": 995901,
+      "first_product_planes": 1433355
+    },
+    "domain": "all core cubic first-product spaces, all g products in their enlarged base, all last factors",
+    "first_cubic_orbits": 33,
+    "positive_controls_detected": 1,
+    "seconds": 54.715,
+    "status": "PASS"
+  },
+  "degree_structure": {
+    "dependent_descriptions": 168960,
+    "lambda1_cubic_planes": 1920,
+    "planes": 887857,
+    "positive_controls_detected": 1,
+    "quartic_products": 237568,
+    "seconds": 13.843,
+    "status": "PASS"
+  },
+  "early_core": {
+    "counts": {
+      "cubic_cosets": 1740,
+      "cubic_planes": 1920,
+      "placing_output_cosets": 48,
+      "placing_pairs": 48,
+      "weighted_placing_pairs": 48
+    },
+    "domain": "all 1740 cubic first-output cosets and every next semantic nonlinear plane",
+    "positive_controls_detected": 1,
+    "seconds": 0.164,
+    "status": "PASS"
+  },
+  "final_factor": {
+    "Q_raw_spaces": 580,
+    "Q_representatives": 67,
+    "identities_found": 69984,
+    "pairs_checked": 70254592,
+    "positive_controls_detected": 1,
+    "scope": "all k and R in the exact stated application domain, not arbitrary quartic functions",
+    "seconds": 13.082,
+    "status": "PASS"
+  },
+  "historical_counts": {
+    "lambda1": {
+      "difference": 20880,
+      "full_historical_total_reproduced": false,
+      "historical_candidate_pairs": 4644000,
+      "note": "Different treatment of dependent signal coordinates; no field-by-field match is claimed.",
+      "our_function_space_candidate_pairs": 4623120
+    },
+    "lambda2": {
+      "difficult_output_cosets": 1776,
+      "difficult_pairs": 2064,
+      "function_plane_candidate_pairs": 398732,
+      "historical_coordinate_pairs": 400820,
+      "redundant_coordinate_lift_extra": 2088
+    },
+    "positive_controls_detected": 1,
+    "seconds": 7.309,
+    "status": "PASS"
+  },
+  "ideal_extraction": {
+    "Q_orbits": 83,
+    "Q_spaces": 606,
+    "counts": {
+      "construction_cases": 2310,
+      "dependent_descriptions": 168960,
+      "planes": 887857,
+      "quadratic_quotient_planes": 270385,
+      "quadratic_representatives": 540770
+    },
+    "domain": "all f,h in every normalized rank-two-generated Q of dimension <=2, via planes, constants and dependent factors; all quadratic R congruent modulo I",
+    "positive_controls_detected": 1,
+    "seconds": 29.235,
+    "status": "PASS",
+    "weighted_counts": {
+      "planes": 6533642,
+      "quadratic_quotient_planes": 1910282
+    }
+  },
+  "lambda1_cubic_normal_form": {
+    "cubic_planes": 1920,
+    "planes": 2016,
+    "positive_controls_detected": 1,
+    "quadratic_or_zero_planes": 96,
+    "seconds": 0.065,
+    "status": "PASS"
+  },
+  "lambda1_exact_0_222": {
+    "first_gate_plane_weight": 2016,
+    "function_space_orbits_total": 222,
+    "orbits_checked": 222,
+    "positive_controls_detected": 2,
+    "scope": "all normalized lambda=1 circuits, all first nonlinear factor planes, all later semantic nonlinear planes; final gate relaxed to any product",
+    "seconds": 265.814,
+    "status": "PASS",
+    "totals": {
+      "A_g2_planes": 32,
+      "A_pairs": 1369088,
+      "B_admissible_g2_cosets": 284806,
+      "B_admissible_g2_planes": 333332,
+      "B_pairs": 507054,
+      "g2_cosets": 1889843,
+      "g2_planes": 2243840
+    },
+    "weighted_totals": {
+      "A_g2_planes": 72,
+      "A_pairs": 3080448,
+      "B_admissible_g2_cosets": 759144,
+      "B_admissible_g2_planes": 916848,
+      "B_pairs": 1542672,
+      "g2_cosets": 17476266,
+      "g2_planes": 20401536
+    }
+  },
+  "lambda1_quotient_exploration": {
+    "counterexamples": [
+      {
+        "Q": [
+          4096,
+          512
+        ],
+        "first_target_tt": 1469951019806642176,
+        "g2_tt": 9570733332627490,
+        "orbit": 8
+      }
+    ],
+    "counts": {
+      "g2_cosets": 15055
+    },
+    "human_proof_status": "OPEN",
+    "orbits_checked": 9,
+    "orbits_total": 83,
+    "positive_controls_detected": 1,
+    "seconds": 5.746,
+    "status": "RELAXATION_HAS_SOLUTION"
+  },
+  "lambda2_exact_0_83": {
+    "positive_controls_detected": 2,
+    "range": [
+      0,
+      83
+    ],
+    "scope": "all higher-degree first nonlinear gates for normalized lambda=2; low degree excluded by replacement",
+    "seconds": 93.24,
+    "status": "PASS",
+    "totals": {
+      "high_cosets": 694540,
+      "high_planes": 814912,
+      "placing_pairs": 130400,
+      "z1_admissible_cosets": 37518,
+      "z1_admissible_planes": 48960
+    },
+    "weighted_totals": {
+      "high_cosets": 5325890,
+      "high_planes": 6017120,
+      "placing_pairs": 299184,
+      "z1_admissible_cosets": 112456,
+      "z1_admissible_planes": 139264
+    }
+  },
+  "lambda2_full": {
+    "Q_orbits": 83,
+    "Q_spaces": 606,
+    "positive_controls_detected": 1,
+    "scope": "all first nonlinear degrees, all later semantic nonlinear planes; final gate relaxed to any product",
+    "seconds": 132.474,
+    "status": "PASS",
+    "totals": {
+      "A_g2_planes": 6,
+      "A_pairs": 256704,
+      "B_g2_planes": 51810,
+      "B_pairs": 142028,
+      "g2_cosets": 701574,
+      "g2_planes": 833824
+    },
+    "weighted_totals": {
+      "A_g2_planes": 12,
+      "A_pairs": 513408,
+      "B_g2_planes": 150904,
+      "B_pairs": 334944,
+      "g2_cosets": 5376041,
+      "g2_planes": 6139136
+    }
+  },
+  "level_0_83": {
+    "positive_controls_detected": 1,
+    "scope": "higher-degree lambda=2 branch only",
+    "seconds": 327.265,
+    "status": "PASS",
+    "totals": {
+      "candidate_cosets": 37518,
+      "candidate_pairs": 130400,
+      "surviving_cosets": 1776,
+      "surviving_feedback_z1_pairs": 0,
+      "surviving_ordinary_z1_pairs": 2064,
+      "surviving_pairs": 2064
+    }
+  },
+  "noncore_multiplier": {
+    "counts": {
+      "cubic_orbits": 164,
+      "first_plane_weight": 1824,
+      "identities": 171872,
+      "pairs": 171966464
+    },
+    "domain": "all 164 noncore cubic first-output orbits; every k in A and every R in z2+A",
+    "positive_controls_detected": 1,
+    "seconds": 148.373,
+    "status": "PASS"
+  },
+  "noncore_onehigh": {
+    "counts": {
+      "first_plane_weight": 1824,
+      "g1_orbits": 164,
+      "g2_cosets": 1426210,
+      "g2_planes": 1663616
+    },
+    "positive_controls_detected": 1,
+    "scope": "all 164 noncore cubic first-output orbits, all next nonlinear products, every final product after freely adjoining z1",
+    "seconds": 86.897,
+    "status": "PASS"
+  },
+  "noncore_onehigh_exploration": {
+    "counterexamples": [],
+    "counts": {
+      "g1_orbits": 164,
+      "g2_cosets": 1426210
+    },
+    "human_proof_status": "OPEN",
+    "positive_controls_detected": 1,
+    "seconds": 83.501,
+    "status": "ALL_EXCLUDED"
+  },
+  "one_high_space": {
+    "Q_orbits": 83,
+    "Q_spaces": 606,
+    "counts": {
+      "first_product_cosets": 740610,
+      "first_product_planes": 887857
+    },
+    "inside_U_extension": {
+      "S_spaces": 11,
+      "g_cosets": 305235,
+      "g_planes": 445145
+    },
+    "positive_controls_detected": 1,
+    "scope": "all g=f*h from V(Q), all F,H in V(Q+Z1)+<g>; and full imported-coset extension domains",
+    "seconds": 68.305,
+    "status": "PASS"
+  },
+  "ordinary_pair": {
+    "counts": {
+      "cubic_orbits": 197,
+      "first_product_planes": 8556695,
+      "product_cosets": 6754925
+    },
+    "domain": "all 197 cubic first-output orbits, all four factors in the enlarged base A; every output correction in A",
+    "positive_controls_detected": 1,
+    "seconds": 106.849,
+    "status": "PASS"
+  },
+  "prefix_census": {
+    "Q2_orbits": [
+      {
+        "Q": [
+          512
+        ],
+        "degrees": {
+          "-1": 3,
+          "2": 93,
+          "3": 1920
+        },
+        "distinct_high_output_cosets": 1740,
+        "distinct_output_cosets": 1786,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 0,
+        "weight": 1
+      },
+      {
+        "Q": [
+          512,
+          8
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 1,
+        "weight": 2
+      },
+      {
+        "Q": [
+          512,
+          32
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 2,
+        "weight": 2
+      },
+      {
+        "Q": [
+          512,
+          40
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 3,
+        "weight": 2
+      },
+      {
+        "Q": [
+          512,
+          64
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 4,
+        "weight": 8
+      },
+      {
+        "Q": [
+          512,
+          96
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 5,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1024,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {
+          "z1": 2
+        },
+        "minrank_Z1_coset": 2,
+        "orbit": 6,
+        "weight": 2
+      },
+      {
+        "Q": [
+          1032,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {
+          "z1": 2
+        },
+        "minrank_Z1_coset": 2,
+        "orbit": 7,
+        "weight": 2
+      },
+      {
+        "Q": [
+          4096,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 8,
+        "weight": 2
+      },
+      {
+        "Q": [
+          4128,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 9,
+        "weight": 2
+      },
+      {
+        "Q": [
+          4160,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 10,
+        "weight": 8
+      },
+      {
+        "Q": [
+          4192,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 11,
+        "weight": 8
+      },
+      {
+        "Q": [
+          5120,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 12,
+        "weight": 2
+      },
+      {
+        "Q": [
+          5160,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 13,
+        "weight": 2
+      },
+      {
+        "Q": [
+          131080,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {
+          "z1": 2
+        },
+        "minrank_Z1_coset": 2,
+        "orbit": 14,
+        "weight": 2
+      },
+      {
+        "Q": [
+          131104,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 15,
+        "weight": 2
+      },
+      {
+        "Q": [
+          131112,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 16,
+        "weight": 2
+      },
+      {
+        "Q": [
+          262144,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 2,
+        "orbit": 17,
+        "weight": 1
+      },
+      {
+        "Q": [
+          262152,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 2,
+        "orbit": 18,
+        "weight": 2
+      },
+      {
+        "Q": [
+          262208,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 19,
+        "weight": 8
+      },
+      {
+        "Q": [
+          263168,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 2,
+        "orbit": 20,
+        "weight": 2
+      },
+      {
+        "Q": [
+          263176,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 2,
+        "orbit": 21,
+        "weight": 2
+      },
+      {
+        "Q": [
+          393224,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 2,
+        "orbit": 22,
+        "weight": 2
+      },
+      {
+        "Q": [
+          393312,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 23,
+        "weight": 8
+      },
+      {
+        "Q": [
+          394240,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 2,
+        "orbit": 24,
+        "weight": 1
+      },
+      {
+        "Q": [
+          394248,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 2,
+        "orbit": 25,
+        "weight": 2
+      },
+      {
+        "Q": [
+          1048576,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 26,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1048608,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 27,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1048640,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 28,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1048672,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 29,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1052672,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 30,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1052704,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 31,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1052736,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 32,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1052768,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 33,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1310720,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 34,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1310760,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 35,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1310784,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 36,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1310824,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 37,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1315840,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 38,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1315880,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 39,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1315904,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 40,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1315944,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 41,
+        "weight": 8
+      },
+      {
+        "Q": [
+          16781312,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 42,
+        "weight": 2
+      },
+      {
+        "Q": [
+          16782336,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 43,
+        "weight": 2
+      },
+      {
+        "Q": [
+          16909320,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 44,
+        "weight": 1
+      },
+      {
+        "Q": [
+          16912416,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 45,
+        "weight": 2
+      },
+      {
+        "Q": [
+          16913448,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 46,
+        "weight": 2
+      },
+      {
+        "Q": [
+          17039368,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 2,
+        "orbit": 47,
+        "weight": 1
+      },
+      {
+        "Q": [
+          17040392,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 2,
+        "orbit": 48,
+        "weight": 2
+      },
+      {
+        "Q": [
+          17043520,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 49,
+        "weight": 8
+      },
+      {
+        "Q": [
+          17171464,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 2,
+        "orbit": 50,
+        "weight": 1
+      },
+      {
+        "Q": [
+          17174624,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 51,
+        "weight": 8
+      },
+      {
+        "Q": [
+          8589934624,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 52,
+        "weight": 2
+      },
+      {
+        "Q": [
+          8589934632,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 53,
+        "weight": 2
+      },
+      {
+        "Q": [
+          8590065696,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 54,
+        "weight": 2
+      },
+      {
+        "Q": [
+          8590065704,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 55,
+        "weight": 2
+      },
+      {
+        "Q": [
+          17179869248,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 56,
+        "weight": 8
+      },
+      {
+        "Q": [
+          17180131392,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 57,
+        "weight": 8
+      },
+      {
+        "Q": [
+          25769803872,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 58,
+        "weight": 8
+      },
+      {
+        "Q": [
+          25770197088,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 59,
+        "weight": 8
+      },
+      {
+        "Q": [
+          68719476736,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 60,
+        "weight": 16
+      },
+      {
+        "Q": [
+          68719476800,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 61,
+        "weight": 32
+      },
+      {
+        "Q": [
+          68720525312,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 62,
+        "weight": 32
+      },
+      {
+        "Q": [
+          68720525376,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 63,
+        "weight": 32
+      },
+      {
+        "Q": [
+          85899345984,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 64,
+        "weight": 32
+      },
+      {
+        "Q": [
+          85900656640,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 65,
+        "weight": 16
+      },
+      {
+        "Q": [
+          85900656704,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 66,
+        "weight": 32
+      },
+      {
+        "Q": [
+          1108101566496,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 67,
+        "weight": 1
+      },
+      {
+        "Q": [
+          1108101567528,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 68,
+        "weight": 2
+      },
+      {
+        "Q": [
+          1108118475816,
+          512
+        ],
+        "degrees": {
+          "-1": 17,
+          "2": 303,
+          "3": 9824
+        },
+        "distinct_high_output_cosets": 7310,
+        "distinct_output_cosets": 7403,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 69,
+        "weight": 1
+      },
+      {
+        "Q": [
+          1116691501120,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 70,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1116708540480,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 71,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1125281435744,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 72,
+        "weight": 8
+      },
+      {
+        "Q": [
+          1125298606176,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 73,
+        "weight": 8
+      },
+      {
+        "Q": [
+          281492157628480,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 74,
+        "weight": 4
+      },
+      {
+        "Q": [
+          281492157890624,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 75,
+        "weight": 4
+      },
+      {
+        "Q": [
+          281500747563104,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 76,
+        "weight": 8
+      },
+      {
+        "Q": [
+          281500747825256,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 77,
+        "weight": 8
+      },
+      {
+        "Q": [
+          281543696449600,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 78,
+        "weight": 16
+      },
+      {
+        "Q": [
+          281543697498176,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 79,
+        "weight": 32
+      },
+      {
+        "Q": [
+          281560877105216,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 80,
+        "weight": 16
+      },
+      {
+        "Q": [
+          282600259194976,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 81,
+        "weight": 4
+      },
+      {
+        "Q": [
+          282600259458152,
+          512
+        ],
+        "degrees": {
+          "-1": 6,
+          "2": 186,
+          "3": 5856,
+          "4": 4096
+        },
+        "distinct_high_output_cosets": 8920,
+        "distinct_output_cosets": 9002,
+        "hits": {},
+        "minrank_Z1_coset": 4,
+        "orbit": 82,
+        "weight": 4
+      }
+    ],
+    "lambda1": {
+      "degrees": {
+        "-1": 3,
+        "2": 93,
+        "3": 1920
+      },
+      "distinct_high_output_cosets": 1740,
+      "distinct_output_cosets": 1786,
+      "hits": {}
+    },
+    "positive_controls_detected": 4,
+    "scope": "first nonlinear gate only; no claim on completions",
+    "seconds": 21.578,
+    "status": "PASS",
+    "totals": {
+      "representative_high_cosets": 694540,
+      "weighted_high_cosets": 5325890,
+      "z1_placing_planes": 6
+    }
+  },
+  "proof_status": {
+    "human_review": "pending",
+    "lambda1": "PROVED: written proof plus exhaustive application checks",
+    "lambda2": "PROVED: written proof plus exhaustive application checks",
+    "open_lemmas": []
+  },
+  "quotient_witness": {
+    "gates": 4,
+    "input_points": 48,
+    "meaning": "independent simulation verifies the quotient-only shortcut has a relaxed counterexample",
+    "positive_controls_detected": 1,
+    "seconds": 0.138,
+    "status": "PASS"
+  },
+  "rank_exterior": {
+    "outside_rank_two_forms": 616,
+    "positive_controls_detected": 2,
+    "rank_tests": 2604,
+    "seconds": 0.158,
+    "status": "PASS",
+    "theta_domain": "all 2^15 two-forms, exact image elimination for each P"
+  },
+  "rank_two_reordering": {
+    "Q_representatives": 13,
+    "higher_degree_output_spaces": 111130,
+    "positive_controls_detected": 1,
+    "seconds": 32.946,
+    "status": "PASS",
+    "weighted_spaces": 186580
+  },
+  "replacement": {
+    "domain": "all 606 Q spaces, all nonlinear planes modulo constants; 83 symmetry representatives",
+    "lambda1_domain": {
+      "degrees": {
+        "-1": 3,
+        "2": 93,
+        "3": 1920
+      },
+      "dependent_descriptions": 1024,
+      "planes": 2016,
+      "positive_controls_detected": 1,
+      "quadratic_products": 96,
+      "violations": 0,
+      "zero_increment": 6
+    },
+    "representative_degrees": {
+      "-1": 759,
+      "2": 18153,
+      "3": 577344,
+      "4": 237568
+    },
+    "representative_totals": {
+      "dependent_descriptions": 168960,
+      "planes": 833824,
+      "positive_controls_detected": 83,
+      "quadratic_products": 18912,
+      "violations": 0,
+      "zero_increment": 1854
+    },
+    "seconds": 13.477,
+    "status": "PASS",
+    "weighted_degrees": {
+      "-1": 4128,
+      "2": 117888,
+      "3": 3723360,
+      "4": 2293760
+    },
+    "weighted_totals": {
+      "dependent_descriptions": 1240064,
+      "planes": 6139136,
+      "positive_controls_detected": 606,
+      "quadratic_products": 122016,
+      "violations": 0,
+      "zero_increment": 8886
+    }
+  },
+  "run_all": {
+    "checks": [
+      "algebra_symmetry",
+      "replacement",
+      "degree_structure",
+      "annihilator_four_factors",
+      "final_factor",
+      "two_feedback",
+      "rank_two_reordering",
+      "ideal_extraction",
+      "rank_exterior",
+      "one_high_space",
+      "lambda1_cubic_normal_form",
+      "early_core",
+      "core_cubic",
+      "noncore_onehigh",
+      "prefix_census",
+      "screen_bruteforce",
+      "lambda2_exact_0_83",
+      "lambda2_full",
+      "lambda1_exact_0_222",
+      "level_0_83",
+      "historical_counts",
+      "quotient_witness"
+    ],
+    "positive_controls_detected": 22,
+    "script_sha256": {
+      "check_algebra_symmetry.py": "0fff66771163618263ee18d81c3be5a6af79983357026b174fe3d96a5a02263e",
+      "check_annihilator.py": "a2f064570e9f2e4333f8c80964ad3e7a2e8c99d4211b36890e2b24380a056c52",
+      "check_core_cubic.py": "547272d51d894e26dcd05ac6435bd8c5b27f0dfa72d7abe21b9bc8c9199beb04",
+      "check_degree.py": "af062bed1ba6b6a2c6739fd355109dd73b2175134d9b07decd8115570cb892d1",
+      "check_early_core.py": "d6efcc2abbb5e6e1c34f8dc0289c463c46e730eba506b8fdbfe4a4a5940e8571",
+      "check_final_factor.py": "35539055603de659cecd58effb68e21333011805c117d06575ff4113c6ef68c5",
+      "check_historical_counts.py": "69f1787f3e63255458c16f5a19b4852f90f40eb24657c4be90e49a7647bcceb8",
+      "check_ideal_extraction.py": "f63488ff5e57104b3c3904ff777ff753ecb8bb71aac327f60c55b6c48dc1b796",
+      "check_lambda1_exact.py": "a9cce616e0e01a170c5d09c236717c1becf91d18dae09d257ed287ee06304cc1",
+      "check_lambda1_normal_form.py": "683ae86267c4d66c3d6a057bfc7143435806dccc1a4c835489d877ef46890e28",
+      "check_lambda2_exact.py": "61f072f9e8ad43544fd945256ef5c651b71095028e2de7cb97e8a157eadd0a4e",
+      "check_lambda2_full.py": "b9f317f5f8b37d90ba1eaf8d1fdb4e02a12f8739a15db97e712e45a720d8aeee",
+      "check_level_survivors.py": "842f4c9f51725d4f93781d0ae01091345f46f39c4f62fd70de3f714e06f1dd9f",
+      "check_noncore_multiplier.py": "aaab88ce85bac2fdb8136e7b9821a5d34bd23e81a72f720915fc784112231259",
+      "check_noncore_onehigh.py": "7d55b2f59eb1033cb3f736809e5593d550406192efab9f3bc27a3d852c3fcec7",
+      "check_one_high_space.py": "2ec3ab075aa143dfd1d65c9bdfc0da30e400bd8302e156f51aa8c98ba22292a0",
+      "check_ordinary_pair.py": "67bd50480ef2b09742964599b010e761d1f5983258d66c3d5afe7535ab5d4ddd",
+      "check_quotient_witness.py": "cec8652ee8cffa933157a42f7a73f2b2810b8849f0e727bb78547766e1afad16",
+      "check_rank_exterior.py": "0fef0e14f8b7a87e389886f764783c4505ddea5da8ce6a466640548f284f3606",
+      "check_reordering.py": "47f440ba3c522e318ef08a15915072dafa062e65a3c747f9d6649fe876d977b0",
+      "check_replacement.py": "7fbc33153b8a3f1faeecca6048f862a7e89a65b4b56832a39191ee1481164cb7",
+      "check_screen_bruteforce.py": "81ca631a46b4ab6b56541d0d5f859205a65c8277c4380a06bf59ef5fe4bcd36e",
+      "check_two_feedback.py": "d04f1b3aed70072d4fcdb985177465170d8e6f24f9dc39359e354dadf031a374",
+      "core.py": "57eadd088bb031f2bba9ea57d04787d49a7f19cd160f8e9c6a050bc6cbb1261f",
+      "explore_lambda1_quotient.py": "1e89e0355da7f73e843d16ec5ba9527433b13cbe7b64c61f257b9c776f1fee29",
+      "explore_noncore_onehigh.py": "8028a46e0d711423c4d4672cf5b8559c9b1f6c8b0b635948991b16b143be0a10",
+      "explore_prefixes.py": "1c62eaf9ee835acf10a509d5427b2637d6835ebacd9fbe8c088a139efb6dfd84",
+      "lambda1_states.py": "c67f81584915a89eef921b3a06314fc51325880053df73e63460ec558c039578",
+      "placement.py": "5844f7a0b4097a431609d03ebbda96e5a79e22d6075e8e01bd2af48d11203be4",
+      "run_all.py": "4df2b261c741ad3825ab3d4719ba6c7595c810e76cb3c2d9efdfe9df6cac2ff0"
+    },
+    "seconds": 1285.448,
+    "status": "PASS"
+  },
+  "screen_bruteforce": {
+    "direct_planes": 17650560,
+    "first_cubic_output_cosets": 1740,
+    "positive_controls_detected": 2,
+    "seconds": 113.106,
+    "status": "PASS",
+    "target_counts": {
+      "z1": 48,
+      "z12": 0,
+      "z2": 0
+    }
+  },
+  "two_feedback": {
+    "Q_representatives": 67,
+    "exact_linear_systems": 268,
+    "g_domain": "all 2^64 Boolean functions, covered exactly by linear elimination",
+    "positive_controls_detected": 4,
+    "seconds": 0.362,
+    "status": "PASS",
+    "weighted_systems": 2320
+  },
+  "verification_audit": {
+    "additional_direct_check_calls": [
+      "ordinary_pair",
+      "noncore_multiplier"
+    ],
+    "compilation": {
+      "available": true,
+      "engine": "/mnt/c/Users/HP/AppData/Local/Programs/MiKTeX/miktex/bin/x64/pdflatex.exe",
+      "pages": {
+        "lambda1_proof.pdf": 9,
+        "lambda2_proof.pdf": 9
+      },
+      "pdfs": [
+        "lambda2_proof.pdf",
+        "lambda1_proof.pdf"
+      ],
+      "status": "PASS"
+    },
+    "coverage_reruns": [
+      "replacement",
+      "degree_structure"
+    ],
+    "current_script_sha256": {
+      "check_algebra_symmetry.py": "0fff66771163618263ee18d81c3be5a6af79983357026b174fe3d96a5a02263e",
+      "check_annihilator.py": "a2f064570e9f2e4333f8c80964ad3e7a2e8c99d4211b36890e2b24380a056c52",
+      "check_core_cubic.py": "547272d51d894e26dcd05ac6435bd8c5b27f0dfa72d7abe21b9bc8c9199beb04",
+      "check_degree.py": "af062bed1ba6b6a2c6739fd355109dd73b2175134d9b07decd8115570cb892d1",
+      "check_early_core.py": "d6efcc2abbb5e6e1c34f8dc0289c463c46e730eba506b8fdbfe4a4a5940e8571",
+      "check_final_factor.py": "35539055603de659cecd58effb68e21333011805c117d06575ff4113c6ef68c5",
+      "check_historical_counts.py": "69f1787f3e63255458c16f5a19b4852f90f40eb24657c4be90e49a7647bcceb8",
+      "check_ideal_extraction.py": "f63488ff5e57104b3c3904ff777ff753ecb8bb71aac327f60c55b6c48dc1b796",
+      "check_lambda1_exact.py": "a9cce616e0e01a170c5d09c236717c1becf91d18dae09d257ed287ee06304cc1",
+      "check_lambda1_normal_form.py": "683ae86267c4d66c3d6a057bfc7143435806dccc1a4c835489d877ef46890e28",
+      "check_lambda2_exact.py": "61f072f9e8ad43544fd945256ef5c651b71095028e2de7cb97e8a157eadd0a4e",
+      "check_lambda2_full.py": "b9f317f5f8b37d90ba1eaf8d1fdb4e02a12f8739a15db97e712e45a720d8aeee",
+      "check_level_survivors.py": "842f4c9f51725d4f93781d0ae01091345f46f39c4f62fd70de3f714e06f1dd9f",
+      "check_noncore_multiplier.py": "aaab88ce85bac2fdb8136e7b9821a5d34bd23e81a72f720915fc784112231259",
+      "check_noncore_onehigh.py": "7d55b2f59eb1033cb3f736809e5593d550406192efab9f3bc27a3d852c3fcec7",
+      "check_one_high_space.py": "2ec3ab075aa143dfd1d65c9bdfc0da30e400bd8302e156f51aa8c98ba22292a0",
+      "check_ordinary_pair.py": "67bd50480ef2b09742964599b010e761d1f5983258d66c3d5afe7535ab5d4ddd",
+      "check_quotient_witness.py": "707f1d999562e4e3bc718e785e40d8c7acebef20abf21914459417435f959c48",
+      "check_rank_exterior.py": "0fef0e14f8b7a87e389886f764783c4505ddea5da8ce6a466640548f284f3606",
+      "check_reordering.py": "47f440ba3c522e318ef08a15915072dafa062e65a3c747f9d6649fe876d977b0",
+      "check_replacement.py": "7fbc33153b8a3f1faeecca6048f862a7e89a65b4b56832a39191ee1481164cb7",
+      "check_screen_bruteforce.py": "81ca631a46b4ab6b56541d0d5f859205a65c8277c4380a06bf59ef5fe4bcd36e",
+      "check_two_feedback.py": "d04f1b3aed70072d4fcdb985177465170d8e6f24f9dc39359e354dadf031a374",
+      "core.py": "57eadd088bb031f2bba9ea57d04787d49a7f19cd160f8e9c6a050bc6cbb1261f",
+      "explore_lambda1_quotient.py": "1e89e0355da7f73e843d16ec5ba9527433b13cbe7b64c61f257b9c776f1fee29",
+      "explore_noncore_onehigh.py": "8028a46e0d711423c4d4672cf5b8559c9b1f6c8b0b635948991b16b143be0a10",
+      "explore_prefixes.py": "1c62eaf9ee835acf10a509d5427b2637d6835ebacd9fbe8c088a139efb6dfd84",
+      "lambda1_states.py": "c67f81584915a89eef921b3a06314fc51325880053df73e63460ec558c039578",
+      "placement.py": "5844f7a0b4097a431609d03ebbda96e5a79e22d6075e8e01bd2af48d11203be4",
+      "run_all.py": "4df2b261c741ad3825ab3d4719ba6c7595c810e76cb3c2d9efdfe9df6cac2ff0"
+    },
+    "legacy_precompletion_annotations": {
+      "lambda1_exact_0_222": {
+        "human_theorem_status": "OPEN: no complete human-style higher-degree exclusion"
+      },
+      "lambda2_exact_0_83": {
+        "human_theorem_status": "OPEN: this exhaustive search is not a human-style exclusion proof"
+      },
+      "lambda2_full": {
+        "human_theorem_status": "OPEN: computational exclusion only"
+      },
+      "noncore_onehigh": {
+        "human_lemma_status": "OPEN: a nonenumerative argument is still missing"
+      }
+    },
+    "master_checks": [
+      "algebra_symmetry",
+      "replacement",
+      "degree_structure",
+      "annihilator_four_factors",
+      "final_factor",
+      "two_feedback",
+      "rank_two_reordering",
+      "ideal_extraction",
+      "rank_exterior",
+      "one_high_space",
+      "lambda1_cubic_normal_form",
+      "early_core",
+      "core_cubic",
+      "noncore_onehigh",
+      "prefix_census",
+      "screen_bruteforce",
+      "lambda2_exact_0_83",
+      "lambda2_full",
+      "lambda1_exact_0_222",
+      "level_0_83",
+      "historical_counts",
+      "quotient_witness"
+    ],
+    "preserved_references": [
+      "lambda3_proof.tex",
+      "lambda4_proof.tex",
+      "REPORT_before_lambda12.md",
+      "REQUEST.txt",
+      "t11_tools.py",
+      "TASK10_REPORT.md",
+      "TASK8_REPORT.md"
+    ],
+    "required_checks": [
+      "algebra_symmetry",
+      "replacement",
+      "degree_structure",
+      "annihilator_four_factors",
+      "final_factor",
+      "two_feedback",
+      "rank_two_reordering",
+      "ideal_extraction",
+      "rank_exterior",
+      "one_high_space",
+      "lambda1_cubic_normal_form",
+      "early_core",
+      "core_cubic",
+      "ordinary_pair",
+      "noncore_multiplier",
+      "noncore_onehigh",
+      "prefix_census",
+      "screen_bruteforce",
+      "lambda2_exact_0_83",
+      "lambda2_full",
+      "lambda1_exact_0_222",
+      "level_0_83",
+      "historical_counts",
+      "quotient_witness"
+    ],
+    "status": "PASS",
+    "tex": {
+      "lambda1_proof.tex": {
+        "labels": 10,
+        "numbering": {
+          "lem:corecoset": 5,
+          "lem:cubic": 3,
+          "lem:earlycore": 6,
+          "lem:first": 4,
+          "lem:noncore": 10,
+          "lem:noncoremult": 9,
+          "lem:ordinarypair": 8,
+          "lem:reduce": 2,
+          "prop:corebranch": 7,
+          "thm:main": 1
+        },
+        "references": 27,
+        "sha256": "fe8f8b1e8b6eb5d7a675e5f6937273f617e2a98c8cdcfe6363d23331dd1bc4ac",
+        "status": "PASS"
+      },
+      "lambda2_proof.tex": {
+        "labels": 12,
+        "numbering": {
+          "lem:coset": 11,
+          "lem:degree": 4,
+          "lem:four": 5,
+          "lem:ideal": 9,
+          "lem:lastfactor": 6,
+          "lem:rankext": 10,
+          "lem:replace": 2,
+          "lem:sym": 3,
+          "lem:two": 7,
+          "prop:onehigh": 12,
+          "prop:reorder": 8,
+          "thm:main": 1
+        },
+        "references": 25,
+        "sha256": "02ab0df01ff8ea9c0f9979a5705f18c6c1c655409df61791e5b32344da6a9301",
+        "status": "PASS"
+      }
+    }
+  }
+}

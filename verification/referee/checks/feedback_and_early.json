@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "arbitrary_function_exact_systems": 2320,
+  "g_functions_per_system": "2^64",
+  "cubic_first_spaces": 1740,
+  "next_factor_planes": 18783300,
+  "z1_placing_planes": 48,
+  "feedback_placing_planes": 0,
+  "positive_controls_detected": true,
+  "seconds": 21.774
+}

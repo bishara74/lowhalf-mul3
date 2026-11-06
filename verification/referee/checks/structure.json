@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "rank_tests": 2604,
+  "full_exterior_images": 616,
+  "D1_pairs": 189384,
+  "D1_omega_pairs": 2304,
+  "B3U_spaces": 11,
+  "Pluecker_matrices": 210,
+  "Pluecker_kernel_bases": 1260,
+  "first_planes": 2016,
+  "cubic_first_planes": 1920,
+  "quadratic_first_planes": 96,
+  "first_output_cosets": 1786,
+  "positive_controls_detected": true,
+  "column_permutation_proof_step_counterexample": [
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "seconds": 3.29
+}

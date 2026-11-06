@@ -1,0 +1,2 @@
+{"orbit": 0, "weight": 1, "kills": [4, 32, 36], "counts": {"candidate_cosets": 48, "candidate_pairs": 48}, "seconds": 0.132}
+{"level_0_1": {"positive_controls_detected": 1, "scope": "higher-degree lambda=2 branch only", "seconds": 0.214, "status": "PARTIAL_PASS", "totals": {"candidate_cosets": 48, "candidate_pairs": 48}}}

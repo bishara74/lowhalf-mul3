@@ -1,0 +1,1412 @@
+[
+  {
+    "orbit": 0,
+    "weight": 1,
+    "Q": [
+      512
+    ],
+    "counts": {
+      "high_cosets": 1740,
+      "high_planes": 1920,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 0.177
+  },
+  {
+    "orbit": 1,
+    "weight": 2,
+    "Q": [
+      512,
+      8
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 60,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 960
+    },
+    "witnesses": [],
+    "seconds": 0.971
+  },
+  {
+    "orbit": 2,
+    "weight": 2,
+    "Q": [
+      512,
+      32
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.708
+  },
+  {
+    "orbit": 3,
+    "weight": 2,
+    "Q": [
+      512,
+      40
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.697
+  },
+  {
+    "orbit": 4,
+    "weight": 8,
+    "Q": [
+      512,
+      64
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.846
+  },
+  {
+    "orbit": 5,
+    "weight": 8,
+    "Q": [
+      512,
+      96
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.87
+  },
+  {
+    "orbit": 6,
+    "weight": 2,
+    "Q": [
+      1024,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 7310,
+      "z1_admissible_planes": 9824,
+      "placing_pairs": 29856
+    },
+    "witnesses": [],
+    "seconds": 1.476
+  },
+  {
+    "orbit": 7,
+    "weight": 2,
+    "Q": [
+      1032,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 7310,
+      "z1_admissible_planes": 9824,
+      "placing_pairs": 29856
+    },
+    "witnesses": [],
+    "seconds": 1.314
+  },
+  {
+    "orbit": 8,
+    "weight": 2,
+    "Q": [
+      4096,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.665
+  },
+  {
+    "orbit": 9,
+    "weight": 2,
+    "Q": [
+      4128,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.692
+  },
+  {
+    "orbit": 10,
+    "weight": 8,
+    "Q": [
+      4160,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.806
+  },
+  {
+    "orbit": 11,
+    "weight": 8,
+    "Q": [
+      4192,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.951
+  },
+  {
+    "orbit": 12,
+    "weight": 2,
+    "Q": [
+      5120,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.754
+  },
+  {
+    "orbit": 13,
+    "weight": 2,
+    "Q": [
+      5160,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.68
+  },
+  {
+    "orbit": 14,
+    "weight": 2,
+    "Q": [
+      131080,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 7310,
+      "z1_admissible_planes": 9824,
+      "placing_pairs": 29856
+    },
+    "witnesses": [],
+    "seconds": 1.286
+  },
+  {
+    "orbit": 15,
+    "weight": 2,
+    "Q": [
+      131104,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.718
+  },
+  {
+    "orbit": 16,
+    "weight": 2,
+    "Q": [
+      131112,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.731
+  },
+  {
+    "orbit": 17,
+    "weight": 1,
+    "Q": [
+      262144,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 544,
+      "z1_admissible_planes": 784,
+      "placing_pairs": 2592
+    },
+    "witnesses": [],
+    "seconds": 2.306
+  },
+  {
+    "orbit": 18,
+    "weight": 2,
+    "Q": [
+      262152,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 544,
+      "z1_admissible_planes": 784,
+      "placing_pairs": 2592
+    },
+    "witnesses": [],
+    "seconds": 1.682
+  },
+  {
+    "orbit": 19,
+    "weight": 8,
+    "Q": [
+      262208,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.842
+  },
+  {
+    "orbit": 20,
+    "weight": 2,
+    "Q": [
+      263168,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 544,
+      "z1_admissible_planes": 784,
+      "placing_pairs": 2592
+    },
+    "witnesses": [],
+    "seconds": 1.856
+  },
+  {
+    "orbit": 21,
+    "weight": 2,
+    "Q": [
+      263176,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 544,
+      "z1_admissible_planes": 784,
+      "placing_pairs": 2592
+    },
+    "witnesses": [],
+    "seconds": 1.97
+  },
+  {
+    "orbit": 22,
+    "weight": 2,
+    "Q": [
+      393224,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 544,
+      "z1_admissible_planes": 784,
+      "placing_pairs": 2592
+    },
+    "witnesses": [],
+    "seconds": 1.849
+  },
+  {
+    "orbit": 23,
+    "weight": 8,
+    "Q": [
+      393312,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.133
+  },
+  {
+    "orbit": 24,
+    "weight": 1,
+    "Q": [
+      394240,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 544,
+      "z1_admissible_planes": 784,
+      "placing_pairs": 2592
+    },
+    "witnesses": [],
+    "seconds": 2.753
+  },
+  {
+    "orbit": 25,
+    "weight": 2,
+    "Q": [
+      394248,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 544,
+      "z1_admissible_planes": 784,
+      "placing_pairs": 2592
+    },
+    "witnesses": [],
+    "seconds": 2.083
+  },
+  {
+    "orbit": 26,
+    "weight": 8,
+    "Q": [
+      1048576,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.801
+  },
+  {
+    "orbit": 27,
+    "weight": 8,
+    "Q": [
+      1048608,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.788
+  },
+  {
+    "orbit": 28,
+    "weight": 8,
+    "Q": [
+      1048640,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.807
+  },
+  {
+    "orbit": 29,
+    "weight": 8,
+    "Q": [
+      1048672,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.874
+  },
+  {
+    "orbit": 30,
+    "weight": 8,
+    "Q": [
+      1052672,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.845
+  },
+  {
+    "orbit": 31,
+    "weight": 8,
+    "Q": [
+      1052704,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.891
+  },
+  {
+    "orbit": 32,
+    "weight": 8,
+    "Q": [
+      1052736,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.823
+  },
+  {
+    "orbit": 33,
+    "weight": 8,
+    "Q": [
+      1052768,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.803
+  },
+  {
+    "orbit": 34,
+    "weight": 8,
+    "Q": [
+      1310720,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.82
+  },
+  {
+    "orbit": 35,
+    "weight": 8,
+    "Q": [
+      1310760,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.9
+  },
+  {
+    "orbit": 36,
+    "weight": 8,
+    "Q": [
+      1310784,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.935
+  },
+  {
+    "orbit": 37,
+    "weight": 8,
+    "Q": [
+      1310824,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.925
+  },
+  {
+    "orbit": 38,
+    "weight": 8,
+    "Q": [
+      1315840,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.816
+  },
+  {
+    "orbit": 39,
+    "weight": 8,
+    "Q": [
+      1315880,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.868
+  },
+  {
+    "orbit": 40,
+    "weight": 8,
+    "Q": [
+      1315904,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.91
+  },
+  {
+    "orbit": 41,
+    "weight": 8,
+    "Q": [
+      1315944,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.924
+  },
+  {
+    "orbit": 42,
+    "weight": 2,
+    "Q": [
+      16781312,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.823
+  },
+  {
+    "orbit": 43,
+    "weight": 2,
+    "Q": [
+      16782336,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.944
+  },
+  {
+    "orbit": 44,
+    "weight": 1,
+    "Q": [
+      16909320,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 60,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 960
+    },
+    "witnesses": [],
+    "seconds": 1.013
+  },
+  {
+    "orbit": 45,
+    "weight": 2,
+    "Q": [
+      16912416,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.733
+  },
+  {
+    "orbit": 46,
+    "weight": 2,
+    "Q": [
+      16913448,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.778
+  },
+  {
+    "orbit": 47,
+    "weight": 1,
+    "Q": [
+      17039368,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 544,
+      "z1_admissible_planes": 784,
+      "placing_pairs": 2592
+    },
+    "witnesses": [],
+    "seconds": 2.085
+  },
+  {
+    "orbit": 48,
+    "weight": 2,
+    "Q": [
+      17040392,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 544,
+      "z1_admissible_planes": 784,
+      "placing_pairs": 2592
+    },
+    "witnesses": [],
+    "seconds": 2.998
+  },
+  {
+    "orbit": 49,
+    "weight": 8,
+    "Q": [
+      17043520,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.873
+  },
+  {
+    "orbit": 50,
+    "weight": 1,
+    "Q": [
+      17171464,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 544,
+      "z1_admissible_planes": 784,
+      "placing_pairs": 2592
+    },
+    "witnesses": [],
+    "seconds": 3.079
+  },
+  {
+    "orbit": 51,
+    "weight": 8,
+    "Q": [
+      17174624,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.748
+  },
+  {
+    "orbit": 52,
+    "weight": 2,
+    "Q": [
+      8589934624,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 1.18
+  },
+  {
+    "orbit": 53,
+    "weight": 2,
+    "Q": [
+      8589934632,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.842
+  },
+  {
+    "orbit": 54,
+    "weight": 2,
+    "Q": [
+      8590065696,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.954
+  },
+  {
+    "orbit": 55,
+    "weight": 2,
+    "Q": [
+      8590065704,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 1.079
+  },
+  {
+    "orbit": 56,
+    "weight": 8,
+    "Q": [
+      17179869248,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.05
+  },
+  {
+    "orbit": 57,
+    "weight": 8,
+    "Q": [
+      17180131392,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.969
+  },
+  {
+    "orbit": 58,
+    "weight": 8,
+    "Q": [
+      25769803872,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.878
+  },
+  {
+    "orbit": 59,
+    "weight": 8,
+    "Q": [
+      25770197088,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.927
+  },
+  {
+    "orbit": 60,
+    "weight": 16,
+    "Q": [
+      68719476736,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 1.049
+  },
+  {
+    "orbit": 61,
+    "weight": 32,
+    "Q": [
+      68719476800,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 1.042
+  },
+  {
+    "orbit": 62,
+    "weight": 32,
+    "Q": [
+      68720525312,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 0.951
+  },
+  {
+    "orbit": 63,
+    "weight": 32,
+    "Q": [
+      68720525376,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 0.904
+  },
+  {
+    "orbit": 64,
+    "weight": 32,
+    "Q": [
+      85899345984,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 0.944
+  },
+  {
+    "orbit": 65,
+    "weight": 16,
+    "Q": [
+      85900656640,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 1.004
+  },
+  {
+    "orbit": 66,
+    "weight": 32,
+    "Q": [
+      85900656704,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 0.968
+  },
+  {
+    "orbit": 67,
+    "weight": 1,
+    "Q": [
+      1108101566496,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 1.029
+  },
+  {
+    "orbit": 68,
+    "weight": 2,
+    "Q": [
+      1108101567528,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.939
+  },
+  {
+    "orbit": 69,
+    "weight": 1,
+    "Q": [
+      1108118475816,
+      512
+    ],
+    "counts": {
+      "high_cosets": 7310,
+      "high_planes": 9824,
+      "z1_admissible_cosets": 228,
+      "z1_admissible_planes": 240,
+      "placing_pairs": 288
+    },
+    "witnesses": [],
+    "seconds": 0.914
+  },
+  {
+    "orbit": 70,
+    "weight": 8,
+    "Q": [
+      1116691501120,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.954
+  },
+  {
+    "orbit": 71,
+    "weight": 8,
+    "Q": [
+      1116708540480,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.092
+  },
+  {
+    "orbit": 72,
+    "weight": 8,
+    "Q": [
+      1125281435744,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.054
+  },
+  {
+    "orbit": 73,
+    "weight": 8,
+    "Q": [
+      1125298606176,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.055
+  },
+  {
+    "orbit": 74,
+    "weight": 4,
+    "Q": [
+      281492157628480,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.046
+  },
+  {
+    "orbit": 75,
+    "weight": 4,
+    "Q": [
+      281492157890624,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 0.909
+  },
+  {
+    "orbit": 76,
+    "weight": 8,
+    "Q": [
+      281500747563104,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.043
+  },
+  {
+    "orbit": 77,
+    "weight": 8,
+    "Q": [
+      281500747825256,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.245
+  },
+  {
+    "orbit": 78,
+    "weight": 16,
+    "Q": [
+      281543696449600,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 1.299
+  },
+  {
+    "orbit": 79,
+    "weight": 32,
+    "Q": [
+      281543697498176,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 1.356
+  },
+  {
+    "orbit": 80,
+    "weight": 16,
+    "Q": [
+      281560877105216,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 48,
+      "z1_admissible_planes": 48,
+      "placing_pairs": 48
+    },
+    "witnesses": [],
+    "seconds": 1.274
+  },
+  {
+    "orbit": 81,
+    "weight": 4,
+    "Q": [
+      282600259194976,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.382
+  },
+  {
+    "orbit": 82,
+    "weight": 4,
+    "Q": [
+      282600259458152,
+      512
+    ],
+    "counts": {
+      "high_cosets": 8920,
+      "high_planes": 9952,
+      "z1_admissible_cosets": 136,
+      "z1_admissible_planes": 160,
+      "placing_pairs": 184
+    },
+    "witnesses": [],
+    "seconds": 1.127
+  }
+]

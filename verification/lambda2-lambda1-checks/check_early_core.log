@@ -1,0 +1,1 @@
+{"early_core": {"counts": {"cubic_cosets": 1740, "cubic_planes": 1920, "placing_output_cosets": 48, "placing_pairs": 48, "weighted_placing_pairs": 48}, "domain": "all 1740 cubic first-output cosets and every next semantic nonlinear plane", "positive_controls_detected": 1, "seconds": 0.164, "status": "PASS"}}

@@ -1,0 +1,1 @@
+{"final_factor": {"Q_raw_spaces": 580, "Q_representatives": 67, "identities_found": 69984, "pairs_checked": 70254592, "positive_controls_detected": 1, "scope": "all k and R in the exact stated application domain, not arbitrary quartic functions", "seconds": 3.803, "status": "PASS"}}

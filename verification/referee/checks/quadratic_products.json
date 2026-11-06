@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "Q_spaces": 606,
+  "all_factor_planes": 6533642,
+  "quadratic_products": 516522,
+  "quadratic_mod_I_products": 1910282,
+  "quartic_products": 2293760,
+  "arbitrary_quadratic_random_pairs": 1000000,
+  "radical_ordered_qualifying_pairs": 1249,
+  "product_qualifying_pairs": 49,
+  "positive_controls_detected": true,
+  "seconds": 24.521
+}

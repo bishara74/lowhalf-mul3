@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "counts": {
+    "cubic_orbits": 197,
+    "first_product_planes": 8556695,
+    "product_cosets": 6754925
+  },
+  "positive_controls_detected": 1,
+  "seconds": 106.849,
+  "domain": "all 197 cubic first-output orbits, all four factors in the enlarged base A; every output correction in A"
+}

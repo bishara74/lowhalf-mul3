@@ -1,0 +1,1131 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage{booktabs,array,tabularx,longtable}
+\usepackage[shortlabels]{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue!50!black]{hyperref}
+\setlist{itemsep=2pt,topsep=4pt}
+\setlength{\parskip}{3pt}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\arraystretch}{1.1}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{\mathbb F_2}
+\newcommand{\Aff}{\mathrm{Aff}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\rk}{\operatorname{rank}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\Lam}{\Lambda^2}
+\newcommand{\dU}{d_U}
+\newcommand{\Dir}{E}
+\title{The multiplicative complexity of the three-bit low-half multiplier}
+% TODO: Confirm Bishara's surname and both authors' names and order.
+\author{Bishara [surname?] and Gregory Morse}
+\date{}
+\hypersetup{pdftitle={The multiplicative complexity of the three-bit low-half multiplier},pdfauthor={Bishara and Gregory Morse}}
+\begin{document}
+\maketitle
+\begin{abstract}
+The three low bits of the product of two three-bit integers have multiplicative complexity six in the unrestricted Boolean circuit model, with XOR and constants free. An explicit six-AND circuit gives the upper bound. For the lower bound, a normal form reduces five-AND circuits to five cases according to the number of gates whose two factors are affine functions. We combine derivative, exterior-support, quadratic-product, coset, and Boolean-ideal arguments to exclude every case. Exhaustive algebraic checks and independent circuit searches accompany the written arguments. A Lean formalization reduces the remaining formal proof to the one-, two-, and three-linear-gate cases, which are in progress.
+\end{abstract}
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\section{Introduction}\label{sec:introduction}
+Let $a=a_0+2a_1+4a_2$ and $b=b_0+2b_1+4b_2$ be three-bit integers. We study the vectorial Boolean function $M_3(a,b)=(z_0,z_1,z_2)$ specified by $ab\bmod8=z_0+2z_1+4z_2$. Its multiplicative complexity counts two-input AND gates, allowing arbitrary affine combinations of inputs and previously computed gates at no cost. In particular, the factors of an AND gate may contain earlier AND outputs. We use the unrestricted model of Morse~\cite{morse}.
+
+\begin{theorem}\label{thm:MC}
+The three-bit low-half multiplier has unrestricted multiplicative complexity
+\[
+\mathrm{MC}(M_3)=6.
+\]
+\end{theorem}
+
+An exact value distinguishes an optimal implementation from a merely small one. It measures the number of nonlinear operations required even when linear processing is free, and gives a concrete benchmark for circuit synthesis and lower-bound methods. The carry in $z_2$ makes this a vectorial problem with a quartic output; the degree bound alone does not yield the exact answer.
+
+Boyar, Peralta, and Pochuev~\cite{bpp} study multiplicative complexity over the Boolean basis $(\wedge,\oplus,1)$, and Boyar and Find~\cite{bf} treat vector-valued Boolean functions. Schnorr~\cite{schnorr} develops general multiplicative-complexity lower bounds. Morse~\cite{morse} supplies the unrestricted multiplication framework, while Soeken~\cite{soeken} develops SAT methods for determining exact multiplicative complexity. The certificate computation for this low-half multiplier~\cite{cert} provides independent evidence for the value six. The present argument assembles the five-gate exclusion into a single proof using shared notation and internal references.
+
+\section{Preliminaries}\label{sec:preliminaries}
+
+Boolean functions on $\F^6$ are identified with their algebraic normal forms in $\F[x]/(x_i^2-x_i)$, and $\Aff=\Span\{1,x_1,\dots,x_6\}$. A circuit with $k$ AND gates is a sequence $g_0,\dots,g_{k-1}$ with
+\[
+  g_i=L_iR_i,\qquad L_i,R_i\in V_i:=\Aff+\Span\{g_0,\dots,g_{i-1}\},
+\]
+and it computes a set of targets if all of them lie in $V_k$. This is the unrestricted model of~\cite{morse}; see~\cite{bpp,bf,schnorr} for background on multiplicative complexity. For $f$ of degree at most $2$ we write $f=f_0+f_1+f_2$ by degree and $\pi_d$ for the degree-$d$ part. Squarefree quadratic monomials are identified with 2-forms, $x_ix_j\leftrightarrow x_i\wedge x_j$.
+
+\paragraph{Targets.}
+With inputs $a_0,a_1,a_2,b_0,b_1,b_2$ (least significant bit first),
+\[
+  z_0=a_0b_0,\qquad z_1=a_0b_1+a_1b_0,\qquad z_2=q_2+a_0a_1b_0b_1,\quad q_2=a_0b_2+a_1b_1+a_2b_0 .
+\]
+We write
+\[
+  \Omega=a_0\wedge a_1\wedge b_0\wedge b_1,\qquad P_0=a_0\wedge b_0,\qquad Z_1=a_0\wedge b_1+a_1\wedge b_0 .
+\]
+
+\paragraph{Linear gates.}
+A gate $g_i=L_iR_i$ is \emph{linear} if $L_i$ and $R_i$ are \emph{equal as functions} to affine forms, even if they are written using earlier gates. This is a semantic notion.
+
+\begin{lemma}[Normal form]\label{l4:lem:normal}
+If a $k$-gate circuit computes $(z_0,z_1,z_2)$, so does a $k$-gate circuit in which $g_0=a_0b_0$, gates $0,\dots,\lambda-1$ are linear and gates $\lambda,\dots,k-1$ are not, for some $\lambda\ge1$.
+\end{lemma}
+
+\begin{proof}
+Let $j$ be the first index with $z_0\in V_{j+1}$; then $g_j=z_0+v$ with $v\in V_j$. Put $a_0b_0$ first and delete $g_j$: every earlier gate keeps its factors, and afterwards the available space is $V_j+\Span\{a_0b_0\}=V_{j+1}$, so nothing later changes. Next move all linear gates to the front, keeping relative orders, and rewrite their factors as affine forms. A linear gate needs only $\Aff$, and a nonlinear gate still follows every gate that preceded it, so its available space can only grow.
+\end{proof}
+
+For any space $Q$ of 2-forms, put
+\[
+ V(Q)=\{f:\deg f\le2,\ \pi_2(f)\in Q\}.
+\]
+For a prefix of linear gates with quadratic parts spanning $Q$, subtracting the corresponding gate combination shows that its available space is $V(Q)$. For four gates this gives the following formulation, in which the four quadratic parts span $Q$. If some gates are redundant, retain an independent subset of their quadratic parts containing $P_0$ and extend it to four independent rank-two forms using quadratic monomials. This only enlarges availability and is the extension referred to below.
+\begin{lemma}\label{l4:lem:Qonly}
+With the gates $g_1,g_2,g_3$ extended accordingly, $V_4=V_4(Q):=\{f:\deg f\le 2,\ \pi_2(f)\in Q\}$.
+\end{lemma}
+
+\begin{proof}
+If $\pi_2(f)=\sum_i\alpha_iP_i$, then $f-\sum_i\alpha_ig_i$ has no quadratic part and therefore lies in $\Aff$. The other inclusion is clear.
+\end{proof}
+
+
+Let $U=\langle a_0,a_1,b_0,b_1\rangle$, so $\Lam(U)$ is the space of 2-forms with no monomial involving $a_2$ or $b_2$. The \emph{support} $\supp\omega$ of a 2-form $\omega$ is the smallest subspace $W$ of linear forms with $\omega\in\Lam(W)$, equivalently the row space of its alternating matrix; $\dim\supp\omega$ is the rank of $\omega$. Every 2-form decomposes uniquely as
+\[
+  \omega=\omega_U+a_2\wedge\alpha+b_2\wedge\beta+\gamma\,a_2\wedge b_2,\qquad \omega_U\in\Lam(U),\ \alpha,\beta\in U,\ \gamma\in\F,
+\]
+and we define the \emph{cross part} $\Phi(\omega)=(\alpha,\beta,\gamma)$; equivalently, $\Phi$ records the contractions of $\omega$ with the unit vectors $e_{a_2},e_{b_2}\in\F^6$. Note $\Phi(q_2)=(b_0,a_0,0)$.
+
+\paragraph{Directions.} Let $\Dir=\{e_{a_2},\,e_{b_2},\,e_{a_2}+e_{b_2}\}\subset\F^6$, a set of three vectors. For $e\in\Dir$, $\iota_e$ is contraction with $e$, and for a linear form $l$, $l(e)\in\F$ is its value at $e$. Put
+\[
+  \dU(Q)=\dim\bigl(Q\cap\Lam(U)\bigr).
+\]
+
+
+The radical $\rad\omega$ is the kernel of the alternating matrix of $\omega$, a space of direction vectors; thus $\supp\omega=(\rad\omega)^\circ$. We sometimes abbreviate the directions $e_{a_2}$, $e_{b_2}$, $e_{a_2}+e_{b_2}$ by $a_2$, $b_2$, $a_2+b_2$ when they occur as subscripts of contractions or derivatives. Set $X=\Span\{e_{a_2},e_{b_2}\}=E\cup\{0\}$. A direction $e\in E$ \emph{kills} $Q$ if $\iota_e(Q)=0$.
+For $e\in E$ let $D_eg(x)=g(x+e)+g(x)$ and $\delta_e=\iota_e(q_2)=D_ez_2$, which is respectively $b_0$, $a_0$, or $a_0+b_0$.
+The symbol $\beta(\omega,\eta)$ denotes the coefficient of $a_0a_1b_0b_1$ in $\omega\wedge\eta$; on $\Lam(U)$ it is a nondegenerate alternating form.
+
+When a 2-form occurs in a Boolean expression, it denotes its homogeneous quadratic ANF representative. Likewise the carry function $a_0a_1b_0b_1$ is occasionally denoted by $\Omega$ in Boolean identities; exterior products use the corresponding 4-form.
+
+We use $V_4(Q)$ as a synonym for $V(Q)$ in the four-linear-gate statements. Their single-product feasibility condition is
+\begin{equation}\label{l4:eq:star}
+ f,h\in V_4(Q),\qquad fh\in z_2+V_4(Q).
+\end{equation}
+For functions of degree at most two, $\pi_4(fh)=f_2\wedge h_2$, since overlapping monomials lower the degree under $x_i^2=x_i$. Thus this condition forces $f_2\wedge h_2=\Omega$.
+Unless a statement explicitly says otherwise, the four-dimensional spaces $Q$ in the following cross-part lemmas contain $P_0,Z_1$.
+
+\begin{lemma}[Support]\label{l4:lem:support}
+If a rank-4 form $Z$ equals $P+P'$ with $P,P'$ of rank 2, then $P,P'\in\Lam(\supp Z)$. In particular every splitting of $Z_1$ or $Z_1+P_0$ into two rank-2 forms lies in $\Lam(U)$.
+\end{lemma}
+
+\begin{proof}
+$\supp Z\subseteq\supp P+\supp P'$, and both sides have dimension $4$, so they are equal. The second claim follows since $Z_1$ and $Z_1+P_0=a_0\wedge(b_0+b_1)+a_1\wedge b_0$ both have rank $4$ and support $U$.
+\end{proof}
+
+\begin{lemma}[Cross part]\label{l4:lem:cross}
+$\ker\Phi=\Lam(U)$. Consequently, for $\dim Q=4$, $\dim\Phi(Q)=4-\dU(Q)\le 2$.
+\end{lemma}
+
+\begin{proof}
+$\Phi(\omega)=0$ exactly when $\omega$ has no monomial involving $a_2$ or $b_2$. Apply rank--nullity on $Q$, and note $P_0,Z_1\in Q\cap\Lam(U)$.
+\end{proof}
+
+\begin{lemma}\label{l4:lem:planeU}
+Let $f,h$ have degree at most $2$ with $f_2,h_2\in\Lam(U)$, $f_2\wedge h_2=\Omega$ and $\pi_3(fh)=0$. Then $\Phi(\pi_2(fh))=0$.
+\end{lemma}
+
+\begin{proof}
+Write $f_1=u_f+s_fa_2+t_fb_2$ and $h_1=u_h+s_ha_2+t_hb_2$ with $u_f,u_h\in U$. Consider the cubic monomials of $fh$ that contain $a_2$ but not $b_2$. Products of quadratic monomials of $f_2$ and $h_2$ stay inside $U$. The terms $u_f\cdot h_2$ and $u_h\cdot f_2$ can collapse to degree $2$ (as $x_i\cdot x_ix_j=x_ix_j$), but they too stay inside $U$. So these cubic monomials come only from $s_f\,a_2\wedge h_2+s_h\,a_2\wedge f_2$. As $f_2\wedge h_2\ne0$, the forms $f_2,h_2$ are independent, so $s_f=s_h=0$; likewise $t_f=t_h=0$. Now all linear and quadratic parts lie over $U$, hence so does $\pi_2(fh)$.
+\end{proof}
+
+\begin{lemma}\label{l4:lem:noq2}
+No rank-2 form $R$ satisfies $\Phi(R)=\Phi(q_2)$.
+\end{lemma}
+
+\begin{proof}
+For $R=l\wedge r$ both contractions $\iota_{e_{a_2}}R,\iota_{e_{b_2}}R$ lie in $\langle l,r\rangle$. If they were $b_0$ and $a_0$, then $\langle l,r\rangle=\langle a_0,b_0\rangle$ and $R=a_0\wedge b_0$, whose $a_2$-contraction is $0$.
+\end{proof}
+
+\begin{proposition}\label{l4:prop:B}
+Suppose $\dim Q=4$, $\dU(Q)=3$, $Q$ is spanned by rank-2 forms, and $(f,h)$ satisfies \eqref{l4:eq:star} with $f_2,h_2\in\Lam(U)$. This is impossible.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{l4:lem:cross}, $\Phi(Q)$ is one-dimensional and spanned by the images of the basis forms, so $\Phi(Q)=\{0,\Phi(R)\}$ for a rank-2 form $R$. Lemma~\ref{l4:lem:planeU} gives $\Phi(\pi_2(fh))=0$, so \eqref{l4:eq:star} would require $\Phi(q_2)\in\Phi(Q)$, contradicting Lemma~\ref{l4:lem:noq2}.
+\end{proof}
+
+\begin{lemma}[Derivative lemma]\label{l4:lem:deriv}
+Let $Q$ be any subspace with $\iota_e(Q)=0$ for some $e\in\Dir$. Then \eqref{l4:eq:star} has no solution.
+\end{lemma}
+
+\begin{proof}
+Suppose $g:=fh+z_2\in V_4(Q)$. For a function of degree at most $2$, $D_e$ is affine with linear part $\iota_e$ of its quadratic part. The quadratic parts of $f$, $h$ and $g$ lie in $Q$, so
+\[
+  D_ef=c,\qquad D_eh=d,\qquad D_eg=k\qquad(c,d,k\in\F).
+\]
+The carry contains neither $a_2$ nor $b_2$, so $D_ez_2=\delta_e$. Expanding $D_e(fh)=D_ef\cdot h+f\cdot D_eh+D_ef\cdot D_eh$ gives
+\[
+  k=c\,h+d\,f+cd+\delta_e .
+\]
+If $c=d=0$, then $\delta_e=k$ is constant, which is false. If $c=1$, then $h=d\,f+A$ with $A$ affine, and since $f^2=f$,
+\[
+  fh=d\,f+f A
+\]
+has degree at most $3$. But $fh=g+z_2$ with $\deg g\le2$, so the degree-4 part of $fh$ is $a_0a_1b_0b_1\neq0$, a contradiction. The case $d=1$ is symmetric.
+\end{proof}
+\begin{remark}\label{l4:rem:rank2essential}
+Lemma~\ref{l4:lem:deriv} does not use that the gates are products of linear forms, and the rank-2 hypothesis in Theorem~\ref{l4:thm:main} is essential. An exhaustive search over all $11\,180\,715$ four-dimensional subspaces $Q\supseteq\langle P_0,Z_1\rangle$ finds exactly $4\,168$ that admit a solution of \eqref{l4:eq:star}; none is spanned by rank-2 forms, and none satisfies the hypothesis of the lemma. A small example is $Q=\langle a_0b_0,\,Z_1,\,a_1b_1,\,a_0a_1+a_0b_2+a_2b_0\rangle$ with $f=a_0b_0+a_1$, $h=a_1b_1+a_0$.
+\end{remark}
+
+\begin{remark}[Why restrictions cannot work]\label{l4:rem:restrictions}
+No argument by restriction can prove the lower bound: every affine restriction $b_2:=\ell(a_0,a_1,a_2,b_0,b_1)+c$ of the target is computable with five AND gates (all $64$ were checked). Lemma~\ref{l4:lem:deriv} avoids this because it differentiates along $a_2$ and $b_2$ instead of restricting them, so it still sees the whole function.
+\end{remark}
+
+
+
+For a linear form $x$ let $\pi(x)=(x(e_{a_2}),x(e_{b_2}))\in\F^2$, its pair of coefficients of $a_2$ and $b_2$. For $v\in\F^2\setminus\{0\}$ and $r\in U$ write $v\otimes r:=(v_1r,\,v_2r,\,0)$.
+
+\begin{lemma}[Types]\label{l4:lem:types}
+Let $R=l\wedge r$ have rank $2$ and $\Phi(R)\neq0$. Then exactly one of the following holds.
+\begin{enumerate}[(a)]
+  \item \emph{Type $v$:} one can choose $r\in U$ and $\pi(l)=v\neq0$. Then $\Phi(R)=v\otimes r$ and $\iota_eR=l(e)\,r$ for $e\in\Dir$; in particular $\iota_eR=0$ for the unique $e\in\Dir$ with $l(e)=0$, namely $e=e_{b_2},\ e_{a_2},\ e_{a_2}+e_{b_2}$ for $v=(1,0),(0,1),(1,1)$.
+  \item \emph{Full:} $R=(a_2+x)\wedge(b_2+y)$ with $x,y\in U$, and $\Phi(R)=(y,x,1)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The image $\pi(\langle l,r\rangle)\subseteq\F^2$ is nonzero. If it is a line $\langle v\rangle$, choose $r\in\ker\pi$, i.e.\ $r\in U$, and $l$ with $\pi(l)=v$. If it is all of $\F^2$, choose $l,r$ with $\pi(l)=(1,0)$ and $\pi(r)=(0,1)$. The formulas follow by contraction.
+\end{proof}
+
+Among the 651 rank-2 forms on $\F^6$, 35 lie in $\Lam(U)$, 360 have type $v$ and 256 are full.
+
+
+\begin{lemma}[Derivative lemma, variant]\label{l3:lem:deriv}
+Let $Q$ be any space of 2-forms with $\iota_e(Q)=0$ for some $e\in E$, and $\varepsilon\in\F$. There are no $f,h\in V(Q)$ with $fh\in z_2+\varepsilon z_1+V(Q)$.
+\end{lemma}
+\begin{proof}
+The proof of Lemma~\ref{l4:lem:deriv} applies verbatim, because $D_ez_1=\iota_eZ_1=0$ for every $e\in E$.
+\end{proof}
+
+\section{A six-gate upper bound}\label{sec:upper}
+Use the six AND gates
+\begin{align*}
+g_0&=a_0b_0,&g_1&=a_0b_1,&g_2&=a_1b_0,\\
+g_3&=a_0b_2,&g_4&=a_2b_0,&g_5&=(g_1+a_1)(g_2+b_1).
+\end{align*}
+The outputs are
+\[
+ z_0=g_0,\qquad z_1=g_1+g_2,\qquad
+ z_2=g_5+g_1+g_2+g_3+g_4.
+\]
+Indeed $g_5=a_0a_1b_0b_1+g_1+g_2+a_1b_1$, so the stated output is exactly the target ANF. Hence $\mathrm{MC}(M_3)\le6$.
+
+\section{Lower-bound overview}\label{sec:overview}
+By Lemma~\ref{l4:lem:normal}, a five-gate circuit may be assumed to start with $g_0=a_0b_0$ and to have $\lambda$ initial linear gates, followed by nonlinear gates, for some $1\le\lambda\le5$. Linearity is semantic: it concerns the two factor functions, rather than their written signal expressions. Redundant linear gates can be replaced by independent rank-two directions, enlarging the available space while keeping all later factor functions.
+
+We exclude $\lambda=5$ by degree and $\lambda=4$ by a derivative and rank-two case split. A quadratic-product lemma reduces new quadratic directions in the $\lambda=3$ case to the four-linear-gate theorem. The smaller prefixes use multiplier rigidity and extraction modulo the low-bit ideal $(a_0b_0)$. The dependencies are
+\[
+\boxed{\lambda=1}\ \xrightarrow{\text{uses}}\
+\boxed{\lambda=2}\ \xrightarrow{\text{uses}}\
+\boxed{\lambda=3}\ \xrightarrow{\text{uses}}\
+\boxed{\lambda=4}.
+\]
+The proofs are presented in the reverse order of these dependencies. The case statements are Theorems~\ref{thm:lambda5}, \ref{l4:thm:main}, \ref{l3:thm:main}, \ref{l2:thm:main}, and~\ref{l1:thm:main}.
+
+\section{Five linear gates}\label{sec:lambda5}
+\begin{theorem}\label{thm:lambda5}
+No five-AND circuit with five linear gates computes $(z_0,z_1,z_2)$.
+\end{theorem}
+\begin{proof}
+Each gate is a product of two affine functions, so every function in $V_5$ has degree at most two. The target $z_2$ has the nonzero quartic part $a_0a_1b_0b_1$.
+\end{proof}
+
+\section{Four linear gates}\label{sec:lambda4}
+
+Let $P_i=\pi_2(g_i)\in\Lam$ for $i=1,2,3$; a product of two linear forms has a 2-form of rank $2$ as quadratic part, or $0$ if the two linear parts coincide. Set $Q'=\Span\{P_0,P_1,P_2,P_3\}$. Choose a maximal independent subset of $\{P_0\}\cup\{P_i\ne0\}$ containing $P_0$, and extend it by quadratic monomials (which have rank $2$) to an independent set of four forms; call its span $Q$. Then $Q\supseteq Q'$, $\dim Q=4$, and $Q$ is spanned by $P_0$ and three rank-2 forms. Every condition below is monotone in $Q$ (enlarging $Q$ only enlarges $V_4$), so it suffices to treat such $Q$.
+
+
+The targets $z_0,z_1$ must already lie in $V_4$: since $\deg z_2=4$, we have $z_2\notin V_4$, so $g_4\in z_2+V_4$ has degree $4$; if instead $z_i=v+g_4$ with $v\in V_4$, then $g_4$ would have degree at most $2$. Hence $z_0,z_1\in V_4$, i.e.\ $P_0,Z_1\in Q$ by Lemma~\ref{l4:lem:Qonly}, and the remaining condition on the last gate $g_4=fh$ is
+\eqref{l4:eq:star}.
+
+
+\begin{theorem}\label{l4:thm:main}
+Let $Q=\Span\{P_0,P_1,P_2,P_3\}$ with $\dim Q=4$, every $P_i$ of rank $2$, and $Z_1\in Q$. Then \eqref{l4:eq:star} has no solution. Consequently, no circuit with five AND gates, four of them linear, computes $(z_0,z_1,z_2)$.
+\end{theorem}
+
+There are exactly $6\,583$ such subspaces; the table shows how they distribute over the cases of the proof.
+
+\begin{center}
+\begin{tabularx}{0.95\textwidth}{@{}l X r@{}}
+\toprule
+Case & Argument & Number of $Q$ \\
+\midrule
+$\dU=4$ & $Q\subseteq\Lam(U)$, so every $\iota_e$ annihilates $Q$; Lemma~\ref{l4:lem:deriv} & 35\\
+$\dU=3$, $R$ of type $v$ & $\iota_e$ annihilates $\Lam(U)$ and $R$; Lemma~\ref{l4:lem:deriv} & 2\,664\\
+$\dU=3$, $R$ full & the plane $\langle f_2,h_2\rangle$ is forced into $\Lam(U)$; Proposition~\ref{l4:prop:B} & 2\,816\\
+$\dU=2$ & $P_1,P_2,P_3$ share one type $v$; Lemma~\ref{l4:lem:deriv} & 1\,068\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{proof}
+By Lemma~\ref{l4:lem:cross}, $\dU\in\{2,3,4\}$.
+
+\medskip\noindent\emph{Case $\dU=4$.} Then $Q\subseteq\Lam(U)=\ker\Phi$, so $\iota_e(Q)=0$ for every $e\in\Dir$, and Lemma~\ref{l4:lem:deriv} applies.
+
+\medskip\noindent\emph{Case $\dU=3$.} Here $\Phi(Q)=\{0,\Phi(R)\}$ for some rank-2 basis form $R$.
+If $R$ has type $v$, pick $e\in\Dir$ with $l(e)=0$; then $\iota_e$ annihilates $\Lam(U)$ and $R$, hence $Q=(Q\cap\Lam(U))+\langle R\rangle$, and Lemma~\ref{l4:lem:deriv} applies.
+If $R$ is full, let $(f,h)$ be a solution. Since $\dim\Phi(Q)=1$, the plane $\langle f_2,h_2\rangle$ meets $\Lam(U)$. Replacing $(f,h)$ by $(h,f)$, $(f,f+h)$ or $(f+h,h)$ changes $fh$ only by an element of $V_4(Q)$, because $f^2=f$; so we may assume $f_2\in\Lam(U)$. If $h_2\notin\Lam(U)$, then $\Phi(h_2)=\Phi(R)$ and $\gamma(h_2)=1$, and the $a_2b_2$-part of $f_2\wedge h_2$ equals $\gamma(h_2)f_2\neq0$, while $\Omega$ has none. Hence $f_2,h_2\in\Lam(U)$, and Proposition~\ref{l4:prop:B} gives the contradiction.
+
+\medskip\noindent\emph{Case $\dU=2$.} Now $Q\cap\Lam(U)=\langle P_0,Z_1\rangle$.
+\begin{enumerate}[1.]
+  \item No $P_i$ ($i\ge1$) lies in $\Lam(U)$, since the only rank-2 element of $\langle P_0,Z_1\rangle$ is $P_0$. So $\Phi(P_i)\neq0$.
+  \item Write $Z_1=\varepsilon P_0+\sum_{i\in S}P_i$ with $S\subseteq\{1,2,3\}$. The case $S=\emptyset$ is excluded because $Z_1\ne\varepsilon P_0$ (rank), the case $|S|=1$ by rank, and $|S|=2$ by Lemma~\ref{l4:lem:support} together with step~1. Hence
+  \[
+    P_1+P_2+P_3=Z\in\{Z_1,\,Z_1+P_0\},\qquad \Phi(P_1)+\Phi(P_2)+\Phi(P_3)=0,
+  \]
+  and $Z$ has rank $4$.
+  \item Comparing $\gamma$-coordinates, an even number of the $P_i$ are full, so none or two of them.
+  \begin{itemize}
+    \item Two of type $v$ and one of type $w\neq v$: $v\otimes(r_1+r_2)+w\otimes r_3=0$ forces $r_3=0$, which is absurd.
+    \item Types $v$, $w$, $v+w$: $v\otimes(r_1+r_3)+w\otimes(r_2+r_3)=0$ forces $r_1=r_2=r_3=:r$, so $Z=(l_1+l_2+l_3)\wedge r$ has rank at most $2$.
+    \item $P_i=(a_2+x_i)\wedge(b_2+y_i)$ for $i=1,2$ and $P_3=l_3\wedge r_3$ of type $v$, with $l_3=v_1a_2+v_2b_2+x_3$: the $\Phi$-sum gives $x_2=x_1+v_2r_3$ and $y_2=y_1+v_1r_3$, and then
+    \[
+      Z=x_1\wedge y_1+x_2\wedge y_2+x_3\wedge r_3=(v_1x_1+v_2y_1+x_3)\wedge r_3
+    \]
+    has rank at most $2$.
+  \end{itemize}
+  \item Hence $P_1,P_2,P_3$ all have the same type $v$. For the $e\in\Dir$ with $l(e)=0$, $\iota_e$ annihilates $P_1,P_2,P_3$ and also $P_0,Z_1\in\Lam(U)$; so $\iota_e(Q)=0$ and Lemma~\ref{l4:lem:deriv} applies.\qedhere
+\end{enumerate}
+\end{proof}
+
+
+The following formulation isolates the single-product conclusion.
+\begin{theorem}[Four-dimensional formulation]\label{l3:thm:L4}
+If $Q=\Span\{P_0,P_1,P_2,P_3\}$ with $\dim Q=4$, every $P_i$ of rank $2$ and $Z_1\in Q$, there are no $f,h\in V(Q)$ with $fh\in z_2+V(Q)$.
+\end{theorem}
+\begin{proof}This is the single-product conclusion of Theorem~\ref{l4:thm:main}.\end{proof}
+\section{Three linear gates}\label{sec:lambda3}
+
+
+For $\lambda=3$ the normal form gives $g_0=a_0b_0$, linear gates $g_1,g_2$ with rank-2 quadratic parts $P_1,P_2$, and nonlinear gates $g_3=fh$ ($f,h\in V_3$, the plane $\langle f,h\rangle$ not inside $\Aff$) and $g_4=FH$ ($F,H\in V_4$). Put $Q_3=\Span\{P_0,P_1,P_2\}$; then $V_3=V(Q_3)$ by Lemma~\ref{l4:lem:Qonly}, $V_4=V_3+\langle g_3\rangle$ and $V_5=V_4+\langle g_4\rangle$.
+
+\begin{theorem}\label{l3:thm:main}
+No circuit with five AND gates, exactly three of them linear, computes $(z_0,z_1,z_2)$.
+\end{theorem}
+
+\noindent\textbf{Plan.} We may assume $\dim Q_3=3$ (Section~\ref{l3:sec:proof}).
+\begin{enumerate}[1.]
+\item Lemma~\ref{l3:lem:C}: $z_2\notin V_4$ and $z_1+z_2\notin V_4$. Hence $z_1\in V_4$ (otherwise $g_4$ would have to place $z_1$ and $z_2$ together).
+\item If $Z_1\notin Q_3$, then $g_3$ places $z_1$; by Lemma~\ref{l3:lem:A} some $Z_1+q$ ($q\in Q_3$) has rank 2; then $V_4=V(Q_3+\langle Z_1\rangle)$ and Theorem~\ref{l3:thm:L4} excludes $g_4$ (Proposition~\ref{l3:prop:B}).
+\item If $Z_1\in Q_3$, then $Q_3\subseteq\Lam(U)$, and Lemmas~\ref{l3:lem:B3a} and~\ref{l3:lem:B3b} exclude $g_4$ (case B3).
+\end{enumerate}
+
+\subsection[Products of quadratic functions and the placement of z1]{Products of quadratic functions and the placement of $z_1$}
+
+Throughout this section $f,h$ have degree at most $2$, $\omega=f_2$, $\eta=h_2$. The \emph{plane operations} replace $(f,h)$ by $(h,f)$, $(f,f+h)$, $(f+h,h)$ or $(f,h+1)$. They change $fh$ by an element of $\Span\{1,f,h\}$ (because $f^2=f$), hence $(fh)_2$ by an element of $\langle\omega,\eta\rangle$, and they act transitively on ordered bases of $\langle\omega,\eta\rangle$.
+
+\begin{lemma}[Radical lemma]\label{l3:lem:rad}
+If $\deg(fh)\le3$, $\rk\eta\ge4$ and $x\in\rad\eta$, then $\iota_x\omega=0$. Consequently, if $\deg(fh)\le 3$ and both $\omega,\eta$ have rank at least $4$, then $\rad\omega=\rad\eta$ and $\supp\omega=\supp\eta$.
+\end{lemma}
+
+\begin{proof}
+Since $\iota_x\eta=0$, $D_xh=d$ is a constant, and $D_xf=a+c$ with $a=\iota_x\omega$ linear and $c$ constant. Hence $D_x(fh)=D_xf\cdot h+f\,D_xh+D_xf\,D_xh=(a+c)(h+d)+d f$. As $\deg(fh)\le3$, $\deg D_x(fh)\le2$, so the cubic part of $(a+c)(h+d)$ vanishes. That cubic part is $a\wedge\eta$ (a product of a linear form with a quadratic monomial is cubic exactly when they share no variable, and then it is the wedge). If $a\ne0$, $a\wedge\eta=0$ forces $\eta=a\wedge b$ for some $b$, so $\rk\eta\le2$, a contradiction. The second statement follows by symmetry, and $\supp=\rad^{\circ}$.
+\end{proof}
+
+\begin{lemma}[Weights, Dickson]\label{l3:lem:wt}
+On $\F^m$ ($m$ even), a function of degree at most $2$ whose quadratic part has rank $m$ has weight $2^{m-1}\pm2^{m/2-1}$, and every nonzero function of degree at most $2$ has weight at least $2^{m-2}$.
+\end{lemma}
+
+\begin{proof}
+Both statements are classical: Dickson's normal form for quadratic forms gives the first, and the second is the minimum distance $2^{m-r}$ of the Reed--Muller code $RM(r,m)$ with $r=2$ (\cite[Ch.~13 and~15]{MS}). We use only $m\in\{4,6\}$.
+\end{proof}
+
+\begin{lemma}[Product lemma]\label{l3:lem:P}
+Let $\langle\omega,\eta\rangle\neq0$ and $\deg(fh)\le 2$. Then $(fh)_2=\pi+\rho$ with $\pi\in\langle\omega,\eta\rangle$, where either $\rho=0$, or $\rk\rho=2$ and $\supp\rho\cap\supp R\neq0$ for some rank-2 form $R\in\langle\omega,\eta\rangle$. More precisely:
+\begin{enumerate}[(P1)]
+\item if the plane $\langle f,h\rangle$ contains a nonconstant affine function $l$, every nonzero element of $\langle\omega,\eta\rangle$ is $l\wedge m$ for some $m$, and $(fh)_2\in l\wedge(\text{linear})+\langle\omega,\eta\rangle$;
+\item if it contains no affine function but at least two of $\omega,\eta,\omega+\eta$ have rank 2, these two share a factor $l$, say $l\wedge m$ and $l\wedge m'$, and $(fh)_2+\pi$ lies in $l\wedge(\text{linear})$ or in $\Lam(\Span\{l,m,m'\})$ for some $\pi\in\langle\omega,\eta\rangle$;
+\item if it contains no nonconstant affine function and at most one of $\omega,\eta,\omega+\eta$ has rank 2, then $fh\in\Span\{1,f,h\}$; in particular $(fh)_2\in\langle\omega,\eta\rangle$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+If $f,h$ are dependent modulo constants, then $fh\in\Span\{1,f,h\}$ and the conclusion holds with $\rho=0$; so assume they span a plane. The plane operations preserve the hypotheses and the conclusion, so we may normalise freely. Note that $\pi_4(fh)=\omega\wedge\eta$, so $\omega\wedge\eta=0$.
+
+\emph{(P1).} Normalise to $h=l$. Choose coordinates with $x_1=l$ and write $f=x_1\alpha+\beta$ with $\alpha$ affine and $\beta$ of degree $\le2$, both free of $x_1$. Then $fh=x_1(\alpha+\beta)$, whose degree is $1+\deg(\alpha+\beta)$. So $\deg(\alpha+\beta)\le1$, i.e.\ $\beta_2=0$, $\omega=x_1\wedge\alpha_1$, and $(fh)_2=x_1\wedge(\alpha+\beta)_1$.
+
+\emph{(P2).} Normalise to $\omega=l\wedge m$, $\eta=l\wedge m'$. These share a factor because $\omega\wedge\eta=0$: two rank-2 forms with disjoint supports have nonzero wedge. Then $l,m,m'$ are independent. In coordinates with $x_1=l$, $x_2=m$, $x_3=m'$ write $f=x_1\alpha_f+\beta_f$ and $h=x_1\alpha_h+\beta_h$ with $\alpha_\ast,\beta_\ast$ affine and free of $x_1$, where $(\alpha_f)_1=x_2$ and $(\alpha_h)_1=x_3$. Then
+\[
+fh=x_1\gamma+\beta_f\beta_h,\qquad \gamma=(\alpha_f+\beta_f)(\alpha_h+\beta_h)+\beta_f\beta_h .
+\]
+As before $\deg\gamma\le1$, so with $C=(\beta_f)_1$, $D=(\beta_h)_1$ we get $(x_2+C)\wedge(x_3+D)=C\wedge D$, and $(fh)_2=x_1\wedge\gamma_1+C\wedge D$. If $C\wedge D=0$, then $(fh)_2=l\wedge\gamma_1$. Otherwise $\Span\{C,D\}=\Span\{x_2+C,x_3+D\}=:\Pi$, so $x_2,x_3\in\Pi$, $\Pi=\Span\{x_2,x_3\}$ and $C\wedge D=x_2\wedge x_3$. All four affine factors in $\gamma$ have linear parts in $\Pi$, so $\gamma_1\in\Pi$, and $(fh)_2\in\Lam(\Span\{x_1,x_2,x_3\})$.
+
+\emph{(P3).} The plane contains no affine function, so $\omega,\eta,\omega+\eta$ are all nonzero, and at least two of $\omega,\eta,\omega+\eta$ have rank $\ge4$; normalise so that these are $\omega$ and $\eta$. By Lemma~\ref{l3:lem:rad}, $\supp\omega=\supp\eta=:Y$, of dimension $m=\rk\omega\in\{4,6\}$. Choose coordinates $y_1,\dots,y_m$ spanning $Y$ and $w_1,\dots$ completing them. Then $\omega,\eta\in\Lam(Y)$, and the only monomials $y_iy_jw_k$ in $fh$ come from $\omega\cdot h_w+\eta\cdot f_w$, where $f_w,h_w$ are the $w$-linear parts. Hence $h_{w,k}\omega+f_{w,k}\eta=0$ for all $k$, so $f_w=h_w=0$, and $f,h$ are functions of $y$ alone, with $f$ of full rank on $\F^m$. Replacing $f$ by $f+1$ if necessary, Lemma~\ref{l3:lem:wt} gives $\wt f=2^{m-1}-2^{m/2-1}<2\cdot 2^{m-2}$. Now $fh$ and $f(1+h)=f+fh$ have degree $\le2$, disjoint supports and sum $f$, so one of them has weight $<2^{m-2}$ and is $0$. Thus $fh\in\{0,f\}$, and before the replacement $fh\in\Span\{1,f,h\}$.
+
+The general statement follows: in (P1) take $\rho=l\wedge(\alpha+\beta)_1$ and $R=\omega$ (rank 2 with $l\in\supp R$). In (P2), $\rho$ lies in $\Lam$ of a 3-dimensional space, so it has rank $\le2$, and its support meets the 2-dimensional $\Span\{l,m\}$ inside that 3-space. In (P3), $\rho=0$.
+\end{proof}
+
+\begin{lemma}[A: $z_1$-placement]\label{l3:lem:A}
+Let $Q_3=\Span\{P_0,P_1,P_2\}$ with $P_1,P_2$ of rank 2. There is a nonlinear $g_3=fh$ ($f,h\in V_3$) with $z_1\in V_3+\langle g_3\rangle$ if and only if $Z_1\in Q_3$, or there are $q\in Q_3$ and a rank-2 $R\in Q_3$ with $\rk(Z_1+q)=2$ and $\supp(Z_1+q)\cap\supp R\neq0$.
+\end{lemma}
+
+\begin{proof}
+If $Z_1\in Q_3$, then $z_1\in V_3$. If $Z_1+q=l\wedge r$ and $R=l\wedge m\in Q_3$ (any nonzero $l$ in the common support is a factor of both), put $f=l$ and $h=r+lm\in V_3$. Then $h$ is not affine and $fh=lr+lm$ with $lm\in V_3$ and $lr\in z_1+V_3$; this proves sufficiency.
+
+Conversely let $Z_1\notin Q_3$ and $fh\equiv z_1\pmod{V_3}$ with $\langle f,h\rangle\not\subseteq\Aff$. Then $\deg(fh)\le2$, $\langle f_2,h_2\rangle\neq0$, and $(fh)_2\in Z_1+Q_3$. By Lemma~\ref{l3:lem:P}, $(fh)_2=\pi+\rho$ with $\pi\in\langle f_2,h_2\rangle\subseteq Q_3$. So $\rho=Z_1+q$ for some $q\in Q_3$, and $\rho\neq0$ because $Z_1\notin Q_3$. Hence $\rho$ has rank 2 and meets the support of a rank-2 $R\in\langle f_2,h_2\rangle\subseteq Q_3$.
+\end{proof}
+
+\subsection[The third gate never places z2]{The third gate never places $z_2$}
+
+\begin{lemma}[D1]\label{l3:lem:D1}
+Let $Q_3=\Span\{P_0,R_1,R_2\}$ have dimension 3, with $R_1,R_2$ of rank 2 and not in $\Lam(U)$. If $\omega\wedge\eta=\Omega$ for some $\omega,\eta\in Q_3$, then $R_1,R_2$ have the same type $v$ (Lemma~\ref{l4:lem:types}), so the direction $e$ with $v(e)=0$ kills $Q_3$.
+\end{lemma}
+
+\begin{proof}
+Expanding $\omega,\eta$ in the basis, $\Omega=m_{01}P_0\wedge R_1+m_{02}P_0\wedge R_2+m_{12}R_1\wedge R_2$ with $(m_{01},m_{02},m_{12})\neq0$. Two tools: for $x\in X$, $\iota_x\Omega=0$ gives
+\[
+(C_x)\qquad P_0\wedge(m_{01}\iota_xR_1+m_{02}\iota_xR_2)+m_{12}(\iota_xR_1\wedge R_2+R_1\wedge\iota_xR_2)=0;
+\]
+and the algebra map $\Lambda(\F^{6*})\to\Lambda(U^*)$ setting $a_2=b_2=0$ fixes $\Omega$ and $P_0$ (``restriction to $U$''). We also use: if $a\neq0$ is linear and $a\wedge\theta=0$ for a 2-form $\theta$, then $\theta=a\wedge s$. And a nonzero decomposable 4-form $\ell_1\wedge\ell_2\wedge\ell_3\wedge\ell_4$ equals $\Omega$ only if $\Span\{\ell_i\}=U$. Write type-$v$ forms as $l\wedge r$ with $r\in U$, $\pi(l)=v$, $l=\tilde v+x$ ($x\in U$), and full forms as $(a_2+x)\wedge(b_2+y)$. Linear substitutions of $(a_2,b_2)$ fix $U$, $P_0$, $\Omega$, $\Lam(U)$ and permute $E$ and the types, so we may relabel directions.
+
+\emph{(i) Types $v_1\neq v_2$.} Choose $x\in X$ with $v_1(x)=1$, $v_2(x)=0$; then $\iota_xR_1=r_1$ and $\iota_xR_2=0$, and $(C_x)$ reads $r_1\wedge(m_{01}P_0+m_{12}R_2)=0$; symmetrically $r_2\wedge(m_{02}P_0+m_{12}R_1)=0$.
+If $m_{12}=1$, then $m_{01}P_0+R_2=r_1\wedge s$; comparing cross parts, $\pi(s)\otimes r_1=v_2\otimes r_2$, so $r_1=r_2=:r$. Then $R_1\wedge R_2=0$ and $\Omega=P_0\wedge(m_{01}l_1+m_{02}l_2)\wedge r$, whose third factor has nonzero $\pi$ and so lies outside $U$, which is impossible.
+If $m_{12}=0$, then $m_{0i}=1$ forces $P_0\wedge r_i=0$, i.e.\ $r_i\in\langle a_0,b_0\rangle$. Restricting to $U$ gives $\Omega=P_0\wedge(m_{01}x_1\wedge r_1+m_{02}x_2\wedge r_2)=0$, a contradiction.
+
+\emph{(ii) Both full}, $R_i=(a_2+x_i)\wedge(b_2+y_i)$, with $d_x=x_1+x_2$ and $d_y=y_1+y_2$. Since $\iota_{a_2}R_i=b_2+y_i$ and $(b_2+y_1)\wedge(b_2+y_2)=(b_2+y_1)\wedge d_y$, we get $\iota_{a_2}(R_1\wedge R_2)=(b_2+y_1)\wedge(a_2+x_2)\wedge(b_2+y_2)+(a_2+x_1)\wedge(b_2+y_1)\wedge(b_2+y_2)=d_x\wedge(b_2+y_1)\wedge d_y$, and symmetrically $\iota_{b_2}(R_1\wedge R_2)=(a_2+x_1)\wedge d_x\wedge d_y$. The $b_2$-part of $(C_{a_2})$ gives $(m_{01}+m_{02})P_0=m_{12}\,d_x\wedge d_y$. Its $U$-part gives $P_0\wedge(m_{01}y_1+m_{02}y_2)+m_{12}\,d_x\wedge y_1\wedge d_y=0$, and symmetrically $(C_{b_2})$ gives $P_0\wedge(m_{01}x_1+m_{02}x_2)+m_{12}\,x_1\wedge d_x\wedge d_y=0$. Restriction to $U$ gives
+\[
+\Omega=m_{01}P_0\wedge x_1\wedge y_1+m_{02}P_0\wedge x_2\wedge y_2+m_{12}\,x_1\wedge y_1\wedge x_2\wedge y_2 .
+\]
+If $m_{12}=0$, then $m_{01}=m_{02}=1$ and $d_x,d_y\in\langle a_0,b_0\rangle$, so $\Omega=P_0\wedge(x_1\wedge d_y+d_x\wedge y_1+d_x\wedge d_y)=0$.
+If $m_{12}=1$ and $m_{01}=m_{02}$, then $d_x\wedge d_y=0$, so $x_1\wedge y_1\wedge x_2\wedge y_2=x_1\wedge y_1\wedge d_x\wedge d_y=0$. Moreover $m_{01}P_0\wedge d_x=m_{01}P_0\wedge d_y=0$, so $\Omega=m_{01}P_0\wedge(x_1\wedge d_y+d_x\wedge y_1)=0$.
+If $m_{12}=1$ and $m_{01}\neq m_{02}$, then $P_0=d_x\wedge d_y$; for $(m_{01},m_{02})=(1,0)$ we get $\Omega=x_1\wedge y_1\wedge(P_0+x_2\wedge y_2)=x_1\wedge y_1\wedge(x_1\wedge y_1+x_1\wedge d_y+d_x\wedge y_1)=0$, and $(0,1)$ is symmetric. Every subcase contradicts $\Omega\neq0$.
+
+\emph{(iii) $R_1$ full, $R_2$ of type $v_2$.} Relabel so that $e=a_2$ kills $R_2$; then $R_2=(b_2+x_2)\wedge r_2$, $\rho:=\iota_{a_2}R_1=b_2+y$, and $(C_{a_2})$ reads $\rho\wedge(m_{01}P_0+m_{12}R_2)=0$.
+If $m_{12}=0$, then $P_0\wedge\rho\neq0$ forces $m_{01}=0$, so $\Omega=P_0\wedge(b_2+x_2)\wedge r_2$. Absence of $b_2$ gives $P_0\wedge r_2=0$, hence $\Omega=0$.
+If $m_{12}=1$, then $m_{01}P_0+R_2=\rho\wedge s$. The left side has no $a_2$-monomial, so $\pi(s)\in\{0,(0,1)\}$ (otherwise $\rho\wedge s$ would contain $a_2\wedge b_2$), so we may take $s\in U$; comparing cross parts gives $s=r_2$, and restricting to $U$ gives $m_{01}P_0=(x_2+y)\wedge r_2$. Now $(C_{b_2})$ reads $m_{01}P_0\wedge(a_2+x)+m_{02}P_0\wedge r_2+(a_2+x)\wedge(x_2+y)\wedge r_2=0$; its first and third terms cancel, so $m_{02}P_0\wedge r_2=0$. Restriction to $U$ gives $\Omega=m_{01}P_0\wedge x\wedge y+m_{02}P_0\wedge x_2\wedge r_2+x\wedge y\wedge x_2\wedge r_2$.
+If $m_{01}=1$, then $P_0=(x_2+y)\wedge r_2$, so $P_0\wedge r_2=0$ and $x\wedge y\wedge x_2\wedge r_2=x\wedge y\wedge P_0$, giving $\Omega=0$.
+If $m_{01}=0$, then $x_2\wedge r_2=y\wedge r_2$, so $\Omega=m_{02}P_0\wedge y\wedge r_2$. This requires $m_{02}=1$, hence $P_0\wedge r_2=0$ and $\Omega=0$.
+
+So the only possibility is (iv): the same type $v$. Then the $e$ with $v(e)=0$ kills $R_1,R_2$ and $P_0$.
+\end{proof}
+
+\begin{lemma}[C]\label{l3:lem:C}
+Let $\dim Q_3=3$ and $\varepsilon\in\F$. There are no $f,h\in V_3$ with $fh\in z_2+\varepsilon z_1+V_3$. Hence $z_2\notin V_4$ and $z_1+z_2\notin V_4$.
+\end{lemma}
+
+\begin{proof}
+Such $f,h$ would satisfy $f_2\wedge h_2=\Omega$ and $\pi_3(fh)=0$, and $(fh)_2\in q_2+\varepsilon Z_1+Q_3$. If some $e\in E$ kills $Q_3$, apply Lemma~\ref{l3:lem:deriv}. This covers $\dU(Q_3)=3$, where $Q_3\subseteq\Lam(U)$.
+
+If $\dU(Q_3)=2$, then $\Phi(Q_3)=\{0,\Phi(R)\}$ for any rank-2 generator $R\notin\Lam(U)$. If $R$ has type $v$, the $e$ with $v(e)=0$ kills $Q_3$. If $R$ is full, we argue exactly as in Theorem~\ref{l4:thm:main}, case $\dU=3$, $R$ full. Since $\dim\Phi(Q_3)=1$, the plane $\langle f_2,h_2\rangle$ meets $\Lam(U)$; after plane operations, $f_2\in\Lam(U)$, and $h_2\in\Lam(U)$ too, because otherwise the $a_2b_2$-part of $f_2\wedge h_2$ would be $f_2\neq0$. Lemma~\ref{l4:lem:planeU} gives $\Phi((fh)_2)=0$. Hence $\Phi(q_2)=\Phi(q_2+\varepsilon Z_1)\in\Phi(Q_3)=\{0,\Phi(R)\}$, which contradicts Lemma~\ref{l4:lem:noq2} (note $\Phi(q_2)\neq0$, since $q_2$ contains $a_0b_2$).
+
+If $\dU(Q_3)=1$, the generators $P_1,P_2$ lie outside $\Lam(U)$, and $\Omega=f_2\wedge h_2$ with $f_2,h_2\in Q_3$. Lemma~\ref{l3:lem:D1} then gives a killing direction, and Lemma~\ref{l3:lem:deriv} applies.
+
+Finally, $z_2+\varepsilon z_1\notin V_3$ by degree, so $z_2+\varepsilon z_1\in V_3+\langle fh\rangle$ would require $fh\in z_2+\varepsilon z_1+V_3$.
+\end{proof}
+
+\subsection[Case Z1 outside Q3: cases B1, B2, B4]{Case $Z_1\notin Q_3$: cases B1, B2, B4}
+
+\begin{lemma}[Absorption]\label{l3:lem:abs}
+If $Z_1\notin Q_3$ and $g_3\in z_1+V_3$, then $V_4=V_3+\langle z_1\rangle=V(Q')$ with $Q'=Q_3\oplus\langle Z_1\rangle$; all functions in $V_4$ have degree at most 2.
+\end{lemma}
+
+\begin{proof}
+$V_3+\langle g_3\rangle=V_3+\langle z_1\rangle$, and $z_1$ has degree 2 with $(z_1)_2=Z_1$.
+\end{proof}
+
+\begin{proposition}[B: last gate when $g_3$ places $z_1$]\label{l3:prop:B}
+Let $Z_1\notin Q_3$ and let $g_3$ place $z_1$. Then no $g_4=FH$ ($F,H\in V_4$) has $z_2\in V_4+\langle g_4\rangle$. In more detail, Lemma~\ref{l3:lem:A} gives $q\in Q_3$ with $\rk(Z_1+q)=2$, so $Q'=\Span\{P_0,P_1,P_2,Z_1+q\}$ is spanned by rank-2 forms and contains $Z_1$. The last gate would solve $FH\in z_2+V(Q')$, which Theorem~\ref{l3:thm:L4} excludes. Moreover:
+\begin{enumerate}[(B1)]
+\item if exactly one direction $e$ kills $Q_3$, it kills $Q'$ ($\iota_eZ_1=0$), and the Lemma~\ref{l3:lem:deriv} closes the case directly;
+\item if all three directions kill $Q_3$, the same holds;
+\item[(B4)] if no direction kills $Q_3$, then no direction kills $Q'$. By the case analysis of Theorem~\ref{l4:thm:main} (every other case there produces a killing direction), $Q'$ falls in the case $\dU(Q')=3$ with $R$ full, closed by Proposition~\ref{l4:prop:B}.
+\end{enumerate}
+Items (B1), (B2), (B4) are refinements that the proof does not need; the first sentence already closes all three cases.
+\end{proposition}
+
+\begin{proof}
+$z_2\notin V_4$ by degree (Lemma~\ref{l3:lem:abs}), so $g_4\in z_2+V_4=z_2+V(Q')$ with $F,H\in V(Q')$. The rest is stated.
+\end{proof}
+
+\begin{remark}\label{l3:rem:one-direction}
+One direction plus the $\Omega$-coefficient already closes every B4 class. The proof above does not need that observation.
+\end{remark}
+
+\subsection[Case Z1 in Q3: case B3]{Case $Z_1\in Q_3$: case B3}
+
+\begin{lemma}\label{l3:lem:B3U}
+If $\dim Q_3=3$ and $Z_1\in Q_3$, then $Q_3\subseteq\Lam(U)$.
+\end{lemma}
+
+\begin{proof}
+Write $Z_1=c_0P_0+c_1P_1+c_2P_2$. By rank ($Z_1$ and $Z_1+P_0$ have rank 4), $c_1=c_2=1$, so $P_1+P_2=Z_1+c_0P_0$ has rank 4 and support $U$. The Lemma~\ref{l4:lem:support} then gives $P_1,P_2\in\Lam(U)$.
+\end{proof}
+
+\paragraph{Coset formalism.} Let $W$ be the functions of $u=(a_0,a_1,b_0,b_1)$ of degree $\le2$ with quadratic part in $Q_3$. Then $V_3=W\oplus\Span\{a_2,b_2\}$. For a function $G$ and $p\in\F^2$ let $G_p$ be its restriction to $(a_2,b_2)=p$, a function of $u$. For $G\in V_3$, $G_p=G_0+\ell_G(p)$ with $\ell_G$ a linear functional, so the restrictions differ by constants. Write $f=\varphi+c$ and $h=\psi+d$ ($\varphi,\psi\in W$; $c,d$ linear in $a_2,b_2$). Then $z_{2,p}=\kappa+\lambda(p)$ with $\kappa=a_1b_1+a_0a_1b_0b_1$ and $\lambda(p)=p_1b_0+p_2a_0$. A function of $p$ with values in functions of $u$ is a polynomial in $p_1,p_2$ ($p_i^2=p_i$); we compare coefficients of $1,p_1,p_2,p_1p_2$. For $X,Y\in W$, the $a_0a_1b_0b_1$-coefficient of $XY$ is $\beta(X_2,Y_2)$, and that of $\kappa$ is 1.
+
+\begin{lemma}[Pl\"ucker duality]\label{l3:lem:pl}
+Let $\mathcal U$ be a $2\times4$ matrix over $\F$ of rank 2, and $\mathcal N$ a $2\times4$ matrix whose rows span $\ker\mathcal U$. Then $\det_{jk}(\mathcal N)=\det_{lm}(\mathcal U)$ for complementary pairs $\{j,k\}\sqcup\{l,m\}=\{1,2,3,4\}$.
+\end{lemma}
+
+\begin{proof}
+After a column permutation, $\mathcal U=[I_2\mid M]$; then $\mathcal N=[M^{T}\mid I_2]$ spans the kernel, and the six minors are compared directly. For example, $\det_{12}(\mathcal N)=\det M=\det_{34}(\mathcal U)$, $\det_{13}(\mathcal N)=m_{12}=\det_{24}(\mathcal U)$, and so on. Changing the basis of the kernel does not change the minors over $\F$.
+\end{proof}
+
+\begin{lemma}[B3a]\label{l3:lem:B3a}
+If $Q_3\subseteq\Lam(U)$, there are no $F,H\in V_3$ and $v\in V_4$ such that $FH+z_2+v$ is independent of $a_2,b_2$ and has zero $a_0a_1b_0b_1$-coefficient. In particular there are no $F,H\in V_3$ with $FH\in z_2+V_4$.
+\end{lemma}
+
+\begin{proof}
+Write $F=A+\ell_F$, $H=B+\ell_H$ ($A,B\in W$) and $v=C+\ell_v+\sigma fh$. Independence of $a_2,b_2$ means that the coefficients of $p_1,p_2,p_1p_2$ of $(FH+z_2+v)_p$ vanish:
+\begin{align*}
+(p_i):&\quad \ell_F^iB+\ell_H^iA+\sigma c^i\psi+\sigma d^i\varphi\ \equiv\ \lambda_i\pmod{\F},\qquad \lambda_1=b_0,\ \lambda_2=a_0;\\
+(p_1p_2):&\quad \det(\ell_F,\ell_H)+\sigma\det(c,d)=0 .
+\end{align*}
+The $\Omega$-condition at $p=0$ is $\beta(A_2,B_2)+\sigma\beta(\varphi_2,\psi_2)=1$. Put $x=(B,A,\psi,\varphi)$ and let $\mathcal U$ be the $2\times4$ matrix with columns $\ell_F,\ell_H,\sigma c,\sigma d$. Then $(p_i)$ says $\sum_k\mathcal U_{ik}x_k\equiv\lambda_i$.
+Since $b_0,a_0$ are independent nonconstant linear forms, $\rk\mathcal U=2$. The quadratic parts $y_k=(x_k)_2\in Q_3$ satisfy $\mathcal Uy=0$, so $y_k=\mathcal N_{1k}q_1+\mathcal N_{2k}q_2$ for some $q_1,q_2\in Q_3$, with the rows of $\mathcal N$ spanning $\ker\mathcal U$. Hence $\beta(y_j,y_k)=\det_{jk}(\mathcal N)\beta(q_1,q_2)$, and the $\Omega$-condition becomes
+\[
+\bigl(\det_{12}(\mathcal N)+\sigma\det_{34}(\mathcal N)\bigr)\beta(q_1,q_2)=1 .
+\]
+By Lemma~\ref{l3:lem:pl} the bracket is $\det_{34}(\mathcal U)+\sigma\det_{12}(\mathcal U)$. Equation $(p_1p_2)$ says $\det_{12}(\mathcal U)=\det_{34}(\mathcal U)$, and if $\sigma=0$ then $\det_{34}(\mathcal U)=0$. In both cases the bracket is $0$, a contradiction.
+\end{proof}
+
+\begin{lemma}[B3b]\label{l3:lem:B3b}
+If $Q_3\subseteq\Lam(U)$, there are no $k,F'\in V_3$ with $k(F'+g_3)\in z_2+V_3$.
+\end{lemma}
+
+\begin{proof}
+Put $F=F'+g_3$, so that $kF=z_2+v$ with $v\in V_3$. For $e\in E$, $D_ek=\mu_e\in\F$ (as $Q_3\subseteq\Lam(U)$), $D_eF'=a_e\in\F$, $D_eg_3=L_e:=c_eh+d_ef+c_ed_e\in V_3$, $D_ez_2=\delta_e$ and $D_ev\in\F$. Hence
+\[
+\mu_eF+(k+\mu_e)(a_e+L_e)=\delta_e+\text{const}.
+\]
+If $\mu_e=1$ for some $e$, then $F=(k+1)(a_e+L_e)+\delta_e+\text{const}$, so $kF=k\,(\delta_e+\text{const})$ with both factors in $V_3$. This contradicts Lemma~\ref{l3:lem:B3a}.
+
+Otherwise $k=\zeta\in W$ is a function of $u$, and $\zeta\,(a_e+L_e)=\delta_e+\text{const}$ for all $e$. The only part depending on $(a_2,b_2)$ is $\zeta\,(c_ed+d_ec)$, where $c_ed+d_ec$ is a linear form in $a_2,b_2$. It must vanish, and $\zeta\neq0$ (else $z_2\in V_3$). So $c(e)d+d(e)c=0$ for all $e$, i.e.\ $c,d$ are dependent.
+
+If $c=d=0$, then $\zeta a_e=\delta_e+\text{const}$ for $e=a_2,b_2$ forces $\zeta\equiv b_0\equiv a_0\pmod{\F}$, which is false.
+
+Otherwise let $\nu\neq0$ with $c,d\in\{0,\nu\}$, and take $e_0\neq e_1$ in $E$ with $\nu(e_0)=0$ and $\nu(e_1)=1$. From $e_0$: $\zeta a_{e_0}=\delta_{e_0}+\text{const}$, so $\zeta=\delta_{e_0}+\epsilon$ is a nonconstant affine function. From $e_1$: $\zeta Y'=\delta_{e_1}+\text{const}=:R$ for some $Y'\in W$, so $(1+\zeta)R=0$, i.e.\ the affine function $R$ vanishes on the hyperplane $\{\zeta=0\}$. Hence $R\in\{0,\zeta\}$. As $R$ is nonconstant, $R=\zeta$ and $\delta_{e_1}=\delta_{e_0}$, which is false.
+\end{proof}
+
+\begin{proposition}[B3]\label{l3:prop:B3}
+If $\dim Q_3=3$ and $Z_1\in Q_3$, no $g_4=FH$ ($F,H\in V_4$) has $z_2\in V_4+\langle g_4\rangle$.
+\end{proposition}
+
+\begin{proof}
+$Q_3\subseteq\Lam(U)$ by Lemma~\ref{l3:lem:B3U}, and $z_2\notin V_4$ by Lemma~\ref{l3:lem:C}, so $FH\in z_2+V_4$. Write $F=F'+sg_3$ and $H=H'+tg_3$. If $s=t=1$, replace $H$ by $F+H$ (this changes $FH$ by $F\in V_4$); after possibly swapping $F$ and $H$ we may assume $t=0$. If $s=0$, Lemma~\ref{l3:lem:B3a} applies. If $s=1$, write $FH+z_2=C'+\sigma g_3$ ($C'\in V_3$) and $k=H+\sigma\in V_3$; then $k(F'+g_3)=FH+\sigma g_3+\sigma F'\in z_2+V_3$, contradicting Lemma~\ref{l3:lem:B3b}.
+\end{proof}
+
+\subsection[Proof of the three-linear-gate theorem]{Proof of Theorem~\ref{l3:thm:main}}\label{l3:sec:proof}
+
+Take a circuit in normal form with $\lambda=3$. If $\dim Q_3<3$, one linear gate is redundant ($g_i\in V_i$); replacing it by a linear gate with a new rank-2 quadratic part only enlarges $V_3$, $V_4$ and $V_5$, so we may assume $\dim Q_3=3$. By Lemma~\ref{l3:lem:C}, $z_2,z_1+z_2\notin V_4$. If $z_1\notin V_4$, then $z_1,z_2\in V_4+\langle g_4\rangle$ forces $z_2\in V_4$ or $z_1+z_2\in V_4$, which is impossible. So $z_1\in V_4$.
+If $Z_1\in Q_3$, Proposition~\ref{l3:prop:B3} excludes $g_4$.
+If $Z_1\notin Q_3$, then $z_1\in V_4\setminus V_3$, so $g_3\in z_1+V_3$, and Proposition~\ref{l3:prop:B} excludes $g_4$. \qed
+
+\section{Two linear gates}\label{sec:lambda2}
+The normalized prefix is $g_0=a_0b_0$, one more affine-input gate with rank-two quadratic part $P$, and then $g_2,g_3,g_4$. Put $Q=\Span\{P_0,P\}$. Dependent or zero quadratic parts are allowed by taking $\dim Q\le2$; a redundant initial gate can instead be replaced by an independent affine-input gate, enlarging the available space.
+
+
+\begin{theorem}\label{l2:thm:main}
+No normalized five-AND circuit with exactly two linear gates computes $(z_0,z_1,z_2)$.
+\end{theorem}
+We first dispose of $\deg g_2\le2$, then exclude every space obtained by adjoining one product to $V(Q+\langle Z_1\rangle)$. This also excludes early placements of $z_2$ or $z_1+z_2$.
+
+\begin{lemma}[Replacing a quadratic nonlinear gate]\label{l2:lem:replace}
+In the normalized setting, let $Q$ contain $P_0$ and be generated by at most $m$ independent rank-two forms, $m\in\{1,2\}$, and let $f,h\in V(Q)$, with at least one nonaffine. If $\deg(fh)\le2$, there is a rank-two-generated $(m+1)$-dimensional space $Q^+$ containing $Q$ such that $fh\in V(Q^+)$. A circuit prefix of $m$ linear gates followed by this product can be replaced by $m+1$ linear gates, preserving availability of every original prefix function and every subsequent factor function.
+\end{lemma}
+\begin{proof}
+By Lemma~\ref{l3:lem:P}, $(fh)_2=\pi+\rho$, with $\pi\in\Span\{f_2,h_2\}\subseteq Q$ and either $\rho=0$ or $\rk\rho=2$. If $\rho=l\wedge r\ne0$, the affine-input gate $lr$ supplies precisely this new quadratic direction; its affine part is free. Therefore $fh\in V(Q+\langle\rho\rangle)$ by Lemma~\ref{l4:lem:Qonly}. Extend a rank-two generating basis of this space to dimension $m+1$ using quadratic monomials. This is possible because all quadratic monomials have rank two and span the 15-dimensional quadratic space. In particular, if $\rho=0$ or $\rho\in Q$, choose any new independent rank-two direction. If the original prefix has dependent gates, replace redundant gates during this extension.
+
+Use the resulting $m+1$ affine-input products as the new prefix. Its available space contains $V(Q)+\langle fh\rangle$. Keep every later factor as the same Boolean function as before, expressing it in the enlarged space. Induction through the tail preserves all its signals. A factor that was nonaffine remains nonaffine, since its function has not changed.
+\end{proof}
+For $m=2$ the replacement has three initial linear gates and the original two nonlinear tail gates. It is already in the form covered by Theorem~\ref{l3:thm:main}; independent quadratic directions have been supplied even in the degenerate cases. Consequently the branch $\deg g_2\le2$ is excluded by a human proof.
+
+\begin{lemma}[The 32 symmetries]\label{l2:lem:sym}
+Interchanging the two operands and independently making the substitutions
+\[
+a_2\mapsto a_2+s,\quad b_2\mapsto b_2+t,
+\qquad s,t\in\langle a_0,b_0\rangle,
+\]
+generate a group of order 32. They fix $z_0,z_1$ and preserve $z_2$ modulo $\Aff+\langle z_0\rangle$. They preserve semantic linearity, circuit size, and all prefix-space feasibility conditions used here.
+\end{lemma}
+\begin{proof}
+There are 16 distinct commuting shifts. Operand interchange conjugates this shift subgroup to itself and is outside it, giving 32 distinct invertible linear substitutions. A shift changes $z_2$ by $b_0s+a_0t$, which belongs to $\Span\{a_0,b_0,a_0b_0\}$ because $a_0^2=a_0$, $b_0^2=b_0$. Operand interchange fixes the targets. Substitution commutes with products and sums, fixes $P_0$ as a function, and bijects affine functions; all asserted circuit properties follow. For the weaker derivative-and-$\Omega$ diagnostic we make no claim of invariance when only one external direction is tested; that diagnostic is run on the stated representatives and is not used to justify the exhaustive circuit reduction.
+\end{proof}
+
+\begin{lemma}[Top degree]\label{l2:lem:degree}
+For $f,h\in V(Q)$ one has $\deg(fh)\le4$. If $\dim Q=2$ and $\deg(fh)=4$, then $\Span\{f_2,h_2\}=Q$ and $(fh)_4=P_0\wedge P$. If $Q=\langle P_0\rangle$, then $\deg(fh)\le3$.
+\end{lemma}
+\begin{proof}
+The quartic part is $f_2\wedge h_2$. The wedge square of every two-form is zero in characteristic two. Thus a nonzero wedge in a two-dimensional space requires a basis, and all bases over $\F$ have determinant one. In a one-dimensional space the wedge is always zero.
+\end{proof}
+
+\subsection[A structural restriction on feedback placing z1]{A structural restriction on feedback placing $z_1$}
+Define the four-element set
+\[
+\mathcal K=\{1+P_0,\ 1+a_0+P_0,\ 1+b_0+P_0,\ a_0+b_0+P_0\}.
+\]
+Here and below a two-form in a Boolean expression denotes its quadratic ANF representative; the four functions in $\mathcal K$ are exactly the complements of the indicators of the four fibers of $(a_0,b_0)$.
+
+\begin{lemma}[Four multipliers]\label{l2:lem:four}
+Suppose either $Q=\langle P_0\rangle$, or $Q=\langle P_0,P\rangle$ with $P$ rank two and $P\notin\Lambda^2(U)$. For $k\in V(Q)$, a function $R\in z_1+V(Q)$ satisfying $kR=R$ exists if and only if $k\in\{1\}\cup\mathcal K$.
+\end{lemma}
+\begin{proof}
+Every quadratic part $R_2=Z_1+q$, $q\in Q$, has rank at least four. Otherwise, in the two-dimensional case, a rank-two $R_2$ would split $Z_1$ or $Z_1+P_0$ into $P$ plus another rank-two form, contradicting Lemma~\ref{l4:lem:support}. The one-dimensional case is immediate.
+
+If $k$ is affine and nonconstant, Lemma~\ref{l3:lem:P}(P1) applied to $kR=R$ makes $R_2$ rank at most two. Thus an affine $k$ must be 1. If $k_2$ has rank four, the Lemma~\ref{l3:lem:rad} gives $\supp k_2=\supp R_2$, of dimension four. If $R_2$ has no $P$ coefficient, this support is $U$, impossible for $k_2=P+\epsilon P_0$. If it has a $P$ coefficient, $R_2+k_2=Z_1+\epsilon P_0$ has support $U$, again forcing the common four-dimensional support to be $U$, with the same contradiction.
+
+It remains that $k_2$ has rank two. If $D_ek=1$ for some $e\in\rad k_2$, differentiate $kR=R$. Since $D_eR$ is affine, the derivative identity gives $R=kD_eR$. Part P1 of the product lemma again gives rank at most two (the constant derivative cases are immediate). Therefore $k$ is constant on cosets of $\rad k_2$ and depends only on two independent linear forms $l,r$. A rank-two quadratic function on two bits has weight one or three; on six bits its weight is 16 or 48.
+
+A quadratic function of rank at least four has weight at least 24: Lemma~\ref{l3:lem:wt} gives 24 or 40 in rank four and 28 or 36 in rank six; an extra linear term in a radical direction gives weight 32 by pairing. Since $\supp R\subseteq\supp k$, $k$ cannot have weight 16. Thus $1+k$ is the indicator of an affine codimension-two flat, on which $R$ vanishes. In coordinates defining this flat, the quadratic part of $R$ is $l\wedge A+r\wedge B$, of rank at most four. Hence $R_2$ has rank exactly four.
+
+The Lemma~\ref{l3:lem:rad} now gives $\supp k_2\subseteq\supp R_2$. If $k_2$ has a $P$ coefficient, either $R_2$ has none and its support is $U$, or $R_2+k_2=Z_1+\epsilon P_0$ has support $U$. Both alternatives force $\supp R_2=U$ and $k_2\in\Lambda^2(U)$, a contradiction. Consequently $k_2=P_0$. Its weight-48 functions with no radical dependence are exactly $\mathcal K$.
+
+For sufficiency, let $(s,t)$ be the unique zero fiber of $k\in\mathcal K$. Then $R=(a_0+s)b_1+(b_0+t)a_1$ belongs to $z_1+\Aff$, vanishes on that fiber, and satisfies $kR=R$. The case $k=1$ is immediate.
+\end{proof}
+
+If a gate using a previous signal $g$ places $z_1$ from $V(Q)+\langle g\rangle$, plane operations and a constant change in its other factor put the placement in the form
+\[
+k(g+F)\in z_1+V(Q),\qquad k,F\in V(Q).
+\]
+Indeed replacing two $g$-containing factors by their sum removes $g$ from one factor, and replacing $k$ by $k+1$ absorbs a $g$ term in the output correction. Multiplying the displayed identity by $k$ supplies the hypothesis of Lemma~\ref{l2:lem:four}. If $g$ has degree at least three, $k=1$ is impossible, so only $\mathcal K$ remains.
+
+\subsection[Rigidity of a quadratic multiplier placing z2]{Rigidity of a quadratic multiplier placing $z_2$}
+\begin{lemma}[Last-factor rigidity]\label{l2:lem:lastfactor}
+Let $P$ have rank two and lie outside $\Lambda^2(U)$, and put $S=\langle P_0,P,Z_1\rangle$. If $k\in V(S)$, $R\in z_2+V(S)$ and $kR=R$, then $k\in\{1,1+P_0\}$.
+\end{lemma}
+\begin{proof}
+Write $k_2=dP+u$ with $u\in\langle P_0,Z_1\rangle$ and $d\in\F$. The quartic part of $R$ is $\Omega$. If $e\in E$ kills $k_2$ and $D_ek=1$, differentiation gives $R=kD_eR$. But $D_eR$ is affine, so the right side has degree at most three, a contradiction. We will use this observation repeatedly.
+
+First suppose $P$ has type $v$ in Lemma~\ref{l4:lem:types}, and choose its killing direction $e$. Put $r=\delta_e\in\langle a_0,b_0\rangle\setminus\{0\}$. Since $e$ kills $S$, the observation gives $D_ek=0$. Differentiating $kR=R$ yields $kA=A$, where $A=D_eR=r+c$ for a constant $c$. Therefore
+\[
+1+k=(1+A)B
+\]
+for an affine $B$: in coordinates with $A$ as one variable, comparison on $A=1$ proves this factorization and the degree bound on $B$. In particular $k_2$ has rank at most two and, if nonzero, has factor $r$.
+
+If $d=0$, the only nonzero rank-two form in $\langle P_0,Z_1\rangle$ is $P_0$. The factorization then makes $k$ a function of $a_0,b_0$ alone, including the affine and constant cases. Suppose it vanished on a fiber $(s,t)\ne(1,1)$. The quadratic part of $R$ on that fiber, in the four remaining variables, would be
+\[
+a_1\wedge b_1+\epsilon\overline P.
+\]
+This cannot be zero: $\overline P=a_1\wedge b_1$ would imply $P\in\Lambda^2(U)$ by projecting the two-dimensional support of the decomposable form $P$. Thus $k$ is 1 on all three such fibers, giving precisely $k=1$ or $k=1+P_0$.
+
+Suppose $d=1$. A $Z_1$ coefficient in $k_2$ is impossible by Lemma~\ref{l4:lem:support}, applied to the two rank-two forms $P,k_2$ whose sum would be $Z_1$ or $Z_1+P_0$. Hence $k_2=P+\tau P_0$. If $\tau=1$, decomposability of the sum forces $P$ and $P_0$ to share a factor. In either case the $U$-line in the support of $P$ must be $\langle r\rangle$, since $r\in\supp k_2$. Consequently $P=r(p+x)$ with $x\in U$ and a nonzero external linear form $p$ killed by $e$.
+
+Choose another external direction $w$ and its dual coordinate $q$ so that $p(w)=1$, $q(e)=1$, $q(w)=0$. Put $s=\delta_w$, independent of $r$. The cross part of $q_2$ is $rq+sp$. In $1+k=(1+r+c)B$, the affine function $B$ has $p$ coefficient one and $q$ coefficient zero. On the codimension-two flat
+\[
+r=c,\qquad B=1,
+\]
+we have $k=0$, so $R=0$; the second equation expresses $p$ affinely in the remaining variables $s,a_1,b_1$.
+
+On $r=c$, $a_0b_0$ is either zero or a nonconstant affine function of $s$. In the latter case $\Omega$ retains a cubic term $sa_1b_1$, while all other terms of $R$ remain quadratic after the affine substitution for $p$. This is impossible. In the former case the carry vanishes. The remaining quadratic part on the flat is then $a_1\wedge b_1+s\wedge L$ for some linear $L$: $rq$ is affine, $sp$ has factor $s$, $P=r(p+x)$ becomes affine, and $Z_1$ restricts to a quadratic with factor $s$. Its $a_1b_1$ coefficient is one, again impossible. This excludes $d=1$ in the type case.
+
+It remains that $P$ is full. By Lemma~\ref{l4:lem:types}, shift external coordinates by linear forms in $U$ so that $P=pq$. These auxiliary coordinate changes are used only to analyze the identity; they need not preserve the target. They fix $U$, $\Omega$, $P_0$, and $Z_1$, and leave the external coefficients of $q_2$ equal to $b_0,a_0$. If $d=1$, further constant shifts remove the external affine terms of $k$, giving
+\[
+k=pq+K(u),\quad R=\epsilon pq+B(u)p+A(u)q+T(u),
+\]
+where $\deg K\le2$, $A,B$ are affine, and $T_4=\Omega$. The $pq$ coefficient in $kR=R$ reads $A+B+T+\epsilon K=0$, contradicting $T_4=\Omega$.
+
+If $d=0$, the initial observation applied to both external unit directions makes $k$ independent of $p,q$. If $\epsilon=1$, comparison of $pq$ coefficients gives $k=1$. If $\epsilon=0$, the $p,q$ coefficients give $(1+k)A=(1+k)B=0$, with $A=a_0+c_0$, $B=b_0+c_1$. A quadratic function supported on the flat $A=B=0$ is a constant multiple of $(1+A)(1+B)$: comparison in coordinates $A,B,a_1,b_1$ proves this directly. Thus $k$ depends only on $a_0,b_0$. The same fiber argument as above leaves only $1$ and $1+P_0$.
+\end{proof}
+
+\begin{lemma}[Two feedback placements cannot coexist]\label{l2:lem:two}
+Keep $Q=\langle P_0,P\rangle$, $S=Q+\langle Z_1\rangle$, with $P$ rank two outside $\Lambda^2(U)$. For any Boolean function $g$, there are no $F,v\in V(Q)$, $H,w\in V(S)$ and $k\in\mathcal K$ such that
+\[
+k(g+F)=z_1+v,\qquad (1+P_0)(g+H)=z_2+w.
+\]
+No degree hypothesis on $g$ is required.
+\end{lemma}
+\begin{proof}
+Choose a fiber $(a_0,b_0)=(s,t)\ne(1,1)$ on which $k=1$. Such a fiber exists because $k$ vanishes on only one of the four fibers. Both displayed multipliers are one on the chosen fiber. The first equation makes $g$ belong there to $\Aff_4+\langle\overline P\rangle$, since $z_1$ restricts to an affine function. The second makes it belong to $a_1b_1+\Aff_4+\langle\overline P\rangle$, since the carry vanishes and the external terms of $z_2$ become affine. Therefore $\overline P=a_1\wedge b_1$.
+
+Write $P=l\wedge r$. Its projections to $\langle a_1,a_2,b_1,b_2\rangle$ span $\langle a_1,b_1\rangle$, because their wedge is $a_1\wedge b_1\ne0$. Thus $l,r\in U$, contradicting $P\notin\Lambda^2(U)$.
+\end{proof}
+\emph{Remark.} Lemma~\ref{l2:lem:two} and Proposition~\ref{l2:prop:reorder} are not used in the proof of Theorem~\ref{l2:thm:main}, which goes through Proposition~\ref{l2:prop:onehigh}; Lemma~\ref{l2:lem:four} is used only in Section~\ref{sec:lambda1}. They are kept as independent confirmations. Together Lemmas~\ref{l2:lem:four}--\ref{l2:lem:two} exclude the branch where $z_1$ is placed by a gate using $g_2$, and the last gate also uses $g_2$, provided $z_1$ has already been placed. Indeed the space after placement is $V(S)+\langle g_2\rangle$; normalization gives the two displayed equations. The constant multiplier 1 at the final placement would put $g_2$ in $z_2+V(S)$, excluded by Lemma~\ref{l3:lem:C} after extending $Q$ to three rank-two directions. At the first placement it would make $g_2$ quadratic, also impossible.
+
+\begin{proposition}[Rank-two reordering]\label{l2:prop:reorder}
+If $\deg g_2\ge3$, $z_1\in V_4$, and $Z_1+q$ has rank two for some $q\in Q$, then the five-gate circuit is excluded by Theorem~\ref{l3:thm:main}.
+\end{proposition}
+\begin{proof}
+Here $z_1\notin V(Q)+\langle g_2\rangle$, so $V_4=V(Q)+\langle g_2,z_1\rangle$. Insert a third linear gate with quadratic part $Z_1+q$, delete the old $g_3$, and move the old $g_2$ after the three linear gates. Its original factors remain in $V(Q)$ and are unchanged functions. The new space before $g_4$ is exactly the old $V_4$, so the original last gate remains valid and nonlinear. This is a three-linear-gate circuit in the normal form of Lemma~\ref{l4:lem:normal}, a contradiction.
+\end{proof}
+
+\subsection{Quadratic extraction modulo the low-bit ideal}
+Let $I=(a_0b_0)$ be the ideal in the Boolean function algebra generated by the function $a_0b_0$. In the original ANF coordinates, $I$ consists exactly of the functions whose monomials all contain $a_0b_0$. A quadratic function in $I$ is therefore a scalar multiple of $a_0b_0$.
+
+\begin{lemma}[Quadratic extraction modulo $I$]\label{l2:lem:ideal}
+Let $Q=\langle P_0,P\rangle$ with $P$ rank two, allowing $Q=\langle P_0\rangle$. If $f,h\in V(Q)$ and a quadratic function $R$ satisfies $fh\equiv R\pmod I$, then $R_2=\pi+\rho$ with $\pi\in Q$ and $\rk\rho\le2$.
+\end{lemma}
+\begin{proof}
+If $\dim Q=1$, both factors are affine modulo $I$, so their product has rank-at-most-two quadratic part. Any other quadratic representative differs by $P_0$.
+
+Now $\dim Q=2$. Choose homogeneous linear $l,r$ with $P=l\wedge r$, and use the actual product $p=lr$ as representative. Its affine difference from the pure quadratic ANF of $P$ is free. Modulo $I$, the factors belong to $\Aff+\langle p\rangle$. If both are affine the result is immediate. Otherwise plane operations put them in the form $p+A$ and $B$, with $A$ affine and $B$ homogeneous linear, changing the product only by an available quadratic function. A constant in $B$ can also be removed by such a change. The case $B=0$ is immediate.
+
+The cubic part of $pB+AB$ is $P\wedge B$. Quadraticity modulo $I$ forces it to equal $P_0\wedge L$ for some linear $L$. If it is zero, then $B\in\langle l,r\rangle$, so $pB$ is a scalar multiple of $p$, using $l^2=l$ and $r^2=r$. The new quadratic direction is $A_1\wedge B$.
+
+If this cubic form is nonzero, the decomposable three-forms $P\wedge B=P_0\wedge L$ have the same three-dimensional support $W$. The distinct two-dimensional supports of $P$ and $P_0$ are contained in $W$ and meet in a line $\langle t\rangle$. Choose $L\in W$. Then
+\[
+C=pB+(a_0b_0)L
+\]
+has degree at most two and depends only on coordinates in $W$, so $C_2\in\Lambda^2(W)$. Also $Q=t\wedge W$, of dimension two in the three-dimensional space $\Lambda^2(W)$.
+
+Since $B\notin\supp P$, it is not in $\langle t\rangle$. Complete $t,B$ to a basis $t,B,D$ of $W$; then $B\wedge D\notin t\wedge W$. Thus $B\wedge W$ maps onto $\Lambda^2(W)/Q$. Choose $D'\in W$ with $C_2+B\wedge D'\in Q$. Modulo $I$ the product is $AB+C$, whose quadratic part modulo $Q$ is
+\[
+B\wedge(A_1+D'),
+\]
+of rank at most two. Restoring the plane operations changes quadratic parts only in $Q$, and changing quadratic representatives modulo $I$ changes them only by $P_0$. This proves the assertion for the original factors and $R$.
+\end{proof}
+
+\begin{lemma}[Rank and exterior obstructions]\label{l2:lem:rankext}
+For every $\epsilon,\alpha\in\mathbb F_2$, the form $q_2+\epsilon Z_1+\alpha P_0$ has rank six. Adding any rank-two form leaves rank at least four. If $P$ has rank two and lies outside $\Lambda^2(U)$, then $P\wedge\theta\ne\Omega$ for every two-form $\theta$.
+\end{lemma}
+\begin{proof}
+In the radical equations the $b_2,a_2$ rows first force the $a_0,b_0$ coordinates to vanish. The $a_1,b_1$ rows then force the $b_1,a_1$ coordinates to vanish, and the $a_0,b_0$ rows finally force $b_2,a_2$ to vanish. This is independent of $\epsilon,\alpha$. The rank inequality $\rk(A+B)\ge\rk A-\rk B$ gives the second assertion.
+
+Write $P=l\wedge r$. If $P\wedge\theta=\Omega$, then $l\wedge\Omega=r\wedge\Omega=0$. The linear forms $s$ with $s\wedge\Omega=0$ are exactly $U$, as expansion in a basis extending its four factors shows. Thus $l,r\in U$, a contradiction.
+\end{proof}
+
+\begin{lemma}[Inside-$U$ coset obstruction]\label{l2:lem:coset}
+Let $Q=\langle P_0,P\rangle\subseteq\Lambda^2(U)$, with $P$ rank two or redundant, and put $S=Q+\langle Z_1\rangle$. For $f,h\in V(S)$ and $g=fh$, put $W=V(S)+\langle g\rangle$. Then $z_2\notin W$, and no product of two elements of $W$ belongs to $z_2+W$.
+\end{lemma}
+\begin{proof}
+Use the algebraic conclusions of Lemma~\ref{l3:lem:B3a} and Lemma~\ref{l3:lem:B3b} with their quadratic space replaced by $S$ and their first nonlinear product by $g$. This does not assume that $S$ is generated by three rank-two forms. The proofs of those two algebraic results need only that the base space is $V(S)$ and $S\subseteq\Lambda^2(U)$. In Lemma~\ref{l3:lem:B3a} the coefficient vectors take values in $S$; the relevant kernel has dimension two because the external coefficient matrix has size $2\times4$ and rank two, independently of $\dim S$ and rank-two generation. Lemma~\ref{l3:lem:B3b} uses only constant external derivatives on $V(S)$ and Lemma~\ref{l3:lem:B3a}. The given arguments therefore apply unchanged to the present spaces. All 11 application spaces, including the ones not generated by rank-two forms, are independently checked below.
+
+Lemma~\ref{l3:lem:B3a} first excludes $g\in z_2+V(S)$, hence $z_2\notin W$. A proposed final product either has both factors in $V(S)$, excluded by Lemma~\ref{l3:lem:B3a} even with a $g$ output correction, or normalizes to $k(g+F)$ with $k,F\in V(S)$. A constant change in $k$ absorbs a $g$ output correction and gives a product in $z_2+V(S)$, excluded by Lemma~\ref{l3:lem:B3b}.
+\end{proof}
+
+\begin{proposition}[One higher-degree signal is insufficient]\label{l2:prop:onehigh}
+Let $Q=\langle P_0,P\rangle$, with $P$ rank two or redundant, $g=fh$ with $f,h\in V(Q)$, and $S=Q+\langle Z_1\rangle$. Then $z_2\notin V(S)+\langle g\rangle$, and no product of two elements of this space places $z_2$ in it. The statement also allows $\deg g\le2$.
+\end{proposition}
+\begin{proof}
+If $Q\subseteq\Lambda^2(U)$, apply Lemma~\ref{l2:lem:coset}, since $f,h\in V(S)$.
+
+Otherwise $P\notin\Lambda^2(U)$. The quartic part of $g$ is a scalar multiple of $P_0\wedge P$, which cannot equal $\Omega$ by Lemma~\ref{l2:lem:rankext}. Thus $z_2$ is not already available.
+
+If the proposed new product has both factors in $V(S)$, its quartic part is divisible by $P$: expand their quadratic parts in $P_0,P,Z_1$ and use $P_0\wedge Z_1=0$ and vanishing wedge squares. Adding a possible $g$ output correction retains this divisibility. Lemma~\ref{l2:lem:rankext} excludes $\Omega$.
+
+Otherwise normalize the factors and absorb the $g$ output correction to obtain
+\[
+k(g+F)=R\in z_2+V(S),\qquad k,F\in V(S).
+\]
+Since $kR=R$, Lemma~\ref{l2:lem:lastfactor} gives $k=1$ or $k=1+P_0$. The first would put $z_2$ in the already excluded space $V(S)+\langle g\rangle$. In the second case reduction modulo $I$ gives
+\[
+g\equiv q_2+v+F\pmod I\qquad(v\in V(S)),
+\]
+because $1+P_0\equiv1$ and the carry belongs to $I$. Lemma~\ref{l2:lem:ideal}, applied to $g=fh$, forces a form in $q_2+S$ to have rank at most two after adding an element of $Q$. All such forms have rank at least four by Lemma~\ref{l2:lem:rankext}. This contradiction proves the proposition.
+\end{proof}
+
+\subsection[Proof of the two-linear-gate theorem]{Proof of Theorem~\ref{l2:thm:main}}
+The branch $\deg g_2\le2$ was excluded by Lemma~\ref{l2:lem:replace} and Theorem~\ref{l3:thm:main}. Assume $\deg g_2\ge3$ and put $g=g_2$, $B=V(Q)$, $S=Q+\langle Z_1\rangle$.
+
+Neither $z_2$ nor $z_1+z_2$ belongs to $V_4=B+\langle g,g_3\rangle$. Either placement, after freely adjoining $z_1$ in $V(S)$, would put $z_2$ in the span of $V(S)$, $g$ and one product with factors in $V(S)+\langle g\rangle$, contradicting Proposition~\ref{l2:prop:onehigh}.
+
+If $z_1\notin V_4$, the target cosets of $z_1$ and $z_2$ must be the same nonzero coset in the one-dimensional extension $V_5/V_4$. Their sum puts $z_1+z_2$ in $V_4$, impossible. Thus $z_1\in V_4$.
+
+Since $g$ has degree at least three and $Z_1\notin Q$, we have $z_1\notin B+\langle g\rangle$. Here $Z_1\notin Q$ follows because $Z_1$ and $Z_1+P_0$ have rank four, whereas $P$ has rank two. Thus $g_3$ places $z_1$ and
+\[
+V_4=B+\langle g,z_1\rangle=V(S)+\langle g\rangle.
+\]
+The last gate now contradicts Proposition~\ref{l2:prop:onehigh} again. This excludes all circuits in this case, including the 2,064 pairs surviving the derivative screen. \qed
+
+\section{One linear gate}\label{sec:lambda1}
+Here $g_0=a_0b_0$, $V_1=\Aff+\langle a_0b_0\rangle$, and $g_1,g_2,g_3,g_4$ are nonlinear.
+
+\begin{theorem}\label{l1:thm:main}
+No normalized five-AND circuit with exactly one linear gate computes $(z_0,z_1,z_2)$.
+\end{theorem}
+The quadratic branch reduces to Theorem~\ref{l2:thm:main}. We then treat core and noncore cubic first gates, excluding both early top-bit placement and the final product. The full finite exclusion is independently verified below.
+
+\begin{lemma}[Quadratic first gate]\label{l1:lem:reduce}
+If $\deg g_1\le2$, a five-gate circuit with one linear gate can be replaced by a five-gate circuit with exactly two linear gates that computes the same targets. The proved two-linear-gate theorem excludes this branch.
+\end{lemma}
+\begin{proof}
+Write $g_1=fh$ with $f,h\in V_1$. By Lemma~\ref{l3:lem:P}, $(fh)_2=\pi+\rho$, where $\pi\in\langle P_0\rangle$ and $\rho=0$ or has rank two. Insert an affine-input gate with quadratic part $\rho$. If $\rho=0$ or $\rho=P_0$, choose any independent rank-two direction instead. The new two-linear-gate space contains $V_1+\langle g_1\rangle$ by Lemma~\ref{l4:lem:Qonly}. Keep the old $g_2,g_3,g_4$ factors as functions, successively expressing them in the enlarged spaces. They remain nonlinear as functions, so the new circuit has exactly two linear gates. This is also the $m=1$ instance of Lemma~\ref{l2:lem:replace}.
+\end{proof}
+Theorem~\ref{l2:thm:main} therefore excludes the entire quadratic branch.
+
+\begin{lemma}[Cubic first-gate normal form]\label{l1:lem:cubic}
+Modulo $V_1$, every first nonlinear gate has a representative
+\[
+g_1\equiv(P_0+A)B\pmod{V_1},
+\]
+with $A,B$ homogeneous linear functions. It has degree three exactly when $B\notin\langle a_0,b_0\rangle$. Its cubic part is $P_0\wedge B$. The nonlinear factor planes modulo constants number 2,016; 1,920 give degree three and 96 give degree at most two.
+\end{lemma}
+\begin{proof}
+The quadratic coefficients of the factors form a nonzero vector in the one-dimensional space $\langle P_0\rangle$. By exchanging factors or replacing one by their sum, assume one factor has quadratic part $P_0$ and the other is affine. Such plane operations change the product only by an available factor. Remove factor constants, also changing the product only by elements of $V_1$. We obtain $(P_0+A)B$.
+
+The affine factor is a nonzero homogeneous linear function $B$. The cubic part is $P_0\wedge B$, which vanishes exactly for $B\in\langle a_0,b_0\rangle$. The factor plane has a unique nonzero affine vector modulo constants, namely $B$; its other vector is specified by $A$ modulo $\langle B\rangle$. There are 63 choices for $B$ and 32 choices for $A$ modulo $B$, giving $63\cdot32=2,016$ planes. Exactly 60 of the 63 choices lie outside $\langle a_0,b_0\rangle$, giving $60\cdot32=1,920$ cubic planes. Products cannot have degree four, since both quadratic parts lie in $\langle P_0\rangle$ and their wedge is zero.
+\end{proof}
+
+\begin{lemma}[The first nonlinear gate places no remaining output]\label{l1:lem:first}
+For every $g_1=fh$, $f,h\in V_1$, none of $z_1,z_2,z_1+z_2$ belongs to $V_2=V_1+\langle g_1\rangle$.
+\end{lemma}
+\begin{proof}
+Lemma~\ref{l1:lem:cubic} gives $\deg g_1\le3$, excluding $z_2$ and $z_1+z_2$, both of degree four. If $z_1\in V_2$, then $g_1\in z_1+V_1$ is quadratic. The product lemma gives $(g_1)_2=\pi+\rho$, with $\pi\in\langle P_0\rangle$ and $\rho$ zero or rank two. But $\rho$ would equal $Z_1$ or $Z_1+P_0$, both of rank four. This is impossible.
+\end{proof}
+
+\subsection{A cubic extension of the core coset argument}
+Call a first-gate function core supported if all its terms of degree at least two use only $U=\langle a_0,a_1,b_0,b_1\rangle$. Free affine terms can then be removed so that the function depends only on $u=(a_0,a_1,b_0,b_1)$.
+
+\begin{lemma}[Coset obstruction with a core cubic signal]\label{l1:lem:corecoset}
+Let $c$ be a core-supported cubic first gate from Lemma~\ref{l1:lem:cubic}, and put $A=\Aff+\langle P_0,Z_1,c\rangle$. If $f,h\in A$, $g=fh$, and $W=A+\langle g\rangle$, then $z_2\notin W$ and no product from $W$ places $z_2$ in $W$.
+\end{lemma}
+\begin{proof}
+Write $A=A_U\oplus\langle a_2,b_2\rangle$, removing the free external affine part of $c$. On $A_U$ define the bilinear form
+\[
+\beta(X,Y)=[a_0a_1b_0b_1](XY).
+\]
+Every function in $A_U$ has degree at most three, so $\beta(X,X)=0$ by $X^2=X$. Also $1,a_0,b_0$ belong to its radical. For $1$ this follows from the absence of a quartic term; for $a_0,b_0$ the only possible cubic term is $c_3=P_0\wedge B$, whose product with either cannot have a quartic term.
+
+We first extend Lemma~\ref{l3:lem:B3a}. Suppose $F,H\in A$, $v\in A+\langle fh\rangle$, and $FH+z_2+v$ has zero external derivatives and zero carry coefficient. Decompose
+\[
+f=\varphi+c_0,\quad h=\psi+d_0,\quad F=X+\ell,\quad H=Y+m,
+\]
+where the first terms belong to $A_U$ and the second terms are scalar external linear forms. Write $v=C+n+\sigma fh$. Comparing the two external linear coefficients gives
+\[
+\ell_iY+m_iX+\sigma(c_0)_i\psi+\sigma(d_0)_i\varphi
+\equiv\lambda_i\pmod{\mathbb F_2},\qquad
+\lambda_1=b_0,\quad\lambda_2=a_0.
+\]
+The external quadratic coefficient gives $\det(\ell,m)+\sigma\det(c_0,d_0)=0$, and the carry coefficient gives
+\[
+\beta(X,Y)+\sigma\beta(\varphi,\psi)=1.
+\]
+The coefficient matrix $M$ with columns $\ell,m,\sigma c_0,\sigma d_0$ has rank two, since the two $\lambda_i$ are independent modulo constants. Pass from $A_U$ to $A_U/\operatorname{rad}\beta$. The right sides vanish there because $a_0,b_0,1$ are radical. Thus the four resulting vectors lie in the two-dimensional coefficient kernel of $M$. Using its kernel basis, their pairings are its $2\times2$ minors times one common pairing. Complementary-minor duality Lemma~\ref{l3:lem:pl} now gives exactly the cancellation of Lemma~\ref{l3:lem:B3a}: the coefficient of that common pairing is zero by the external quadratic equation. This contradicts the carry coefficient one. This replacement of quadratic parts by classes modulo $\operatorname{rad}\beta$ is the new step; it allows the cubic signal $c$.
+
+The exact feedback conclusion of Lemma~\ref{l3:lem:B3b} extends as well. Its derivative argument uses only constant external derivatives on the base space, membership of $D_e(fh)$ in that base, and the just-established Lemma~\ref{l3:lem:B3a} obstruction. These properties hold for $A$. More explicitly, if $k(g+F')=z_2+v$ with $k,F',v\in A$, differentiating gives the same identity as Lemma~\ref{l3:lem:B3b}. A nonzero external derivative of $k$ reduces it to a product of two base functions, already excluded. Otherwise $k$ depends only on $u$. The two external parts of $f,h$ must then be dependent; a direction killing both forces $k=\delta_e+\text{constant}$, and an independent direction would make a different nonconstant affine function vanish on its zero hyperplane. This is impossible, exactly as in the argument of Lemma~\ref{l3:lem:B3b}. The zero-external-parts case forces both independent functions $a_0,b_0$ to equal $k$ modulo constants and is also impossible.
+
+Finally Lemma~\ref{l3:lem:B3a} excludes $z_2\in A+\langle g\rangle$. Any further product either has both factors in $A$, excluded by the extended Lemma~\ref{l3:lem:B3a}, or normalizes, including its output correction, to the feedback product excluded above. This proves the lemma.
+\end{proof}
+
+\begin{lemma}[Early $z_1$ forces a core cubic signal]\label{l1:lem:earlycore}
+Suppose $g_1$ is cubic and $z_1\in V_3$, after the next nonlinear gate $g_2$. Then $g_1$ is core supported. A feedback gate using $g_1$ cannot make this early placement at all.
+\end{lemma}
+\begin{proof}
+Use $g_1\equiv(P_0+A)B\pmod{V_1}$ with $A,B$ homogeneous linear. First suppose $g_2$ has both factors in $V_1$. It must also be cubic; normalize it to $(P_0+C)D$. Cancellation of cubic terms gives $L=B+D\in\langle a_0,b_0\rangle$. With $M=A+C$, comparison of quadratic parts gives
+\[
+Z_1+\epsilon P_0=M\wedge B+C\wedge L.
+\]
+The left side has rank four and support $U$. Both summands must be nonzero rank-two forms, and Lemma~\ref{l4:lem:support} puts their supports in $U$. Hence $C,L,M,B\in U$, and therefore $A,B\in U$. The normalized $g_1$ is core supported; restoring elements of $V_1$ preserves that property.
+
+If $g_2$ uses $g_1$, normalization gives $k(g_1+F)=z_1+v$ with $F,v\in V_1$. By Lemma~\ref{l2:lem:four}, $k$ is one of the four complements of a fiber indicator (the constant 1 would make $g_1$ quadratic). On its three one-fibers, $g_1+F=z_1+v$. Project $A,B$ to the four free variables $(a_1,a_2,b_1,b_2)$, writing them $\bar A,\bar B$. The free quadratic part of this equality is $\bar A\wedge\bar B=0$. Cubicity implies $\bar B\ne0$, so $\bar A=\eta\bar B$.
+
+Consequently $g_1$, on each fiber of $(a_0,b_0)$, is an affine function of those four free variables whose nonconstant coefficient vector changes only along the fixed one-dimensional direction $\bar B$. Adding $F$ does not change this rank bound. But the coefficient vector of $z_1+v$ changes in two independent directions, those of $a_1$ and $b_1$, over any three of the four fibers: any three points of $\mathbb F_2^2$ are affinely independent. The rank-one and rank-two changes cannot agree. This excludes the feedback case.
+\end{proof}
+
+\begin{proposition}[The core cubic branch]\label{l1:prop:corebranch}
+There is no five-gate target circuit whose first nonlinear gate is cubic and core supported.
+\end{proposition}
+\begin{proof}
+Put $A=\Aff+\langle P_0,Z_1,g_1\rangle$. If $g_2$ places $z_1$, then $V_3=A$. The next product $g_3$ and the final gate contradict Lemma~\ref{l1:lem:corecoset}. Otherwise $z_1\notin V_3$. Lemma~\ref{l1:lem:corecoset}, applied to $g_2$, excludes $z_2$ and $z_1+z_2$ in $V_4$. The one-dimensional final extension therefore forces $z_1\in V_4$, so $V_4=A+\langle g_2\rangle$. Its last gate again contradicts the lemma.
+\end{proof}
+
+\subsection{Ordinary products in the noncore case}
+In the following lemmas a first cubic gate can be replaced, modulo $V_1$, by $c=(P_0+L)B$ with $L$ affine and $B$ homogeneous linear. This changes none of the available spaces. Put $A_0=\Aff+\langle P_0,Z_1\rangle$ and $A=A_0+\langle c\rangle$.
+
+\begin{lemma}[Two ordinary products cannot place $z_2$]\label{l1:lem:ordinarypair}
+For every cubic first gate $c$, there are no $F_1,F_2,F_3,F_4\in A$ with $F_1F_2+F_3F_4\in z_2+A$.
+\end{lemma}
+\begin{proof}
+For core-supported $c$ this follows from Lemma~\ref{l1:lem:corecoset}, applied to $g=F_1F_2$ and the further product $F_3F_4$. Suppose therefore that $c$ is noncore.
+
+Write $F_i=a_i+t_i c$ with $a_i\in A_0$. Since $c^2=c$, the proposed identity would give $cH=z_2+v_0+a_1a_2+a_3a_4$ for some $H\in A_0$ and $v_0\in A_0$. Each product $a_i a_j$ has degree at most three: the quadratic parts lie in $\langle P_0,Z_1\rangle$, whose pairwise wedges vanish. Thus $cH$ has degree four with quartic part $\Omega$. But it is divisible as a Boolean function by $B$. The identity $B(cH)=cH$ forces $B\wedge\Omega=0$, so $B\in U$. Cubicity gives $B\notin\langle a_0,b_0\rangle$.
+
+Noncore support now means that $L$ has a nonzero external part. Choose external linear coordinates $p,q$ so that $L=L_U+p$, where $L_U$ is affine on $U$. Then
+\[
+c=(P_0+L_U)B+pB.
+\]
+Write the external part of $a_i$ as $c_i p+d_iq$, and its core part as an affine function plus $w_iP_0+z_iZ_1$. The vectors $t,w,z,c_*,d$ are scalar four-vectors. On the hyperplane $B=j$ ($j=0,1$),
+\[
+F_i=x_i(j)+\alpha_i(j)p+d_iq,\qquad
+\alpha(j)=c_*+jt,\quad
+x_i(j)=(a_i)_U+jt_i(P_0+L_U).
+\]
+The quadratic coefficient vectors of the $x_i(j)$ are $w(j)=w+jt$ for $P_0$ and $z$ for $Z_1$.
+
+Let $J$ interchange coordinates 1 and 2, and 3 and 4, and let the rows of the $2\times4$ matrix $M(j)$ be $(J\alpha(j))^T$ and $(Jd)^T$. Write the external part of $q_2$ as $sp+rq$, where $r,s$ are independent in $\langle a_0,b_0\rangle$. Coefficient comparison in the proposed identity gives
+\[
+M(j)x(j)\equiv(s,r)^T\pmod{\mathbb F_2},\qquad
+M(j)JM(j)^T=0.
+\]
+The second equation is the zero $pq$ coefficient. The first implies $\rk M(j)=2$, because $r,s$ remain independent modulo constants on $B=j$.
+
+The restrictions of $P_0,Z_1$ have independent quadratic parts on this hyperplane. Indeed $P_0$ cannot restrict to an affine function unless $B\in\supp P_0$, and $Z_1+\epsilon P_0$, of rank four, cannot lose its whole quadratic part on one hyperplane. Therefore
+\[
+M(j)w(j)=M(j)z=0.
+\]
+The rank-two isotropic row space of $M(j)$ has a two-dimensional isotropic kernel for the form $J$. Hence $w(j)^TJz=0$ for both values of $j$, and thus $w^TJz=t^TJz=0$.
+
+For functions on the three-dimensional hyperplane $B=j$ define
+\[
+\beta_j(X,Y)=\sum_{u:B(u)=j}X(u)Y(u).
+\]
+On the restriction of $T=\Aff(U)+\langle P_0\rangle$, this is alternating, since every quadratic function on three bits has even parity. Its radical contains constants, $r$, and $s$: products of these with $P_0$ or affine functions have degree at most two on the hyperplane. Put $y_i(j)=x_i(j)+z_iZ_1$, so $y_i(j)\in T$ and $M(j)y(j)\equiv(s,r)^T$ modulo constants.
+
+It follows that
+\[
+\beta_j(y_1,y_2)+\beta_j(y_3,y_4)=0.
+\]
+For completeness, subtract a particular solution with components in the radical span of $1,r,s$. The remaining vector lies in $\ker M(j)$. Complementary-minor duality Lemma~\ref{l3:lem:pl} makes the displayed pairing the common kernel pairing times $\det_{12}M(j)+\det_{34}M(j)$, which is zero by isotropy. This is the same linear-algebra mechanism as Lemma~\ref{l3:lem:B3a}, now on each hyperplane.
+
+Set $D=\sum_i(Jz)_i x_i(j)$. The relations $t^TJz=w^TJz=z^TJz=0$ show that $D$ is an affine function on $U$, independent of $j$. Expanding $x_i=y_i+z_iZ_1$ therefore gives
+\[
+\beta_j(x_1,x_2)+\beta_j(x_3,x_4)=\beta_j(Z_1,D).
+\]
+Here the pairing is also alternating on $T+\langle Z_1\rangle$, since its elements are quadratic on three bits. Summing over $j=0,1$ gives zero, because $Z_1D$ has degree at most three on four bits.
+
+On the other hand, comparison at $p=q=0$ in the original identity makes that same sum the parity on all four core bits of $a_1b_1+\Omega$ plus a function of degree at most three. It is one. In general parity equals the coefficient of the full monomial, since every smaller monomial has an even number of ones. This contradiction proves the lemma.
+\end{proof}
+
+\subsection{Feedback multipliers modulo the low-bit ideal}
+Let $I=(a_0b_0)$ as in Lemma~\ref{l2:lem:ideal}. Membership in $I$ means vanishing on the three fibers other than $(a_0,b_0)=(1,1)$.
+
+\begin{lemma}[Noncore multiplier rigidity modulo $I$]\label{l1:lem:noncoremult}
+Suppose $c$ is a noncore cubic first gate. If $k\in A$, $R\in z_2+A$ and $kR=R$, then $k\equiv1\pmod I$.
+\end{lemma}
+\begin{proof}
+Normalize $c=(P_0+L)B$ as above. Write $R=z_2+v+\sigma c$ and $k=u+\tau c$, with $u,v\in A_0$, $\sigma,\tau\in\mathbb F_2$. Put $w=1+k$, so $wR=0$.
+
+First let $\tau=0$, so $k$ is quadratic. The degree-five part of $wR$ is exactly $\Omega\wedge u_{1,\mathrm{ext}}$. Indeed $u_2,v_2\in\langle P_0,Z_1\rangle$, $c_3=P_0\wedge B$, and $P_0\wedge Z_1=0$, so all other terms have degree at most four. Thus $u$ has no external linear part and $w$ depends only on $U$.
+
+If $\sigma=0$, any external coefficient of $R$ gives $w(r+e)=0$ for some nonzero $r\in\langle a_0,b_0\rangle$ and constant $e$. If $\sigma=1$ and the external parts of $L,B$ are independent, $R$ has external quadratic coefficient one, forcing $w=0$. Otherwise those external parts span a single nonzero line (the zero-line case would make $c$ core). Choose external coordinates $p,q$ with $c$ independent of $q$. Again the $q$ coefficient gives $w(r+e)=0$.
+
+This affine annihilation implies $w=(1+r+e)H$ with $H$ affine, since $w$ is quadratic. Hence $w_2$ has rank at most two. The only such nonzero form in $\langle P_0,Z_1\rangle$ is $P_0$; its factor $r$ then forces $H_1\in\langle a_0,b_0\rangle$. The zero-quadratic case does likewise. Therefore $w$ depends only on $a_0,b_0$.
+
+On a fiber $(s,t)\ne(1,1)$, the quadratic part of $R$ in the four free variables is $a_1\wedge b_1+\sigma\bar L\wedge\bar B$, where bars project the homogeneous linear parts off $a_0,b_0$. It is nonzero. Otherwise $\sigma=1$ and the two projected factors span $\langle a_1,b_1\rangle$, forcing $L,B\in U$ and making $c$ core. Thus $wR=0$ forces $w=0$ on all three fibers, proving $w\in I$ in the quadratic case.
+
+Now let $\tau=1$. The degree-six coefficient in $wR$ is the determinant of the external parts of $L,B$, times the nonzero monomial $a_2b_2\Omega$. All other contributions have degree at most five: $c_3$ already contains $P_0$, products with $P_0,Z_1$ have no degree five, and $c^2=c$. The two external parts must therefore be dependent. Since $c$ is noncore, they span a nonzero line. Choose external coordinates $p,q$ such that $c=\varphi(u)+pC(u)$ is independent of $q$, and write the external coefficients of $u$ as $u_p,u_q$.
+
+If $u_q=1$, then $D_qk=1$. Differentiating $kR=R$ gives $R=kD_qR$, with $D_qR=r+e$ affine. This expresses $R$ as one product from $A$, contradicting Lemma~\ref{l1:lem:ordinarypair}. Hence $u_q=0$. Comparing the $pq$ and $q$ coefficients of $wR=0$ now yields
+\[
+(C+u_p)(r+e)=0,\qquad (r+e)w=0.
+\]
+Here $r\in\langle a_0,b_0\rangle\setminus\{0\}$ and $e$ is constant.
+
+If $B$ has no external part, then $L$ has external part $p$ and $C=B\in U\setminus\langle a_0,b_0\rangle$. The first displayed product of independent affine functions cannot vanish. Thus $B=B_U+p$, while $L=L_U+\eta p$. Using $B^2=B$, rewrite the same first gate exactly as
+\[
+c=(P_0+H)B,\qquad H=L_U+\eta B_U+\eta\in\Aff(U).
+\]
+Then $C=P_0+H$. The first displayed equation says that $P_0+H+u_p$ vanishes on $r=1+e$. On this hyperplane the restriction of $P_0$ is affine in the remaining low-bit coordinate; therefore $H$ has no $a_1,b_1$ coefficients. It depends only on $a_0,b_0$.
+
+The function $C+u_p$ on those two low bits has quadratic coefficient one and vanishes on the two fibers $r=1+e$. Its parity is odd, so it is the indicator of a single fiber $j$ on $r=e$. Outside that hyperplane $w=0$. On the two fibers of the hyperplane $r=1+e$ we have $w=0$ and $C=u_p$; comparing their free-variable coefficient vectors in $w=1+u+c$ forces the $Z_1$ coefficient of $u$ to vanish. Indeed the $Z_1$ coefficient vector changes nontrivially between any two different low-bit fibers, while the affine coefficient vector and $CB_U$ have the same free part there.
+
+Vanishing on either of those two fibers fixes the affine free part of $u$ to $u_p\bar B$. Hence on every fiber the free coefficient vector of $w$ is $(C+u_p)\bar B$, where $\bar B$ has external $p$ coefficient one. Thus $w$ is constant off the single fiber $j$, and is a nonconstant affine free-variable function with $p$ coefficient one on $j$.
+
+On any fiber other than $(1,1)$, $c=CB$ is affine in the free variables. Consequently $R$ has free quadratic part exactly $a_1\wedge b_1$. If $j\ne(1,1)$, the product $wR$ has the nonzero cubic term $p\wedge a_1\wedge b_1$, impossible. Hence $j=(1,1)$. On the other three fibers $w$ is constant and $R$ has nonzero quadratic part, so $w=0$ there. Again $w\in I$, completing the proof.
+\end{proof}
+
+\subsection{The noncore branch and the theorem}
+\begin{lemma}[Noncore intermediate-space obstruction]\label{l1:lem:noncore}
+Let $c$ be a noncore cubic first gate, $B=\Aff+\langle P_0,c\rangle$, $A=B+\langle Z_1\rangle$, and $g=fh$ a semantic nonlinear product with $f,h\in B$. Then $z_2\notin A+\langle g\rangle$, and no product from this enlarged space places $z_2$ in it.
+\end{lemma}
+\begin{proof}
+Lemma~\ref{l1:lem:ordinarypair} excludes $z_2\in A+\langle g\rangle$ and any further product with both factors in $A$, including a $g$ output correction: these are sums of at most two products from $A$.
+
+Otherwise normalize the product and absorb the $g$ output correction to obtain $k(g+F)=z_2+v$ with $k,F,v\in A$. Lemma~\ref{l1:lem:noncoremult} gives $k\equiv1\pmod I$. Write $c\equiv L\ell\pmod I$ using its first-gate normal form $(P_0+L)\ell$, with affine factors $L,\ell$. Put $\rho=(L\ell)_2$, which has rank at most two, and $Q=\langle P_0,\rho\rangle$.
+
+Replacing $c$ by $L\ell$ in the factors of $g$ gives $f',h'\in V(Q)$ with $g\equiv f'h'\pmod I$. Replacing it likewise in $F,v$ gives $F',v'\in V(Q+\langle Z_1\rangle)$. The carry vanishes modulo $I$, so
+\[
+f'h'\equiv q_2+v'+F'\pmod I.
+\]
+Ideal extraction Lemma~\ref{l2:lem:ideal} forces a rank-at-most-two form in $q_2+Q+\langle Z_1\rangle$. Rank obstruction Lemma~\ref{l2:lem:rankext} gives minimum rank at least four (rank six if $\rho=0$). This contradiction proves the lemma.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{l1:thm:main}]
+If $g_1$ is quadratic or affine, Lemma~\ref{l1:lem:reduce} and Theorem~\ref{l2:thm:main} exclude the circuit. If it is cubic and core supported, Proposition~\ref{l1:prop:corebranch} excludes it. Assume it is cubic and noncore.
+
+By Lemma~\ref{l1:lem:earlycore}, $z_1\notin V_3$. Put $A=\Aff+\langle P_0,g_1,Z_1\rangle$ and $g=g_2$. Lemma~\ref{l1:lem:noncore} excludes both $z_2$ and $z_1+z_2$ from $V_4$: either placement, after making $z_1$ freely available in $A$, would place $z_2$ by adjoining at most one product to $A+\langle g\rangle$.
+
+The one-dimensional final extension therefore forces $z_1\in V_4$, since otherwise the two nonzero target cosets would agree and put $z_1+z_2$ in $V_4$. As $z_1\notin V_3$, the third nonlinear gate places it and $V_4=A+\langle g\rangle$. The last gate now contradicts Lemma~\ref{l1:lem:noncore} again. All cases are excluded.
+\end{proof}
+
+A relaxed four-gate circuit computes $(z_1,q_2)$ on the 48 points $a_0b_0=0$. An explicit witness was independently simulated. The proof above uses identities modulo $I$ only after the full-domain multiplier lemma has forced the multiplier to be one there; it does not rely on that false stronger relaxation.
+
+
+\begin{proof}[Proof of Theorem~\ref{thm:MC}]
+The circuit in Section~\ref{sec:upper} uses six AND gates. If a circuit used at most five, appending redundant affine-input AND gates would give a five-gate circuit computing the same targets. Lemma~\ref{l4:lem:normal} puts it in one of the five cases excluded by Theorems~\ref{thm:lambda5}, \ref{l4:thm:main}, \ref{l3:thm:main}, \ref{l2:thm:main}, and~\ref{l1:thm:main}. Thus $\mathrm{MC}(M_3)\ge6$.
+\end{proof}
+
+\section{Computer verification}\label{sec:verification}
+The tables collect the exhaustive checks and independent searches reported with the proofs. Counts distinguish factor planes, actual function spaces, output cosets, and symmetry orbits. Random checks are identified separately. These checks accompany the algebraic arguments; the written lower bound above does not depend on exhaustive circuit search.
+
+\subsection{Four-linear-gate checks}
+
+
+The checks below were performed by two independent implementations that share no code; no SAT solver was used. Here a \emph{prefix} is a triple $\{P_1,P_2,P_3\}$ of rank-2 forms with $P_0,\dots,P_3$ independent and $Z_1\in\Span\{P_0,\dots,P_3\}$; distinct prefixes can give the same $Q$.
+
+\begin{center}
+\begin{tabularx}{0.95\textwidth}{@{}X X@{}}
+\toprule
+Check & Result \\
+\midrule
+Lemma~\ref{l4:lem:types} on all 651 rank-2 forms & 35 in $\Lam(U)$, 360 of type $v$, 256 full; formulas confirmed\\
+All $11\,180\,715$ four-dimensional $Q\supseteq\langle P_0,Z_1\rangle$ & exactly $4\,168$ admit a solution of \eqref{l4:eq:star}; none is spanned by rank-2 forms or meets the hypothesis of Lemma~\ref{l4:lem:deriv}\\
+Case split over all 6\,583 subspaces of Theorem~\ref{l4:thm:main} & class sizes 35 / 2\,664 / 2\,816 / 1\,068, as in the table\\
+$\dU=2$ structure over all 1\,440 rank-2 bases & all three-term, $\Phi(P_i)\ne0$, one shared type\\
+$\lambda=4$ by direct enumeration & no solution for any of the 16\,016 prefixes\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+
+The symmetry-representative counts accompanying the same case split are:
+\begin{center}
+\begin{tabularx}{0.92\textwidth}{@{}l X r@{}}
+\toprule
+Case & Argument & Orbit reps \\
+\midrule
+$\dU=4$ & $Q\subseteq\Lam(U)$, so every $\iota_e$ annihilates $Q$; Lemma~\ref{l4:lem:deriv} & 23\\
+$\dU=3$, $R$ of type $v$ & $\iota_e$ annihilates $\Lam(U)$ and $R$; Lemma~\ref{l4:lem:deriv} & 517\\
+$\dU=3$, $R$ full & the plane $\langle f_2,h_2\rangle$ is forced into $\Lam(U)$; Proposition~\ref{l4:prop:B} & 98\\
+$\dU=2$ & $P_1,P_2,P_3$ share one type $v$; Lemma~\ref{l4:lem:deriv} & 145\\
+\bottomrule
+\end{tabularx}
+\end{center}
+A separate randomized derivative check considered $20\,000$ spaces satisfying the killing-direction hypothesis and found no solution. The four-dimensional feasibility count is $4\,168$; the genuine rank-two-generated spaces form $783$ orbits, of which $685$ are excluded by Lemma~\ref{l4:lem:deriv} and $98$ by Proposition~\ref{l4:prop:B}.
+\subsection{Three-linear-gate checks}
+The checks use no SAT solver. ``All $Q_3$'' means all 164\,596 spaces $\Span\{P_0,P_1,P_2\}$ with $P_1,P_2$ of rank 2, of any dimension; ``all planes'' means all 2-dimensional subspaces $\langle f,h\rangle$ of $V_3/\langle1\rangle$ not inside $\Aff$.
+
+\begin{center}
+\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth} >{\raggedright\arraybackslash}p{0.35\textwidth} >{\raggedright\arraybackslash}p{0.35\textwidth}@{}}
+\toprule
+Lemma & Statement checked (domain) & Result \\
+\midrule
+\endfirsthead
+\toprule
+Lemma & Statement checked (domain) & Result \\
+\midrule
+\endhead
+\midrule\multicolumn{3}{r}{Continued on next page}\\\endfoot
+\bottomrule\endlastfoot
+
+Lemma~\ref{l3:lem:A} & placement of $z_1$ $\Leftrightarrow$ predicate, all $Q_3$, all planes & 0 violations; 12\,864 placing planes, 648 of them without an affine element (20 spaces) \\
+Lemma~\ref{l3:lem:A} & the construction $f=l$, $h=r+lm$ places $z_1$, for every admissible $(q,R,l)$ & 11\,946 constructions in 4\,755 spaces, 0 failures \\
+Lemma~\ref{l3:lem:P} & all planes with $\deg(fh)\le2$, all $Q_3$ & 51\,802\,176 planes (50\,581\,056 / 1\,090\,080 / 131\,040 of types P1 / P2 / P3); 0 violations of P, P1, P2, P3 \\
+Lemma~\ref{l3:lem:rad} & all planes with $\deg(fh)\le3$, all ordered pairs inside the plane, all $Q_3$ & 2\,490\,964\,416 planes, 0 violations \\
+Lemma~\ref{l3:lem:wt} & $RM(2,4)$ and $RM(2,6)$, all functions & minimum nonzero weight 4 and 16; full-rank weights $\{6,10\}$ and $\{28,36\}$ \\
+Lemma~\ref{l3:lem:D1} & all $Q_3$ of dimension 3, all generator pairs $R_1,R_2\notin\Lam(U)$ & 189\,384 pairs; 2\,304 with an $\Omega$-pair, all of the same type $v$; 0 violations \\
+Lemma~\ref{l3:lem:C} & no $f,h\in V_3$ with $fh\equiv z_2$ or $z_1+z_2$, all $Q_3$, all planes & 0 and 0; branch counts as in the proof (no-kill $\dU=2$ cases all have $R$ full; no-kill $\dU=1$ cases never have an $\Omega$-pair) \\
+Lemma~\ref{l3:lem:abs}, Proposition~\ref{l3:prop:B} & for every $Q_3$ with $Z_1\notin Q_3$ and minrank 2: $Q'$ spanned by rank-2 forms containing $Z_1$; killing directions of $Q'$ = those of $Q_3$; no-kill $\Rightarrow$ $\dU(Q')=3$, $R$ full & 15\,219 spaces, 0 violations; placing spaces: 3\,096 (B1), 123 (B2), 1\,536 (B4) \\
+Lemma~\ref{l3:lem:B3U} & $Z_1\in Q_3$ $\Rightarrow$ $Q_3\subseteq\Lam(U)$ & 11 spaces, all inside \\
+Lemma~\ref{l3:lem:B3a} & exact and level-i statements, 11 spaces $\times$ 42\,784 $g_3$, all $F,H\in V_3$ (524\,800 products) & 0 violations in both; positive controls detected \\
+Lemma~\ref{l3:lem:B3b} & exact statement, 470\,624 pairs $(Q_3,g_3)$ $\times$ 1\,024 $k$ & 0 violations; positive control detected \\
+Lemma~\ref{l3:lem:pl} & all $2\times4$ rank-2 matrices & 210 matrices, 0 violations \\
+\end{longtable}
+\end{center}
+
+Lemmas~\ref{l3:lem:P} and~\ref{l3:lem:rad} are stated for arbitrary quadratic $f,h$, but they were checked on the domain where they are used ($f,h\in V_3$ for all $Q_3$), not on all pairs of quadratic functions on $\F^6$. The three-linear-gate exclusion was also confirmed by two independent exhaustive computations.
+\subsection{Two-linear-gate checks}
+
+All functions are stored as 64-bit ANF masks. Multiplication uses an involutory Boolean M\"obius transform, bitwise AND on truth tables, and the inverse transform. A separate monomial-OR multiplication cross-checks this algebra. No SAT solver or third-party package is used.
+
+A factor plane is a two-dimensional subspace modulo constants. Its three nonzero vectors are ordered $i<j<i+j$. Changing constants or a plane basis changes the product only by an available function. Dependent factors add nothing. A space is always reduced as a space of actual functions; redundant signal coordinates are discarded.
+
+For a quadratic space $B$ and a preceding signal $g$, every next gate either has both factors in $B$, or normalizes to $k(g+F)$ with $k,F\in B$. To test $k(g+F)\in T+B$ exactly, enumerate every $k$ satisfying the necessary identity $(1+k)(T+v)=0$ for some $v\in B$, then enumerate the complete image $kB$ modulo $B$. Constants in $k$ absorb the possible $g$ term in the output correction. This is an exact finite test, not a derivative approximation. The implementation also applies to bases containing cubic functions.
+
+The full search checks both earlier targets $z_2,z_1+z_2$, both placements of $z_1$, and the final gate. If $z_1$ is placed by $g_3$, its resulting space is exactly $V(Q)+\langle g_2,z_1\rangle$, independent of the placing plane. If $z_1$ is placed by $g_2$, every subsequent nonlinear plane is tested. The last gate is allowed to be any product, a safe enlargement. Both complete normalized searches return no circuit.
+
+\begin{center}\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth} >{\raggedright\arraybackslash}p{0.35\textwidth} >{\raggedright\arraybackslash}p{0.35\textwidth}@{}}\toprule
+Item & Exact checked domain & Result\\\midrule
+\endfirsthead
+\toprule
+Item & Exact checked domain & Result\\\midrule
+\endhead
+\midrule\multicolumn{3}{r}{Continued on next page}\\\endfoot
+\bottomrule\endlastfoot
+
+Lemma~\ref{l2:lem:replace} & All 606 $Q$, all nonlinear planes; 83 symmetry representatives & 833,824 representative planes; 18,912 quadratic products; zero failures\\
+Lemma~\ref{l2:lem:sym} & All 32 maps, 1,024 compositions, 64 input points/map & 606 spaces, 83 orbits; target cosets preserved\\
+Lemma~\ref{l2:lem:degree} & All 887,857 affine and nonlinear planes, plus dependent factors & 237,568 quartic products; zero failures\\
+Lemma~\ref{l2:lem:four} & All $k,R$ in its domain; 68 representatives & 17,629,184 pairs; zero failures\\
+Lemma~\ref{l2:lem:lastfactor} & All $k,R$ in its domain; 67 representatives & 70,254,592 pairs; zero failures\\
+Lemma~\ref{l2:lem:two} & All 67 representatives and four $k$; arbitrary $g$ & 268 exact linear systems, covering all $2^{64}$ functions $g$; infeasible\\
+Proposition~\ref{l2:prop:reorder} & All applicable first-gate output spaces & Exact span identities verified\\
+Lemma~\ref{l2:lem:ideal} & All factor planes, affine and nonlinear; all quadratic representatives modulo $I$ & 887,857 planes; 270,385 quadratic quotient products; zero failures\\
+Lemma~\ref{l2:lem:rankext} & All 651 rank-two forms; all exterior multipliers & 2,604 rank tests; 616 full exterior image tests\\
+Lemma~\ref{l2:lem:coset} & All 11 needed inside-$U$ spaces, every first product and final product & 445,145 first planes; zero failures\\
+Proposition~\ref{l2:prop:onehigh} & All 606 initial spaces, all affine and nonlinear first products and final factors & 887,857 first planes, 740,610 output cosets; zero failures\\
+Higher-degree exact search & 814,912 first-gate planes / 694,540 distinct cosets & 37,518 admissible cosets; no early or final target\\
+Derivative plus $\Omega$ & All 37,518 admissible cosets, plane weights retained & 1,776 surviving cosets = 2,064 pairs; all fail exact test\\
+Full $\lambda=2$ check & All 833,824 first nonlinear planes over representatives & No circuit; independent of Theorem~\ref{l3:thm:main}\\\end{longtable}\end{center}
+Each executable check includes a planted mutation or a relaxed positive instance. The exact screens were independently compared with direct enumeration on all 1,740 cubic first-gate output cosets of the one-linear-gate case: 17,650,560 next-gate planes, with no discrepancy. Arbitrary-function claims are checked on their full domain when possible by exact linear elimination; the two quadratic multiplier lemmas are checked on their complete stated application domains, not on arbitrary pairs of quadratic functions outside them.
+
+\subsection{One-linear-gate checks}
+
+The standalone scripts use 64-bit ANF masks, exact binary elimination, and temporary truth tables for multiplication. The monomial-OR rule independently checks the multiplication transform. No SAT solver or third-party dependency is used. Every executable check runs a mutation or relaxed positive control.
+
+The first-gate output is reduced modulo $V_1$ and its function space is reduced under the verified group of Lemma~\ref{l2:lem:sym}. This yields 222 function-space orbits carrying all 2,016 first-plane multiplicities; 197 are cubic. These are function-space orbits, not the 249 factor-plane orbits in the supplied historical report. Redundant coordinates are removed as functions, including a first gate whose output already lies in $V_1$.
+
+For each such space, enumerate every actual next nonlinear plane. Test placing $z_2$ or $z_1+z_2$ by $g_3$ using the exact screen described here. If $g_2$ places $z_1$, enumerate every $g_3$ plane and test the final gate. Otherwise enumerate all ways $g_3$ can place $z_1$, and test the final space $V_1+\langle g_1,g_2,z_1\rangle$. The early-target tests rule out placing $z_1$ only at $g_4$. All tests return no counterexample.
+
+The exact multiplier screen described above applies to every finite available space, including spaces containing cubic signals. Constants and dependent factors are checked through membership in the available space, and the last gate is allowed to be any product.
+
+\begin{center}\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth} >{\raggedright\arraybackslash}p{0.35\textwidth} >{\raggedright\arraybackslash}p{0.35\textwidth}@{}}\toprule
+Item & Exact checked domain & Result\\\midrule
+\endfirsthead
+\toprule
+Item & Exact checked domain & Result\\\midrule
+\endhead
+\midrule\multicolumn{3}{r}{Continued on next page}\\\endfoot
+\bottomrule\endlastfoot
+
+Lemma~\ref{l1:lem:reduce} & All 2,016 first nonlinear planes & 96 quadratic-or-zero products; every replacement valid\\
+Lemma~\ref{l1:lem:cubic} & All 2,016 planes and their normalized factors & 1,920 cubic, 96 quadratic-or-zero; zero failures\\
+Lemma~\ref{l1:lem:first} & All first nonlinear planes, all three target cosets & 0 / 0 / 0 placements\\
+Four-multiplier restriction & All $k\in V_1$, $R\in z_1+V_1$ & Included in the complete Lemma~\ref{l2:lem:four} check\\
+Screen cross-check & All 1,740 distinct cubic first-output cosets; all next planes & 17,650,560 direct planes; exact agreement, including placing-plane counts\\
+Lemma~\ref{l1:lem:corecoset}, Proposition~\ref{l1:prop:corebranch} & All 33 core cubic first spaces, all first and final products & Complete exact-space check; no failures\\
+Lemma~\ref{l1:lem:earlycore} & All 1,740 cubic output cosets and next planes & 48 placing pairs, all ordinary and core; no feedback placement\\
+Lemma~\ref{l1:lem:ordinarypair} & Every cubic first space; all pairs of ordinary products & 8,556,695 factor planes / 6,754,925 product cosets; no target pair\\
+Lemma~\ref{l1:lem:noncoremult} & All $k,R$ for 164 noncore cubic first spaces & 171,966,464 pairs; zero failures\\
+Lemma~\ref{l1:lem:noncore} & All 164 noncore cubic first spaces; no placement pre-screen & 1,426,210 next cosets; no final product\\
+Full independent search & 222 function-space orbits, weight 2,016 & All early and final target branches empty\\
+Positive controls & Ordinary and feedback relaxed targets & Detected in each executable check\\\end{longtable}\end{center}
+
+With first-plane weights, the full search inspects 20,401,536 second-gate planes. It finds 72 $z_1$-placing second-gate planes, giving 3,080,448 candidate $(g_2,g_3)$ pairs in that branch. The later-placement branch has 1,542,672 pairs, for 4,623,120 in total. Every final test fails. The supplied report gives 4,644,000 using a different coordinate enumeration; that total is not reproduced here, and no field-by-field agreement is claimed. The exact spaces and all branches are nevertheless enumerated afresh; correctness of this run does not depend on historical counts. The difference concerns coordinate degeneracies and is retained as an unreconciled count, without identifying the two enumerations.
+
+
+\subsection{Independent certificate searches}
+The independent five-gate SAT searches split by $\lambda=1,\ldots,5$ were checked with \texttt{drat-trim}. A separate 651-cube certificate was checked with the verified checker \texttt{cake\_lpr}~\cite{cert}. These searches use the exact-multiplicative-complexity approach of~\cite{soeken}. The certificate evidence is separate from the algebraic enumerations in the tables and from the written proof. The low-half multipliers on one, two, and three input bits have reported multiplicative complexities $1,3,6$.
+
+\section{Lean formalization}\label{sec:lean}
+The formalization is maintained at \url{https://github.com/bishara74/lowhalf-mul3}, using Lean~4.35 and Mathlib. Its current status reduces $\mathrm{MC}(M_3)=6$ to the cases $\lambda=1,2,3$. The normal form and the $\lambda=4,5$ cases are formalized. The formalized supporting results are the quadratic-span, support, cross-part, cross-part obstruction, derivative, and types lemmas: Lemmas~\ref{l4:lem:Qonly}, \ref{l4:lem:support}, \ref{l4:lem:cross}, \ref{l4:lem:noq2}, \ref{l4:lem:deriv}, and~\ref{l4:lem:types}, respectively. The completed formal proofs use neither \texttt{sorry} nor \texttt{native\_decide}.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}X l@{}}
+\toprule
+Component & Formalization status\\
+\midrule
+Normal form, Lemma~\ref{l4:lem:normal} & Formalized\\
+Supporting Lemmas~\ref{l4:lem:Qonly}, \ref{l4:lem:support}, \ref{l4:lem:cross}, \ref{l4:lem:noq2}, \ref{l4:lem:deriv}, \ref{l4:lem:types} & Formalized\\
+Four-linear-gate case, Theorem~\ref{l4:thm:main} & Formalized\\
+Five-linear-gate case, Theorem~\ref{thm:lambda5} & Formalized\\
+Three-linear-gate case, Theorem~\ref{l3:thm:main} & In progress\\
+Two-linear-gate case, Theorem~\ref{l2:thm:main} & In progress\\
+One-linear-gate case, Theorem~\ref{l1:thm:main} & In progress\\
+\bottomrule
+\end{tabularx}
+\end{center}
+The remaining formal cases concern the proofs already presented in Sections~\ref{sec:lambda3}, \ref{sec:lambda2}, and~\ref{sec:lambda1}.
+
+\begin{thebibliography}{9}
+\bibitem{bpp} J.~Boyar, R.~Peralta, D.~Pochuev, \emph{On the multiplicative complexity of Boolean functions over the basis $(\wedge,\oplus,1)$}, Theoretical Computer Science 235 (2000) 43--57.
+\bibitem{bf} J.~Boyar, M.~G.~Find, \emph{Multiplicative complexity of vector valued Boolean functions}, arXiv:1407.6169.
+\bibitem{schnorr} C.-P.~Schnorr, \emph{The multiplicative complexity of Boolean functions}, in: Applied Algebra, Algebraic Algorithms and Error-Correcting Codes (AAECC-6), LNCS 357, Springer, 1989.
+\bibitem{morse} G.~Morse, \emph{Unrestricted Boolean multiplicative complexity of four-term binary polynomial multiplication}, arXiv:2608.30238.
+\bibitem{soeken} M.~Soeken, \emph{Determining the multiplicative complexity of Boolean functions using SAT}, arXiv:2005.01778.
+\bibitem{cert} G.~Morse, \emph{LRAT certificate for $\mathrm{MC}(3\text{-bit multiplication mod }8)=6$}, archived certificate package.
+
+\bibitem{MS} F.~J.~MacWilliams and N.~J.~A.~Sloane, \emph{The Theory of Error-Correcting Codes}, North-Holland, 1977, Ch.~13 and~15.
+\end{thebibliography}
+\end{document}

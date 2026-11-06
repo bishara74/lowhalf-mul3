@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "counts": {
+    "pairs": 171966464,
+    "identities": 171872,
+    "cubic_orbits": 164,
+    "first_plane_weight": 1824
+  },
+  "positive_controls_detected": 1,
+  "seconds": 148.373,
+  "domain": "all 164 noncore cubic first-output orbits; every k in A and every R in z2+A"
+}

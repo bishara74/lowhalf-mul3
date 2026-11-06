@@ -1,0 +1,500 @@
+[
+  {
+    "orbit": 0,
+    "weight": 1,
+    "cosets": 2346,
+    "planes": 2667
+  },
+  {
+    "orbit": 1,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 2,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 3,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 4,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 5,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 6,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 7,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 8,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 9,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 10,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 11,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 12,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 13,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 14,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 15,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 16,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 17,
+    "weight": 1,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 18,
+    "weight": 2,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 19,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 20,
+    "weight": 2,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 21,
+    "weight": 2,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 22,
+    "weight": 2,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 23,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 24,
+    "weight": 1,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 25,
+    "weight": 2,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 26,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 27,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 28,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 29,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 30,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 31,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 32,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 33,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 34,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 35,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 36,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 37,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 38,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 39,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 40,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 41,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 42,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 43,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 44,
+    "weight": 1,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 45,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 46,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 47,
+    "weight": 1,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 48,
+    "weight": 2,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 49,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 50,
+    "weight": 1,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 51,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 52,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 53,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 54,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 55,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 56,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 57,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 58,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 59,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 60,
+    "weight": 16,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 61,
+    "weight": 32,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 62,
+    "weight": 32,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 63,
+    "weight": 32,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 64,
+    "weight": 32,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 65,
+    "weight": 16,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 66,
+    "weight": 32,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 67,
+    "weight": 1,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 68,
+    "weight": 2,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 69,
+    "weight": 1,
+    "cosets": 7851,
+    "planes": 10795
+  },
+  {
+    "orbit": 70,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 71,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 72,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 73,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 74,
+    "weight": 4,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 75,
+    "weight": 4,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 76,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 77,
+    "weight": 8,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 78,
+    "weight": 16,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 79,
+    "weight": 32,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 80,
+    "weight": 16,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 81,
+    "weight": 4,
+    "cosets": 9480,
+    "planes": 10795
+  },
+  {
+    "orbit": 82,
+    "weight": 4,
+    "cosets": 9480,
+    "planes": 10795
+  }
+]

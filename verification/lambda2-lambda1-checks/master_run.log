@@ -1,0 +1,23 @@
+RUN check_algebra_symmetry.py
+RUN check_replacement.py
+RUN check_degree.py
+RUN check_annihilator.py
+RUN check_final_factor.py
+RUN check_two_feedback.py
+RUN check_reordering.py
+RUN check_ideal_extraction.py
+RUN check_rank_exterior.py
+RUN check_one_high_space.py
+RUN check_lambda1_normal_form.py
+RUN check_early_core.py
+RUN check_core_cubic.py
+RUN check_noncore_onehigh.py
+RUN explore_prefixes.py
+RUN check_screen_bruteforce.py
+RUN check_lambda2_exact.py
+RUN check_lambda2_full.py
+RUN check_lambda1_exact.py
+RUN check_level_survivors.py
+RUN check_historical_counts.py
+RUN check_quotient_witness.py
+PASS: 22 checks; 1285.65 seconds

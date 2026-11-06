@@ -1,0 +1,1 @@
+{"one_high_space": {"Q_orbits": 83, "Q_spaces": 606, "counts": {"first_product_cosets": 740610, "first_product_planes": 887857}, "inside_U_extension": {"S_spaces": 11, "g_cosets": 305235, "g_planes": 445145}, "positive_controls_detected": 1, "scope": "all g=f*h from V(Q), all F,H in V(Q+Z1)+<g>; and full imported-coset extension domains", "seconds": 68.305, "status": "PASS"}}

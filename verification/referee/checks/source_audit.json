@@ -1,0 +1,395 @@
+{
+  "status": "pass",
+  "source_sha256": "85ae161e1386c36e8ec63f81a6f6b08a6e47a7a66b07ffe407089a7a4ecd856b",
+  "labels": 66,
+  "reference_occurrences": 221,
+  "missing_references": [],
+  "in_scope_results": [
+    {
+      "number": 17,
+      "type": "theorem",
+      "name": "",
+      "label": "l3:thm:main",
+      "line": 321
+    },
+    {
+      "number": 18,
+      "type": "lemma",
+      "name": "Radical lemma",
+      "label": "l3:lem:rad",
+      "line": 336
+    },
+    {
+      "number": 19,
+      "type": "lemma",
+      "name": "Weights, Dickson",
+      "label": "l3:lem:wt",
+      "line": 344
+    },
+    {
+      "number": 20,
+      "type": "lemma",
+      "name": "Product lemma",
+      "label": "l3:lem:P",
+      "line": 352
+    },
+    {
+      "number": 21,
+      "type": "lemma",
+      "name": "A: $z_1$-placement",
+      "label": "l3:lem:A",
+      "line": 377
+    },
+    {
+      "number": 22,
+      "type": "lemma",
+      "name": "D1",
+      "label": "l3:lem:D1",
+      "line": 389
+    },
+    {
+      "number": 23,
+      "type": "lemma",
+      "name": "C",
+      "label": "l3:lem:C",
+      "line": 421
+    },
+    {
+      "number": 24,
+      "type": "lemma",
+      "name": "Absorption",
+      "label": "l3:lem:abs",
+      "line": 437
+    },
+    {
+      "number": 25,
+      "type": "proposition",
+      "name": "B: last gate when $g_3$ places $z_1$",
+      "label": "l3:prop:B",
+      "line": 445
+    },
+    {
+      "number": 27,
+      "type": "lemma",
+      "name": "",
+      "label": "l3:lem:B3U",
+      "line": 465
+    },
+    {
+      "number": 28,
+      "type": "lemma",
+      "name": "Pl\\\"ucker duality",
+      "label": "l3:lem:pl",
+      "line": 475
+    },
+    {
+      "number": 29,
+      "type": "lemma",
+      "name": "B3a",
+      "label": "l3:lem:B3a",
+      "line": 483
+    },
+    {
+      "number": 30,
+      "type": "lemma",
+      "name": "B3b",
+      "label": "l3:lem:B3b",
+      "line": 501
+    },
+    {
+      "number": 31,
+      "type": "proposition",
+      "name": "B3",
+      "label": "l3:prop:B3",
+      "line": 519
+    },
+    {
+      "number": 32,
+      "type": "theorem",
+      "name": "",
+      "label": "l2:thm:main",
+      "line": 537
+    },
+    {
+      "number": 33,
+      "type": "lemma",
+      "name": "Replacing a quadratic nonlinear gate",
+      "label": "l2:lem:replace",
+      "line": 542
+    },
+    {
+      "number": 34,
+      "type": "lemma",
+      "name": "The 32 symmetries",
+      "label": "l2:lem:sym",
+      "line": 552
+    },
+    {
+      "number": 35,
+      "type": "lemma",
+      "name": "Top degree",
+      "label": "l2:lem:degree",
+      "line": 564
+    },
+    {
+      "number": 36,
+      "type": "lemma",
+      "name": "Four multipliers",
+      "label": "l2:lem:four",
+      "line": 578
+    },
+    {
+      "number": 37,
+      "type": "lemma",
+      "name": "Last-factor rigidity",
+      "label": "l2:lem:lastfactor",
+      "line": 602
+    },
+    {
+      "number": 38,
+      "type": "lemma",
+      "name": "Two feedback placements cannot coexist",
+      "label": "l2:lem:two",
+      "line": 639
+    },
+    {
+      "number": 39,
+      "type": "proposition",
+      "name": "Rank-two reordering",
+      "label": "l2:prop:reorder",
+      "line": 653
+    },
+    {
+      "number": 40,
+      "type": "lemma",
+      "name": "Quadratic extraction modulo $I$",
+      "label": "l2:lem:ideal",
+      "line": 663
+    },
+    {
+      "number": 41,
+      "type": "lemma",
+      "name": "Rank and exterior obstructions",
+      "label": "l2:lem:rankext",
+      "line": 686
+    },
+    {
+      "number": 42,
+      "type": "lemma",
+      "name": "Inside-$U$ coset obstruction",
+      "label": "l2:lem:coset",
+      "line": 695
+    },
+    {
+      "number": 43,
+      "type": "proposition",
+      "name": "One higher-degree signal is insufficient",
+      "label": "l2:prop:onehigh",
+      "line": 704
+    },
+    {
+      "number": 44,
+      "type": "theorem",
+      "name": "",
+      "label": "l1:thm:main",
+      "line": 741
+    },
+    {
+      "number": 45,
+      "type": "lemma",
+      "name": "Quadratic first gate",
+      "label": "l1:lem:reduce",
+      "line": 746
+    },
+    {
+      "number": 46,
+      "type": "lemma",
+      "name": "Cubic first-gate normal form",
+      "label": "l1:lem:cubic",
+      "line": 754
+    },
+    {
+      "number": 47,
+      "type": "lemma",
+      "name": "The first nonlinear gate places no remaining output",
+      "label": "l1:lem:first",
+      "line": 767
+    },
+    {
+      "number": 48,
+      "type": "lemma",
+      "name": "Coset obstruction with a core cubic signal",
+      "label": "l1:lem:corecoset",
+      "line": 777
+    },
+    {
+      "number": 49,
+      "type": "lemma",
+      "name": "Early $z_1$ forces a core cubic signal",
+      "label": "l1:lem:earlycore",
+      "line": 808
+    },
+    {
+      "number": 50,
+      "type": "proposition",
+      "name": "The core cubic branch",
+      "label": "l1:prop:corebranch",
+      "line": 823
+    },
+    {
+      "number": 51,
+      "type": "lemma",
+      "name": "Two ordinary products cannot place $z_2$",
+      "label": "l1:lem:ordinarypair",
+      "line": 833
+    },
+    {
+      "number": 52,
+      "type": "lemma",
+      "name": "Noncore multiplier rigidity modulo $I$",
+      "label": "l1:lem:noncoremult",
+      "line": 890
+    },
+    {
+      "number": 53,
+      "type": "lemma",
+      "name": "Noncore intermediate-space obstruction",
+      "label": "l1:lem:noncore",
+      "line": 926
+    }
+  ],
+  "proof_dependencies": {
+    "l3:lem:rad": [],
+    "l3:lem:wt": [],
+    "l3:lem:P": [
+      "l3:lem:rad",
+      "l3:lem:wt"
+    ],
+    "l3:lem:A": [
+      "l3:lem:P"
+    ],
+    "l3:lem:D1": [
+      "l4:lem:types"
+    ],
+    "l3:lem:C": [
+      "l3:lem:deriv",
+      "l4:thm:main",
+      "l4:lem:planeU",
+      "l4:lem:noq2",
+      "l3:lem:D1"
+    ],
+    "l3:lem:abs": [],
+    "l3:prop:B": [
+      "l3:lem:A",
+      "l3:lem:abs",
+      "l3:thm:L4",
+      "l4:prop:B"
+    ],
+    "l3:lem:B3U": [
+      "l4:lem:support"
+    ],
+    "l3:lem:pl": [],
+    "l3:lem:B3a": [
+      "l3:lem:pl"
+    ],
+    "l3:lem:B3b": [
+      "l3:lem:B3a"
+    ],
+    "l3:prop:B3": [
+      "l3:lem:B3U",
+      "l3:lem:C",
+      "l3:lem:B3a",
+      "l3:lem:B3b"
+    ],
+    "l3:thm:main": [
+      "l3:lem:C",
+      "l3:prop:B3",
+      "l3:prop:B"
+    ],
+    "l2:lem:replace": [
+      "l3:lem:P",
+      "l4:lem:Qonly"
+    ],
+    "l2:lem:sym": [],
+    "l2:lem:degree": [],
+    "l2:lem:four": [
+      "l3:lem:P",
+      "l3:lem:rad",
+      "l3:lem:wt",
+      "l4:lem:support"
+    ],
+    "l2:lem:lastfactor": [
+      "l4:lem:types",
+      "l4:lem:support"
+    ],
+    "l2:lem:two": [],
+    "l2:prop:reorder": [
+      "l3:thm:main"
+    ],
+    "l2:lem:ideal": [],
+    "l2:lem:rankext": [],
+    "l2:lem:coset": [
+      "l3:lem:B3a",
+      "l3:lem:B3b"
+    ],
+    "l2:prop:onehigh": [
+      "l2:lem:coset",
+      "l2:lem:rankext",
+      "l2:lem:degree",
+      "l2:lem:lastfactor",
+      "l2:lem:ideal"
+    ],
+    "l2:thm:main": [
+      "l2:lem:replace",
+      "l3:thm:main",
+      "l2:prop:onehigh"
+    ],
+    "l1:lem:reduce": [
+      "l3:lem:P",
+      "l4:lem:Qonly",
+      "l2:lem:replace"
+    ],
+    "l1:lem:cubic": [],
+    "l1:lem:first": [
+      "l1:lem:cubic",
+      "l3:lem:P"
+    ],
+    "l1:lem:corecoset": [
+      "l3:lem:pl",
+      "l3:lem:B3a",
+      "l3:lem:B3b"
+    ],
+    "l1:lem:earlycore": [
+      "l1:lem:cubic",
+      "l4:lem:support",
+      "l2:lem:four"
+    ],
+    "l1:prop:corebranch": [
+      "l1:lem:corecoset"
+    ],
+    "l1:lem:ordinarypair": [
+      "l1:lem:corecoset",
+      "l3:lem:pl",
+      "l3:lem:B3a"
+    ],
+    "l1:lem:noncoremult": [
+      "l1:lem:ordinarypair"
+    ],
+    "l1:lem:noncore": [
+      "l1:lem:ordinarypair",
+      "l1:lem:noncoremult",
+      "l2:lem:ideal",
+      "l2:lem:rankext"
+    ],
+    "l1:thm:main": [
+      "l1:lem:reduce",
+      "l2:thm:main",
+      "l1:prop:corebranch",
+      "l1:lem:earlycore",
+      "l1:lem:noncore"
+    ]
+  },
+  "dependency_cycle": false,
+  "positive_controls_detected": 2,
+  "seconds": 0.013
+}

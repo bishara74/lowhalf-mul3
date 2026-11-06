@@ -1,0 +1,980 @@
+{
+  "audited_source": "../source.tex",
+  "source_sha256": "85ae161e1386c36e8ec63f81a6f6b08a6e47a7a66b07ffe407089a7a4ecd856b",
+  "scope": "Sections Three linear gates, Two linear gates, One linear gate",
+  "summary": {
+    "OK": 31,
+    "MINOR": 5,
+    "GAP": 0,
+    "FALSE": 0
+  },
+  "results": [
+    {
+      "number": 17,
+      "type": "theorem",
+      "name": "",
+      "label": "l3:thm:main",
+      "line": 321,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 18,
+      "type": "lemma",
+      "name": "Radical lemma",
+      "label": "l3:lem:rad",
+      "line": 336,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 19,
+      "type": "lemma",
+      "name": "Weights, Dickson",
+      "label": "l3:lem:wt",
+      "line": 344,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 20,
+      "type": "lemma",
+      "name": "Product lemma",
+      "label": "l3:lem:P",
+      "line": 352,
+      "classification": "MINOR",
+      "finding": "P1 uses a nonconstant affine l in exterior expressions without specifying its linear part."
+    },
+    {
+      "number": 21,
+      "type": "lemma",
+      "name": "A: $z_1$-placement",
+      "label": "l3:lem:A",
+      "line": 377,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 22,
+      "type": "lemma",
+      "name": "D1",
+      "label": "l3:lem:D1",
+      "line": 389,
+      "classification": "MINOR",
+      "finding": "The exterior projection is written with target Lambda(U*) although U was defined as a space of linear forms; use Lambda(U)."
+    },
+    {
+      "number": 23,
+      "type": "lemma",
+      "name": "C",
+      "label": "l3:lem:C",
+      "line": 421,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 24,
+      "type": "lemma",
+      "name": "Absorption",
+      "label": "l3:lem:abs",
+      "line": 437,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 25,
+      "type": "proposition",
+      "name": "B: last gate when $g_3$ places $z_1$",
+      "label": "l3:prop:B",
+      "line": 445,
+      "classification": "MINOR",
+      "finding": "State dim Q3=3 explicitly for the direct application of the four-dimensional theorem, or extend Q\u2032."
+    },
+    {
+      "number": 27,
+      "type": "lemma",
+      "name": "",
+      "label": "l3:lem:B3U",
+      "line": 465,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 28,
+      "type": "lemma",
+      "name": "Pl\\\"ucker duality",
+      "label": "l3:lem:pl",
+      "line": 475,
+      "classification": "MINOR",
+      "finding": "Producing [I2|M] needs invertible row reduction as well as a column permutation."
+    },
+    {
+      "number": 29,
+      "type": "lemma",
+      "name": "B3a",
+      "label": "l3:lem:B3a",
+      "line": 483,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 30,
+      "type": "lemma",
+      "name": "B3b",
+      "label": "l3:lem:B3b",
+      "line": 501,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 31,
+      "type": "proposition",
+      "name": "B3",
+      "label": "l3:prop:B3",
+      "line": 519,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 32,
+      "type": "theorem",
+      "name": "",
+      "label": "l2:thm:main",
+      "line": 537,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 33,
+      "type": "lemma",
+      "name": "Replacing a quadratic nonlinear gate",
+      "label": "l2:lem:replace",
+      "line": 542,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 34,
+      "type": "lemma",
+      "name": "The 32 symmetries",
+      "label": "l2:lem:sym",
+      "line": 552,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 35,
+      "type": "lemma",
+      "name": "Top degree",
+      "label": "l2:lem:degree",
+      "line": 564,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 36,
+      "type": "lemma",
+      "name": "Four multipliers",
+      "label": "l2:lem:four",
+      "line": 578,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 37,
+      "type": "lemma",
+      "name": "Last-factor rigidity",
+      "label": "l2:lem:lastfactor",
+      "line": 602,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 38,
+      "type": "lemma",
+      "name": "Two feedback placements cannot coexist",
+      "label": "l2:lem:two",
+      "line": 639,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 39,
+      "type": "proposition",
+      "name": "Rank-two reordering",
+      "label": "l2:prop:reorder",
+      "line": 653,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 40,
+      "type": "lemma",
+      "name": "Quadratic extraction modulo $I$",
+      "label": "l2:lem:ideal",
+      "line": 663,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 41,
+      "type": "lemma",
+      "name": "Rank and exterior obstructions",
+      "label": "l2:lem:rankext",
+      "line": 686,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 42,
+      "type": "lemma",
+      "name": "Inside-$U$ coset obstruction",
+      "label": "l2:lem:coset",
+      "line": 695,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 43,
+      "type": "proposition",
+      "name": "One higher-degree signal is insufficient",
+      "label": "l2:prop:onehigh",
+      "line": 704,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 44,
+      "type": "theorem",
+      "name": "",
+      "label": "l1:thm:main",
+      "line": 741,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 45,
+      "type": "lemma",
+      "name": "Quadratic first gate",
+      "label": "l1:lem:reduce",
+      "line": 746,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 46,
+      "type": "lemma",
+      "name": "Cubic first-gate normal form",
+      "label": "l1:lem:cubic",
+      "line": 754,
+      "classification": "MINOR",
+      "finding": "Handle dependent factor functions modulo constants before asserting the affine factor B is nonzero."
+    },
+    {
+      "number": 47,
+      "type": "lemma",
+      "name": "The first nonlinear gate places no remaining output",
+      "label": "l1:lem:first",
+      "line": 767,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 48,
+      "type": "lemma",
+      "name": "Coset obstruction with a core cubic signal",
+      "label": "l1:lem:corecoset",
+      "line": 777,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 49,
+      "type": "lemma",
+      "name": "Early $z_1$ forces a core cubic signal",
+      "label": "l1:lem:earlycore",
+      "line": 808,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 50,
+      "type": "proposition",
+      "name": "The core cubic branch",
+      "label": "l1:prop:corebranch",
+      "line": 823,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 51,
+      "type": "lemma",
+      "name": "Two ordinary products cannot place $z_2$",
+      "label": "l1:lem:ordinarypair",
+      "line": 833,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 52,
+      "type": "lemma",
+      "name": "Noncore multiplier rigidity modulo $I$",
+      "label": "l1:lem:noncoremult",
+      "line": 890,
+      "classification": "OK",
+      "finding": null
+    },
+    {
+      "number": 53,
+      "type": "lemma",
+      "name": "Noncore intermediate-space obstruction",
+      "label": "l1:lem:noncore",
+      "line": 926,
+      "classification": "OK",
+      "finding": null
+    }
+  ],
+  "checks": {
+    "algebra": {
+      "status": "pass",
+      "random_crosschecks": 10000,
+      "positive_control_detected": true,
+      "seconds": 2.202
+    },
+    "structure": {
+      "status": "pass",
+      "rank_tests": 2604,
+      "full_exterior_images": 616,
+      "D1_pairs": 189384,
+      "D1_omega_pairs": 2304,
+      "B3U_spaces": 11,
+      "Pluecker_matrices": 210,
+      "Pluecker_kernel_bases": 1260,
+      "first_planes": 2016,
+      "cubic_first_planes": 1920,
+      "quadratic_first_planes": 96,
+      "first_output_cosets": 1786,
+      "positive_controls_detected": true,
+      "column_permutation_proof_step_counterexample": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "seconds": 3.29
+    },
+    "quadratic_products": {
+      "status": "pass",
+      "Q_spaces": 606,
+      "all_factor_planes": 6533642,
+      "quadratic_products": 516522,
+      "quadratic_mod_I_products": 1910282,
+      "quartic_products": 2293760,
+      "arbitrary_quadratic_random_pairs": 1000000,
+      "radical_ordered_qualifying_pairs": 1249,
+      "product_qualifying_pairs": 49,
+      "positive_controls_detected": true,
+      "seconds": 24.521
+    },
+    "weights_and_product4": {
+      "status": "pass",
+      "weights": {
+        "4": {
+          "all_functions": 2048,
+          "minimum_nonzero_weight": 4,
+          "full_rank_weights": [
+            6,
+            10
+          ]
+        },
+        "6": {
+          "all_functions": 4194304,
+          "minimum_nonzero_weight": 16,
+          "full_rank_weights": [
+            28,
+            36
+          ]
+        }
+      },
+      "product_lemma_four_variable_domain": {
+        "planes": 174251,
+        "quadratic_products": 7560,
+        "P1": 840,
+        "P2": 3360,
+        "P3": 3360
+      },
+      "positive_controls_detected": true,
+      "seconds": 9.946
+    },
+    "multipliers": {
+      "status": "pass",
+      "families": {
+        "four_multipliers": {
+          "spaces": 581,
+          "all_k_tested": 297216,
+          "feasible_k": 2905,
+          "violations": []
+        },
+        "last_factor": {
+          "spaces": 580,
+          "all_k_tested": 593920,
+          "feasible_k": 1160,
+          "violations": []
+        },
+        "noncore_multiplier": {
+          "spaces": 1680,
+          "all_k_tested": 1720320,
+          "feasible_k": 3384,
+          "violations": []
+        }
+      },
+      "all_cubic_cosets": 1740,
+      "core_cubic_cosets": 60,
+      "noncore_cubic_cosets": 1680,
+      "positive_controls_detected": 3,
+      "seconds": 13.543
+    },
+    "ordinary_products": {
+      "status": "pass",
+      "verified_group_maps": 32,
+      "composition_tests": 1024,
+      "cubic_cosets": 1740,
+      "cubic_space_orbits": 197,
+      "orbit_weights_sum": 1740,
+      "ordinary_factor_planes": 8556695,
+      "nonzero_product_cosets_sum": 6754728,
+      "positive_controls_detected": 197,
+      "seconds": 12.647
+    },
+    "feedback_and_early": {
+      "status": "pass",
+      "arbitrary_function_exact_systems": 2320,
+      "g_functions_per_system": "2^64",
+      "cubic_first_spaces": 1740,
+      "next_factor_planes": 18783300,
+      "z1_placing_planes": 48,
+      "feedback_placing_planes": 0,
+      "positive_controls_detected": true,
+      "seconds": 21.774
+    },
+    "conditioned_products": {
+      "status": "pass",
+      "random_pairs_satisfying_hypotheses": 1000000,
+      "seed": 611271,
+      "pool_factor_planes": 7560,
+      "branch_counts": {
+        "P1": 111468,
+        "P2": 444697,
+        "P3": 443835
+      },
+      "ordered_radical_implications_tested": 562573,
+      "positive_controls_detected": true,
+      "limitation": "random embeddings of four-coordinate quadratic pairs, not all six-variable pairs",
+      "seconds": 43.213
+    },
+    "source_audit": {
+      "status": "pass",
+      "source_sha256": "85ae161e1386c36e8ec63f81a6f6b08a6e47a7a66b07ffe407089a7a4ecd856b",
+      "labels": 66,
+      "reference_occurrences": 221,
+      "missing_references": [],
+      "in_scope_results": [
+        {
+          "number": 17,
+          "type": "theorem",
+          "name": "",
+          "label": "l3:thm:main",
+          "line": 321,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 18,
+          "type": "lemma",
+          "name": "Radical lemma",
+          "label": "l3:lem:rad",
+          "line": 336,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 19,
+          "type": "lemma",
+          "name": "Weights, Dickson",
+          "label": "l3:lem:wt",
+          "line": 344,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 20,
+          "type": "lemma",
+          "name": "Product lemma",
+          "label": "l3:lem:P",
+          "line": 352,
+          "classification": "MINOR",
+          "finding": "P1 uses a nonconstant affine l in exterior expressions without specifying its linear part."
+        },
+        {
+          "number": 21,
+          "type": "lemma",
+          "name": "A: $z_1$-placement",
+          "label": "l3:lem:A",
+          "line": 377,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 22,
+          "type": "lemma",
+          "name": "D1",
+          "label": "l3:lem:D1",
+          "line": 389,
+          "classification": "MINOR",
+          "finding": "The exterior projection is written with target Lambda(U*) although U was defined as a space of linear forms; use Lambda(U)."
+        },
+        {
+          "number": 23,
+          "type": "lemma",
+          "name": "C",
+          "label": "l3:lem:C",
+          "line": 421,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 24,
+          "type": "lemma",
+          "name": "Absorption",
+          "label": "l3:lem:abs",
+          "line": 437,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 25,
+          "type": "proposition",
+          "name": "B: last gate when $g_3$ places $z_1$",
+          "label": "l3:prop:B",
+          "line": 445,
+          "classification": "MINOR",
+          "finding": "State dim Q3=3 explicitly for the direct application of the four-dimensional theorem, or extend Q\u2032."
+        },
+        {
+          "number": 27,
+          "type": "lemma",
+          "name": "",
+          "label": "l3:lem:B3U",
+          "line": 465,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 28,
+          "type": "lemma",
+          "name": "Pl\\\"ucker duality",
+          "label": "l3:lem:pl",
+          "line": 475,
+          "classification": "MINOR",
+          "finding": "Producing [I2|M] needs invertible row reduction as well as a column permutation."
+        },
+        {
+          "number": 29,
+          "type": "lemma",
+          "name": "B3a",
+          "label": "l3:lem:B3a",
+          "line": 483,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 30,
+          "type": "lemma",
+          "name": "B3b",
+          "label": "l3:lem:B3b",
+          "line": 501,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 31,
+          "type": "proposition",
+          "name": "B3",
+          "label": "l3:prop:B3",
+          "line": 519,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 32,
+          "type": "theorem",
+          "name": "",
+          "label": "l2:thm:main",
+          "line": 537,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 33,
+          "type": "lemma",
+          "name": "Replacing a quadratic nonlinear gate",
+          "label": "l2:lem:replace",
+          "line": 542,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 34,
+          "type": "lemma",
+          "name": "The 32 symmetries",
+          "label": "l2:lem:sym",
+          "line": 552,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 35,
+          "type": "lemma",
+          "name": "Top degree",
+          "label": "l2:lem:degree",
+          "line": 564,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 36,
+          "type": "lemma",
+          "name": "Four multipliers",
+          "label": "l2:lem:four",
+          "line": 578,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 37,
+          "type": "lemma",
+          "name": "Last-factor rigidity",
+          "label": "l2:lem:lastfactor",
+          "line": 602,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 38,
+          "type": "lemma",
+          "name": "Two feedback placements cannot coexist",
+          "label": "l2:lem:two",
+          "line": 639,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 39,
+          "type": "proposition",
+          "name": "Rank-two reordering",
+          "label": "l2:prop:reorder",
+          "line": 653,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 40,
+          "type": "lemma",
+          "name": "Quadratic extraction modulo $I$",
+          "label": "l2:lem:ideal",
+          "line": 663,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 41,
+          "type": "lemma",
+          "name": "Rank and exterior obstructions",
+          "label": "l2:lem:rankext",
+          "line": 686,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 42,
+          "type": "lemma",
+          "name": "Inside-$U$ coset obstruction",
+          "label": "l2:lem:coset",
+          "line": 695,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 43,
+          "type": "proposition",
+          "name": "One higher-degree signal is insufficient",
+          "label": "l2:prop:onehigh",
+          "line": 704,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 44,
+          "type": "theorem",
+          "name": "",
+          "label": "l1:thm:main",
+          "line": 741,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 45,
+          "type": "lemma",
+          "name": "Quadratic first gate",
+          "label": "l1:lem:reduce",
+          "line": 746,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 46,
+          "type": "lemma",
+          "name": "Cubic first-gate normal form",
+          "label": "l1:lem:cubic",
+          "line": 754,
+          "classification": "MINOR",
+          "finding": "Handle dependent factor functions modulo constants before asserting the affine factor B is nonzero."
+        },
+        {
+          "number": 47,
+          "type": "lemma",
+          "name": "The first nonlinear gate places no remaining output",
+          "label": "l1:lem:first",
+          "line": 767,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 48,
+          "type": "lemma",
+          "name": "Coset obstruction with a core cubic signal",
+          "label": "l1:lem:corecoset",
+          "line": 777,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 49,
+          "type": "lemma",
+          "name": "Early $z_1$ forces a core cubic signal",
+          "label": "l1:lem:earlycore",
+          "line": 808,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 50,
+          "type": "proposition",
+          "name": "The core cubic branch",
+          "label": "l1:prop:corebranch",
+          "line": 823,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 51,
+          "type": "lemma",
+          "name": "Two ordinary products cannot place $z_2$",
+          "label": "l1:lem:ordinarypair",
+          "line": 833,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 52,
+          "type": "lemma",
+          "name": "Noncore multiplier rigidity modulo $I$",
+          "label": "l1:lem:noncoremult",
+          "line": 890,
+          "classification": "OK",
+          "finding": null
+        },
+        {
+          "number": 53,
+          "type": "lemma",
+          "name": "Noncore intermediate-space obstruction",
+          "label": "l1:lem:noncore",
+          "line": 926,
+          "classification": "OK",
+          "finding": null
+        }
+      ],
+      "proof_dependencies": {
+        "l3:lem:rad": [],
+        "l3:lem:wt": [],
+        "l3:lem:P": [
+          "l3:lem:rad",
+          "l3:lem:wt"
+        ],
+        "l3:lem:A": [
+          "l3:lem:P"
+        ],
+        "l3:lem:D1": [
+          "l4:lem:types"
+        ],
+        "l3:lem:C": [
+          "l3:lem:deriv",
+          "l4:thm:main",
+          "l4:lem:planeU",
+          "l4:lem:noq2",
+          "l3:lem:D1"
+        ],
+        "l3:lem:abs": [],
+        "l3:prop:B": [
+          "l3:lem:A",
+          "l3:lem:abs",
+          "l3:thm:L4",
+          "l4:prop:B"
+        ],
+        "l3:lem:B3U": [
+          "l4:lem:support"
+        ],
+        "l3:lem:pl": [],
+        "l3:lem:B3a": [
+          "l3:lem:pl"
+        ],
+        "l3:lem:B3b": [
+          "l3:lem:B3a"
+        ],
+        "l3:prop:B3": [
+          "l3:lem:B3U",
+          "l3:lem:C",
+          "l3:lem:B3a",
+          "l3:lem:B3b"
+        ],
+        "l3:thm:main": [
+          "l3:lem:C",
+          "l3:prop:B3",
+          "l3:prop:B"
+        ],
+        "l2:lem:replace": [
+          "l3:lem:P",
+          "l4:lem:Qonly"
+        ],
+        "l2:lem:sym": [],
+        "l2:lem:degree": [],
+        "l2:lem:four": [
+          "l3:lem:P",
+          "l3:lem:rad",
+          "l3:lem:wt",
+          "l4:lem:support"
+        ],
+        "l2:lem:lastfactor": [
+          "l4:lem:types",
+          "l4:lem:support"
+        ],
+        "l2:lem:two": [],
+        "l2:prop:reorder": [
+          "l3:thm:main"
+        ],
+        "l2:lem:ideal": [],
+        "l2:lem:rankext": [],
+        "l2:lem:coset": [
+          "l3:lem:B3a",
+          "l3:lem:B3b"
+        ],
+        "l2:prop:onehigh": [
+          "l2:lem:coset",
+          "l2:lem:rankext",
+          "l2:lem:degree",
+          "l2:lem:lastfactor",
+          "l2:lem:ideal"
+        ],
+        "l2:thm:main": [
+          "l2:lem:replace",
+          "l3:thm:main",
+          "l2:prop:onehigh"
+        ],
+        "l1:lem:reduce": [
+          "l3:lem:P",
+          "l4:lem:Qonly",
+          "l2:lem:replace"
+        ],
+        "l1:lem:cubic": [],
+        "l1:lem:first": [
+          "l1:lem:cubic",
+          "l3:lem:P"
+        ],
+        "l1:lem:corecoset": [
+          "l3:lem:pl",
+          "l3:lem:B3a",
+          "l3:lem:B3b"
+        ],
+        "l1:lem:earlycore": [
+          "l1:lem:cubic",
+          "l4:lem:support",
+          "l2:lem:four"
+        ],
+        "l1:prop:corebranch": [
+          "l1:lem:corecoset"
+        ],
+        "l1:lem:ordinarypair": [
+          "l1:lem:corecoset",
+          "l3:lem:pl",
+          "l3:lem:B3a"
+        ],
+        "l1:lem:noncoremult": [
+          "l1:lem:ordinarypair"
+        ],
+        "l1:lem:noncore": [
+          "l1:lem:ordinarypair",
+          "l1:lem:noncoremult",
+          "l2:lem:ideal",
+          "l2:lem:rankext"
+        ],
+        "l1:thm:main": [
+          "l1:lem:reduce",
+          "l2:thm:main",
+          "l1:prop:corebranch",
+          "l1:lem:earlycore",
+          "l1:lem:noncore"
+        ]
+      },
+      "dependency_cycle": false,
+      "positive_controls_detected": 2,
+      "seconds": 0.013
+    }
+  },
+  "whole_paper_logic": {
+    "normal_form": "OK by reading",
+    "lambda_5_to_1_exhaustive": "OK by reading",
+    "circular_dependency_found": false,
+    "lambda_4": "Assumed as requested; later hypotheses checked"
+  },
+  "method_limits": [
+    "Not a formal proof checker.",
+    "The general six-variable quadratic product lemma was read; random tests supplement that proof, not replace it.",
+    "No independent full five-gate circuit search was performed.",
+    "Existing workspace proofs, reports, and scripts were not read or reused."
+  ],
+  "script_sha256": {
+    "algebra.py": "9d7c24b51e9fd61895b8325c9cf6f5bc86863c7eb27f6a578635085c1901d7ab",
+    "conditioned_products.py": "b41dcabb44c945b2e2fbddcce13fb8d5739cdc9c92a8c30b8c250b19e8a2f081",
+    "feedback_and_early.py": "938512840e3e68b2eb97f197e0f4b4a00f4d1549d9e3467af8b74653e7d3ec8e",
+    "multipliers.py": "a335d72b333149a353d8ec56edb465332a246ecdb2adab6b6a4121bab4df59c6",
+    "ordinary_products.py": "fc47e92984abb4ff8d83ef917936b992b93d135fa493d26058255477ab9cb9af",
+    "quadratic_products.py": "807d1ee6e500473466bfb3f4293c82bae1d4da4d706a0a908f80acfed8e54bb9",
+    "run_all.py": "a8949fa6eca8c560f9f9ff0bce6e757a2eb2b3c349b4f5032c717bdb7f103258",
+    "source_audit.py": "40dfb9fcb88fb9613e79a591514cfaa5e217a40a3cf946de173f8b816b6f5523",
+    "structure.py": "c3cf41b7d8db92e7f5680227f18293163dfe56ee6642036c346377b844937b68",
+    "weights_and_product4.py": "2427619a5300fd2ba99f3f201628086d38d20de532aca3bba53c7d3182d6770f"
+  },
+  "collector_positive_controls_detected": 2
+}

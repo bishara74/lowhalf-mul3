@@ -1,0 +1,43 @@
+{
+  "domain": "48 points satisfying a0*b0=0; carry vanishes here",
+  "coordinate_order": [
+    "1",
+    "a0",
+    "a1",
+    "a2",
+    "b0",
+    "b1",
+    "b2",
+    "t0",
+    "t1",
+    "t2",
+    "t3"
+  ],
+  "gates": [
+    {
+      "L_coefficients": 8,
+      "R_coefficients": 16,
+      "output_tt": 5764695485306654720
+    },
+    {
+      "L_coefficients": 228,
+      "R_coefficients": 2,
+      "output_tt": 38280742863765640
+    },
+    {
+      "L_coefficients": 7,
+      "R_coefficients": 35,
+      "output_tt": 38299361553682705
+    },
+    {
+      "L_coefficients": 55,
+      "R_coefficients": 50,
+      "output_tt": 19215649327039624
+    }
+  ],
+  "outputs": {
+    "z1": 1575,
+    "q2": 935
+  },
+  "domain_tt": 6196766167432910335
+}

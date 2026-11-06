@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "verified_group_maps": 32,
+  "composition_tests": 1024,
+  "cubic_cosets": 1740,
+  "cubic_space_orbits": 197,
+  "orbit_weights_sum": 1740,
+  "ordinary_factor_planes": 8556695,
+  "nonzero_product_cosets_sum": 6754728,
+  "positive_controls_detected": 197,
+  "seconds": 12.647
+}

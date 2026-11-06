@@ -1,0 +1,1 @@
+{"two_feedback": {"Q_representatives": 67, "exact_linear_systems": 268, "g_domain": "all 2^64 Boolean functions, covered exactly by linear elimination", "positive_controls_detected": 4, "seconds": 0.362, "status": "PASS", "weighted_systems": 2320}}

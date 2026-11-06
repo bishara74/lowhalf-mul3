@@ -1,0 +1,1 @@
+{"quotient_witness": {"gates": 4, "input_points": 48, "meaning": "independent simulation verifies the quotient-only shortcut has a relaxed counterexample", "positive_controls_detected": 1, "seconds": 0.138, "status": "PASS"}}

@@ -1,0 +1,1150 @@
+[
+  {
+    "orbit": 8,
+    "g1": 2112,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 9,
+    "g1": 2144,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 16,
+    "g1": 6208,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 17,
+    "g1": 6240,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 18,
+    "g1": 8192,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 19,
+    "g1": 8224,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 20,
+    "g1": 8256,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 21,
+    "g1": 8288,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 22,
+    "g1": 10240,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 23,
+    "g1": 10280,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 24,
+    "g1": 10304,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 25,
+    "g1": 10336,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 26,
+    "g1": 12288,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 27,
+    "g1": 12320,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 28,
+    "g1": 12352,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 29,
+    "g1": 12384,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 30,
+    "g1": 14400,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 31,
+    "g1": 14432,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 32,
+    "g1": 15360,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 33,
+    "g1": 15400,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 39,
+    "g1": 264256,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 44,
+    "g1": 395360,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 47,
+    "g1": 1056768,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 48,
+    "g1": 1056800,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 49,
+    "g1": 1056832,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 50,
+    "g1": 1056864,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 51,
+    "g1": 1060864,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 52,
+    "g1": 1060896,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 53,
+    "g1": 1060928,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 54,
+    "g1": 1060960,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 55,
+    "g1": 1320960,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 56,
+    "g1": 1321000,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 57,
+    "g1": 1321024,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 58,
+    "g1": 1321064,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 59,
+    "g1": 1326080,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 60,
+    "g1": 1326120,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 61,
+    "g1": 1326144,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 62,
+    "g1": 1326184,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 72,
+    "g1": 17045568,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 77,
+    "g1": 17176672,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 79,
+    "g1": 33562624,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 80,
+    "g1": 33564672,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 82,
+    "g1": 33693728,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 83,
+    "g1": 33695784,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 88,
+    "g1": 33824832,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 89,
+    "g1": 33826880,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 93,
+    "g1": 33955936,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 94,
+    "g1": 33957984,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 95,
+    "g1": 34603008,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 96,
+    "g1": 34603040,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 97,
+    "g1": 34605120,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 98,
+    "g1": 34605152,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 99,
+    "g1": 34607104,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 100,
+    "g1": 34607136,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 101,
+    "g1": 34609216,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 102,
+    "g1": 34609248,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 103,
+    "g1": 34611200,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 104,
+    "g1": 34611232,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 105,
+    "g1": 34613312,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 106,
+    "g1": 34613344,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 107,
+    "g1": 34615296,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 108,
+    "g1": 34615328,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 109,
+    "g1": 34617408,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 110,
+    "g1": 34617440,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 111,
+    "g1": 34865152,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 112,
+    "g1": 34865192,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 113,
+    "g1": 34867264,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 114,
+    "g1": 34867304,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 115,
+    "g1": 34870272,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 116,
+    "g1": 34870312,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 117,
+    "g1": 34872384,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 118,
+    "g1": 34872424,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 119,
+    "g1": 34873408,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 120,
+    "g1": 34873448,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 121,
+    "g1": 34875392,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 122,
+    "g1": 34875432,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 123,
+    "g1": 34878528,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 124,
+    "g1": 34878568,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 125,
+    "g1": 34880512,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 126,
+    "g1": 34880552,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 127,
+    "g1": 50343936,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 128,
+    "g1": 50347008,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 130,
+    "g1": 50475040,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 131,
+    "g1": 50478120,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 134,
+    "g1": 50606144,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 135,
+    "g1": 50608192,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 137,
+    "g1": 50737248,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 138,
+    "g1": 50739296,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 143,
+    "g1": 17179871296,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 144,
+    "g1": 17180133440,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 145,
+    "g1": 25769805920,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 146,
+    "g1": 25770199136,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 147,
+    "g1": 68719484928,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 148,
+    "g1": 68719484992,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 149,
+    "g1": 68720533504,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 150,
+    "g1": 68720533568,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 151,
+    "g1": 85899356160,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 152,
+    "g1": 85899356224,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 153,
+    "g1": 85900666880,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 154,
+    "g1": 85900666944,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 158,
+    "g1": 1116691503168,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 159,
+    "g1": 1116708542528,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 160,
+    "g1": 1125281437792,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 161,
+    "g1": 1125298608224,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 162,
+    "g1": 2199023263744,
+    "plane_weight": 4,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 163,
+    "g1": 2199023265792,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 164,
+    "g1": 2199056820224,
+    "plane_weight": 4,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 165,
+    "g1": 2207613198368,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 166,
+    "g1": 2207613200424,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 167,
+    "g1": 2207646883872,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 168,
+    "g1": 2207646885928,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 169,
+    "g1": 2216203132992,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 170,
+    "g1": 2216203135040,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 171,
+    "g1": 2216236949568,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 172,
+    "g1": 2216236951616,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 173,
+    "g1": 2224793067616,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 174,
+    "g1": 2224793069664,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 175,
+    "g1": 2224827015264,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 176,
+    "g1": 2224827017312,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 177,
+    "g1": 2267742734400,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 178,
+    "g1": 2267742740480,
+    "plane_weight": 16,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 179,
+    "g1": 2267742742592,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 180,
+    "g1": 2267777337408,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 181,
+    "g1": 2267777343488,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 182,
+    "g1": 2267777345600,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 183,
+    "g1": 2284922603584,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 184,
+    "g1": 2284922609728,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 185,
+    "g1": 2284957468736,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 186,
+    "g1": 2284957474880,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 187,
+    "g1": 2284957476864,
+    "plane_weight": 16,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 188,
+    "g1": 3307124830240,
+    "plane_weight": 4,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 189,
+    "g1": 3307124833320,
+    "plane_weight": 8,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 190,
+    "g1": 3307175296040,
+    "plane_weight": 4,
+    "g2_cosets": 7361,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 191,
+    "g1": 3315714764864,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 192,
+    "g1": 3315714766912,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 193,
+    "g1": 3315765358656,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 194,
+    "g1": 3315765360704,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 195,
+    "g1": 3324304699488,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 196,
+    "g1": 3324304701536,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 197,
+    "g1": 3324355424352,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 198,
+    "g1": 3324355426400,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 199,
+    "g1": 281492191184960,
+    "plane_weight": 4,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 200,
+    "g1": 281492191447104,
+    "plane_weight": 4,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 201,
+    "g1": 281500781119584,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 202,
+    "g1": 281500781381736,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 203,
+    "g1": 281543730012224,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 204,
+    "g1": 281543731060800,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 205,
+    "g1": 281560909883456,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 206,
+    "g1": 281560910669888,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 207,
+    "g1": 282600292751456,
+    "plane_weight": 4,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 208,
+    "g1": 282600293014632,
+    "plane_weight": 4,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 209,
+    "g1": 283691180892224,
+    "plane_weight": 4,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 210,
+    "g1": 283691181156416,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 211,
+    "g1": 283691214448704,
+    "plane_weight": 4,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 212,
+    "g1": 283699770826848,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 213,
+    "g1": 283699771091048,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 214,
+    "g1": 283699804383328,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 215,
+    "g1": 283699804643432,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 216,
+    "g1": 283742720763968,
+    "plane_weight": 32,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 217,
+    "g1": 283742753269824,
+    "plane_weight": 16,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 218,
+    "g1": 283759900368960,
+    "plane_weight": 16,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 219,
+    "g1": 284799282458720,
+    "plane_weight": 4,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 220,
+    "g1": 284799282723944,
+    "plane_weight": 8,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  },
+  {
+    "orbit": 221,
+    "g1": 284799316015200,
+    "plane_weight": 4,
+    "g2_cosets": 8948,
+    "g2_planes": 10144
+  }
+]
