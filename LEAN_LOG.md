@@ -1016,3 +1016,18 @@ control: target `a₀b₂ + a₁b₁` is solvable for 204 of 12,288 `F`.
 `lake build` green (1743 jobs). The audit lists 171 theorems, all
 `[propext, Classical.choice, Quot.sound]`; no sorry, `native_decide`,
 `ofReduceBool` or `decide +kernel`.
+
+### Step 2a – full classical check of `BadClaim` (no Lean changes)
+
+`verification/lean-support/check_badclaim.py` (+ `_results.json`, `.log`,
+`README.md`): exhaustive over all 164596 spans
+`⟨P₀, w₁, w₂⟩` (dims 1/2/3: 1/605/163,990); 26928 lack
+`GoodDir` (all dim 3, none contains `Z₁`). For each, every `f ∈ V(Q₃)` mod
+constants (511) is tested exactly (`T ∈ fV + V`) for `T = z₁, z₂, z₂+z₁`:
+**0 placements**. Positive controls: `a₀b₁` placeable in all bad spans; on 2000
+good dim-3 spans `z₁` placeable in 208, `z₂`/`z₂+z₁` in none. Runtime 333 s
+(7 worker processes; the sandbox forbids `multiprocessing` pipes, so workers are
+independent subprocesses writing shard files).
+Count reconciliation: our 164,596 (degenerate spans included) agrees with
+`verification/README.md`; the reviewer's 164,639 could not be reproduced (script not
+in the repo); 26,928 agrees.

@@ -1,0 +1,37 @@
+spans 164596 dims {3: 163990, 2: 605, 1: 1}  bad 26928 bad_dims {3: 26928}  bad containing Z1 0  (35.2s)
+placement checks done (332.8s)
+{
+  "statement": "BadClaim: no f,h in V(Q3) with f*h + T in V(Q3), T in {z1, z2, z2+z1}, for every Q3 = span{P0, w1, w2} (w_i of rank <= 2) without GoodDir",
+  "wedges_rank_le_2": 652,
+  "distinct_spans_P0_w1_w2": 164596,
+  "spans_by_dimension": {
+    "1": 1,
+    "2": 605,
+    "3": 163990
+  },
+  "distinct_spans_w1_w2_without_P0": 192697,
+  "spans_without_GoodDir": 26928,
+  "spans_without_GoodDir_by_dimension": {
+    "3": 26928
+  },
+  "spans_without_GoodDir_containing_Z1": 0,
+  "f_representatives_per_dim3_space": 511,
+  "bad_spaces_with_placement": {
+    "z1": 0,
+    "z2": 0,
+    "z2+z1": 0,
+    "control a0*b1": 26928
+  },
+  "bad_spaces_examples_with_placement": [],
+  "control_good_sample_size": 2000,
+  "control_good_spaces_with_placement": {
+    "z1": 208,
+    "z2": 0,
+    "z2+z1": 0,
+    "control a0*b1": 2000
+  },
+  "shards": 7,
+  "seconds": 332.9,
+  "python": "3.11.16"
+}
+RESULT: PASS
