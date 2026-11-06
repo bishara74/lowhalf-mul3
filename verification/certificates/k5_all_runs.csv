@@ -1,0 +1,51 @@
+variant,lam,solver,status,seconds,vars,clauses,log
+N,1,cadical153,UNSAT,38.6,8056,29379,xcheck_solvers.jsonl
+N,1,glucose4,UNSAT,134.7,8056,29379,xcheck_glucose_proofs.jsonl
+N,1,glucose42,UNSAT,84.6,8056,29379,xcheck_solvers.jsonl
+N,1,maplechrono,UNSAT,182.7,8056,29379,xcheck_solvers.jsonl
+N,1,mergesat3,UNSAT,442.8,8056,29379,xcheck_solvers.jsonl
+N,1,minisat22,UNSAT,173.5,8056,29379,xcheck_solvers.jsonl
+N,2,cadical153,UNSAT,27.6,8024,29255,xcheck_solvers.jsonl
+N,2,glucose4,UNSAT,177.0,8024,29255,xcheck_glucose_proofs.jsonl
+N,2,glucose42,UNSAT,119.3,8024,29255,xcheck_solvers.jsonl
+N,2,maplechrono,UNSAT,168.4,8024,29255,xcheck_solvers.jsonl
+N,2,mergesat3,UNSAT,373.7,8024,29255,xcheck_solvers.jsonl
+N,2,minisat22,UNSAT,130.6,8024,29255,xcheck_solvers.jsonl
+N,3,cadical153,UNSAT,21.5,8019,29239,xcheck_solvers.jsonl
+N,3,glucose4,UNSAT,152.9,8019,29239,xcheck_glucose_proofs.jsonl
+N,3,glucose42,UNSAT,103.7,8019,29239,xcheck_solvers.jsonl
+N,3,maplechrono,UNSAT,197.3,8019,29239,xcheck_solvers.jsonl
+N,3,mergesat3,UNSAT,302.2,8019,29239,xcheck_solvers.jsonl
+N,3,minisat22,UNSAT,156.5,8019,29239,xcheck_solvers.jsonl
+N,4,cadical153,UNSAT,6.3,8014,29225,xcheck_solvers.jsonl
+N,4,glucose4,UNSAT,11.6,8014,29225,xcheck_glucose_proofs.jsonl
+N,4,glucose42,UNSAT,38.2,8014,29225,xcheck_solvers.jsonl
+N,4,maplechrono,UNSAT,44.3,8014,29225,xcheck_solvers.jsonl
+N,4,mergesat3,UNSAT,78.5,8014,29225,xcheck_solvers.jsonl
+N,4,minisat22,UNSAT,8.6,8014,29225,xcheck_solvers.jsonl
+N,5,cadical153,UNSAT,1.1,8053,29386,xcheck_solvers.jsonl
+N,5,glucose4,UNSAT,1.8,8053,29386,xcheck_glucose_proofs.jsonl
+N,5,glucose42,UNSAT,1.5,8053,29386,xcheck_solvers.jsonl
+N,5,maplechrono,UNSAT,21.3,8053,29386,xcheck_solvers.jsonl
+N,5,mergesat3,UNSAT,2.5,8053,29386,xcheck_solvers.jsonl
+N,5,minisat22,UNSAT,0.9,8053,29386,xcheck_solvers.jsonl
+N (run_cases),1,cadical195,UNSAT,18.5,8056,29379,cases/k5_lam1.result.json
+N (run_cases),2,cadical195,UNSAT,21.0,8024,29255,cases/k5_lam2.result.json
+N (run_cases),3,cadical195,UNSAT,10.0,8019,29239,cases/k5_lam3.result.json
+N (run_cases),4,cadical195,UNSAT,2.5,8014,29225,cases/k5_lam4.result.json
+N (run_cases),5,cadical195,UNSAT,0.9,8053,29386,cases/k5_lam5.result.json
+N_nocuts,1,cadical195,UNSAT,28.5,8011,29179,xcheck_variants_a.jsonl
+N_nocuts,2,cadical195,UNSAT,58.5,7979,29055,xcheck_variants_a.jsonl
+N_nocuts,3,cadical195,UNSAT,19.8,7974,29039,xcheck_variants_a.jsonl
+N_nocuts,4,cadical195,UNSAT,7.8,7969,29025,xcheck_variants_a.jsonl
+N_nocuts,5,cadical195,UNSAT,1.5,8008,29186,xcheck_variants_a.jsonl
+N_nofix,1,cadical195,UNSAT,1965.1,8131,29665,xcheck_variants_nofix.jsonl
+N_nofix,2,cadical195,UNSAT,681.8,8126,29647,xcheck_variants_nofix.jsonl
+N_nofix,3,cadical195,UNSAT,172.7,8121,29631,xcheck_variants_nofix.jsonl
+N_nofix,4,cadical195,UNSAT,13.9,8116,29617,xcheck_variants_nofix.jsonl
+N_nofix,5,cadical195,UNSAT,1.7,8155,29778,xcheck_variants_nofix.jsonl
+N_nosigma,1,cadical195,UNSAT,38.9,7833,28489,xcheck_variants_a.jsonl
+N_nosigma,2,cadical195,UNSAT,70.4,7801,28365,xcheck_variants_a.jsonl
+N_nosigma,3,cadical195,UNSAT,26.3,7796,28349,xcheck_variants_a.jsonl
+N_nosigma,4,cadical195,UNSAT,8.5,7791,28335,xcheck_variants_a.jsonl
+N_nosigma,5,cadical195,UNSAT,1.4,7830,28496,xcheck_variants_a.jsonl

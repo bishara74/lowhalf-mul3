@@ -1,0 +1,140 @@
+{
+ "package": "mc3mod8_certificate_small.tar.zst",
+ "package_sha256": "72edad8e2072270b13a5fa659c20f80e1eb49cbf6847fbabf8a964ce164f2edd",
+ "package_bytes": 1933444,
+ "source": "user attachment, artifact version e44421f5-7af2-464d-b329-dbac3652a625 (supervisor package; advisor re-check reported by the user)",
+ "n_files": 23,
+ "files": [
+  {
+   "file": "mc3mod8_certificate/README.md",
+   "bytes": 6179,
+   "sha256": "b95f4af235b4296f3ec633f2cc3d566d982754cdb4d5a54db54e55bbdff42bd9"
+  },
+  {
+   "file": "mc3mod8_certificate/audit_structure.py",
+   "bytes": 2108,
+   "sha256": "c80101b919d6518226883bd83262a7098a5852012174b71eab1aa72b1da4b9fc"
+  },
+  {
+   "file": "mc3mod8_certificate/check_all.log",
+   "bytes": 8947,
+   "sha256": "119243c09d6290ee52809956a418bb0540cfc165b4560a002cdd9ae6f4b19693"
+  },
+  {
+   "file": "mc3mod8_certificate/check_all.sh",
+   "bytes": 2128,
+   "sha256": "f43728fbf2953516093703ae3a99f8a3b3ea20402239986925b532b33aef4318"
+  },
+  {
+   "file": "mc3mod8_certificate/cubes.txt",
+   "bytes": 3687,
+   "sha256": "69a771ddc65c9965f754a83724b89e81ce3bb61fd494aa1b43518e211021bd24"
+  },
+  {
+   "file": "mc3mod8_certificate/generation_log.tsv",
+   "bytes": 159113,
+   "sha256": "40696e7ed8fe52d54094656a3bbd3637de1b4e253dc8fedffeaa9baab26045fc"
+  },
+  {
+   "file": "mc3mod8_certificate/manifest.tsv",
+   "bytes": 126995,
+   "sha256": "5b779a9530f6999bb024a2df214cd3d20df444ed0a379b7d3333df4b09d9bd5e"
+  },
+  {
+   "file": "mc3mod8_certificate/mc_encode.py",
+   "bytes": 6109,
+   "sha256": "a4da06411204d03d3154fc57c0ff5de3eb04f535e9fb05d01278ea197560736f"
+  },
+  {
+   "file": "mc3mod8_certificate/original_mcS2.py",
+   "bytes": 3770,
+   "sha256": "10a18c93a2d2d5a400253cb698069bca96f3e297220e7dfc18679adbabe30df9"
+  },
+  {
+   "file": "mc3mod8_certificate/run_job.sh",
+   "bytes": 1921,
+   "sha256": "2bc6be7cfab4e794c74de8ebec6ae66faf354df7f75ed259316cec1d2161892d"
+  },
+  {
+   "file": "mc3mod8_certificate/sanity_k6.py",
+   "bytes": 2041,
+   "sha256": "e2f94b0a2e2b050bc9f64dba58c47be8fa0a62fbb3983c6b12f4415d8b6b021c"
+  },
+  {
+   "file": "mc3mod8_certificate/cnf/cover5.cnf.zst",
+   "bytes": 1768,
+   "sha256": "17885e852891a6312e61d0d1697eda48dbae9b7122eb653f6248b0bf3f9a6af9"
+  },
+  {
+   "file": "mc3mod8_certificate/cnf/k0.cnf.zst",
+   "bytes": 6330,
+   "sha256": "634b0e4ef5aef407942813bdbab4cd1ceb23bfd9748cd384837c62c22fef56b2"
+  },
+  {
+   "file": "mc3mod8_certificate/cnf/k1.cnf.zst",
+   "bytes": 17737,
+   "sha256": "43cde0988edc6d857b0d79ee2edee4b0262aa4b64c9875c495b8bc77da564db3"
+  },
+  {
+   "file": "mc3mod8_certificate/cnf/k2.cnf.zst",
+   "bytes": 31801,
+   "sha256": "2c3370098f6434181b158b0edd916cf813ac948f833ce8e1e6f1ef9469c3d2ff"
+  },
+  {
+   "file": "mc3mod8_certificate/cnf/k3.cnf.zst",
+   "bytes": 48584,
+   "sha256": "37e6075afbd42a70ac5a408679524c0a0770ec7cba113c34aec86dc95605e1d5"
+  },
+  {
+   "file": "mc3mod8_certificate/cnf/k4.cnf.zst",
+   "bytes": 68296,
+   "sha256": "d459b2d4aaac53929567690b34e1511e5d0b2270331138b4d72b1f9ea7163214"
+  },
+  {
+   "file": "mc3mod8_certificate/proofs/cover5.lrat.zst",
+   "bytes": 10266,
+   "sha256": "4078579491abcbfcff548fea24c99942cc561fec22c03c0a70d61b2c97e5d655"
+  },
+  {
+   "file": "mc3mod8_certificate/proofs/k0.lrat.zst",
+   "bytes": 2567,
+   "sha256": "1edc5a3209c100c3ae565a35f64a5e02b4f1cf8e3401ba43d9d12b1e5afb1f30"
+  },
+  {
+   "file": "mc3mod8_certificate/proofs/k1.lrat.zst",
+   "bytes": 5077,
+   "sha256": "6d1ea50b77691165f5bdf17ef5d266a7d5c2cc5e1d1b68666f6741a9bcc1fc5b"
+  },
+  {
+   "file": "mc3mod8_certificate/proofs/k2.lrat.zst",
+   "bytes": 13571,
+   "sha256": "6d3ed684adb130f7909967b5ccd51b4abb5fa7e99e85f16fed7bfad0ff46ca90"
+  },
+  {
+   "file": "mc3mod8_certificate/proofs/k3.lrat.zst",
+   "bytes": 176150,
+   "sha256": "516786a9c00fc952e142c5f8de1e403c02f544f7b08088607d08ffb93f617841"
+  },
+  {
+   "file": "mc3mod8_certificate/proofs/k4.lrat.zst",
+   "bytes": 1489525,
+   "sha256": "5b2fcc5fda2eb5172c5870d1369a87cec43a22b29891347db4d69fbf8dfc8702"
+  }
+ ],
+ "check_all_log": {
+  "lines": 657,
+  "OK_lines": 657,
+  "non_OK_lines": 0,
+  "distinct_OK_names": 657,
+  "k5_cube_OK": 651,
+  "other_OK": [
+   "k0",
+   "cover5",
+   "k1",
+   "k2",
+   "k3",
+   "k4"
+  ]
+ },
+ "not_rechecked_by_this_session": "no proof in the package was re-checked here (no lrat-check/cake_lpr binary on this machine); only hashes recorded, the log counted, and README read"
+}

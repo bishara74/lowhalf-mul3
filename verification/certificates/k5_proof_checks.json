@@ -1,0 +1,98 @@
+[
+ {
+  "variant": "N",
+  "lam": 1,
+  "checker": "rup_check_fast (numba)",
+  "ok": true,
+  "lemmas": 422037,
+  "check_s": 329.2
+ },
+ {
+  "variant": "N",
+  "lam": 2,
+  "checker": "rup_check_fast (numba)",
+  "ok": true,
+  "lemmas": 462474,
+  "check_s": 1700.4
+ },
+ {
+  "variant": "N",
+  "lam": 3,
+  "checker": "rup_check_fast (numba)",
+  "ok": true,
+  "lemmas": 467377,
+  "check_s": 837.0
+ },
+ {
+  "variant": "N",
+  "lam": 4,
+  "checker": "rup_check (pure Python)",
+  "ok": true,
+  "lemmas": 83127,
+  "check_s": 1553.9
+ },
+ {
+  "variant": "N",
+  "lam": 4,
+  "checker": "rup_check_fast (numba)",
+  "ok": true,
+  "lemmas": 83127,
+  "check_s": 51.5
+ },
+ {
+  "variant": "N",
+  "lam": 5,
+  "checker": "rup_check (pure Python)",
+  "ok": true,
+  "lemmas": 10731,
+  "check_s": 147.2
+ },
+ {
+  "variant": "N",
+  "lam": 5,
+  "checker": "rup_check_fast (numba)",
+  "ok": true,
+  "lemmas": 10731,
+  "check_s": 2.5
+ },
+ {
+  "variant": "N_nocuts",
+  "lam": 1,
+  "checker": "rup_check_fast (numba)",
+  "ok": true,
+  "lemmas": 479352,
+  "check_s": 1118.8
+ },
+ {
+  "variant": "N_nocuts",
+  "lam": 2,
+  "checker": "rup_check_fast (numba)",
+  "ok": true,
+  "lemmas": 615612,
+  "check_s": 2003.9
+ },
+ {
+  "variant": "N_nocuts",
+  "lam": 3,
+  "checker": "rup_check_fast (numba)",
+  "ok": true,
+  "lemmas": 373780,
+  "check_s": 1686.3
+ },
+ {
+  "variant": "N_nocuts",
+  "lam": 4,
+  "checker": "rup_check_fast (numba)",
+  "ok": true,
+  "lemmas": 73271,
+  "check_s": 42.6
+ },
+ {
+  "variant": "N_nocuts",
+  "lam": 5,
+  "checker": "rup_check_fast (numba)",
+  "ok": true,
+  "lemmas": 5268,
+  "check_s": 19.2
+ }
+]

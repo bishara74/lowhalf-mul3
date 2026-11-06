@@ -1,0 +1,120 @@
+{
+ "lemmaA_C": {
+  "n_spaces": 164596,
+  "classes": {
+   "dim1|Z1in=False|minrank=4|pred=False|placed=False": 1,
+   "dim3|Z1in=False|minrank=2|pred=True|placed=True": 4749,
+   "dim3|Z1in=False|minrank=4|pred=False|placed=False": 148782,
+   "dim2|Z1in=False|minrank=4|pred=False|placed=False": 583,
+   "dim3|Z1in=False|minrank=2|pred=False|placed=False": 10448,
+   "dim3|Z1in=True|minrank=0|pred=True|placed=True": 11,
+   "dim2|Z1in=False|minrank=2|pred=False|placed=False": 16,
+   "dim2|Z1in=False|minrank=2|pred=True|placed=True": 6
+  },
+  "lemmaA_violations": 0,
+  "n_z2_in_V4_total": 0,
+  "n_z1z2_in_V4_total": 0,
+  "placing_planes_total": 12864,
+  "placing_planes_without_affine_element": 648
+ },
+ "lemmaP_rad": {
+  "n_spaces": 164596,
+  "n_deg3": 2490964416,
+  "bad_rad": 0,
+  "n_deg2": 51802176,
+  "bad_P": 0,
+  "bad_P1": 0,
+  "bad_P2": 0,
+  "bad_P3_supp": 0,
+  "bad_P3_span": 0,
+  "n_deg2_by_type_aff_rk22_rk4": [
+   50581056,
+   1090080,
+   131040
+  ]
+ },
+ "lemmaA_sufficiency": {
+  "spaces_pred_true_Z1notin": 4755,
+  "constructions_checked": 11946,
+  "failures": 0
+ },
+ "lemmaD1": {
+  "generator_pairs_checked": 189384,
+  "by_(Omega_pair,same_type_v)": {
+   "(False, True)": 19080,
+   "(False, False)": 168000,
+   "(True, True)": 2304
+  },
+  "violations": 0
+ },
+ "lemmaC_branches": {
+  "by_(dU,branch,Omega_pair)": {
+   "(2, 'kill', False)": 2430,
+   "(3, 'kill', False)": 6,
+   "(1, 'dU1_nokill', False)": 137424,
+   "(1, 'kill', False)": 11256,
+   "(3, 'kill', True)": 138,
+   "(2, 'kill', True)": 4608,
+   "(1, 'kill', True)": 1728,
+   "(2, 'dU2_full_phi1', False)": 2304,
+   "(2, 'dU2_full_phi1', True)": 4096
+  },
+  "dU1_nokill_with_Omega_pair": 0,
+  "lemmaC_exhaustive": "n_z2_in_V4_total = n_z1z2_in_V4_total = 0 over all 164,596 spaces (see lemmaA_C)"
+ },
+ "lemmaB_groups": {
+  "by_(dimQ3,pred,n_kill_dirs,case_of_Qprime)": {
+   "(2, True, 3, 'kill')": 6,
+   "(3, True, 3, 'kill')": 117,
+   "(3, True, 1, 'kill')": 3096,
+   "(3, False, 1, 'kill')": 6336,
+   "(2, False, 3, 'kill')": 16,
+   "(3, True, 0, 'dU3_full_phidim1')": 1536,
+   "(3, False, 0, 'dU3_full_phidim1')": 4096,
+   "(3, False, 3, 'kill')": 16
+  },
+  "violations": {}
+ },
+ "lemmaB3_support": {
+  "spaces_with_Z1_in_Q3": 11,
+  "all_inside_Lam2U": true
+ },
+ "lemmaB3a": {
+  "spaces": 11,
+  "g3_per_space": 42784,
+  "exact_violations": 0,
+  "level_i_violations": 0,
+  "positive_controls": "both modes detect planted solutions"
+ },
+ "lemmaB3b": {
+  "units": 242,
+  "g3_total": 470624,
+  "k_per_g3": 1024,
+  "violations": 0,
+  "positive_control": "planted k0(F0+g3) detected"
+ },
+ "pluecker_duality": {
+  "rank2_2x4_matrices": 210,
+  "violations": 0
+ },
+ "weights": {
+  "m4": {
+   "min_nonzero": 4,
+   "full_rank_weights": [
+    6,
+    10
+   ]
+  },
+  "m6": {
+   "min_nonzero": 16,
+   "full_rank_weights": [
+    28,
+    36
+   ]
+  }
+ },
+ "small": {
+  "dependence_lemma_violations": 0,
+  "affine_zero_set_lemma_violations": 0
+ }
+}
