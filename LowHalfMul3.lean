@@ -14,6 +14,7 @@ import LowHalfMul3.LemmaThree
 import LowHalfMul3.Types
 import LowHalfMul3.MainTheorem
 import LowHalfMul3.LambdaThree
+import LowHalfMul3.Coset
 
 /-!
 # The 3 x 3 low-half multiplier
@@ -67,6 +68,11 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
   `B3Claim` (Proposition B3, `Q₃ ⊆ Λ²(U)`). Lemma C for spaces with a good
   direction, the flow `z₁ ∈ V₄`, Lemma B3U and the last-gate argument via
   `Q₃ + ⟨Z₁⟩` are proved there.
+
+* `LowHalfMul3.Coset` proves the general coset lemma (B3a + B3b, Proposition
+  B3) for any coset base (`CosetBase`: contains `Aff`, constant `a₂`/`b₂`
+  derivatives, `1, a₀, b₀` in the radical of the carry pairing), hence
+  `b3Claim : B3Claim` and `lambdaCase_three_of_badClaim : BadClaim → LambdaCase 3`.
 
 The lower bound is therefore reduced, in Lean, to exactly three statements:
 `LambdaCase 1`, `LambdaCase 2` and `LambdaCase 3`

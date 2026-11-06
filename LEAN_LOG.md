@@ -950,3 +950,69 @@ bad `Q₃` to the product lemma (`deg(fh) ≤ 2 ⇒ (fh)₂ ∈ ⟨f₂, h₂⟩
 
 `lake build` green (1742 jobs). The audit lists 143 theorems, all
 `[propext, Classical.choice, Quot.sound]`.
+
+---
+
+## 2026-11-06 – phase 6 (after the supervisor review)
+
+Brief: `lowhalf-mul3_review.md` §6. Order: (1) `B3Claim` as a general coset
+lemma, (2) a full Python check of `BadClaim` then its formalization, (3) repo
+hygiene, (4) Palomar audit procedure. Same rules (green build, commit, stop).
+`git pull`: already at `49f1887` (paper/, verification/ present; untouched).
+
+### Step 1 – general coset lemma, `B3Claim` proved
+
+New file `LowHalfMul3/Coset.lean`. `b3Claim : B3Claim`, hence
+`lambdaCase_three_of_badClaim : BadClaim → LambdaCase 3` and
+`mc_eq_six_of_badClaim : LambdaCase 1 → LambdaCase 2 → BadClaim → MC(lowMul3) = 6`.
+
+**Statement (for reuse in λ = 2 and λ = 1).** `CosetBase A` for a subspace
+`A ⊆ ANF 6`: `Aff ⊆ A`; `D_{a₂} X`, `D_{b₂} X` constant for `X ∈ A`;
+`β(X, 1) = β(X, a₀) = β(X, b₀) = 0` for `X ∈ A`, where
+`β(u, v) = Σ_{y ∈ U} u(y) v(y)` (the 16 points with `a₂ = b₂ = 0`; by Möbius
+inversion `β(p, 1)` is the `a₀a₁b₀b₁`-coefficient, `cp_one_eq_coeff`).
+`coset_obstruction`: if `f, h ∈ A`, no `F, H ∈ A + ⟨fh⟩` have
+`FH + z₂ ∈ A + ⟨fh⟩`; `coset_z2_not_mem`: `z₂ ∉ A + ⟨fh⟩`.
+`cosetBase_V4`: `V(Q)` is a coset base for every `Q ⊆ Λ²(U)` (any dimension).
+For λ = 2 (Lemma 11) take `A = V(S)`, `S = Q + ⟨Z₁⟩ ⊆ Λ²(U)`; for the λ = 1
+core branch, `A = Aff + ⟨P₀, Z₁, c⟩` once its radical property is shown (the
+β-radical extension is built into the hypotheses).
+
+**Proof (human-readable).**
+* B3a (`coset_B3a`): suppose `FH + z₂ + C + σfh = 0` with `F, H, f, h, C ∈ A`.
+  With `α_X = D_{a₂}X`, `β_X = D_{b₂}X`, differentiating along `a₂`, `b₂` gives
+  `Σ_k U_{1k} x_k = b₀ + κ₁` and `Σ_k U_{2k} x_k = a₀ + κ₂` for
+  `x = (H, F, h, f)` and `U = [[α_F, α_H, σα_f, σα_h], [β_F, β_H, σβ_f, σβ_h]]`
+  (`E1`, `E2`, finite identity `fin_E1`). The mixed derivative gives
+  `det₀₁ U = det₂₃ U` (`E12`). `U` has rank 2 because `t₁ b₀ + t₂ a₀` is not
+  constant. Pairing `E1`, `E2` with each `x_l` and using the radical gives
+  `U G = 0` for the Gram matrix `G_{kl} = β(x_k, x_l)` (alternating since
+  `β(X, X) = β(X, 1) = 0`). Summing the identity over `U` gives
+  `β(F, H) + σβ(f, h) = 1`. The finite lemma `gram_finite` (Plücker duality:
+  2¹⁴ cases, plain `decide`, ~1 min) gives `G₀₁ = G₂₃` and that columns 2, 3 of
+  `U` are not both zero, so `σ = 1` and `β(F, H) = β(f, h)`: contradiction.
+* B3b (`coset_B3b`): suppose `k(F' + fh) + z₂ + v = 0`. If `D_{a₂}k = 1`, then
+  `k(F' + fh) = k(b₀ + D_{a₂}v)` pointwise, which B3a excludes (σ = 0);
+  likewise for `b₂`. Otherwise `k ≠ 0` (else `z₂ = v` would have constant
+  derivative), and the `b₂`-derivative of the `a₂`-equation gives
+  `det(c, d) = 0` for the external parts `c, d` of `f, h`. So one of `a₂`,
+  `b₂`, `a₂ + b₂` kills both, and the corresponding equation forces `k` to be a
+  nonconstant affine function on whose zero set a different nonconstant affine
+  function must vanish (`fin_onept`, `fin_case3`).
+* Proposition B3 (`coset_obstruction`): write `F = F' + s g`, `H = H' + t g`,
+  `FH + z₂ = C + σ g`; the four cases `(s, t)` reduce to B3a (`(0, 0)`) or B3b
+  with `k = H' + σ`, `F' + σ`, or `F' + H' + σ + 1` (pointwise identities
+  `fin_00 … fin_11`).
+
+**Divergence.** One general lemma replaces the three applications in the notes;
+the dimension hypothesis of Lemma B3U/B3 is not used. The Plücker step is the
+finite `U G = 0` statement instead of a kernel basis and complementary minors.
+
+**Checks before Lean.** For `A = V(Λ²(U))` (13-dimensional, the largest base
+from `Q ⊆ Λ²(U)`), 12 random `g = fh` and every 4th `F ∈ A + ⟨g⟩` (about 50,000
+`F`): no `H ∈ A + ⟨g⟩` with `FH ∈ z₂ + A + ⟨g⟩` (exact linear solve). Positive
+control: target `a₀b₂ + a₁b₁` is solvable for 204 of 12,288 `F`.
+
+`lake build` green (1743 jobs). The audit lists 171 theorems, all
+`[propext, Classical.choice, Quot.sound]`; no sorry, `native_decide`,
+`ofReduceBool` or `decide +kernel`.

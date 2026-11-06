@@ -77,7 +77,9 @@ status:
     four-linear-gate case). mc_eq_six_of_lambda_cases derives MC(lowMul3) = 6
     from LambdaCase 1, LambdaCase 2 and LambdaCase 3; these three are not
     proved. Phase 5 reduces LambdaCase 3 to two named claims, BadClaim and
-    B3Claim (lambdaCase_three_of), which are not yet proved. All 143 audited
+    B3Claim (lambdaCase_three_of); phase 6 proves B3Claim (b3Claim, via the
+    general coset lemma coset_obstruction), so LambdaCase 3 now depends only
+    on BadClaim (lambdaCase_three_of_badClaim). All 171 audited
     theorems share the
     axiom closure [propext, Classical.choice, Quot.sound]. Finite facts are
     checked by plain decide (kernel-checked). No use of
@@ -117,7 +119,13 @@ fidelity:
     direction and Proposition B (last gate after g3 places z1) are both
     obtained from Lemma 8' applied to Q' = Q3 + <Z1> (iota_e Z1 = 0), instead
     of Lemmas 5/6, D1 and Theorem 12; Lemmas A, C and D1 are needed only for
-    Q3 without a good direction (BadClaim).
+    Q3 without a good direction (BadClaim). Lemmas B3a/B3b are proved once
+    for an abstract coset base (CosetBase: contains Aff, constant a2/b2
+    derivatives, 1, a0, b0 in the radical of the carry pairing
+    beta(u,v) = sum over U of u v), so dim Q and rank-2 generation play no
+    role; the Pluecker step of B3a is the finite statement gram_finite
+    (2^14 cases, plain decide) about U G = 0 for the 2x4 coefficient matrix
+    U and the Gram matrix G of beta, instead of the kernel-basis computation.
 review:
   status: self-assessed
   notes: >-
@@ -182,10 +190,26 @@ alignment:
       lean: UnrestrictedBooleanMul.LowHalfMul3.BadClaim
       module: LowHalfMul3.LambdaThree
       status: stated
-    - source: lambda3_proof.tex Proposition B3
-      lean: UnrestrictedBooleanMul.LowHalfMul3.B3Claim
-      module: LowHalfMul3.LambdaThree
-      status: stated
+    - source: lambda3_proof.tex Proposition B3 (B3Claim)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.b3Claim
+      module: LowHalfMul3.Coset
+      status: proved
+    - source: lambda3_proof.tex Lemmas B3a, B3b and Proposition B3, general form (any coset base; also lambda2 Lemma 11 and lambda1 core coset lemma)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.coset_obstruction
+      module: LowHalfMul3.Coset
+      status: proved-with-divergence
+    - source: lambda3_proof.tex Lemma B3a, general form
+      lean: UnrestrictedBooleanMul.LowHalfMul3.coset_B3a
+      module: LowHalfMul3.Coset
+      status: proved-with-divergence
+    - source: lambda3_proof.tex Lemma B3b, general form
+      lean: UnrestrictedBooleanMul.LowHalfMul3.coset_B3b
+      module: LowHalfMul3.Coset
+      status: proved
+    - source: LambdaCase 3 from BadClaim alone
+      lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_three_of_badClaim
+      module: LowHalfMul3.Coset
+      status: proved
     - source: exact unrestricted complexity of the 3x3 low-half product
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3
       module: Challenge

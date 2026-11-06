@@ -325,9 +325,68 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #check @mc_eq_six_of_claims
 #print axioms mc_eq_six_of_claims
 
+-- Coset: the general coset lemma (B3a + B3b), B3Claim (phase 6).
+#check @cp_lin4
+#print axioms cp_lin4
+#check @carry_mobius_termwise
+#print axioms carry_mobius_termwise
+#check @cp_one_eq_coeff
+#print axioms cp_one_eq_coeff
+#check @cp_one_eq_zero_of_deg3
+#print axioms cp_one_eq_zero_of_deg3
+#check @cp_z2
+#print axioms cp_z2
+#check @z2_shiftA
+#print axioms z2_shiftA
+#check @z2_shiftB
+#print axioms z2_shiftB
+#check @fin_E1
+#print axioms fin_E1
+#check @gram_finite
+#print axioms gram_finite
+#check @fin_rank
+#print axioms fin_rank
+#check @coset_B3a
+#print axioms coset_B3a
+#check @fin_mu1
+#print axioms fin_mu1
+#check @fin_mu0
+#print axioms fin_mu0
+#check @fin_D
+#print axioms fin_D
+#check @fin_Dcases
+#print axioms fin_Dcases
+#check @fin_onept
+#print axioms fin_onept
+#check @fin_case3
+#print axioms fin_case3
+#check @coset_B3b
+#print axioms coset_B3b
+#check @fin_00
+#print axioms fin_00
+#check @fin_10
+#print axioms fin_10
+#check @fin_01
+#print axioms fin_01
+#check @fin_11
+#print axioms fin_11
+#check @coset_obstruction
+#print axioms coset_obstruction
+#check @coset_z2_not_mem
+#print axioms coset_z2_not_mem
+#check @cosetBase_V4
+#print axioms cosetBase_V4
+#check @b3Claim
+#print axioms b3Claim
+#check @lambdaCase_three_of_badClaim
+#print axioms lambdaCase_three_of_badClaim
+#check @mc_eq_six_of_badClaim
+#print axioms mc_eq_six_of_badClaim
+
 -- The open statements, printed in full.
 #print BadClaim
 #print B3Claim
+#print CosetBase
 #print NoPlace
 #print Q3span
 #print LambdaCase
