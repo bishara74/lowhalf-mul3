@@ -86,7 +86,7 @@ Write $A=A_U\oplus\langle a_2,b_2\rangle$, removing the free external affine par
 \]
 Every function in $A_U$ has degree at most three, so $\beta(X,X)=0$ by $X^2=X$. Also $1,a_0,b_0$ belong to its radical. For $1$ this follows from the absence of a quartic term; for $a_0,b_0$ the only possible cubic term is $c_3=P_0\wedge B$, whose product with either cannot have a quartic term.
 
-We first extend [L3, B3a (Lemma 14)]. Suppose $F,H\in A$, $v\in A+\langle fh\rangle$, and $FH+z_2+v$ has zero external derivatives and zero carry coefficient. Decompose
+We first extend [L3, B3a (Lemma 15)]. Suppose $F,H\in A$, $v\in A+\langle fh\rangle$, and $FH+z_2+v$ has zero external derivatives and zero carry coefficient. Decompose
 \[
 f=\varphi+c_0,\quad h=\psi+d_0,\quad F=X+\ell,\quad H=Y+m,
 \]
@@ -100,9 +100,9 @@ The external quadratic coefficient gives $\det(\ell,m)+\sigma\det(c_0,d_0)=0$, a
 \[
 \beta(X,Y)+\sigma\beta(\varphi,\psi)=1.
 \]
-The coefficient matrix $M$ with columns $\ell,m,\sigma c_0,\sigma d_0$ has rank two, since the two $\lambda_i$ are independent modulo constants. Pass from $A_U$ to $A_U/\operatorname{rad}\beta$. The right sides vanish there because $a_0,b_0,1$ are radical. Thus the four resulting vectors lie in the two-dimensional coefficient kernel of $M$. Using its kernel basis, their pairings are its $2\times2$ minors times one common pairing. Complementary-minor duality [L3, Lemma 13] now gives exactly the cancellation of B3a: the coefficient of that common pairing is zero by the external quadratic equation. This contradicts the carry coefficient one. This replacement of quadratic parts by classes modulo $\operatorname{rad}\beta$ is the new step; it allows the cubic signal $c$.
+The coefficient matrix $M$ with columns $\ell,m,\sigma c_0,\sigma d_0$ has rank two, since the two $\lambda_i$ are independent modulo constants. Pass from $A_U$ to $A_U/\operatorname{rad}\beta$. The right sides vanish there because $a_0,b_0,1$ are radical. Thus the four resulting vectors lie in the two-dimensional coefficient kernel of $M$. Using its kernel basis, their pairings are its $2\times2$ minors times one common pairing. Complementary-minor duality [L3, Lemma 14] now gives exactly the cancellation of B3a: the coefficient of that common pairing is zero by the external quadratic equation. This contradicts the carry coefficient one. This replacement of quadratic parts by classes modulo $\operatorname{rad}\beta$ is the new step; it allows the cubic signal $c$.
 
-The exact feedback conclusion of [L3, B3b (Lemma 15)] extends as well. Its derivative argument uses only constant external derivatives on the base space, membership of $D_e(fh)$ in that base, and the just-established B3a obstruction. These properties hold for $A$. More explicitly, if $k(g+F')=z_2+v$ with $k,F',v\in A$, differentiating gives the same identity as B3b. A nonzero external derivative of $k$ reduces it to a product of two base functions, already excluded. Otherwise $k$ depends only on $u$. The two external parts of $f,h$ must then be dependent; a direction killing both forces $k=\delta_e+\text{constant}$, and an independent direction would make a different nonconstant affine function vanish on its zero hyperplane. This is impossible, exactly as in the given B3b argument. The zero-external-parts case forces both independent functions $a_0,b_0$ to equal $k$ modulo constants and is also impossible.
+The exact feedback conclusion of [L3, B3b (Lemma 16)] extends as well. Its derivative argument uses only constant external derivatives on the base space, membership of $D_e(fh)$ in that base, and the just-established B3a obstruction. These properties hold for $A$. More explicitly, if $k(g+F')=z_2+v$ with $k,F',v\in A$, differentiating gives the same identity as B3b. A nonzero external derivative of $k$ reduces it to a product of two base functions, already excluded. Otherwise $k$ depends only on $u$. The two external parts of $f,h$ must then be dependent; a direction killing both forces $k=\delta_e+\text{constant}$, and an independent direction would make a different nonconstant affine function vanish on its zero hyperplane. This is impossible, exactly as in the given B3b argument. The zero-external-parts case forces both independent functions $a_0,b_0$ to equal $k$ modulo constants and is also impossible.
 
 Finally B3a excludes $z_2\in A+\langle g\rangle$. Any further product either has both factors in $A$, excluded by the extended B3a, or normalizes, including its output correction, to the feedback product excluded above. This proves the lemma.
 \end{proof}
@@ -175,7 +175,7 @@ It follows that
 \[
 \beta_j(y_1,y_2)+\beta_j(y_3,y_4)=0.
 \]
-For completeness, subtract a particular solution with components in the radical span of $1,r,s$. The remaining vector lies in $\ker M(j)$. Complementary-minor duality [L3, Lemma 13] makes the displayed pairing the common kernel pairing times $\det_{12}M(j)+\det_{34}M(j)$, which is zero by isotropy. This is the same linear-algebra mechanism as B3a, now on each hyperplane.
+For completeness, subtract a particular solution with components in the radical span of $1,r,s$. The remaining vector lies in $\ker M(j)$. Complementary-minor duality [L3, Lemma 14] makes the displayed pairing the common kernel pairing times $\det_{12}M(j)+\det_{34}M(j)$, which is zero by isotropy. This is the same linear-algebra mechanism as B3a, now on each hyperplane.
 
 Set $D=\sum_i(Jz)_i x_i(j)$. The relations $t^TJz=w^TJz=z^TJz=0$ show that $D$ is an affine function on $U$, independent of $j$. Expanding $x_i=y_i+z_iZ_1$ therefore gives
 \[
@@ -217,7 +217,7 @@ c=(P_0+H)B,\qquad H=L_U+\eta B_U+\eta\in\Aff(U).
 \]
 Then $C=P_0+H$. The first displayed equation says that $P_0+H+u_p$ vanishes on $r=1+e$. On this hyperplane the restriction of $P_0$ is affine in the remaining low-bit coordinate; therefore $H$ has no $a_1,b_1$ coefficients. It depends only on $a_0,b_0$.
 
-The function $C+u_p$ on those two low bits has quadratic coefficient one and vanishes on the two fibers $r=1+e$. Its parity is odd, so it is the indicator of a single fiber $j$ on $r=e$. Outside that hyperplane $w=0$. On its two fibers, $C=u_p$; comparing their free-variable coefficient vectors in $w=1+u+c$ forces the $Z_1$ coefficient of $u$ to vanish. Indeed the $Z_1$ coefficient vector changes nontrivially between any two different low-bit fibers, while the affine coefficient vector and $CB_U$ have the same free part there.
+The function $C+u_p$ on those two low bits has quadratic coefficient one and vanishes on the two fibers $r=1+e$. Its parity is odd, so it is the indicator of a single fiber $j$ on $r=e$. Outside that hyperplane $w=0$. On the two fibers of the hyperplane $r=1+e$ we have $w=0$ and $C=u_p$; comparing their free-variable coefficient vectors in $w=1+u+c$ forces the $Z_1$ coefficient of $u$ to vanish. Indeed the $Z_1$ coefficient vector changes nontrivially between any two different low-bit fibers, while the affine coefficient vector and $CB_U$ have the same free part there.
 
 Vanishing on either of those two fibers fixes the affine free part of $u$ to $u_p\bar B$. Hence on every fiber the free coefficient vector of $w$ is $(C+u_p)\bar B$, where $\bar B$ has external $p$ coefficient one. Thus $w$ is constant off the single fiber $j$, and is a nonconstant affine free-variable function with $p$ coefficient one on $j$.
 

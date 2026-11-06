@@ -1,0 +1,276 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{booktabs,array,tabularx}
+\usepackage[shortlabels]{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue!50!black]{hyperref}
+
+\setlist{itemsep=2pt,topsep=4pt}
+\setlength{\parskip}{3pt}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\F}{\mathbb{F}_2}
+\newcommand{\Aff}{\mathrm{Aff}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Lam}{\Lambda^{2}}
+\newcommand{\dU}{d_U}
+\newcommand{\Dir}{E}
+
+\title{\bfseries A human proof of the four-linear-gate case\\ for the $3\times 3$ low-half multiplier}
+\author{Bishara}
+\date{11 October 2026 (revised)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Let $z_0,z_1,z_2$ be the three low bits of the product of two 3-bit integers. The multiplicative complexity of the vectorial function $(z_0,z_1,z_2)$, with XOR and NOT free, is 6; the lower bound currently rests on a SAT certificate~\cite{cert}. We give a human proof of the most structured case: no circuit with five AND gates, four of them linear, computes $(z_0,z_1,z_2)$. The core is a short derivative lemma showing that the carry $a_0a_1b_0b_1$ cannot be produced by a single feedback gate whenever some direction among $a_2$, $b_2$, $a_2+b_2$ annihilates the quadratic span of the linear gates; a case analysis of rank-2 forms shows that this hypothesis always holds, except in one subcase that is handled separately. No enumeration is needed.
+\end{abstract}
+
+\section{Setting}
+
+\paragraph{Model.}
+Boolean functions on $\F^6$ are identified with their algebraic normal forms in $\F[x]/(x_i^2-x_i)$, and $\Aff=\Span\{1,x_1,\dots,x_6\}$. A circuit with $k$ AND gates is a sequence $g_0,\dots,g_{k-1}$ with
+\[
+  g_i=L_iR_i,\qquad L_i,R_i\in V_i:=\Aff+\Span\{g_0,\dots,g_{i-1}\},
+\]
+and it computes a set of targets if all of them lie in $V_k$. This is the unrestricted model of~\cite{morse}; see~\cite{bpp,bf,schnorr} for background on multiplicative complexity. For $f$ of degree at most $2$ we write $f=f_0+f_1+f_2$ by degree and $\pi_d$ for the degree-$d$ part. Squarefree quadratic monomials are identified with 2-forms, $x_ix_j\leftrightarrow x_i\wedge x_j$.
+
+\paragraph{Targets.}
+With inputs $a_0,a_1,a_2,b_0,b_1,b_2$ (least significant bit first),
+\[
+  z_0=a_0b_0,\qquad z_1=a_0b_1+a_1b_0,\qquad z_2=q_2+a_0a_1b_0b_1,\quad q_2=a_0b_2+a_1b_1+a_2b_0 .
+\]
+We write
+\[
+  \Omega=a_0\wedge a_1\wedge b_0\wedge b_1,\qquad P_0=a_0\wedge b_0,\qquad Z_1=a_0\wedge b_1+a_1\wedge b_0 .
+\]
+
+\paragraph{Linear gates.}
+A gate $g_i=L_iR_i$ is \emph{linear} if $L_i$ and $R_i$ are \emph{equal as functions} to affine forms, even if they are written using earlier gates. This is a semantic notion.
+
+\begin{lemma}[Normal form]\label{lem:normal}
+If a $k$-gate circuit computes $(z_0,z_1,z_2)$, so does a $k$-gate circuit in which $g_0=a_0b_0$, gates $0,\dots,\lambda-1$ are linear and gates $\lambda,\dots,k-1$ are not, for some $\lambda\ge1$.
+\end{lemma}
+
+\begin{proof}
+Let $j$ be the first index with $z_0\in V_{j+1}$; then $g_j=z_0+v$ with $v\in V_j$. Put $a_0b_0$ first and delete $g_j$: every earlier gate keeps its factors, and afterwards the available space is $V_j+\Span\{a_0b_0\}=V_{j+1}$, so nothing later changes. Next move all linear gates to the front, keeping relative orders, and rewrite their factors as affine forms. A linear gate needs only $\Aff$, and a nonlinear gate still follows every gate that preceded it, so its available space can only grow.
+\end{proof}
+
+For $k=5$ the case $\lambda=5$ is impossible, because every function in $V_5$ then has degree at most $2$. This note treats $\lambda=4$.
+
+\paragraph{The case $\lambda=4$.}
+Let $P_i=\pi_2(g_i)\in\Lam$ for $i=1,2,3$; a product of two linear forms has a 2-form of rank $2$ as quadratic part, or $0$ if the two linear parts coincide. Set $Q'=\Span\{P_0,P_1,P_2,P_3\}$. Choose a maximal independent subset of $\{P_0\}\cup\{P_i\ne0\}$ containing $P_0$, and extend it by quadratic monomials (which have rank $2$) to an independent set of four forms; call its span $Q$. Then $Q\supseteq Q'$, $\dim Q=4$, and $Q$ is spanned by $P_0$ and three rank-2 forms. Every condition below is monotone in $Q$ (enlarging $Q$ only enlarges $V_4$), so it suffices to treat such $Q$.
+
+\begin{lemma}\label{lem:Qonly}
+With the gates $g_1,g_2,g_3$ extended accordingly, $V_4=V_4(Q):=\{f:\deg f\le 2,\ \pi_2(f)\in Q\}$.
+\end{lemma}
+
+\begin{proof}
+If $\pi_2(f)=\sum_i\alpha_iP_i$, then $f-\sum_i\alpha_ig_i$ has no quadratic part and therefore lies in $\Aff$. The other inclusion is clear.
+\end{proof}
+
+The targets $z_0,z_1$ must already lie in $V_4$: since $\deg z_2=4$, we have $z_2\notin V_4$, so $g_4\in z_2+V_4$ has degree $4$; if instead $z_i=v+g_4$ with $v\in V_4$, then $g_4$ would have degree at most $2$. Hence $z_0,z_1\in V_4$, i.e.\ $P_0,Z_1\in Q$ by Lemma~\ref{lem:Qonly}, and the remaining condition on the last gate $g_4=fh$ is
+\begin{equation}\label{eq:star}
+  f,h\in V_4(Q),\qquad fh\in z_2+V_4(Q).
+\end{equation}
+Because $x_i^2=x_i$ only merges overlapping monomials, which lowers degree, $\pi_4(fh)=f_2\wedge h_2$ for $f,h$ of degree at most $2$; so \eqref{eq:star} forces $f_2\wedge h_2=\pi_4(z_2)=\Omega$.
+
+\section{Notation and preliminary lemmas}
+
+Let $U=\langle a_0,a_1,b_0,b_1\rangle$, so $\Lam(U)$ is the space of 2-forms with no monomial involving $a_2$ or $b_2$. The \emph{support} $\supp\omega$ of a 2-form $\omega$ is the smallest subspace $W$ of linear forms with $\omega\in\Lam(W)$, equivalently the row space of its alternating matrix; $\dim\supp\omega$ is the rank of $\omega$. Every 2-form decomposes uniquely as
+\[
+  \omega=\omega_U+a_2\wedge\alpha+b_2\wedge\beta+\gamma\,a_2\wedge b_2,\qquad \omega_U\in\Lam(U),\ \alpha,\beta\in U,\ \gamma\in\F,
+\]
+and we define the \emph{cross part} $\Phi(\omega)=(\alpha,\beta,\gamma)$; equivalently, $\Phi$ records the contractions of $\omega$ with the unit vectors $e_{a_2},e_{b_2}\in\F^6$. Note $\Phi(q_2)=(b_0,a_0,0)$.
+
+\paragraph{Directions.} Let $\Dir=\{e_{a_2},\,e_{b_2},\,e_{a_2}+e_{b_2}\}\subset\F^6$, a set of three vectors. For $e\in\Dir$, $\iota_e$ is contraction with $e$, and for a linear form $l$, $l(e)\in\F$ is its value at $e$. Put
+\[
+  \dU(Q)=\dim\bigl(Q\cap\Lam(U)\bigr).
+\]
+
+\begin{lemma}[Support]\label{lem:support}
+If a rank-4 form $Z$ equals $P+P'$ with $P,P'$ of rank 2, then $P,P'\in\Lam(\supp Z)$. In particular every splitting of $Z_1$ or $Z_1+P_0$ into two rank-2 forms lies in $\Lam(U)$.
+\end{lemma}
+
+\begin{proof}
+$\supp Z\subseteq\supp P+\supp P'$, and both sides have dimension $4$, so they are equal. The second claim follows since $Z_1$ and $Z_1+P_0=a_0\wedge(b_0+b_1)+a_1\wedge b_0$ both have rank $4$ and support $U$.
+\end{proof}
+
+\begin{lemma}[Cross part]\label{lem:cross}
+$\ker\Phi=\Lam(U)$. Consequently, for $\dim Q=4$, $\dim\Phi(Q)=4-\dU(Q)\le 2$.
+\end{lemma}
+
+\begin{proof}
+$\Phi(\omega)=0$ exactly when $\omega$ has no monomial involving $a_2$ or $b_2$. Apply rank--nullity on $Q$, and note $P_0,Z_1\in Q\cap\Lam(U)$.
+\end{proof}
+
+\begin{lemma}\label{lem:planeU}
+Let $f,h$ have degree at most $2$ with $f_2,h_2\in\Lam(U)$, $f_2\wedge h_2=\Omega$ and $\pi_3(fh)=0$. Then $\Phi(\pi_2(fh))=0$.
+\end{lemma}
+
+\begin{proof}
+Write $f_1=u_f+s_fa_2+t_fb_2$ and $h_1=u_h+s_ha_2+t_hb_2$ with $u_f,u_h\in U$. Consider the cubic monomials of $fh$ that contain $a_2$ but not $b_2$. Products of quadratic monomials of $f_2$ and $h_2$ stay inside $U$. The terms $u_f\cdot h_2$ and $u_h\cdot f_2$ can collapse to degree $2$ (as $x_i\cdot x_ix_j=x_ix_j$), but they too stay inside $U$. So these cubic monomials come only from $s_f\,a_2\wedge h_2+s_h\,a_2\wedge f_2$. As $f_2\wedge h_2\ne0$, the forms $f_2,h_2$ are independent, so $s_f=s_h=0$; likewise $t_f=t_h=0$. Now all linear and quadratic parts lie over $U$, hence so does $\pi_2(fh)$.
+\end{proof}
+
+\begin{lemma}\label{lem:noq2}
+No rank-2 form $R$ satisfies $\Phi(R)=\Phi(q_2)$.
+\end{lemma}
+
+\begin{proof}
+For $R=l\wedge r$ both contractions $\iota_{e_{a_2}}R,\iota_{e_{b_2}}R$ lie in $\langle l,r\rangle$. If they were $b_0$ and $a_0$, then $\langle l,r\rangle=\langle a_0,b_0\rangle$ and $R=a_0\wedge b_0$, whose $a_2$-contraction is $0$.
+\end{proof}
+
+\begin{proposition}\label{prop:B}
+Suppose $\dim Q=4$, $\dU(Q)=3$, $Q$ is spanned by rank-2 forms, and $(f,h)$ satisfies \eqref{eq:star} with $f_2,h_2\in\Lam(U)$. This is impossible.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:cross}, $\Phi(Q)$ is one-dimensional and spanned by the images of the basis forms, so $\Phi(Q)=\{0,\Phi(R)\}$ for a rank-2 form $R$. Lemma~\ref{lem:planeU} gives $\Phi(\pi_2(fh))=0$, so \eqref{eq:star} would require $\Phi(q_2)\in\Phi(Q)$, contradicting Lemma~\ref{lem:noq2}.
+\end{proof}
+
+\section{The derivative lemma}
+
+For $e\in\Dir$ write $D_eg(x)=g(x+e)+g(x)$, and let $\delta_e=\iota_e(q_2)$, which is $b_0$, $a_0$ or $a_0+b_0$.
+
+\begin{lemma}[Derivative lemma]\label{lem:deriv}
+Let $Q$ be any subspace with $\iota_e(Q)=0$ for some $e\in\Dir$. Then \eqref{eq:star} has no solution.
+\end{lemma}
+
+\begin{proof}
+Suppose $g:=fh+z_2\in V_4(Q)$. For a function of degree at most $2$, $D_e$ is affine with linear part $\iota_e$ of its quadratic part. The quadratic parts of $f$, $h$ and $g$ lie in $Q$, so
+\[
+  D_ef=c,\qquad D_eh=d,\qquad D_eg=k\qquad(c,d,k\in\F).
+\]
+The carry contains neither $a_2$ nor $b_2$, so $D_ez_2=\delta_e$. Expanding $D_e(fh)=D_ef\cdot h+f\cdot D_eh+D_ef\cdot D_eh$ gives
+\[
+  k=c\,h+d\,f+cd+\delta_e .
+\]
+If $c=d=0$, then $\delta_e=k$ is constant, which is false. If $c=1$, then $h=d\,f+A$ with $A$ affine, and since $f^2=f$,
+\[
+  fh=d\,f+f A
+\]
+has degree at most $3$. But $fh=g+z_2$ with $\deg g\le2$, so the degree-4 part of $fh$ is $a_0a_1b_0b_1\neq0$, a contradiction. The case $d=1$ is symmetric.
+\end{proof}
+
+\begin{remark}
+Lemma~\ref{lem:deriv} does not use that the gates are products of linear forms, and the rank-2 hypothesis in Theorem~\ref{thm:main} is essential. An exhaustive search over all $11\,180\,715$ four-dimensional subspaces $Q\supseteq\langle P_0,Z_1\rangle$ finds exactly $4\,168$ that admit a solution of \eqref{eq:star}; none is spanned by rank-2 forms, and none satisfies the hypothesis of the lemma. A small example is $Q=\langle a_0b_0,\,Z_1,\,a_1b_1,\,a_0a_1+a_0b_2+a_2b_0\rangle$ with $f=a_0b_0+a_1$, $h=a_1b_1+a_0$.
+\end{remark}
+
+\begin{remark}[Why restrictions cannot work]
+No argument by restriction can prove the lower bound: every affine restriction $b_2:=\ell(a_0,a_1,a_2,b_0,b_1)+c$ of the target is computable with five AND gates (all $64$ were checked). Lemma~\ref{lem:deriv} avoids this because it differentiates along $a_2$ and $b_2$ instead of restricting them, so it still sees the whole function.
+\end{remark}
+
+\section{Rank-2 forms and their cross parts}
+
+For a linear form $x$ let $\pi(x)=(x(e_{a_2}),x(e_{b_2}))\in\F^2$, its pair of coefficients of $a_2$ and $b_2$. For $v\in\F^2\setminus\{0\}$ and $r\in U$ write $v\otimes r:=(v_1r,\,v_2r,\,0)$.
+
+\begin{lemma}[Types]\label{lem:types}
+Let $R=l\wedge r$ have rank $2$ and $\Phi(R)\neq0$. Then exactly one of the following holds.
+\begin{enumerate}[(a)]
+  \item \emph{Type $v$:} one can choose $r\in U$ and $\pi(l)=v\neq0$. Then $\Phi(R)=v\otimes r$ and $\iota_eR=l(e)\,r$ for $e\in\Dir$; in particular $\iota_eR=0$ for the unique $e\in\Dir$ with $l(e)=0$, namely $e=e_{b_2},\ e_{a_2},\ e_{a_2}+e_{b_2}$ for $v=(1,0),(0,1),(1,1)$.
+  \item \emph{Full:} $R=(a_2+x)\wedge(b_2+y)$ with $x,y\in U$, and $\Phi(R)=(y,x,1)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The image $\pi(\langle l,r\rangle)\subseteq\F^2$ is nonzero. If it is a line $\langle v\rangle$, choose $r\in\ker\pi$, i.e.\ $r\in U$, and $l$ with $\pi(l)=v$. If it is all of $\F^2$, choose $l,r$ with $\pi(l)=(1,0)$ and $\pi(r)=(0,1)$. The formulas follow by contraction.
+\end{proof}
+
+Among the 651 rank-2 forms on $\F^6$, 35 lie in $\Lam(U)$, 360 have type $v$ and 256 are full.
+
+\section{The main theorem}
+
+\begin{theorem}\label{thm:main}
+Let $Q=\Span\{P_0,P_1,P_2,P_3\}$ with $\dim Q=4$, every $P_i$ of rank $2$, and $Z_1\in Q$. Then \eqref{eq:star} has no solution. Consequently, no circuit with five AND gates, four of them linear, computes $(z_0,z_1,z_2)$.
+\end{theorem}
+
+There are exactly $6\,583$ such subspaces; the table shows how they distribute over the cases of the proof.
+
+\begin{center}
+\begin{tabularx}{0.95\textwidth}{@{}l X r@{}}
+\toprule
+Case & Argument & Number of $Q$ \\
+\midrule
+$\dU=4$ & $Q\subseteq\Lam(U)$, so every $\iota_e$ annihilates $Q$; Lemma~\ref{lem:deriv} & 35\\
+$\dU=3$, $R$ of type $v$ & $\iota_e$ annihilates $\Lam(U)$ and $R$; Lemma~\ref{lem:deriv} & 2\,664\\
+$\dU=3$, $R$ full & the plane $\langle f_2,h_2\rangle$ is forced into $\Lam(U)$; Proposition~\ref{prop:B} & 2\,816\\
+$\dU=2$ & $P_1,P_2,P_3$ share one type $v$; Lemma~\ref{lem:deriv} & 1\,068\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{proof}
+By Lemma~\ref{lem:cross}, $\dU\in\{2,3,4\}$.
+
+\medskip\noindent\emph{Case $\dU=4$.} Then $Q\subseteq\Lam(U)=\ker\Phi$, so $\iota_e(Q)=0$ for every $e\in\Dir$, and Lemma~\ref{lem:deriv} applies.
+
+\medskip\noindent\emph{Case $\dU=3$.} Here $\Phi(Q)=\{0,\Phi(R)\}$ for some rank-2 basis form $R$.
+If $R$ has type $v$, pick $e\in\Dir$ with $l(e)=0$; then $\iota_e$ annihilates $\Lam(U)$ and $R$, hence $Q=(Q\cap\Lam(U))+\langle R\rangle$, and Lemma~\ref{lem:deriv} applies.
+If $R$ is full, let $(f,h)$ be a solution. Since $\dim\Phi(Q)=1$, the plane $\langle f_2,h_2\rangle$ meets $\Lam(U)$. Replacing $(f,h)$ by $(h,f)$, $(f,f+h)$ or $(f+h,h)$ changes $fh$ only by an element of $V_4(Q)$, because $f^2=f$; so we may assume $f_2\in\Lam(U)$. If $h_2\notin\Lam(U)$, then $\Phi(h_2)=\Phi(R)$ and $\gamma(h_2)=1$, and the $a_2b_2$-part of $f_2\wedge h_2$ equals $\gamma(h_2)f_2\neq0$, while $\Omega$ has none. Hence $f_2,h_2\in\Lam(U)$, and Proposition~\ref{prop:B} gives the contradiction.
+
+\medskip\noindent\emph{Case $\dU=2$.} Now $Q\cap\Lam(U)=\langle P_0,Z_1\rangle$.
+\begin{enumerate}[1.]
+  \item No $P_i$ ($i\ge1$) lies in $\Lam(U)$, since the only rank-2 element of $\langle P_0,Z_1\rangle$ is $P_0$. So $\Phi(P_i)\neq0$.
+  \item Write $Z_1=\varepsilon P_0+\sum_{i\in S}P_i$ with $S\subseteq\{1,2,3\}$. The case $S=\emptyset$ is excluded because $Z_1\ne\varepsilon P_0$ (rank), the case $|S|=1$ by rank, and $|S|=2$ by Lemma~\ref{lem:support} together with step~1. Hence
+  \[
+    P_1+P_2+P_3=Z\in\{Z_1,\,Z_1+P_0\},\qquad \Phi(P_1)+\Phi(P_2)+\Phi(P_3)=0,
+  \]
+  and $Z$ has rank $4$.
+  \item Comparing $\gamma$-coordinates, an even number of the $P_i$ are full, so none or two of them.
+  \begin{itemize}
+    \item Two of type $v$ and one of type $w\neq v$: $v\otimes(r_1+r_2)+w\otimes r_3=0$ forces $r_3=0$, which is absurd.
+    \item Types $v$, $w$, $v+w$: $v\otimes(r_1+r_3)+w\otimes(r_2+r_3)=0$ forces $r_1=r_2=r_3=:r$, so $Z=(l_1+l_2+l_3)\wedge r$ has rank at most $2$.
+    \item $P_i=(a_2+x_i)\wedge(b_2+y_i)$ for $i=1,2$ and $P_3=l_3\wedge r_3$ of type $v$, with $l_3=v_1a_2+v_2b_2+x_3$: the $\Phi$-sum gives $x_2=x_1+v_2r_3$ and $y_2=y_1+v_1r_3$, and then
+    \[
+      Z=x_1\wedge y_1+x_2\wedge y_2+x_3\wedge r_3=(v_1x_1+v_2y_1+x_3)\wedge r_3
+    \]
+    has rank at most $2$.
+  \end{itemize}
+  \item Hence $P_1,P_2,P_3$ all have the same type $v$. For the $e\in\Dir$ with $l(e)=0$, $\iota_e$ annihilates $P_1,P_2,P_3$ and also $P_0,Z_1\in\Lam(U)$; so $\iota_e(Q)=0$ and Lemma~\ref{lem:deriv} applies.\qedhere
+\end{enumerate}
+\end{proof}
+
+\section{Computational cross-checks and status}
+
+Each statement below was checked exhaustively by two independent scripts that share no code; no SAT solver was used. The scripts will be published with the paper as ancillary files. Here a \emph{prefix} is a triple $\{P_1,P_2,P_3\}$ of rank-2 forms with $P_0,\dots,P_3$ independent and $Z_1\in\Span\{P_0,\dots,P_3\}$; distinct prefixes can give the same $Q$.
+
+\begin{center}
+\begin{tabularx}{0.95\textwidth}{@{}X X@{}}
+\toprule
+Check & Result \\
+\midrule
+Lemma~\ref{lem:types} on all 651 rank-2 forms & 35 in $\Lam(U)$, 360 of type $v$, 256 full; formulas confirmed\\
+All $11\,180\,715$ four-dimensional $Q\supseteq\langle P_0,Z_1\rangle$ & exactly $4\,168$ admit a solution of \eqref{eq:star}; none is spanned by rank-2 forms or meets the hypothesis of Lemma~\ref{lem:deriv}\\
+Case split over all 6\,583 subspaces of Theorem~\ref{thm:main} & class sizes 35 / 2\,664 / 2\,816 / 1\,068, as in the table\\
+$\dU=2$ structure over all 1\,440 rank-2 bases & all three-term, $\Phi(P_i)\ne0$, one shared type\\
+$\lambda=4$ by direct enumeration & no solution for any of the 16\,016 prefixes\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The value $\mathrm{MC}=6$ rests on an explicit 6-AND circuit and on the LRAT certificate of~\cite{cert}, checked with the verified checker \texttt{cake\_lpr}. By Lemma~\ref{lem:normal}, only the part of that certificate with $g_0=a_0b_0$ is needed. The SAT encodings follow the exact-MC approach of~\cite{soeken}. The low-half multiplier has multiplicative complexity $1,3,6$ for $n=1,2,3$. Human proofs of the cases $\lambda=3,2,1$ remain open; the natural first attempt is the derivative argument along the directions in $\Dir$.
+
+\begin{thebibliography}{9}
+\bibitem{bpp} J.~Boyar, R.~Peralta, D.~Pochuev, \emph{On the multiplicative complexity of Boolean functions over the basis $(\wedge,\oplus,1)$}, Theoretical Computer Science 235 (2000) 43--57.
+\bibitem{bf} J.~Boyar, M.~G.~Find, \emph{Multiplicative complexity of vector valued Boolean functions}, arXiv:1407.6169.
+\bibitem{schnorr} C.-P.~Schnorr, \emph{The multiplicative complexity of Boolean functions}, in: Applied Algebra, Algebraic Algorithms and Error-Correcting Codes (AAECC-6), LNCS 357, Springer, 1989.
+\bibitem{morse} G.~Morse, \emph{Unrestricted Boolean multiplicative complexity of four-term binary polynomial multiplication}, arXiv:2608.30238.
+\bibitem{soeken} M.~Soeken, \emph{Determining the multiplicative complexity of Boolean functions using SAT}, arXiv:2005.01778.
+\bibitem{cert} G.~Morse, \emph{LRAT certificate for $\mathrm{MC}(3\text{-bit multiplication mod }8)=6$}, archived certificate package (to be deposited with a DOI).
+\end{thebibliography}
+
+\end{document}
