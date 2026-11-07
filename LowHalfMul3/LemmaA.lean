@@ -1,4 +1,8 @@
-import LowHalfMul3.Coset
+module
+
+public import LowHalfMul3.Coset
+
+@[expose] public section
 
 /-!
 # Lemma A for spaces without a good direction (the `z₁` part of `BadClaim`)

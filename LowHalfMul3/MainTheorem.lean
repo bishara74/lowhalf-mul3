@@ -1,5 +1,9 @@
-import LowHalfMul3.Types
-import LowHalfMul3.LineDerivative
+module
+
+public import LowHalfMul3.Types
+public import LowHalfMul3.LineDerivative
+
+@[expose] public section
 
 /-!
 # Theorem 12 of `lambda4_proof.tex` (the case `λ = 4`): `StarFree`

@@ -1163,3 +1163,27 @@ Mathlib pin (an ancestor of `master`) and the dependency hygiene all pass. Detai
 `verification/lean-support/palomar_preflight.md`. No source or toolchain change and no
 submission.
 
+## Phase 7, fix 1 – module system
+
+All 22 `.lean` files (the 19 `LowHalfMul3/*.lean`, `LowHalfMul3.lean`,
+`Challenge.lean`, `AxiomAudit.lean`) now start with Palomar's required header, in the
+style of `unrestricted_boolean_mul`:
+
+```
+module
+
+public import ...
+
+@[expose] public section
+```
+
+Every `import` became `public import`, and nothing else changed. There are no
+`private` declarations and no metaprogramming (`macro`, `syntax`, `elab`), so no
+`meta` markers are needed. `@[expose]` keeps definition bodies visible to importing
+modules, which the `decide` proofs need.
+
+`lake build` green (1745 jobs, 634 s; the 134 warnings all come from the dependency).
+The audit is unchanged: the same 202 theorems with the same closures, all
+`[propext, Classical.choice, Quot.sound]`. `Challenge.lean` compiles with its one
+deliberate `sorry`. Palomar's `inspect_lean_sources` reports 22 files and no issues.
+

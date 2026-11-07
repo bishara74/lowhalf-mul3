@@ -1,4 +1,8 @@
-import LowHalfMul3.Product
+module
+
+public import LowHalfMul3.Product
+
+@[expose] public section
 
 /-!
 # Wedge algebra, Pfaffians, and the instances of Lemma 3 used in Theorem 12

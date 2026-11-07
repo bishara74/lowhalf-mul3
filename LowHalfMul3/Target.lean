@@ -1,4 +1,8 @@
-import UnrestrictedBooleanMul.Mul
+module
+
+public import UnrestrictedBooleanMul.Mul
+
+@[expose] public section
 
 /-!
 # The 3 x 3 low-half multiplier as a target

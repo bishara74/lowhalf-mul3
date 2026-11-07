@@ -1,4 +1,8 @@
-import LowHalfMul3.LemmaA
+module
+
+public import LowHalfMul3.LemmaA
+
+@[expose] public section
 
 /-!
 # Lemma C for spaces without a good direction; `BadClaim` and `LambdaCase 3`

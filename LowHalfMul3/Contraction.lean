@@ -1,4 +1,8 @@
-import LowHalfMul3.Derivative
+module
+
+public import LowHalfMul3.Derivative
+
+@[expose] public section
 
 /-!
 # Quadratic parts, contractions, and Lemma 8 as stated in the paper

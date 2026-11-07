@@ -1,5 +1,9 @@
-import LowHalfMul3.Upper
-import UnrestrictedBooleanMul.N4.Rewiring
+module
+
+public import LowHalfMul3.Upper
+public import UnrestrictedBooleanMul.N4.Rewiring
+
+@[expose] public section
 
 /-!
 # The normal form (Lemma 1 of `lambda4_proof.tex`)

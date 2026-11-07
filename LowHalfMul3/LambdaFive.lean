@@ -1,5 +1,9 @@
-import LowHalfMul3.NormalForm
-import LowHalfMul3.Derivative
+module
+
+public import LowHalfMul3.NormalForm
+public import LowHalfMul3.Derivative
+
+@[expose] public section
 
 /-!
 # The case `λ = 5`

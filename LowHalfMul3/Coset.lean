@@ -1,4 +1,8 @@
-import LowHalfMul3.LambdaThree
+module
+
+public import LowHalfMul3.LambdaThree
+
+@[expose] public section
 
 /-!
 # The general coset lemma (Lemmas B3a and B3b of `lambda3_proof.tex`)

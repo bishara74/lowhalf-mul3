@@ -1,4 +1,8 @@
-import LowHalfMul3.Assembly
+module
+
+public import LowHalfMul3.Assembly
+
+@[expose] public section
 
 /-!
 # Cross parts: Lemma 4 (kernel) and Lemma 6 of `lambda4_proof.tex`

@@ -1,5 +1,9 @@
-import LowHalfMul3.Target
-import Mathlib.Algebra.MonoidAlgebra.Support
+module
+
+public import LowHalfMul3.Target
+public import Mathlib.Algebra.MonoidAlgebra.Support
+
+@[expose] public section
 
 /-!
 # The derivative lemma (Lemma 8 of `lambda4_proof.tex`)

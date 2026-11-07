@@ -1,4 +1,8 @@
-import LowHalfMul3
+module
+
+public import LowHalfMul3
+
+@[expose] public section
 
 /-! Axiom audit for the 3 x 3 low-half multiplier development.
 

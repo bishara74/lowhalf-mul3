@@ -1,5 +1,9 @@
-import LowHalfMul3.Upper
-import UnrestrictedBooleanMul.CircuitPadding
+module
+
+public import LowHalfMul3.Upper
+public import UnrestrictedBooleanMul.CircuitPadding
+
+@[expose] public section
 
 /-!
 # Reducing `MC(lowMul3) = 6` to the single statement `¬ HasCircuit lowMul3 5`

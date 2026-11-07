@@ -1,4 +1,8 @@
-import LowHalfMul3.CrossPart
+module
+
+public import LowHalfMul3.CrossPart
+
+@[expose] public section
 
 /-!
 # The product-coefficient layer: `π₂(L R) = ℓ(L) ∧ ℓ(R)` for affine `L, R`

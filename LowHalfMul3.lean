@@ -1,22 +1,26 @@
-import LowHalfMul3.Target
-import LowHalfMul3.Upper
-import LowHalfMul3.Derivative
-import LowHalfMul3.Reduction
-import LowHalfMul3.NormalForm
-import LowHalfMul3.LambdaFive
-import LowHalfMul3.Contraction
-import LowHalfMul3.LemmaTwo
-import LowHalfMul3.Assembly
-import LowHalfMul3.CrossPart
-import LowHalfMul3.Product
-import LowHalfMul3.LineDerivative
-import LowHalfMul3.LemmaThree
-import LowHalfMul3.Types
-import LowHalfMul3.MainTheorem
-import LowHalfMul3.LambdaThree
-import LowHalfMul3.Coset
-import LowHalfMul3.LemmaA
-import LowHalfMul3.LemmaC
+module
+
+public import LowHalfMul3.Target
+public import LowHalfMul3.Upper
+public import LowHalfMul3.Derivative
+public import LowHalfMul3.Reduction
+public import LowHalfMul3.NormalForm
+public import LowHalfMul3.LambdaFive
+public import LowHalfMul3.Contraction
+public import LowHalfMul3.LemmaTwo
+public import LowHalfMul3.Assembly
+public import LowHalfMul3.CrossPart
+public import LowHalfMul3.Product
+public import LowHalfMul3.LineDerivative
+public import LowHalfMul3.LemmaThree
+public import LowHalfMul3.Types
+public import LowHalfMul3.MainTheorem
+public import LowHalfMul3.LambdaThree
+public import LowHalfMul3.Coset
+public import LowHalfMul3.LemmaA
+public import LowHalfMul3.LemmaC
+
+@[expose] public section
 
 /-!
 # The 3 x 3 low-half multiplier

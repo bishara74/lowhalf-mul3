@@ -1,4 +1,8 @@
-import LowHalfMul3.MainTheorem
+module
+
+public import LowHalfMul3.MainTheorem
+
+@[expose] public section
 
 /-!
 # The case `λ = 3` (`lambda3_proof.tex`): reduction to two claims

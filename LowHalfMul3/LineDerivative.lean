@@ -1,4 +1,8 @@
-import LowHalfMul3.Product
+module
+
+public import LowHalfMul3.Product
+
+@[expose] public section
 
 /-!
 # Lemma 8′: the derivative lemma with a one-dimensional contraction

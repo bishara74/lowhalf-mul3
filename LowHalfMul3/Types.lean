@@ -1,4 +1,8 @@
-import LowHalfMul3.LemmaThree
+module
+
+public import LowHalfMul3.LemmaThree
+
+@[expose] public section
 
 /-!
 # Lemma 11 of `lambda4_proof.tex` (types of rank-2 forms)

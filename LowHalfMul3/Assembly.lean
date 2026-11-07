@@ -1,5 +1,9 @@
-import LowHalfMul3.LemmaTwo
-import LowHalfMul3.Reduction
+module
+
+public import LowHalfMul3.LemmaTwo
+public import LowHalfMul3.Reduction
+
+@[expose] public section
 
 /-!
 # The case split of the five-gate exclusion, and the `λ = 4` reduction

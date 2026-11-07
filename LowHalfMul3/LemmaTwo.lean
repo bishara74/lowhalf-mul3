@@ -1,5 +1,9 @@
-import LowHalfMul3.LambdaFive
-import LowHalfMul3.Contraction
+module
+
+public import LowHalfMul3.LambdaFive
+public import LowHalfMul3.Contraction
+
+@[expose] public section
 
 /-!
 # Lemma 2 of `lambda4_proof.tex`: `V_j = V₄(Q)`

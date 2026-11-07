@@ -1,4 +1,8 @@
-import LowHalfMul3.Target
+module
+
+public import LowHalfMul3.Target
+
+@[expose] public section
 
 /-!
 # A six-gate circuit for the 3 x 3 low-half multiplier
