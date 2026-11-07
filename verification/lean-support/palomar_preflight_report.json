@@ -1,0 +1,420 @@
+{
+  "checked_at": "2026-11-07T19:46:32Z",
+  "diagnostics": [
+    {
+      "code": "source.module_required",
+      "explanation": "AxiomAudit.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "AxiomAudit.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "AxiomAudit.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "Challenge.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "Challenge.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "Challenge.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/Assembly.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/Assembly.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/Assembly.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/Contraction.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/Contraction.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/Contraction.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/Coset.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/Coset.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/Coset.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/CrossPart.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/CrossPart.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/CrossPart.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/Derivative.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/Derivative.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/Derivative.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/LambdaFive.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/LambdaFive.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/LambdaFive.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/LambdaThree.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/LambdaThree.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/LambdaThree.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/LemmaA.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/LemmaA.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/LemmaA.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/LemmaC.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/LemmaC.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/LemmaC.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/LemmaThree.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/LemmaThree.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/LemmaThree.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/LemmaTwo.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/LemmaTwo.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/LemmaTwo.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/LineDerivative.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/LineDerivative.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/LineDerivative.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/MainTheorem.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/MainTheorem.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/MainTheorem.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/NormalForm.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/NormalForm.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/NormalForm.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/Product.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/Product.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/Product.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/Reduction.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/Reduction.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/Reduction.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/Target.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/Target.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/Target.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/Types.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/Types.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/Types.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "source.module_required",
+      "explanation": "LowHalfMul3/Upper.lean must begin with the module header keyword (ordinary comments may precede it)",
+      "location": {
+        "line": 1,
+        "path": "LowHalfMul3/Upper.lean"
+      },
+      "next_action": "Port the Lean source to the module system, including public declarations/imports and exposed definitions as needed; rebuild, commit, and submit the new commit.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "source-requirements",
+      "summary": "LowHalfMul3/Upper.lean must begin with the module header keyword (ordinary comments may precede it)"
+    },
+    {
+      "code": "license.mismatch",
+      "explanation": "repository root has no conventional licence file (LICENSE, LICENCE, COPYING, UNLICENSE, or OFL)",
+      "field": "project.license",
+      "next_action": "Make project.license agree with the repository license file, commit the change, and make a new submission.",
+      "owner": "submitter",
+      "repairable": true,
+      "retryable": false,
+      "stage": "license",
+      "summary": "repository root has no conventional licence file (LICENSE, LICENCE, COPYING, UNLICENSE, or OFL)"
+    },
+    {
+      "code": "submission.invalid",
+      "explanation": "Comparator configuration path is not a regular file: comparator.json",
+      "next_action": "Update the repository, commit the correction, then make a new submission using the new commit SHA.",
+      "owner": "submitter",
+      "repairable": false,
+      "retryable": false,
+      "stage": "comparator-config",
+      "summary": "Comparator configuration path is not a regular file: comparator.json"
+    }
+  ],
+  "diagnostics_schema_version": 1,
+  "errors": [
+    "AxiomAudit.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "Challenge.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/Assembly.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/Contraction.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/Coset.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/CrossPart.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/Derivative.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/LambdaFive.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/LambdaThree.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/LemmaA.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/LemmaC.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/LemmaThree.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/LemmaTwo.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/LineDerivative.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/MainTheorem.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/NormalForm.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/Product.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/Reduction.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/Target.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/Types.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "LowHalfMul3/Upper.lean must begin with the module header keyword (ordinary comments may precede it)",
+    "repository root has no conventional licence file (LICENSE, LICENCE, COPYING, UNLICENSE, or OFL)",
+    "Comparator configuration path is not a regular file: comparator.json"
+  ],
+  "existing_id": null,
+  "formalization_profile_version": 4,
+  "phase": "preparation",
+  "schema_version": 1,
+  "source": {
+    "bytes": 7518483,
+    "commit": "33a708d1323ca5b7ed267c374e68e7268294e072",
+    "repository": "bishara74/lowhalf-mul3",
+    "repository_url": "https://github.com/bishara74/lowhalf-mul3",
+    "tree_url": "https://github.com/bishara74/lowhalf-mul3/tree/33a708d1323ca5b7ed267c374e68e7268294e072"
+  },
+  "source_requirements": {
+    "files_checked": 22,
+    "maximum_lines": 10000,
+    "module_required": true,
+    "schema_version": 1
+  },
+  "stage": "preflight",
+  "status": "fail",
+  "submission": {
+    "authorization": {
+      "relationship": "maintainer"
+    },
+    "requested_paths": {
+      "comparator_config_path": "comparator.json",
+      "formalization_metadata_path": "",
+      "project_path": ""
+    },
+    "submission_id": "preflight001"
+  },
+  "verification_profile": {
+    "id": "palomar-namespace-16x32-v1",
+    "limits": {
+      "execution_budget_seconds": 19800,
+      "file_size_max_bytes": 1099511627776,
+      "job_timeout_minutes": 350,
+      "memory_high_percent": 95,
+      "memory_max_percent": 98,
+      "minimum_host_memory_bytes": 30064771072,
+      "minimum_workspace_free_bytes": 21474836480,
+      "open_files_max": 1048576,
+      "tasks_max": 32768
+    },
+    "runner": {
+      "architecture": "x86_64",
+      "label": "nscloud-ubuntu-24.04-amd64-16x32-with-features",
+      "labels": [
+        "nscloud-ubuntu-24.04-amd64-16x32-with-features",
+        "namespace-features:container.privileged=true"
+      ],
+      "provider": "namespace"
+    },
+    "sha256": "8a124c2d0f369a019e8cb807854b47a9c711f0592ed3bfcda49718dfb457fad0",
+    "trusted_tools": {
+      "bwrap_source_tag": "v0.12.0",
+      "toolchain_floor": "v4.35.0-rc2"
+    }
+  },
+  "warnings": []
+}

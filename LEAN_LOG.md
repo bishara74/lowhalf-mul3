@@ -1140,3 +1140,26 @@ replaces the product lemma, radical lemma and weights (step 2b). The whole of
 No Lean statement or proof changed. `lake build` green (1745 jobs); the audit prints
 202 axiom closures, none with `sorryAx`.
 
+## Phase 6, step 4 – Palomar audit procedure
+
+The official verifier is `PalomarRegistry/PalomarSubmission` at
+`14aa8d6b3c2f14a8540605e37144560b9a00e7e7`. Its preparation phase
+(`verify_submission.py prepare`, preflight mode) was run unchanged on the pushed commit
+`33a708d`. Result: `fail`, with 24 errors.
+
+* `source.module_required`: none of the 22 `.lean` files uses the module system.
+* `license.mismatch`: there is no root licence file (`project.license` is MIT).
+* comparator-config: there is no `comparator.json`.
+
+The Linux-only verification phase was not run. Its static checks predict two more
+failures:
+
+* `challenge.module_root_shadowed`: the dependency has a top-level `Challenge`.
+* There is no Solution, because `LambdaCase 1` and `LambdaCase 2` are open.
+
+**Toolchain `v4.35.0-rc3` is accepted** (minimum `v4.35.0-rc2`; it resolves to Lean
+`470d5ce1`). The metadata contract, line limits, Challenge imports (Mathlib only), the
+Mathlib pin (an ancestor of `master`) and the dependency hygiene all pass. Details are in
+`verification/lean-support/palomar_preflight.md`. No source or toolchain change and no
+submission.
+

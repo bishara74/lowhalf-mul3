@@ -34,3 +34,10 @@ Lemma C predicts.
 including the degenerate ones of dimension 1 and 2. This agrees with
 `verification/README.md` and `lambda3-checks/t11_*`. An earlier figure of 164,639, quoted in the 2 November review, came from a bug in the reviewer's own script and has been withdrawn; 164,596 is confirmed independently. The count of spans without `GoodDir`, 26,928,
 agrees with the review.
+
+## Palomar preflight
+
+`palomar_preflight.md` records a local run of Palomar's preparation phase against
+commit `33a708d`. It also covers the verification-stage preconditions that can be
+checked without the Linux sandbox. `palomar_preflight_report.json` is the verifier's
+report, unchanged. Nothing was submitted.
