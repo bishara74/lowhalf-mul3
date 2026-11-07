@@ -1031,3 +1031,49 @@ independent subprocesses writing shard files).
 Count reconciliation: our 164,596 (degenerate spans included) agrees with
 `verification/README.md`; the reviewer's 164,639 could not be reproduced (script not
 in the repo); 26,928 agrees.
+
+### Step 2b – Lemma A for spaces without a good direction (`z₁` conjunct of `BadClaim`)
+
+New file `LowHalfMul3/LemmaA.lean`; `noPlace_z1_bad : ¬ GoodDir (Q3span l1 r1 l2 r2) →
+NoPlace (Q3span l1 r1 l2 r2) (lowMul3 1)`.
+
+**Route (divergence: no product lemma, no radical lemma, no weights).**
+1. *Bridge for every direction* (`bridge_all`): for `deg p ≤ 2` and any `e ∈ F₂⁶`,
+   `D_e p(x) = D_e p(0) + ⟨ι_e π₂p, x⟩`. Six unit-vector termwise checks (as for
+   `a₂`, `b₂`) and additivity in `e` (`bridge_add`, using
+   `D_{e+e'} = D_{e'}∘shift_e + D_e`).
+2. *`U`-directions* (`GenDir Q`): some `e` with `ι_e(Q) ⊆ ⟨ℓ⟩` and
+   `ι_e Z₁ ∉ ⟨ℓ⟩`. Along such `e` (`z1_place_vanish`), the Lemma 8′ argument for the
+   degree-2 target `z₁` gives: after normalising `D_e f` constant, with
+   `A = D_e(fh)` (affine, linear part `γℓ + ι_e Z₁ ≠ 0`), either `fh = fA`
+   (`D_e f = 1`), or `f = A` (`D_e h ≡ 1`), or `A` vanishes on a hyperplane
+   `{D_e h = 0}` with normal in `⟨ℓ⟩`, which `affine_vanish` excludes. So some
+   `G` (`fh` or `(f+h)h`) of degree `≤ 2`, with `π₂G ∈ Z₁ + Q`, vanishes on a
+   hyperplane `{⟨a, x⟩ = α}`, `a ≠ 0`.
+3. *Lemma W* (`pi2_wedge_of_vanish`): such `G` has `π₂G = a ∧ m`. Along every
+   `e ⊥ a`, `D_e G` vanishes on the hyperplane, so `ι_e π₂G ∈ {0, a}`
+   (`affine_vanish`), and a 2-form with all contractions along `a^⊥` in `⟨a⟩` is
+   `a ∧ m` (`wedge_of_contractions`, `m` = the row of an index with `aᵢ = 1`).
+4. Hence `Z₁ ∈ span{P₀, P₁, P₂, a ∧ m}`, and `goodDir_main` gives a good direction
+   for this span, hence for `Q₃` (`goodDir_mono`): contradiction
+   (`noPlace_z1_of_genDir`).
+5. *Classification* (`goodDir_or_genDir`): with the type normal forms of `P₁, P₂`:
+   zero cross part gives Case A (`goodDir_zero1/2`). Equal type `v` gives a
+   killing direction (`goodDir_sameV`). Every other pair gives `GenDir`: take
+   `e = (0, e₁, e₂, 0, e₄, e₅)` with `(e₁, e₄) ≠ 0` killing `P₀`, a type-`v`
+   generator (or `P₁` if both are full), and, for two different types `v`, also
+   the second generator's `l`. The exponents come from small `decide` facts
+   (`kill_v_fin`, 2⁶ × 2⁴; `kill_vv_fin`, 2¹⁰ × 2⁴). The other contraction is then
+   `0` or has a nonzero `a₂/b₂` coordinate, while `ι_e Z₁ = e₄ a₀ + e₁ b₀ ≠ 0` has
+   none.
+
+Python check of the classification (all 54,144 bad generator pairs of rank 2):
+only the types (full, full) (53,760) and (v, v′ ≠ v) (384) occur, and the
+direction construction gives `GenDir` in every case.
+
+`lake build` green (1744 jobs). The audit lists 188 theorems, all
+`[propext, Classical.choice, Quot.sound]`.
+
+Note on `decide` cost: a `Bool` encoding (xor/and) of a 2¹⁶-case statement took
+~4 min, the same per-case cost (~3.7 ms) as over `F₂`. Large finite checks must be
+split, which is why D1 (next step) is planned as a chain of small lemmas.

@@ -79,7 +79,9 @@ status:
     proved. Phase 5 reduces LambdaCase 3 to two named claims, BadClaim and
     B3Claim (lambdaCase_three_of); phase 6 proves B3Claim (b3Claim, via the
     general coset lemma coset_obstruction), so LambdaCase 3 now depends only
-    on BadClaim (lambdaCase_three_of_badClaim). All 171 audited
+    on BadClaim (lambdaCase_three_of_badClaim). The z1 conjunct of
+    BadClaim (Lemma A for spaces without a good direction) is proved
+    (noPlace_z1_bad). All 188 audited
     theorems share the
     axiom closure [propext, Classical.choice, Quot.sound]. Finite facts are
     checked by plain decide (kernel-checked). No use of
@@ -126,6 +128,11 @@ fidelity:
     role; the Pluecker step of B3a is the finite statement gram_finite
     (2^14 cases, plain decide) about U G = 0 for the 2x4 coefficient matrix
     U and the Gram matrix G of beta, instead of the kernel-basis computation.
+    Lemma A for bad Q3 avoids the product lemma (P1-P3, radical lemma,
+    weights): a direction e with a U-component and iota_e(Q3) in <l>,
+    iota_e Z1 not in <l> (GenDir, built from the type normal forms) forces
+    a z1-placement to vanish on a hyperplane {a = alpha}; Lemma W then makes
+    Z1 + q a wedge, and goodDir_main gives a good direction.
 review:
   status: self-assessed
   notes: >-
@@ -206,6 +213,10 @@ alignment:
       lean: UnrestrictedBooleanMul.LowHalfMul3.coset_B3b
       module: LowHalfMul3.Coset
       status: proved
+    - source: lambda3_proof.tex Lemma A for Q3 without a good direction (z1 conjunct of BadClaim)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.noPlace_z1_bad
+      module: LowHalfMul3.LemmaA
+      status: proved-with-divergence
     - source: LambdaCase 3 from BadClaim alone
       lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_three_of_badClaim
       module: LowHalfMul3.Coset

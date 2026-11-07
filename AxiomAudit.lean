@@ -383,10 +383,47 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #check @mc_eq_six_of_badClaim
 #print axioms mc_eq_six_of_badClaim
 
+-- LemmaA: Lemma A for spaces without a good direction (phase 6).
+#check @bridge_all
+#print axioms bridge_all
+#check @iota_wedge
+#print axioms iota_wedge
+#check @affine_vanish
+#print axioms affine_vanish
+#check @wedge_of_contractions
+#print axioms wedge_of_contractions
+#check @pi2_wedge_of_vanish
+#print axioms pi2_wedge_of_vanish
+#check @z1_place_vanish
+#print axioms z1_place_vanish
+#check @goodDir_mono
+#print axioms goodDir_mono
+#check @noPlace_z1_of_genDir
+#print axioms noPlace_z1_of_genDir
+#check @genDir_of_kill
+#print axioms genDir_of_kill
+#check @kill_v_fin
+#print axioms kill_v_fin
+#check @kill_vv_fin
+#print axioms kill_vv_fin
+#check @goodDir_zero1
+#print axioms goodDir_zero1
+#check @goodDir_sameV
+#print axioms goodDir_sameV
+#check @genDir_vv
+#print axioms genDir_vv
+#check @genDir_full
+#print axioms genDir_full
+#check @goodDir_or_genDir
+#print axioms goodDir_or_genDir
+#check @noPlace_z1_bad
+#print axioms noPlace_z1_bad
+
 -- The open statements, printed in full.
 #print BadClaim
 #print B3Claim
 #print CosetBase
+#print GenDir
 #print NoPlace
 #print Q3span
 #print LambdaCase
