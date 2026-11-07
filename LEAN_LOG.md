@@ -1122,3 +1122,21 @@ replaces the product lemma, radical lemma and weights (step 2b). The whole of
 `ofReduceBool`, `decide +kernel` or `axiom`.
 
 **What remains for `MC(lowMul3) = 6`:** `LambdaCase 1` and `LambdaCase 2`.
+## Phase 6, step 3 – repo hygiene
+
+* `README.md` (new, repository root): what is proved, the open statements
+  (`LambdaCase 1`, `LambdaCase 2`, the `Challenge.lean` hole), the trust base, build
+  and audit commands, the layout, and pointers to `paper/` and `verification/`.
+* `formalization.yaml`: `review.notes` replaced. It used to say "Phase 1 only … the
+  lower bound is unverified in Lean". It now states what is kernel-checked and what is
+  open. The project description now covers phases 5–6.
+* `AxiomAudit.lean`: the header listed only `Target`, `Upper` and `Derivative`. It now
+  lists all 19 modules. It also says that unlisted helpers are covered through the
+  closures of the listed results, and that `Challenge.lean` is not imported.
+  Per module, the audit covers at least one theorem (for example `LemmaA` 19 of 61,
+  `Coset` 28 of 40, and all theorems of `Target`, `Upper`, `Assembly`, `CrossPart`,
+  `LambdaThree`).
+
+No Lean statement or proof changed. `lake build` green (1745 jobs); the audit prints
+202 axiom closures, none with `sorryAx`.
+

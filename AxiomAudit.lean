@@ -2,9 +2,37 @@ import LowHalfMul3
 
 /-! Axiom audit for the 3 x 3 low-half multiplier development.
 
-Every proved theorem of `LowHalfMul3.Target`, `LowHalfMul3.Upper` and
-`LowHalfMul3.Derivative` is listed here with its axiom closure. `Challenge.lean` is a separate statement
-environment and is deliberately not imported: its single theorem is a `sorry`.
+Every proved theorem listed below is printed with its axiom closure; the expected
+closure is `[propext, Classical.choice, Quot.sound]`. The listed theorems come from
+all modules of the library:
+
+* `LowHalfMul3.Target`
+* `LowHalfMul3.Upper`
+* `LowHalfMul3.Derivative`
+* `LowHalfMul3.Reduction`
+* `LowHalfMul3.NormalForm`
+* `LowHalfMul3.LambdaFive`
+* `LowHalfMul3.Contraction`
+* `LowHalfMul3.LemmaTwo`
+* `LowHalfMul3.Assembly`
+* `LowHalfMul3.CrossPart`
+* `LowHalfMul3.Product`
+* `LowHalfMul3.LineDerivative`
+* `LowHalfMul3.LemmaThree`
+* `LowHalfMul3.Types`
+* `LowHalfMul3.MainTheorem`
+* `LowHalfMul3.LambdaThree`
+* `LowHalfMul3.Coset`
+* `LowHalfMul3.LemmaA`
+* `LowHalfMul3.LemmaC`
+
+The main results are `upper`, `mc_eq_six_of_no_five`, `normal_form_five`,
+`lambdaCase_five`, `starFree` / `lambdaCase_four`, `b3Claim`, `badClaim`,
+`lambdaCase_three` and `mc_eq_six_of_lambda_one_two`. Helper lemmas that are not
+listed are covered by the closures of the listed results that use them. The statements still open
+(`LambdaCase`, used for `λ = 1, 2`) are printed in full at the end.
+`Challenge.lean` is a separate statement environment and is deliberately not
+imported: its single theorem is a `sorry`.
 -/
 
 open UnrestrictedBooleanMul.LowHalfMul3

@@ -1,0 +1,97 @@
+# lowhalf-mul3
+
+Lean 4 formalization of the **multiplicative complexity of the 3×3 low-half
+multiplier**: `lowMul3 : Fin 3 → ANF 6`, the three low bits of `a · b mod 8` for two
+3-bit integers `a = a₀a₁a₂`, `b = b₀b₁b₂`. The model is the unrestricted XOR–AND
+circuit model of G. Morse, arXiv:2608.30238 (Definition 2.1): XOR and constants are
+free, and each paid AND gate may multiply arbitrary affine combinations of the
+inputs *and of earlier AND outputs*. The model comes from the dependency
+[`unrestricted_boolean_mul`](https://github.com/GregoryMorse/unrestricted-boolean-mul),
+pinned to `c014e498`.
+
+The target statement is `MC(lowMul3) = 6`. The value 6 was already known from SAT
+certificates (see `verification/certificates/`). This repository gives a structural,
+human-readable lower-bound proof and formalizes it.
+
+## Status
+
+| Statement | Lean name | Status |
+|---|---|---|
+| `lowMul3` agrees with integer multiplication mod 8 on all 64 inputs | `lowMul3_eval` | proved |
+| Upper bound: a 6-gate circuit | `upper : HasCircuit lowMul3 6` | proved |
+| `MC = 6` follows from the absence of 5-gate circuits | `mc_eq_six_of_no_five` | proved |
+| Normal form (Lemma 1): `g₀ = a₀b₀`, the `λ` linear gates come first | `normal_form_five` | proved |
+| `λ = 5` (all gates linear) | `lambdaCase_five` | proved |
+| `λ = 4` (Theorem 12, `StarFree`) | `starFree`, `lambdaCase_four` | proved |
+| `λ = 3` | `lambdaCase_three` | proved |
+| `λ = 2` | `LambdaCase 2` | **open** |
+| `λ = 1` | `LambdaCase 1` | **open** |
+| `MC(lowMul3) = 6` from the two open cases | `mc_eq_six_of_lambda_one_two : LambdaCase 1 → LambdaCase 2 → MC(lowMul3) = 6` | proved |
+| `MC(lowMul3) = 6` (unconditional) | `Challenge.lean`, `mc_lowMul3` | stated; deliberate `sorry` |
+
+Each open case is stated as (`LowHalfMul3/Assembly.lean`):
+
+```lean
+def LambdaCase (lam : Nat) : Prop :=
+  ∀ D : Circuit 6 5, D.Computes lowMul3 →
+    D.gate 0 = aVar 3 0 * bVar 3 0 → D.left 0 = aVar 3 0 → D.right 0 = bVar 3 0 →
+    (∀ k : Fin 5, (k.val < lam ↔ IsLinearGate D k)) → False
+```
+
+**Trust base.** Every proved theorem depends only on `propext`,
+`Classical.choice` and `Quot.sound` (see `AxiomAudit.lean`). The development uses
+no `native_decide`, no `ofReduceBool`, no `decide +kernel` and no custom axioms.
+Finite facts are checked by plain `decide`, which the kernel replays; each such
+check stays at or below about 2¹⁴ cases.
+
+## Building
+
+Toolchain: `leanprover/lean4:v4.35.0-rc3` (`lean-toolchain`), with Mathlib at the
+matching tag (pinned in `lake-manifest.json`).
+
+```sh
+lake exe cache get        # optional: download the prebuilt Mathlib cache
+lake build                # builds the library LowHalfMul3 (about 1745 jobs)
+lake env lean AxiomAudit.lean   # prints the axiom closure of every listed theorem
+lake env lean Challenge.lean    # the unconditional statement (reports its one sorry)
+```
+
+`Challenge.lean` is a separate statement file. The library does not import it.
+
+## Layout
+
+| Path | Contents |
+|---|---|
+| `LowHalfMul3.lean` | Library root; imports all modules and summarizes them |
+| `LowHalfMul3/Target.lean`, `Upper.lean` | The target and the six-gate circuit |
+| `LowHalfMul3/Reduction.lean`, `NormalForm.lean`, `LambdaFive.lean`, `Assembly.lean` | Reduction to `¬ HasCircuit lowMul3 5`, the normal form, `λ = 5`, the case split `LambdaCase` |
+| `LowHalfMul3/Derivative.lean`, `Contraction.lean`, `LemmaTwo.lean`, `CrossPart.lean`, `Product.lean`, `LineDerivative.lean`, `LemmaThree.lean`, `Types.lean`, `MainTheorem.lean` | The `λ = 4` proof (Lemmas 1–11 and Theorem 12 of the `λ = 4` note) |
+| `LowHalfMul3/LambdaThree.lean`, `Coset.lean`, `LemmaA.lean`, `LemmaC.lean` | The `λ = 3` proof: reduction, the general coset lemma (B3a/B3b), Lemma A and Lemma C for spaces without a good direction |
+| `AxiomAudit.lean` | `#print axioms` for every theorem listed |
+| `Challenge.lean` | The statement `MC(lowMul3) = 6` (deliberate `sorry`) |
+| `formalization.yaml` | Metadata, the paper-to-Lean correspondence and the recorded divergences |
+| `LEAN_LOG.md` | Chronological development log, with human-readable sketches wherever the Lean route differs from the paper |
+| `paper/` | Case notes (`paper/notes/lambda{1,2,3,4}_proof.tex`) and a snapshot of the merged manuscript (`paper/main.tex`); the manuscript itself is maintained at https://github.com/bishara74/lowhalf-mul3-paper |
+| `verification/` | Computational evidence: exhaustive Python checks of every lemma, SAT certificates, the referee audits, and `verification/lean-support/` (a full check of `BadClaim`); see `verification/README.md` |
+
+## Where the Lean route differs from the paper
+
+The Lean proofs of `λ = 4` and `λ = 3` follow the notes, but use shorter
+arguments in several places. Each one is recorded in `formalization.yaml`
+(`fidelity.divergences`) and sketched in `LEAN_LOG.md`.
+
+* **Lemma 8′** (`starFree_of_goodDir`) handles every space with a "good
+  direction". For `λ = 4` this replaces Lemma 5, Proposition 7 and the
+  `dim Q = 4` reduction. For `λ = 3` it gives Lemma C and Proposition B for such
+  spaces through `Q₃ + ⟨Z₁⟩`.
+* **The coset lemma** (`coset_obstruction`) is stated once for an abstract base
+  space: it contains the affine functions, its `a₂`/`b₂` derivatives are
+  constant, and `1, a₀, b₀` lie in the radical of the carry pairing. It covers
+  Lemmas B3a/B3b for every `Q ⊆ Λ²(U)`, and is meant for reuse in `λ = 2`
+  (inside-`U` branch) and in the core branch of `λ = 1`.
+* **Spaces without a good direction** (26,928 spans). Both conjuncts of
+  `BadClaim` follow from one direction `e` with a nonzero `a₁`/`b₁` component.
+  Lemma A uses Lemma W, a quadratic function vanishing on a hyperplane
+  `{a = α}` has quadratic part `a ∧ m`. Lemma C uses a third difference that
+  detects the derivative of the carry. This replaces the product lemma, the
+  radical lemma, the weight bounds, Lemma D1 and the 4-form computations.
