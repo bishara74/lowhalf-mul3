@@ -146,8 +146,9 @@ review:
     cases are not yet formalized, and the unconditional statement in
     Challenge.lean is still a deliberate sorry. Several Lean proofs take
     shorter routes than the written notes (fidelity.divergences, LEAN_LOG.md).
-    A supervisor review (November 2026) and an independent referee audit of
-    the paper (verification/referee/) cover the mathematics; no independent
+    A supervisor review (November 2026) and two internal pre-submission audits
+    of the paper (verification/audit-v1/, verification/audit-v2/) cover the
+    mathematics; no independent
     review of the Lean development itself is claimed.
 alignment:
   namespace: UnrestrictedBooleanMul.LowHalfMul3

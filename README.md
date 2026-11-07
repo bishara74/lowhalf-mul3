@@ -72,7 +72,7 @@ lake env lean Challenge.lean    # the unconditional statement (reports its one s
 | `formalization.yaml` | Metadata, the paper-to-Lean correspondence and the recorded divergences |
 | `LEAN_LOG.md` | Chronological development log, with human-readable sketches wherever the Lean route differs from the paper |
 | `paper/` | Case notes (`paper/notes/lambda{1,2,3,4}_proof.tex`) and a snapshot of the merged manuscript (`paper/main.tex`); the manuscript itself is maintained at https://github.com/bishara74/lowhalf-mul3-paper |
-| `verification/` | Computational evidence: exhaustive Python checks of every lemma, SAT certificates, the referee audits, and `verification/lean-support/` (a full check of `BadClaim`); see `verification/README.md` |
+| `verification/` | Computational evidence: exhaustive Python checks of every lemma, SAT certificates, the internal paper audits (`audit-v1/`, `audit-v2/`), and `verification/lean-support/` (a full check of `BadClaim`); see `verification/README.md` |
 
 ## Where the Lean route differs from the paper
 

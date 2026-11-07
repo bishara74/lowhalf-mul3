@@ -32,8 +32,5 @@ Lemma C predicts.
 
 **Counting convention.** 164,596 counts distinct subspaces `⟨P₀, w₁, w₂⟩`,
 including the degenerate ones of dimension 1 and 2. This agrees with
-`verification/README.md` and `lambda3-checks/t11_*`. The review quotes 164,639;
-its script is not in the repository, so the 43-space difference could not be
-traced. Counting `⟨w₁, w₂⟩` without `P₀` gives 192,697, so that is not the
-reviewer's convention either. The count of spans without `GoodDir`, 26,928,
+`verification/README.md` and `lambda3-checks/t11_*`. An earlier figure of 164,639, quoted in the 2 November review, came from a bug in the reviewer's own script and has been withdrawn; 164,596 is confirmed independently. The count of spans without `GoodDir`, 26,928,
 agrees with the review.

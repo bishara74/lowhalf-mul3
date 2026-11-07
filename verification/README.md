@@ -8,7 +8,9 @@ Nothing in this folder is needed to build or check the Lean proof.
 |---|---|
 | `lambda3-checks/` | Exhaustive Python checks of every lemma in the λ = 3 proof (product, radical, weights, Lemma A, D1, C, B3a, B3b, Plücker), plus the earlier SAT-free certification reports (Task 6, 8, 10) and the lower-bound summary. |
 | `lambda2-lambda1-checks/` | Exhaustive Python checks of every lemma in the λ = 2 and λ = 1 proofs, and independent full searches showing no 5-AND circuit exists for λ = 2 or λ = 1. `README.md` inside describes each script; `results.json` has all counts. |
-| `referee/` | An independent hostile-referee audit of the merged paper (`reviewed_main.tex`, the exact version audited): `REFEREE_REPORT.md` (36 results: 31 OK, 5 minor, 0 gaps) and the referee's own check scripts, written from scratch. |
+| `audit-v1/` | Internal pre-submission audit of the merged paper, version 1 (`reviewed_main.tex`, the exact version audited), produced by an AI agent session that had not seen the original work: `REFEREE_REPORT.md` (36 results: 31 OK, 5 minor, 0 gaps) and its own check scripts, written from scratch. This is not external peer review. |
+| `audit-v2/` | Internal pre-submission audit of version 2 of the paper, done the same way: `REFEREE_REPORT_v2.md` (60 items: 51 OK, 9 minor, 0 gaps) and its check scripts. All nine minor items were applied in version 3. |
+| `lean-support/` | Exhaustive classical check of the Lean statement `BadClaim` on all 26,928 spans without a good direction, run before formalizing it. |
 | `certificates/` | SAT certificates: the original MC = 6 certificate package (LRAT, checked with `cake_lpr`), its SHA-256 manifest, the λ-case UNSAT certificates and run logs, and the RUP checkers. |
 
 ## Conventions
@@ -17,8 +19,8 @@ Nothing in this folder is needed to build or check the Lean proof.
   6 variables are stored as 64-bit ANF masks.
 - Every check script includes a positive control (a planted violation that it detects).
 - Each folder has a `run_all.py` or a README with the command to reproduce its results.
-- "All Q3 spaces" counts 164,596 spans ⟨P0, P1, P2⟩ with P1, P2 of rank 2; including degenerate
-  spans gives 164,639.
+- "All Q3 spaces" means the 164,596 distinct spans ⟨P0, P1, P2⟩ with P1, P2 of rank 2, including
+  those with dependent generators (dimensions 1 / 2 / 3 occur 1 / 605 / 163,990 times).
 
 ## Large files not stored here
 
