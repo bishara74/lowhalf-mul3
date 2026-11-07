@@ -1,0 +1,237 @@
+{
+  "check_coset_parity": {
+    "example": {
+      "beta(P0,b1)": [
+        1,
+        1
+      ],
+      "beta(a0,P0)": [
+        0,
+        0
+      ],
+      "beta(b0,b1)": [
+        0,
+        0
+      ],
+      "product_sum": [
+        0,
+        0
+      ],
+      "target": [
+        0,
+        1
+      ]
+    },
+    "ordinary_pairs": {
+      "distinct_product_cosets_summed_over_spaces": 10558944,
+      "noncore_first_gate_cosets_with_core_B": 288,
+      "planes": 12509280,
+      "positive_control": "the worked example gives a pair for its relaxed target"
+    },
+    "toolkit": {
+      "complementary_minor_matrices": 210,
+      "edge_tuples_per_part": 14641,
+      "final_product_point_assignments": 64,
+      "maximal_A_dimension": 15,
+      "positive_controls": [
+        "forbidden cubic gives an exact (a) witness",
+        "relaxed target gives an exact (b) witness"
+      ],
+      "samples_per_part": 1000000,
+      "seed": 20261107
+    }
+  },
+  "check_exterior": {
+    "B": {
+      "Q3_containing_Z1": 11,
+      "dimensions_of_actual_Q3": {
+        "1": 1,
+        "2": 605,
+        "3": 163990
+      },
+      "eligible_for_B": {
+        "2": 22,
+        "3": 15197
+      },
+      "no_kill": 5632,
+      "positive_control": "(P0+a1)*b0 places z1 with dependent generators P0, a0*b1, a0*(b0+b1)"
+    },
+    "D1": {
+      "external_free_wedges_by_subcase": {
+        "both full, m01,m02,m12=0,0,1": 5760,
+        "both full, m01,m02,m12=0,1,1": 768,
+        "both full, m01,m02,m12=1,0,1": 768,
+        "both full, m01,m02,m12=1,1,0": 1920,
+        "both full, m01,m02,m12=1,1,1": 1152,
+        "distinct type-v, m01,m02,m12=0,0,1": 2880,
+        "distinct type-v, m01,m02,m12=0,1,0": 6848,
+        "distinct type-v, m01,m02,m12=0,1,1": 576,
+        "distinct type-v, m01,m02,m12=1,0,0": 10432,
+        "distinct type-v, m01,m02,m12=1,0,1": 576,
+        "distinct type-v, m01,m02,m12=1,1,0": 1728,
+        "distinct type-v, m01,m02,m12=1,1,1": 576,
+        "mixed full and type-v, m01,m02,m12=0,0,1": 11520,
+        "mixed full and type-v, m01,m02,m12=0,1,0": 2048,
+        "mixed full and type-v, m01,m02,m12=0,1,1": 2304,
+        "mixed full and type-v, m01,m02,m12=1,0,0": 16384,
+        "mixed full and type-v, m01,m02,m12=1,0,1": 2304,
+        "mixed full and type-v, m01,m02,m12=1,1,1": 2304,
+        "same type-v, m01,m02,m12=0,0,1": 6264,
+        "same type-v, m01,m02,m12=0,1,0": 1912,
+        "same type-v, m01,m02,m12=0,1,1": 2936,
+        "same type-v, m01,m02,m12=1,0,0": 6584,
+        "same type-v, m01,m02,m12=1,0,1": 2968,
+        "same type-v, m01,m02,m12=1,1,0": 5256,
+        "same type-v, m01,m02,m12=1,1,1": 3960
+      },
+      "pairs": {
+        "both full": 32640,
+        "distinct type-v": 43200,
+        "mixed full and type-v": 92160,
+        "same type-v": 21384
+      },
+      "pairs_with_Omega": {
+        "same type-v": 2304
+      },
+      "positive_control": [
+        "0x40",
+        "0x40040",
+        3,
+        32
+      ]
+    },
+    "rank_and_upper": {
+      "circuit_inputs": 64,
+      "outside_wedge_images": 616,
+      "positive_control": "P0 exterior image contains Omega",
+      "rank_tests_after_rank_two_addition": 2604
+    }
+  },
+  "check_ideal": {
+    "Q": 606,
+    "Q_symmetry_representatives": 83,
+    "first_gate_pairs_including_affine_and_dependent": 32896,
+    "planes": 6533642,
+    "positive_control": "a0*b1 gives an allowed genuinely new quadratic direction",
+    "quadratic_quotient_products": 1910282,
+    "quartic_products": 2293760,
+    "representative_planes": 887857,
+    "representative_quadratic_quotient_products": 270385,
+    "representative_quartic_products": 237568,
+    "with_nonzero_cubic_before_quotient": 1384800
+  },
+  "check_rigidity": {
+    "all_cubic_cosets": 1740,
+    "count_format": [
+      "k tested against the whole R coset by elimination",
+      "k with a witness R"
+    ],
+    "fiber_freedom_counterexample": {
+      "R_anf": "0x208041000",
+      "k_anf": "0x201",
+      "point_a0_a1_a2_b0_b1_b2": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    "full_coordinate_shifts": 1024,
+    "last_factor": {
+      "full d=0": [
+        131072,
+        512
+      ],
+      "full d=1": [
+        131072,
+        0
+      ],
+      "type-v d=0": [
+        184320,
+        720
+      ],
+      "type-v d=1": [
+        184320,
+        0
+      ]
+    },
+    "noncore_cubic_cosets": 1680,
+    "noncore_multiplier": {
+      "tau=0": [
+        860160,
+        3360
+      ],
+      "tau=1": [
+        860160,
+        24
+      ]
+    },
+    "positive_controls": [
+      "relaxed target a2*b0 has a witness for k=a2",
+      "tau=1 with c=P0*a2, k=1+c, R=z2+b2+c"
+    ],
+    "rank_two_P_outside_U": 616,
+    "type_v_table_and_carry_assignments": 48
+  },
+  "check_source": {
+    "dependency_order": [
+      "sec:upper",
+      "l4:lem:normal",
+      "thm:lambda5",
+      "l4:lem:Qonly",
+      "l4:lem:cross",
+      "l4:lem:types",
+      "l4:lem:support",
+      "l4:lem:deriv",
+      "l4:lem:planeU",
+      "l4:lem:noq2",
+      "l4:prop:B",
+      "l4:thm:main",
+      "l3:lem:deriv",
+      "l3:lem:D1",
+      "l3:lem:C",
+      "l3:lem:rad",
+      "l3:lem:wt",
+      "l3:lem:P",
+      "l3:lem:A",
+      "l3:lem:abs",
+      "l3:thm:L4",
+      "l3:prop:B",
+      "l3:lem:B3U",
+      "toolkit:coset",
+      "l3:prop:B3",
+      "l3:thm:main",
+      "l2:lem:replace",
+      "l2:lem:coset",
+      "l2:lem:rankext",
+      "l2:lem:lastfactor",
+      "l2:lem:ideal",
+      "l2:prop:onehigh",
+      "l2:thm:main",
+      "l1:lem:reduce",
+      "l1:lem:cubic",
+      "l1:lem:corecoset",
+      "l1:prop:corebranch",
+      "l2:lem:four",
+      "l1:lem:earlycore",
+      "l1:lem:ordinarypair",
+      "l1:lem:noncoremult",
+      "l1:lem:noncore",
+      "l1:thm:main",
+      "thm:MC",
+      "l1:lem:first"
+    ],
+    "labels": 68,
+    "lines": 1340,
+    "missing_references": [],
+    "positive_controls": [
+      "undefined reference",
+      "theorem cycle"
+    ],
+    "proof_dependency_edges": 80,
+    "ref_and_eqref_occurrences": 189,
+    "source_sha256": "a8741348127419f97a7200ad0775e83b797adbdf9ec0d71d89cf45185de42aa1"
+  }
+}
