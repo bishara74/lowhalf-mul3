@@ -389,10 +389,34 @@ theorem iota_Z1_apply (e : Fin 6 → F₂) (j : Fin 6) :
   simp only [Pi.add_apply, Pi.smul_apply, smul_eq_mul, dotv_unit_left]
   ring
 
-theorem genDir_of_kill {l1 r1 l2 r2 : Fin 6 → F₂} (e : Fin 6 → F₂) (h0 : e 0 = 0)
+/-- A direction with no `a₀, b₀` component and a nonzero `a₁` or `b₁` component,
+along which `Q` contracts into one line `⟨ℓ⟩`, with `ℓ = 0` or `ℓ` having a nonzero
+`a₂`/`b₂` coordinate. Gives both Lemma A (`genDir_of_uDir`) and Lemma C
+(`LemmaC.lean`) for spaces without a good direction. -/
+def UDir (Q : Submodule F₂ TwoForm6) : Prop :=
+  ∃ e ℓ : Fin 6 → F₂, e 0 = 0 ∧ e 3 = 0 ∧ (e 1 = 1 ∨ e 4 = 1) ∧
+    (∀ ω ∈ Q, ∃ γ : F₂, iota e ω = γ • ℓ) ∧ (ℓ 2 = 0 → ℓ 5 = 0 → ℓ = 0)
+
+theorem uDir_of_kill {l1 r1 l2 r2 : Fin 6 → F₂} (e : Fin 6 → F₂) (h0 : e 0 = 0)
     (h3 : e 3 = 0) (hU : e 1 = 1 ∨ e 4 = 1) (hk1 : iota e (wedge l1 r1) = 0)
     (hk2 : iota e (wedge l2 r2) 2 = 0 → iota e (wedge l2 r2) 5 = 0 → iota e (wedge l2 r2) = 0) :
-    GenDir (Q3span l1 r1 l2 r2) := by
+    UDir (Q3span l1 r1 l2 r2) := by
+  refine ⟨e, iota e (wedge l2 r2), h0, h3, hU, fun ω hω => ?_, hk2⟩
+  have hle : Q3span l1 r1 l2 r2 ≤
+      (Submodule.span F₂ {iota e (wedge l2 r2)}).comap (iota e) := by
+    rw [Q3span, Submodule.span_le]
+    rintro _ ⟨k, rfl⟩
+    fin_cases k
+    · show iota e P0form ∈ Submodule.span F₂ {iota e (wedge l2 r2)}
+      rw [iota_P0_gen e h0 h3]; exact Submodule.zero_mem _
+    · show iota e (wedge l1 r1) ∈ Submodule.span F₂ {iota e (wedge l2 r2)}
+      rw [hk1]; exact Submodule.zero_mem _
+    · exact Submodule.mem_span_singleton_self _
+  obtain ⟨γ, hγ⟩ := Submodule.mem_span_singleton.mp (Submodule.mem_comap.mp (hle hω))
+  exact ⟨γ, hγ.symm⟩
+
+theorem genDir_of_uDir {Q : Submodule F₂ TwoForm6} (h : UDir Q) : GenDir Q := by
+  obtain ⟨e, ℓ, h0, h3, hU, hQ, hk2⟩ := h
   have hZ0 : iota e Z1form ≠ 0 := by
     intro h
     have a := congrFun h 0
@@ -401,27 +425,13 @@ theorem genDir_of_kill {l1 r1 l2 r2 : Fin 6 → F₂} (e : Fin 6 → F₂) (h0 :
     rcases hU with h1 | h4
     · rw [h1] at b; exact one_ne_zero b
     · rw [h4] at a; exact one_ne_zero a
-  refine ⟨e, iota e (wedge l2 r2), fun ω hω => ?_, fun γ hγ => ?_⟩
-  · have hle : Q3span l1 r1 l2 r2 ≤
-        (Submodule.span F₂ {iota e (wedge l2 r2)}).comap (iota e) := by
-      rw [Q3span, Submodule.span_le]
-      rintro _ ⟨k, rfl⟩
-      fin_cases k
-      · show iota e P0form ∈ Submodule.span F₂ {iota e (wedge l2 r2)}
-        rw [iota_P0_gen e h0 h3]; exact Submodule.zero_mem _
-      · show iota e (wedge l1 r1) ∈ Submodule.span F₂ {iota e (wedge l2 r2)}
-        rw [hk1]; exact Submodule.zero_mem _
-      · exact Submodule.mem_span_singleton_self _
-    obtain ⟨γ, hγ⟩ := Submodule.mem_span_singleton.mp (Submodule.mem_comap.mp (hle hω))
-    exact ⟨γ, hγ.symm⟩
-  · rcases f2_eq_zero_or_one γ with rfl | rfl
-    · rw [zero_smul] at hγ; exact hZ0 hγ
-    · rw [one_smul] at hγ
-      have h2 : iota e (wedge l2 r2) 2 = 0 := by
-        rw [← hγ]; simp [iota_Z1_apply, unitVec]
-      have h5 : iota e (wedge l2 r2) 5 = 0 := by
-        rw [← hγ]; simp [iota_Z1_apply, unitVec]
-      exact hZ0 (hγ.trans (hk2 h2 h5))
+  refine ⟨e, ℓ, hQ, fun γ hγ => ?_⟩
+  rcases f2_eq_zero_or_one γ with rfl | rfl
+  · rw [zero_smul] at hγ; exact hZ0 hγ
+  · rw [one_smul] at hγ
+    have h2 : ℓ 2 = 0 := by rw [← hγ]; simp [iota_Z1_apply, unitVec]
+    have h5 : ℓ 5 = 0 := by rw [← hγ]; simp [iota_Z1_apply, unitVec]
+    exact hZ0 (hγ.trans (hk2 h2 h5))
 
 theorem hk2_full {l r : Fin 6 → F₂} (hnf : NFfull l r) (e : Fin 6 → F₂) :
     iota e (wedge l r) 2 = 0 → iota e (wedge l r) 5 = 0 → iota e (wedge l r) = 0 := by
@@ -526,59 +536,65 @@ theorem goodDir_sameV {l1 r1 l2 r2 : Fin 6 → F₂} (h1 : NFv l1 r1) (h2 : NFv 
     · exact iota_dirA2B2_v h2 (hsum _ _ (hs2 ▸ h2') (hs5 ▸ h5))
     · exact map_zero _
 
-theorem genDir_v_first {l1 r1 l2 r2 : Fin 6 → F₂} (h1 : NFv l1 r1) (h2 : NFfull l2 r2) :
-    GenDir (Q3span l1 r1 l2 r2) := by
+theorem uDir_v_first {l1 r1 l2 r2 : Fin 6 → F₂} (h1 : NFv l1 r1) (h2 : NFfull l2 r2) :
+    UDir (Q3span l1 r1 l2 r2) := by
   obtain ⟨e1, e2, e4, e5, hU, hl, hr⟩ :=
     kill_v_fin (l1 1) (l1 2) (l1 4) (l1 5) (r1 1) (r1 4) h1.2.2
-  refine genDir_of_kill (mkDir e1 e2 e4 e5) rfl rfl hU (iota_kill ?_ ?_) (hk2_full h2 _)
+  refine uDir_of_kill (mkDir e1 e2 e4 e5) rfl rfl hU (iota_kill ?_ ?_) (hk2_full h2 _)
   · rw [dotv_mkDir]; exact hl
   · rw [dotv_mkDir, h1.1, h1.2.1]; exact hr
 
-theorem genDir_vv {l1 r1 l2 r2 : Fin 6 → F₂} (h1 : NFv l1 r1) (h2 : NFv l2 r2)
-    (hd : ¬ (l1 2 = l2 2 ∧ l1 5 = l2 5)) : GenDir (Q3span l1 r1 l2 r2) := by
+theorem uDir_vv {l1 r1 l2 r2 : Fin 6 → F₂} (h1 : NFv l1 r1) (h2 : NFv l2 r2)
+    (hd : ¬ (l1 2 = l2 2 ∧ l1 5 = l2 5)) : UDir (Q3span l1 r1 l2 r2) := by
   obtain ⟨e1, e2, e4, e5, hU, hl, hr, hm⟩ :=
     kill_vv_fin (l1 1) (l1 2) (l1 4) (l1 5) (r1 1) (r1 4) (l2 1) (l2 2) (l2 4) (l2 5)
       h1.2.2 h2.2.2 hd
-  refine genDir_of_kill (mkDir e1 e2 e4 e5) rfl rfl hU (iota_kill ?_ ?_)
+  refine uDir_of_kill (mkDir e1 e2 e4 e5) rfl rfl hU (iota_kill ?_ ?_)
     (hk2_v h2 _ (by rw [dotv_mkDir]; exact hm))
   · rw [dotv_mkDir]; exact hl
   · rw [dotv_mkDir, h1.1, h1.2.1]; exact hr
 
-theorem genDir_full {l1 r1 l2 r2 : Fin 6 → F₂} (h1 : NFfull l1 r1) (h2 : NFfull l2 r2) :
-    GenDir (Q3span l1 r1 l2 r2) := by
-  refine genDir_of_kill (mkDir 1 (l1 1) 0 (r1 1)) rfl rfl (Or.inl rfl) (iota_kill ?_ ?_)
+theorem uDir_full {l1 r1 l2 r2 : Fin 6 → F₂} (h1 : NFfull l1 r1) (h2 : NFfull l2 r2) :
+    UDir (Q3span l1 r1 l2 r2) := by
+  refine uDir_of_kill (mkDir 1 (l1 1) 0 (r1 1)) rfl rfl (Or.inl rfl) (iota_kill ?_ ?_)
     (hk2_full h2 _)
   · rw [dotv_mkDir, h1.1, h1.2.1]; exact (f2_full_kill (l1 1) (r1 1)).1
   · rw [dotv_mkDir, h1.2.2.1, h1.2.2.2]; exact (f2_full_kill (l1 1) (r1 1)).2
 
 /-- Every `Q₃` in normal form has a good direction or a `U`-direction. -/
-theorem goodDir_or_genDir {l1 r1 l2 r2 : Fin 6 → F₂}
+theorem goodDir_or_uDir {l1 r1 l2 r2 : Fin 6 → F₂}
     (h1 : NFzero l1 r1 ∨ NFv l1 r1 ∨ NFfull l1 r1)
     (h2 : NFzero l2 r2 ∨ NFv l2 r2 ∨ NFfull l2 r2) :
-    GoodDir (Q3span l1 r1 l2 r2) ∨ GenDir (Q3span l1 r1 l2 r2) := by
+    GoodDir (Q3span l1 r1 l2 r2) ∨ UDir (Q3span l1 r1 l2 r2) := by
   rcases h1 with z1 | v1 | f1
   · exact Or.inl (goodDir_zero1 z1)
   rcases h2 with z2 | v2 | f2
   · exact Or.inl (goodDir_zero2 z2)
   · by_cases hs : l1 2 = l2 2 ∧ l1 5 = l2 5
     · exact Or.inl (goodDir_sameV v1 v2 hs.1 hs.2)
-    · exact Or.inr (genDir_vv v1 v2 hs)
-  · exact Or.inr (genDir_v_first v1 f2)
+    · exact Or.inr (uDir_vv v1 v2 hs)
+  · exact Or.inr (uDir_v_first v1 f2)
   rcases h2 with z2 | v2 | f2
   · exact Or.inl (goodDir_zero2 z2)
-  · rw [Q3span_comm]; exact Or.inr (genDir_v_first v2 f1)
-  · exact Or.inr (genDir_full f1 f2)
+  · rw [Q3span_comm]; exact Or.inr (uDir_v_first v2 f1)
+  · exact Or.inr (uDir_full f1 f2)
 
-/-- **`BadClaim`, first conjunct (Lemma A for bad spaces).** -/
-theorem noPlace_z1_bad (l1 r1 l2 r2 : Fin 6 → F₂) (hbad : ¬ GoodDir (Q3span l1 r1 l2 r2)) :
-    NoPlace (Q3span l1 r1 l2 r2) (lowMul3 1) := by
+/-- Every `Q₃ = span{P₀, l₁∧r₁, l₂∧r₂}` without a good direction has a
+`U`-direction. -/
+theorem uDir_of_bad (l1 r1 l2 r2 : Fin 6 → F₂) (hbad : ¬ GoodDir (Q3span l1 r1 l2 r2)) :
+    UDir (Q3span l1 r1 l2 r2) := by
   obtain ⟨a1, b1, hw1, hn1⟩ := types l1 r1
   obtain ⟨a2, b2, hw2, hn2⟩ := types l2 r2
   have hQ : Q3span l1 r1 l2 r2 = Q3span a1 b1 a2 b2 := by simp only [Q3span, hw1, hw2]
   rw [hQ] at hbad ⊢
-  rcases goodDir_or_genDir hn1 hn2 with hg | hg
+  rcases goodDir_or_uDir hn1 hn2 with hg | hg
   · exact (hbad hg).elim
-  · exact noPlace_z1_of_genDir a1 b1 a2 b2 hbad hg
+  · exact hg
+
+/-- **`BadClaim`, first conjunct (Lemma A for bad spaces).** -/
+theorem noPlace_z1_bad (l1 r1 l2 r2 : Fin 6 → F₂) (hbad : ¬ GoodDir (Q3span l1 r1 l2 r2)) :
+    NoPlace (Q3span l1 r1 l2 r2) (lowMul3 1) :=
+  noPlace_z1_of_genDir l1 r1 l2 r2 hbad (genDir_of_uDir (uDir_of_bad l1 r1 l2 r2 hbad))
 
 end
 

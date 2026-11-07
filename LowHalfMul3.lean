@@ -16,6 +16,7 @@ import LowHalfMul3.MainTheorem
 import LowHalfMul3.LambdaThree
 import LowHalfMul3.Coset
 import LowHalfMul3.LemmaA
+import LowHalfMul3.LemmaC
 
 /-!
 # The 3 x 3 low-half multiplier
@@ -79,7 +80,12 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
   (`noPlace_z1_bad`, the `z₁` conjunct of `BadClaim`): the derivative bridge for
   every direction, Lemma W (a quadratic function vanishing on a hyperplane
   `{a = α}` has quadratic part `a ∧ m`), and a direction with a `U`-component
-  (`GenDir`) for every `Q₃` in normal form without a good direction.
+  (`UDir`, hence `GenDir`) for every `Q₃` in normal form without a good direction.
+
+* `LowHalfMul3.LemmaC` proves Lemma C for those spaces by a third-difference
+  argument along the same `U`-direction (`noPlace_z2_of_uDir`), hence
+  `badClaim : BadClaim` and **`lambdaCase_three : LambdaCase 3`**, and
+  `mc_eq_six_of_lambda_one_two : LambdaCase 1 → LambdaCase 2 → MC(lowMul3) = 6`.
 
 The lower bound is therefore reduced, in Lean, to exactly three statements:
 `LambdaCase 1`, `LambdaCase 2` and `LambdaCase 3`

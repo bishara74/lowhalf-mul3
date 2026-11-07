@@ -400,8 +400,8 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #print axioms goodDir_mono
 #check @noPlace_z1_of_genDir
 #print axioms noPlace_z1_of_genDir
-#check @genDir_of_kill
-#print axioms genDir_of_kill
+#check @uDir_of_kill
+#print axioms uDir_of_kill
 #check @kill_v_fin
 #print axioms kill_v_fin
 #check @kill_vv_fin
@@ -410,20 +410,51 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #print axioms goodDir_zero1
 #check @goodDir_sameV
 #print axioms goodDir_sameV
-#check @genDir_vv
-#print axioms genDir_vv
-#check @genDir_full
-#print axioms genDir_full
-#check @goodDir_or_genDir
-#print axioms goodDir_or_genDir
+#check @uDir_vv
+#print axioms uDir_vv
+#check @uDir_full
+#print axioms uDir_full
+#check @goodDir_or_uDir
+#print axioms goodDir_or_uDir
 #check @noPlace_z1_bad
 #print axioms noPlace_z1_bad
+
+-- LemmaC: Lemma C for spaces without a good direction; BadClaim; LambdaCase 3 (phase 6).
+#check @genDir_of_uDir
+#print axioms genDir_of_uDir
+#check @uDir_of_bad
+#print axioms uDir_of_bad
+#check @T3_quad
+#print axioms T3_quad
+#check @T3_affine
+#print axioms T3_affine
+#check @T3_congr
+#print axioms T3_congr
+#check @T3_Dz2_a
+#print axioms T3_Dz2_a
+#check @T3_Dz2_b
+#print axioms T3_Dz2_b
+#check @fin_pt
+#print axioms fin_pt
+#check @noPlace_z2_of_uDir
+#print axioms noPlace_z2_of_uDir
+#check @noPlace_z2_bad
+#print axioms noPlace_z2_bad
+#check @noPlace_z21_bad
+#print axioms noPlace_z21_bad
+#check @badClaim
+#print axioms badClaim
+#check @lambdaCase_three
+#print axioms lambdaCase_three
+#check @mc_eq_six_of_lambda_one_two
+#print axioms mc_eq_six_of_lambda_one_two
 
 -- The open statements, printed in full.
 #print BadClaim
 #print B3Claim
 #print CosetBase
 #print GenDir
+#print UDir
 #print NoPlace
 #print Q3span
 #print LambdaCase

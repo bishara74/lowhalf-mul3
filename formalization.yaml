@@ -74,15 +74,12 @@ status:
     deliberate hole in Challenge.lean, which the library does not import.
     Phases 2-4 add lower-bound machinery: the normal form, Lemma 2, Lemma 8,
     the exclusion of lambda = 5, and Theorem 12 (starFree, the
-    four-linear-gate case). mc_eq_six_of_lambda_cases derives MC(lowMul3) = 6
-    from LambdaCase 1, LambdaCase 2 and LambdaCase 3; these three are not
-    proved. Phase 5 reduces LambdaCase 3 to two named claims, BadClaim and
-    B3Claim (lambdaCase_three_of); phase 6 proves B3Claim (b3Claim, via the
-    general coset lemma coset_obstruction), so LambdaCase 3 now depends only
-    on BadClaim (lambdaCase_three_of_badClaim). The z1 conjunct of
-    BadClaim (Lemma A for spaces without a good direction) is proved
-    (noPlace_z1_bad). All 188 audited
-    theorems share the
+    four-linear-gate case). Phases 5-6 prove LambdaCase 3 (lambdaCase_three:
+    reduction lambdaCase_three_of, the general coset lemma b3Claim, Lemma A
+    noPlace_z1_bad and Lemma C noPlace_z2_of_uDir for spaces without a good
+    direction, hence badClaim). mc_eq_six_of_lambda_one_two derives
+    MC(lowMul3) = 6 from LambdaCase 1 and LambdaCase 2, which are not yet
+    proved. All 202 audited theorems share the
     axiom closure [propext, Classical.choice, Quot.sound]. Finite facts are
     checked by plain decide (kernel-checked). No use of
     native_decide or ofReduceBool, and no custom axiom.
@@ -133,6 +130,10 @@ fidelity:
     iota_e Z1 not in <l> (GenDir, built from the type normal forms) forces
     a z1-placement to vanish on a hyperplane {a = alpha}; Lemma W then makes
     Z1 + q a wedge, and goodDir_main gives a good direction.
+    Lemma C for bad Q3 avoids 4-forms and Lemma D1: along the same
+    U-direction e (UDir), D_e f and D_e h are constant on ker l, so on that
+    hyperplane D_e z2 would have degree <= 2; but the third difference over a
+    cube in ker l sees the carry derivative a0 b0 (e1 b1 + e4 a1) and equals 1.
 review:
   status: self-assessed
   notes: >-
@@ -193,10 +194,22 @@ alignment:
       lean: UnrestrictedBooleanMul.LowHalfMul3.phi_of_Z1_mem
       module: LowHalfMul3.LambdaThree
       status: proved
-    - source: lambda3_proof.tex Lemmas A and C for Q3 without a good direction
-      lean: UnrestrictedBooleanMul.LowHalfMul3.BadClaim
-      module: LowHalfMul3.LambdaThree
-      status: stated
+    - source: lambda3_proof.tex Lemmas A and C for Q3 without a good direction (BadClaim)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.badClaim
+      module: LowHalfMul3.LemmaC
+      status: proved-with-divergence
+    - source: lambda3_proof.tex Lemma C (and D1) for Q3 without a good direction
+      lean: UnrestrictedBooleanMul.LowHalfMul3.noPlace_z2_of_uDir
+      module: LowHalfMul3.LemmaC
+      status: proved-with-divergence
+    - source: lambda3_proof.tex Theorem (three linear gates)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_three
+      module: LowHalfMul3.LemmaC
+      status: proved-with-divergence
+    - source: MC(lowMul3) = 6 from LambdaCase 1 and LambdaCase 2
+      lean: UnrestrictedBooleanMul.LowHalfMul3.mc_eq_six_of_lambda_one_two
+      module: LowHalfMul3.LemmaC
+      status: proved
     - source: lambda3_proof.tex Proposition B3 (B3Claim)
       lean: UnrestrictedBooleanMul.LowHalfMul3.b3Claim
       module: LowHalfMul3.Coset

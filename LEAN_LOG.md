@@ -1077,3 +1077,48 @@ direction construction gives `GenDir` in every case.
 Note on `decide` cost: a `Bool` encoding (xor/and) of a 2¹⁶-case statement took
 ~4 min, the same per-case cost (~3.7 ms) as over `F₂`. Large finite checks must be
 split, which is why D1 (next step) is planned as a chain of small lemmas.
+
+### Step 2c – Lemma C for spaces without a good direction; `BadClaim`; **`LambdaCase 3` proved**
+
+New file `LowHalfMul3/LemmaC.lean`; `LemmaA.lean` refactored so that the
+classification returns the stronger `UDir` (`uDir_of_bad`), from which both
+`GenDir` (Lemma A, `genDir_of_uDir`) and Lemma C follow.
+
+Proved: `noPlace_z2_of_uDir`, `noPlace_z2_bad`, `noPlace_z21_bad`,
+`badClaim : BadClaim`, **`lambdaCase_three : LambdaCase 3`**, and
+`mc_eq_six_of_lambda_one_two : LambdaCase 1 → LambdaCase 2 → MC(lowMul3) = 6`.
+
+**`UDir Q`.** Some `e = (0, e₁, e₂, 0, e₄, e₅)` with `(e₁, e₄) ≠ 0` has
+`ι_e(Q) ⊆ ⟨ℓ⟩`, where `ℓ = 0` or `ℓ` has a nonzero `a₂`/`b₂` coordinate. The
+directions built in step 2b have exactly this property.
+
+**Lemma C along `e` (human sketch).** Suppose `f, h ∈ V(Q)` and
+`g = fh + z₂ + εz₁ ∈ V(Q)`.
+1. By the bridge, `D_e f = c_f + γ_f⟨ℓ,x⟩` and `D_e h = c_h + γ_h⟨ℓ,x⟩`. On
+   the hyperplane `ker ℓ`,
+   `D_e z₂ = c_f h + c_h f + c_f c_h + ε D_e z₁ + D_e g` (pointwise, `fin_pt`).
+   The right side has degree `≤ 2`.
+2. Choose `w ∈ {a₂, b₂, 0}` with `⟨ℓ, w⟩ = 1` (or `ℓ = 0`). Then the vectors
+   `u_t = e_t + ℓ_t w` lie in `ker ℓ`. Take the cube on `u₀, u₃, u₄` if `e₁ = 1`,
+   or on `u₀, u₁, u₃` if `e₄ = 1`.
+3. The third difference `T3` over a cube vanishes on degree `≤ 2` (`T3_quad`:
+   bridge along one edge, then the remaining sum has even multiplicities) and on
+   affine functions (`T3_affine`). So `T3` of the right side is `0`.
+4. `D_e z₂` contains `a₀b₀(e₁b₁ + e₄a₁)`, the derivative of the carry, which does
+   not involve `a₂, b₂`. A direct computation (`T3_Dz2_a`, `T3_Dz2_b`, `decide` on
+   9 scalars) gives `T3(D_e z₂) = e₁` (resp. `e₄`), i.e. `1`. Contradiction.
+
+**Divergence.** This replaces Lemma C, Lemma D1 and the 4-form / Plücker
+computations of `lambda3_proof.tex` for spaces without a good direction. It also
+replaces the product lemma, radical lemma and weights (step 2b). The whole of
+`BadClaim` follows from one direction `e` per bad space.
+
+**`LambdaCase 3` assembly.** `lambdaCase_three := lambdaCase_three_of_badClaim badClaim`
+(step 1: good direction / flow / B3U; phase 6 step 1: `b3Claim`).
+
+`lake build` green (1745 jobs). The audit lists 202 theorems, all
+`[propext, Classical.choice, Quot.sound]`. A source scan finds no `sorry`
+(except the deliberate `Challenge.lean:126`), no `native_decide`,
+`ofReduceBool`, `decide +kernel` or `axiom`.
+
+**What remains for `MC(lowMul3) = 6`:** `LambdaCase 1` and `LambdaCase 2`.
