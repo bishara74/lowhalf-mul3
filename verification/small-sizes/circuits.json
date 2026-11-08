@@ -1,0 +1,16 @@
+{
+  "1": {
+    "input_order": ["a0", "b0"],
+    "gates": [{"left": ["a0"], "right": ["b0"]}],
+    "outputs": [["g0"]]
+  },
+  "2": {
+    "input_order": ["a0", "a1", "b0", "b1"],
+    "gates": [
+      {"left": ["a0"], "right": ["b0"]},
+      {"left": ["a0"], "right": ["b1"]},
+      {"left": ["a1"], "right": ["b0"]}
+    ],
+    "outputs": [["g0"], ["g1", "g2"]]
+  }
+}
