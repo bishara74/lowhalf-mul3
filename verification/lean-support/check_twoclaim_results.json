@@ -1,0 +1,303 @@
+{
+ "setting": "TwoClaim, all planes P outside Lambda^2(U), all g = f h, f, h in V(Q)",
+ "z2_semantics_64_inputs": true,
+ "planes_outside_U": 616,
+ "totals": {
+  "g_cosets": 5678152,
+  "i_fail": 0,
+  "a0_fail": 0,
+  "a1_fail": 0,
+  "b_fail": 0,
+  "k1p0_fail": 0,
+  "not_rigid": 0,
+  "not_goodS": 0,
+  "t4_bad": 0,
+  "dimA_not_10": 0
+ },
+ "K_P_histogram": {
+  "1+1+a0b0": 616
+ },
+ "brute_cross_check": [
+  {
+   "plane": [
+    1,
+    4
+   ],
+   "brute_hits": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "plane": [
+    6,
+    58
+   ],
+   "brute_hits": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "plane": [
+    13,
+    52
+   ],
+   "brute_hits": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "plane": [
+    22,
+    38
+   ],
+   "brute_hits": [
+    0,
+    0,
+    0
+   ]
+  }
+ ],
+ "brute_positive_control_hits": [
+  1,
+  1,
+  1
+ ],
+ "positive_controls": [
+  {
+   "plane": [
+    1,
+    4
+   ],
+   "T=g+a (i)": {
+    "i": 1,
+    "a0": 1,
+    "a1": 420,
+    "b": 769,
+    "rigid": false,
+    "K_P_size": 7
+   },
+   "T=FH+a (a, sigma 0)": {
+    "i": 0,
+    "a0": 1,
+    "a1": 253,
+    "b": 762,
+    "rigid": false,
+    "K_P_size": 31
+   },
+   "T=FH+g+a (a, sigma 1)": {
+    "i": 0,
+    "a0": 0,
+    "a1": 12,
+    "b": 0,
+    "rigid": true,
+    "K_P_size": 1
+   },
+   "T=k(g+F)+a (b)": {
+    "i": 0,
+    "a0": 0,
+    "a1": 0,
+    "b": 4,
+    "rigid": false,
+    "K_P_size": 2
+   }
+  },
+  {
+   "plane": [
+    5,
+    10
+   ],
+   "T=g+a (i)": {
+    "i": 1,
+    "a0": 1,
+    "a1": 392,
+    "b": 769,
+    "rigid": false,
+    "K_P_size": 7
+   },
+   "T=FH+a (a, sigma 0)": {
+    "i": 1,
+    "a0": 1,
+    "a1": 454,
+    "b": 1113,
+    "rigid": false,
+    "K_P_size": 7
+   },
+   "T=FH+g+a (a, sigma 1)": {
+    "i": 0,
+    "a0": 0,
+    "a1": 42,
+    "b": 0,
+    "rigid": true,
+    "K_P_size": 1
+   },
+   "T=k(g+F)+a (b)": {
+    "i": 0,
+    "a0": 0,
+    "a1": 0,
+    "b": 10,
+    "rigid": false,
+    "K_P_size": 2
+   }
+  },
+  {
+   "plane": [
+    9,
+    20
+   ],
+   "T=g+a (i)": {
+    "i": 1,
+    "a0": 1,
+    "a1": 1014,
+    "b": 2181,
+    "rigid": false,
+    "K_P_size": 23
+   },
+   "T=FH+a (a, sigma 0)": {
+    "i": 1,
+    "a0": 1,
+    "a1": 490,
+    "b": 769,
+    "rigid": false,
+    "K_P_size": 7
+   },
+   "T=FH+g+a (a, sigma 1)": {
+    "i": 1,
+    "a0": 1,
+    "a1": 662,
+    "b": 1601,
+    "rigid": false,
+    "K_P_size": 29
+   },
+   "T=k(g+F)+a (b)": {
+    "i": 0,
+    "a0": 0,
+    "a1": 0,
+    "b": 1,
+    "rigid": false,
+    "K_P_size": 2
+   }
+  },
+  {
+   "plane": [
+    13,
+    50
+   ],
+   "T=g+a (i)": {
+    "i": 1,
+    "a0": 1,
+    "a1": 400,
+    "b": 769,
+    "rigid": false,
+    "K_P_size": 7
+   },
+   "T=FH+a (a, sigma 0)": {
+    "i": 0,
+    "a0": 1,
+    "a1": 266,
+    "b": 599,
+    "rigid": false,
+    "K_P_size": 13
+   },
+   "T=FH+g+a (a, sigma 1)": {
+    "i": 0,
+    "a0": 0,
+    "a1": 11,
+    "b": 0,
+    "rigid": true,
+    "K_P_size": 1
+   },
+   "T=k(g+F)+a (b)": {
+    "i": 0,
+    "a0": 1,
+    "a1": 150,
+    "b": 286,
+    "rigid": false,
+    "K_P_size": 7
+   }
+  },
+  {
+   "plane": [
+    19,
+    32
+   ],
+   "T=g+a (i)": {
+    "i": 1,
+    "a0": 1,
+    "a1": 452,
+    "b": 913,
+    "rigid": false,
+    "K_P_size": 7
+   },
+   "T=FH+a (a, sigma 0)": {
+    "i": 0,
+    "a0": 1,
+    "a1": 172,
+    "b": 444,
+    "rigid": false,
+    "K_P_size": 16
+   },
+   "T=FH+g+a (a, sigma 1)": {
+    "i": 0,
+    "a0": 0,
+    "a1": 7,
+    "b": 0,
+    "rigid": true,
+    "K_P_size": 1
+   },
+   "T=k(g+F)+a (b)": {
+    "i": 0,
+    "a0": 0,
+    "a1": 0,
+    "b": 20,
+    "rigid": false,
+    "K_P_size": 11
+   }
+  },
+  {
+   "plane": [
+    25,
+    38
+   ],
+   "T=g+a (i)": {
+    "i": 1,
+    "a0": 1,
+    "a1": 998,
+    "b": 2827,
+    "rigid": false,
+    "K_P_size": 25
+   },
+   "T=FH+a (a, sigma 0)": {
+    "i": 0,
+    "a0": 1,
+    "a1": 150,
+    "b": 326,
+    "rigid": false,
+    "K_P_size": 7
+   },
+   "T=FH+g+a (a, sigma 1)": {
+    "i": 0,
+    "a0": 0,
+    "a1": 16,
+    "b": 0,
+    "rigid": true,
+    "K_P_size": 1
+   },
+   "T=k(g+F)+a (b)": {
+    "i": 0,
+    "a0": 0,
+    "a1": 0,
+    "b": 10,
+    "rigid": false,
+    "K_P_size": 2
+   }
+  }
+ ],
+ "seconds": 76.1,
+ "PASS": true
+}

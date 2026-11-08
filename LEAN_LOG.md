@@ -1280,3 +1280,17 @@ earlier ones are unchanged, and the 15 new ones are all
 `[propext, Classical.choice, Quot.sound]`, with no `sorryAx`. No `sorry`, `native_decide`,
 `ofReduceBool` or `decide +kernel`.
 
+## Phase 7, `λ = 2` step 2 – exhaustive check of `TwoClaim`
+
+`verification/lean-support/check_twoclaim.py` checks, by exact linear algebra on
+64-bit truth tables:
+* `TwoClaim` on its whole domain (616 planes `P ∉ Λ²(U)`, all `g = f h`,
+  5,678,152 cosets of `g` mod `A`);
+* part 1, the good direction of `S`;
+* part 2, the fourth-difference cube in `ker l`;
+* rigidity of the last factor (`K_P = {1, 1 + a₀b₀}` on every plane);
+* the `k = 1 + a₀b₀` conclusion.
+
+Zero failures. Positive controls and a brute-force cross-check also pass; see
+`verification/lean-support/README.md`. No Lean change.
+
