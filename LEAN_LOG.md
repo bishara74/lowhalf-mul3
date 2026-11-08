@@ -1226,3 +1226,57 @@ each time.
 Palomar's preparation phase, rerun on this state, reports `pending / prepared` with no
 errors and no warnings (see `verification/lean-support/palomar_preflight.md`).
 
+## Phase 7, `λ = 2` step 1 – reduction to `TwoClaim`
+
+New module `LowHalfMul3/LambdaTwo.lean`, which proves `lambdaCase_two_of : TwoClaim → LambdaCase 2`
+and `mc_eq_six_of_twoClaim : LambdaCase 1 → TwoClaim → MC(lowMul3) = 6`.
+
+**Setting.** `Q = span{P₀, P}` with `P = l ∧ r` from gate 1 (`gateQ_two`; written
+`Q3span l r 0 0`), `S = Q + ⟨Z₁⟩`, `V₃ = V(Q) + ⟨g₂⟩` with `g₂ = f h`, `f, h ∈ V(Q)`.
+
+**Human sketch of the Lean route.**
+1. *`z₁ ∈ V₃`.* Since `Z₁ ∉ Q` (`Z1_not_mem_two`, by Lemma 3), `g₂ ∈ z₁ + V(Q)`.
+   * `P ∉ Λ²(U)`: at least one of `l, r` has an external coordinate, so some
+     `U`-direction `e = (0, e₁, e₂, 0, e₄, e₅)` with `e₁ = 1` or `e₄ = 1` kills `l` and `r`
+     (`kill_two_fin`, 240 cases). That gives `GenDir Q`, and then `z1_place_vanish`
+     and Lemma W make `Z₁ + q` a wedge `a ∧ m` for some `q ∈ Q`. If `q` has no
+     `P` term, this contradicts `wedge_ne_Z`. If it does, `a ∧ m + P = Z₁ + c P₀`,
+     so Lemma 3 puts `P` in `Λ²(U)`. Either way a contradiction (`noPlace_z1_two`).
+   * `P ∈ Λ²(U)`: `g₂ = z₁ + v ∈ V(S)`, so `V₃ ⊆ V(S)` with `S ⊆ Λ²(U)`
+     (`phi_S_two`). The last two gates are then excluded by `coset_z2_not_mem` and
+     `b3Claim` for the base `V(S)`.
+2. *`z₁ ∉ V₃`.* Put `W = V(S) + ⟨g₂⟩ ⊇ V₃`. Proposition `onehigh` (`OneHigh Q`)
+   says `z₂ ∉ W` and no product of two elements of `W` lies in `z₂ + W`. Since
+   `z₁ ∈ V(S)`, the same holds for `z₂ + z₁`.
+   * Neither `z₂` nor `z₂ + z₁` is in `V₄ = V₃ + ⟨g₃⟩` (`not_mem_after_product`).
+   * So `z₁ ∈ V₄`: otherwise `g₄ ∈ z₁ + V₄`, and `z₂` or `z₂ + z₁` would lie in
+     `V₄`.
+   * `z₁ ∉ V₃`, so `g₃ ∈ z₁ + V₃` and `V₄ ⊆ W`.
+   * The last gate: `z₂ ∈ V₄ + ⟨g₄⟩ ⊆ W + ⟨g₄⟩`, which `OneHigh` excludes.
+   * Inside `Λ²(U)`, `OneHigh` is the coset lemma for `V(S)` (`oneHigh_of_phi`).
+
+**Divergence from `lambda2_proof.tex`.** The proof does not split on `deg g₂`, and
+does not use the replacement lemma or Lemma P (the product lemma of the λ = 3 note),
+so it does not go through the `λ = 3` theorem. The paper uses `deg g₂ ≥ 3` only to
+get `z₁ ∉ V₃`; here that is the case hypothesis, and the complementary case is
+handled directly. Gate 2 being nonlinear is not used.
+
+**Open: `TwoClaim`** = `OneHigh (Q3span l r 0 0)` for `Phi (l ∧ r) ≠ 0`. Plan, for
+`A = V(S)` and `g = f h`:
+* `z₂ ∉ A + ⟨g⟩`. `z₂ ∈ A` contradicts degree. `g + z₂ ∈ A` contradicts
+  `starFree_of_goodDir` for `S`. `S` has a good direction whenever `P ∉ Λ²(U)`: for
+  type v, a direction of `E` kills `S` (`ℓ = 0`); for type full, `ι_{a₂} P = r` has a
+  `b₂` coordinate, so `r ≠ b₀`.
+* Normal forms of a last product: (a) `F H + f h + z₂ ∈ A` with `F, H ∈ A`, and
+  (b) `k (f h + F) + z₂ ∈ A` with `k, F ∈ A`.
+* (a): fourth differences over a 4-dimensional `K ⊆ ker l` that projects onto `U`.
+  `P` vanishes on `K × K`, and on `S|_K` the quartic pairing is zero, because
+  `P₀ ∧ Z₁ = 0` and wedge squares vanish. But `Δ⁴ z₂ = Ω = 1` on such a cube.
+* (b): the paper's last-factor rigidity (`k ∈ {1, 1 + P₀}`), then extraction
+  modulo `(a₀b₀)` and the rank lemma.
+
+`lake build` green (1746 jobs). The audit prints 217 axiom closures: the 202
+earlier ones are unchanged, and the 15 new ones are all
+`[propext, Classical.choice, Quot.sound]`, with no `sorryAx`. No `sorry`, `native_decide`,
+`ofReduceBool` or `decide +kernel`.
+

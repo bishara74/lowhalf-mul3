@@ -24,18 +24,35 @@ human-readable lower-bound proof and formalizes it.
 | `λ = 5` (all gates linear) | `lambdaCase_five` | proved |
 | `λ = 4` (Theorem 12, `StarFree`) | `starFree`, `lambdaCase_four` | proved |
 | `λ = 3` | `lambdaCase_three` | proved |
-| `λ = 2` | `LambdaCase 2` | **open** |
+| `λ = 2`, reduced to `TwoClaim` (Proposition `onehigh` for `P ∉ Λ²(U)`) | `lambdaCase_two_of : TwoClaim → LambdaCase 2` | proved |
+| `TwoClaim` | `LowHalfMul3/LambdaTwo.lean` | **open** |
 | `λ = 1` | `LambdaCase 1` | **open** |
 | `MC(lowMul3) = 6` from the two open cases | `mc_eq_six_of_lambda_one_two : LambdaCase 1 → LambdaCase 2 → MC(lowMul3) = 6` | proved |
 | `MC(lowMul3) = 6` (unconditional) | `LowHalfMul3Challenge.lean`, `mc_lowMul3` | stated; deliberate `sorry` |
 
-Each open case is stated as (`LowHalfMul3/Assembly.lean`):
+The open case `λ = 1` is stated as (`LowHalfMul3/Assembly.lean`):
 
 ```lean
 def LambdaCase (lam : Nat) : Prop :=
   ∀ D : Circuit 6 5, D.Computes lowMul3 →
     D.gate 0 = aVar 3 0 * bVar 3 0 → D.left 0 = aVar 3 0 → D.right 0 = bVar 3 0 →
     (∀ k : Fin 5, (k.val < lam ↔ IsLinearGate D k)) → False
+```
+
+and `λ = 2` now needs only (`LowHalfMul3/LambdaTwo.lean`, with `S = Q + ⟨Z₁⟩`):
+
+```lean
+def OneHigh (Q : Submodule F₂ TwoForm6) : Prop :=
+  ∀ f h : ANF 6, f ∈ V4 Q → h ∈ V4 Q →
+    (lowMul3 2 ∈ V4 (Q ⊔ Submodule.span F₂ {Z1form}) ⊔ Submodule.span F₂ {f * h} → False) ∧
+    ∀ F H : ANF 6,
+      F ∈ V4 (Q ⊔ Submodule.span F₂ {Z1form}) ⊔ Submodule.span F₂ {f * h} →
+      H ∈ V4 (Q ⊔ Submodule.span F₂ {Z1form}) ⊔ Submodule.span F₂ {f * h} →
+      F * H + lowMul3 2 ∈ V4 (Q ⊔ Submodule.span F₂ {Z1form}) ⊔ Submodule.span F₂ {f * h} →
+      False
+
+def TwoClaim : Prop :=
+  ∀ l r : Fin 6 → F₂, Phi (wedge l r) ≠ 0 → OneHigh (Q3span l r 0 0)
 ```
 
 **Trust base.** Every proved theorem depends only on `propext`,
@@ -67,6 +84,7 @@ lake env lean LowHalfMul3Challenge.lean    # the unconditional statement (report
 | `LowHalfMul3/Reduction.lean`, `NormalForm.lean`, `LambdaFive.lean`, `Assembly.lean` | Reduction to `¬ HasCircuit lowMul3 5`, the normal form, `λ = 5`, the case split `LambdaCase` |
 | `LowHalfMul3/Derivative.lean`, `Contraction.lean`, `LemmaTwo.lean`, `CrossPart.lean`, `Product.lean`, `LineDerivative.lean`, `LemmaThree.lean`, `Types.lean`, `MainTheorem.lean` | The `λ = 4` proof (Lemmas 1–11 and Theorem 12 of the `λ = 4` note) |
 | `LowHalfMul3/LambdaThree.lean`, `Coset.lean`, `LemmaA.lean`, `LemmaC.lean` | The `λ = 3` proof: reduction, the general coset lemma (B3a/B3b), Lemma A and Lemma C for spaces without a good direction |
+| `LowHalfMul3/LambdaTwo.lean` | The `λ = 2` reduction to `TwoClaim`; Proposition `onehigh` inside `Λ²(U)`; `g₂` cannot place `z₁` outside `Λ²(U)` |
 | `AxiomAudit.lean` | `#print axioms` for every theorem listed |
 | `LowHalfMul3Challenge.lean` | The statement `MC(lowMul3) = 6` (deliberate `sorry`) |
 | `comparator.json` | Palomar Comparator configuration: Challenge module, Solution module (not written yet), the theorem `mc_lowMul3`, the three standard axioms |
@@ -93,7 +111,7 @@ Not submitted. The repository is prepared for Palomar's checks as follows
 **Still missing: the Solution module.** It cannot be written yet, because it may
 not contain `sorry` and `LambdaCase 1`, `LambdaCase 2` are open. The plan is:
 
-1. Prove `lambdaCase_one` and `lambdaCase_two`.
+1. Prove `lambdaCase_one`, and `TwoClaim` (then `lambdaCase_two := lambdaCase_two_of twoClaim`).
 2. Add `LowHalfMul3Solution.lean` with the module header, `public import
    LowHalfMul3`, the namespace `UnrestrictedBooleanMul.LowHalfMul3`, and
    `theorem mc_lowMul3 : MC(lowMul3) = 6 := mc_eq_six_of_lambda_one_two
@@ -125,3 +143,7 @@ arguments in several places. Each one is recorded in `formalization.yaml`
   `{a = α}` has quadratic part `a ∧ m`. Lemma C uses a third difference that
   detects the derivative of the carry. This replaces the product lemma, the
   radical lemma, the weight bounds, Lemma D1 and the 4-form computations.
+* **`λ = 2`.** The Lean reduction does not split on `deg g₂`, and needs neither the
+  replacement lemma nor Lemma P. If `g₂` places `z₁`, Lemma A's derivative argument
+  with Lemma W and Lemma 3 excludes `P ∉ Λ²(U)`, and the coset lemma handles
+  `P ∈ Λ²(U)`. Otherwise `g₃` places `z₁`, and Proposition `onehigh` finishes.

@@ -1,7 +1,8 @@
 # Palomar preflight of `bishara74/lowhalf-mul3` (local, no submission)
 
-Status: failures 1–4 below were fixed in the following commits; see "Rerun after the
-fixes" at the end. Failure 5 (no Solution module) remains.
+Status: failures 1–4 below are fixed. The real preparation run on the pushed commit
+`28514d5` passes every submitter check (see the last section). Failure 5 (no Solution
+module) remains.
 
 Run on 7 November 2026 against the pushed commit
 `33a708d1323ca5b7ed267c374e68e7268294e072`. Nothing was submitted.
@@ -80,3 +81,25 @@ commit.
 **Still open (verification phase, not runnable on Windows):** `LowHalfMul3Solution.lean`
 does not exist, so `lake build LowHalfMul3Solution` and the Comparator step cannot pass
 yet. `<AUTHOR>` in `LICENSE` is a placeholder.
+
+## Real run on the pushed commit `28514d5`
+
+`verify_submission.py prepare` was run unchanged (preflight mode) on
+`28514d5d79842a7bd70ce16f6fd2be32aea1c4e2`, cloned by the verifier from GitHub. The report is
+`palomar_preflight_report_28514d5.json`; one local path in it is replaced by `<local path>`.
+
+* **Submitter checks: all pass.** No diagnostic is owned by the submitter. The source
+  requirements (22 files, module system), `formalization.yaml`, toolchain and
+  `comparator.json` raise no issue.
+* **One Palomar-owned error:** `palomar.license_detector_failed` (owner `palomar`,
+  retryable, "Do not change the repository"). Palomar's detector runs
+  `bundle exec ruby scripts/detect_license.rb` with the `licensee` 10.0.0 gem. It
+  cannot run on this machine: rubygems.org is blocked here, and `licensee` depends on
+  `nokogiri`, which has no prebuilt build for this Ruby (`x64-mswin64`).
+* **Independent licence evidence.** GitHub classifies repository licences with the
+  same `licensee` library. Its API reports `spdx_id: MIT` for `LICENSE` at `28514d5`
+  (blob `0006f8578a015d6e877451823bea0b96be7bae07`, equal to `git rev-parse
+  28514d5:LICENSE`). This matches `project.license: MIT`. GitHub's `licensee` version is
+  not known, so this is strong evidence, not Palomar's own result.
+
+The full verification phase (Linux sandbox, Comparator) still needs the Solution module.

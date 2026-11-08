@@ -1,0 +1,78 @@
+{
+  "checked_at": "2026-11-08T00:32:04Z",
+  "diagnostics": [
+    {
+      "code": "palomar.license_detector_failed",
+      "explanation": "trusted Bundler executable is unavailable: <local path>",
+      "next_action": "Do not change the repository. Retry the same commit later; report the workflow URL if the problem recurs.",
+      "owner": "palomar",
+      "repairable": false,
+      "retryable": true,
+      "stage": "license",
+      "summary": "trusted Bundler executable is unavailable: <local path>"
+    }
+  ],
+  "diagnostics_schema_version": 1,
+  "errors": [
+    "trusted Bundler executable is unavailable: <local path>"
+  ],
+  "existing_id": null,
+  "formalization_profile_version": 4,
+  "phase": "preparation",
+  "schema_version": 1,
+  "source": {
+    "bytes": 7554012,
+    "commit": "28514d5d79842a7bd70ce16f6fd2be32aea1c4e2",
+    "repository": "bishara74/lowhalf-mul3",
+    "repository_url": "https://github.com/bishara74/lowhalf-mul3",
+    "tree_url": "https://github.com/bishara74/lowhalf-mul3/tree/28514d5d79842a7bd70ce16f6fd2be32aea1c4e2"
+  },
+  "source_requirements": {
+    "files_checked": 22,
+    "maximum_lines": 10000,
+    "module_required": true,
+    "schema_version": 1
+  },
+  "stage": "preflight",
+  "status": "error",
+  "submission": {
+    "authorization": {
+      "relationship": "maintainer"
+    },
+    "requested_paths": {
+      "comparator_config_path": "comparator.json",
+      "formalization_metadata_path": "",
+      "project_path": ""
+    },
+    "submission_id": "preflight003"
+  },
+  "verification_profile": {
+    "id": "palomar-namespace-16x32-v1",
+    "limits": {
+      "execution_budget_seconds": 19800,
+      "file_size_max_bytes": 1099511627776,
+      "job_timeout_minutes": 350,
+      "memory_high_percent": 95,
+      "memory_max_percent": 98,
+      "minimum_host_memory_bytes": 30064771072,
+      "minimum_workspace_free_bytes": 21474836480,
+      "open_files_max": 1048576,
+      "tasks_max": 32768
+    },
+    "runner": {
+      "architecture": "x86_64",
+      "label": "nscloud-ubuntu-24.04-amd64-16x32-with-features",
+      "labels": [
+        "nscloud-ubuntu-24.04-amd64-16x32-with-features",
+        "namespace-features:container.privileged=true"
+      ],
+      "provider": "namespace"
+    },
+    "sha256": "8a124c2d0f369a019e8cb807854b47a9c711f0592ed3bfcda49718dfb457fad0",
+    "trusted_tools": {
+      "bwrap_source_tag": "v0.12.0",
+      "toolchain_floor": "v4.35.0-rc2"
+    }
+  },
+  "warnings": []
+}

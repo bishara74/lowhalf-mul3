@@ -16,8 +16,9 @@ project:
     reduces MC(lowMul3) = 6 to four explicit statements. Phase 4 proves the
     four-linear-gate case (StarFree, Theorem 12 of the note). Phases 5 and 6
     prove the three-linear-gate case (lambdaCase_three), so MC(lowMul3) = 6
-    now follows in Lean from LambdaCase 1 and LambdaCase 2 alone
-    (mc_eq_six_of_lambda_one_two). The unconditional claim MC(lowMul3) = 6 is
+    follows in Lean from LambdaCase 1 and LambdaCase 2 alone
+    (mc_eq_six_of_lambda_one_two). Phase 7 reduces the two-linear-gate case to
+    one statement, TwoClaim (Proposition onehigh outside Lambda^2(U)). The unconditional claim MC(lowMul3) = 6 is
     only stated, as a deliberate hole.
   authors: [Bishara]
   responsible_maintainers: [Bishara]
@@ -135,6 +136,15 @@ fidelity:
     U-direction e (UDir), D_e f and D_e h are constant on ker l, so on that
     hyperplane D_e z2 would have degree <= 2; but the third difference over a
     cube in ker l sees the carry derivative a0 b0 (e1 b1 + e4 a1) and equals 1.
+    LambdaCase 2 (phase 7) is reduced to one statement, TwoClaim (Proposition
+    onehigh of lambda2_proof.tex for P outside Lambda^2(U)), by a route that
+    does not split on deg g2 and needs neither the replacement lemma nor
+    Lemma P: if g2 places z1, then P outside Lambda^2(U) is excluded by Lemma
+    A's derivative argument (a U-direction killing P exists, GenDir), Lemma W
+    and Lemma 3, and P inside Lambda^2(U) by the coset lemma on V(S),
+    S = Q + <Z1>; otherwise g3 places z1, so the space before the last gate
+    lies in V(S) + <g2>, and Proposition onehigh finishes (inside Lambda^2(U)
+    again the coset lemma).
 review:
   status: self-assessed
   notes: >-
@@ -142,8 +152,9 @@ review:
     MC(lowMul3) = 6 to the absence of five-gate circuits, the normal form,
     and the cases lambda = 5, 4 and 3 (lambdaCase_five, lambdaCase_four,
     lambdaCase_three). MC(lowMul3) = 6 therefore follows in Lean from
-    LambdaCase 1 and LambdaCase 2 (mc_eq_six_of_lambda_one_two); these two
-    cases are not yet formalized, and the unconditional statement in
+    LambdaCase 1 and LambdaCase 2 (mc_eq_six_of_lambda_one_two). LambdaCase 2
+    is further reduced to one statement, TwoClaim (lambdaCase_two_of).
+    LambdaCase 1 and TwoClaim are not yet formalized, and the unconditional statement in
     LowHalfMul3Challenge.lean is still a deliberate sorry. Several Lean proofs take
     shorter routes than the written notes (fidelity.divergences, LEAN_LOG.md).
     A supervisor review (November 2026) and two internal pre-submission audits
@@ -244,6 +255,26 @@ alignment:
     - source: LambdaCase 3 from BadClaim alone
       lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_three_of_badClaim
       module: LowHalfMul3.Coset
+      status: proved
+    - source: lambda2_proof.tex Proposition onehigh outside Lambda^2(U) (TwoClaim)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.TwoClaim
+      module: LowHalfMul3.LambdaTwo
+      status: stated
+    - source: lambda2_proof.tex Proposition onehigh inside Lambda^2(U) (Lemma coset)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.oneHigh_of_phi
+      module: LowHalfMul3.LambdaTwo
+      status: proved
+    - source: lambda2_proof.tex, g2 cannot place z1 when P is outside Lambda^2(U)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.noPlace_z1_two
+      module: LowHalfMul3.LambdaTwo
+      status: proved-with-divergence
+    - source: lambda2_proof.tex Theorem (two linear gates), from TwoClaim
+      lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_two_of
+      module: LowHalfMul3.LambdaTwo
+      status: proved-with-divergence
+    - source: MC(lowMul3) = 6 from LambdaCase 1 and TwoClaim
+      lean: UnrestrictedBooleanMul.LowHalfMul3.mc_eq_six_of_twoClaim
+      module: LowHalfMul3.LambdaTwo
       status: proved
     - source: exact unrestricted complexity of the 3x3 low-half product
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3

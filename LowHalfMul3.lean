@@ -19,6 +19,7 @@ public import LowHalfMul3.LambdaThree
 public import LowHalfMul3.Coset
 public import LowHalfMul3.LemmaA
 public import LowHalfMul3.LemmaC
+public import LowHalfMul3.LambdaTwo
 
 @[expose] public section
 
@@ -90,8 +91,12 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
   argument along the same `U`-direction (`noPlace_z2_of_uDir`), hence
   `badClaim : BadClaim` and **`lambdaCase_three : LambdaCase 3`**, and
   `mc_eq_six_of_lambda_one_two : LambdaCase 1 → LambdaCase 2 → MC(lowMul3) = 6`.
+* `LowHalfMul3.LambdaTwo` reduces `λ = 2` to one statement, `TwoClaim`
+  (Proposition `onehigh` of `lambda2_proof.tex` for `P ∉ Λ²(U)`):
+  `lambdaCase_two_of : TwoClaim → LambdaCase 2`. Inside `Λ²(U)` it uses the coset
+  lemma; the placement of `z₁` by `g₂` outside `Λ²(U)` is excluded by Lemma A's
+  derivative argument (`noPlace_z1_two`).
 
-The lower bound is therefore reduced, in Lean, to exactly three statements:
-`LambdaCase 1`, `LambdaCase 2` and `LambdaCase 3`
-(`mc_eq_six_of_lambda_cases : LambdaCase 1 → LambdaCase 2 → LambdaCase 3 → MC(lowMul3) = 6`).
+The lower bound is therefore reduced, in Lean, to `LambdaCase 1` and `TwoClaim`
+(`mc_eq_six_of_twoClaim : LambdaCase 1 → TwoClaim → MC(lowMul3) = 6`).
 -/

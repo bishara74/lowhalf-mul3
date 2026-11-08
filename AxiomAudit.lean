@@ -29,12 +29,14 @@ all modules of the library:
 * `LowHalfMul3.Coset`
 * `LowHalfMul3.LemmaA`
 * `LowHalfMul3.LemmaC`
+* `LowHalfMul3.LambdaTwo`
 
 The main results are `upper`, `mc_eq_six_of_no_five`, `normal_form_five`,
 `lambdaCase_five`, `starFree` / `lambdaCase_four`, `b3Claim`, `badClaim`,
-`lambdaCase_three` and `mc_eq_six_of_lambda_one_two`. Helper lemmas that are not
-listed are covered by the closures of the listed results that use them. The statements still open
-(`LambdaCase`, used for `λ = 1, 2`) are printed in full at the end.
+`lambdaCase_three`, `mc_eq_six_of_lambda_one_two`, `lambdaCase_two_of` and
+`mc_eq_six_of_twoClaim`. Helper lemmas that are not listed are covered by the closures
+of the listed results that use them. The statements still open (`LambdaCase 1`, and
+`TwoClaim`, which gives `LambdaCase 2`) are printed in full at the end.
 `LowHalfMul3Challenge.lean` is a separate statement environment and is deliberately not
 imported: its single theorem is a `sorry`.
 -/
@@ -481,7 +483,41 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #check @mc_eq_six_of_lambda_one_two
 #print axioms mc_eq_six_of_lambda_one_two
 
+-- LambdaCase 2: reduction to TwoClaim (phase 7).
+#check @gateQ_two
+#print axioms gateQ_two
+#check @wireSpace_three_eq
+#print axioms wireSpace_three_eq
+#check @Z1_not_mem_two
+#print axioms Z1_not_mem_two
+#check @z1_not_mem_V4_two
+#print axioms z1_not_mem_V4_two
+#check @phi_S_two
+#print axioms phi_S_two
+#check @oneHigh_of_phi
+#print axioms oneHigh_of_phi
+#check @kill_two_fin
+#print axioms kill_two_fin
+#check @genDir_two
+#print axioms genDir_two
+#check @f2_rearr_c0
+#print axioms f2_rearr_c0
+#check @f2_rearr_c1
+#print axioms f2_rearr_c1
+#check @noPlace_z1_two
+#print axioms noPlace_z1_two
+#check @mem_sup_span_cases
+#print axioms mem_sup_span_cases
+#check @not_mem_after_product
+#print axioms not_mem_after_product
+#check @lambdaCase_two_of
+#print axioms lambdaCase_two_of
+#check @mc_eq_six_of_twoClaim
+#print axioms mc_eq_six_of_twoClaim
+
 -- The open statements, printed in full.
+#print TwoClaim
+#print OneHigh
 #print BadClaim
 #print B3Claim
 #print CosetBase
