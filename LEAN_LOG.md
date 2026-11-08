@@ -1294,3 +1294,51 @@ earlier ones are unchanged, and the 15 new ones are all
 Zero failures. Positive controls and a brute-force cross-check also pass; see
 `verification/lean-support/README.md`. No Lean change.
 
+## Phase 7, `λ = 2` step 3 – `TwoClaim` parts 1 and 2; `λ = 1` modules wired in
+
+**`λ = 1` integration.** The eight `LowHalfMul3/LambdaOne*.lean` modules (merged from
+the `lambda1` branch) are imported by the library root (`public import
+LowHalfMul3.LambdaOne`). The eight theorems listed in `MERGE_NOTES.md` are in the
+audit. The five shared statements (`LastFactorLowIdeal`, `IdealExtract`,
+`Q2NotTwoWedges`, `FeedbackNoPlaceModLow`, `FeedbackNormal`) are printed with the open
+statements. The build is green, and the earlier closures are unchanged.
+
+**New module `LowHalfMul3/OneHigh.lean`.** Throughout, `S = span{P₀, l ∧ r, Z₁}` and
+`A = V(S)`.
+* **Part 1** (`z2_not_mem_S_sup`): `z₂ ∉ A + ⟨f h⟩` for all `f, h ∈ A`.
+  * `span{P₀, l ∧ r}` always has a good direction (`goodDir_zero2` with the zero
+    second wedge), and adding `Z₁` keeps it (`goodDir_sup_Z1`).
+  * `z₂ ∈ A` contradicts degree. `f h + z₂ ∈ A` contradicts Lemma 8′
+    (`starFree_of_goodDir`).
+  * `formA_zero` is the same argument for form (a) with `σ = 0`.
+  * No hypothesis on `l ∧ r` is needed.
+* **Part 2** (`formA_one`, `formA_one_of_phi`): `F H + f h + z₂ ∈ A` with
+  `F, H, f, h ∈ A` is impossible when `l ∧ r ∉ Λ²(U)`.
+  * Human sketch: choose `l` with an external coordinate (`ext_coord_of_phi`,
+    swapping `l` and `r` if needed). Take `m₂, m₅` with `l₂m₂ + l₅m₅ = 1`.
+  * The 16 points `(a, b, m₂λ, p, q, m₅λ)`, `λ = l₀a + l₁b + l₃p + l₄q`, lie in
+    `ker l`, and their `U`-coordinates `(a₀, a₁, b₀, b₁) = (a, b, p, q)` run over all
+    of `F₂⁴`.
+  * Write `X ∈ A` as an affine function plus `α a₀b₀ + β L R + ζ z₁`, where `L R` is
+    the product of the linear forms `l, r`. On the cube `L = 0`, so `X` restricts to
+    `c₀ + c₁a + c₂b + c₃p + c₄q + c₅ap + c₆(aq + bp)` (`eval_cpt_of_mem`).
+  * The sum over the cube of a product of two such restrictions is `0`
+    (`csum_phi_mul`: bilinearity reduces it to a `decide` over the 7 basis functions
+    and `2⁷` coefficient vectors, `csum_phi_basis`). The sum of `z₂` is `1`
+    (`csum_z2`). Summing the identity `F H + f h + z₂ = a` over the cube gives
+    `0 + 0 + 1 = 0`.
+  * A single `decide` over both coefficient vectors (`2¹⁴` cases) timed out in
+    elaboration, hence the split.
+* **Divergence.** The paper uses quartic parts. Part 1 there says `(g)₄ ∝ P₀ ∧ P ≠ Ω`.
+  Part 2 there says the quartic part is divisible by `P`, and Lemma `rankext` gives
+  `P ∧ θ ≠ Ω`. Here Lemma 8′ replaces the first, and the cube sum, a fourth
+  difference written in coordinates, replaces the second. No 4-forms are defined.
+
+**Remaining for `TwoClaim`**: form (b), `k (f h + F) + z₂ ∈ A` with `k, F ∈ A`. The
+plan is the general last-factor rigidity (`k ≡ 1` modulo `(a₀b₀)`), `IdealExtract`,
+`Q2NotTwoWedges`, and hence `FeedbackNoPlaceModLow`. These are shared with `λ = 1`.
+
+`lake build` green (1755 jobs). The audit prints 246 axiom closures: the 225 earlier
+ones (202 + 15 for `λ = 2` step 1 + 8 for `λ = 1`) are unchanged, and the 21 new ones
+are all `[propext, Classical.choice, Quot.sound]`.
+

@@ -20,6 +20,8 @@ public import LowHalfMul3.Coset
 public import LowHalfMul3.LemmaA
 public import LowHalfMul3.LemmaC
 public import LowHalfMul3.LambdaTwo
+public import LowHalfMul3.OneHigh
+public import LowHalfMul3.LambdaOne
 
 @[expose] public section
 
@@ -96,7 +98,17 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
   `lambdaCase_two_of : TwoClaim → LambdaCase 2`. Inside `Λ²(U)` it uses the coset
   lemma; the placement of `z₁` by `g₂` outside `Λ²(U)` is excluded by Lemma A's
   derivative argument (`noPlace_z1_two`).
+* `LowHalfMul3.OneHigh` proves parts 1 and 2 of `TwoClaim`: `z₂ ∉ V(S) + ⟨f h⟩`
+  (`z2_not_mem_S_sup`), and the last-gate form `F H + σ f h + z₂ ∈ V(S)` is impossible
+  (`formA_zero`, `formA_one_of_phi`, by a 16-point cube sum in `ker l`). Form (b),
+  `k (f h + F) + z₂ ∈ V(S)`, remains.
 
-The lower bound is therefore reduced, in Lean, to `LambdaCase 1` and `TwoClaim`
+* `LowHalfMul3.LambdaOne` (with `LambdaOneBase`, `LambdaOneTail`, `LambdaOneCore`,
+  `LambdaOneEarly`, `LambdaOneParity`, `LambdaOneOrdinary`, `LambdaOneAssembly`) proves
+  `lambdaCase_one_of : TwoClaim → LastFactorLowIdeal → IdealExtract → Q2NotTwoWedges →
+  FeedbackNoPlaceModLow → FeedbackNormal → LambdaCase 1`.
+
+The lower bound is therefore reduced, in Lean, to `TwoClaim` and the five shared
+statements in `LowHalfMul3.LambdaOneBase`
 (`mc_eq_six_of_twoClaim : LambdaCase 1 → TwoClaim → MC(lowMul3) = 6`).
 -/

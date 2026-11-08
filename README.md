@@ -25,12 +25,14 @@ human-readable lower-bound proof and formalizes it.
 | `λ = 4` (Theorem 12, `StarFree`) | `starFree`, `lambdaCase_four` | proved |
 | `λ = 3` | `lambdaCase_three` | proved |
 | `λ = 2`, reduced to `TwoClaim` (Proposition `onehigh` for `P ∉ Λ²(U)`) | `lambdaCase_two_of : TwoClaim → LambdaCase 2` | proved |
-| `TwoClaim` | `LowHalfMul3/LambdaTwo.lean` | **open** |
-| `λ = 1` | `LambdaCase 1` | **open** |
+| `TwoClaim`, part 1 (`z₂ ∉ V(S) + ⟨f h⟩`) and part 2 (last-gate form (a)) | `z2_not_mem_S_sup`, `formA_zero`, `formA_one_of_phi` (`LowHalfMul3/OneHigh.lean`) | proved |
+| `TwoClaim`, last-gate form (b) `k (f h + F) + z₂ ∈ V(S)` | — | **open** |
+| `λ = 1`, reduced to `TwoClaim` and five shared statements | `lambdaCase_one_of` (`LowHalfMul3/LambdaOne.lean`) | proved |
+| `LastFactorLowIdeal`, `IdealExtract`, `Q2NotTwoWedges`, `FeedbackNoPlaceModLow`, `FeedbackNormal` | `LowHalfMul3/LambdaOneBase.lean` | **open** |
 | `MC(lowMul3) = 6` from the two open cases | `mc_eq_six_of_lambda_one_two : LambdaCase 1 → LambdaCase 2 → MC(lowMul3) = 6` | proved |
 | `MC(lowMul3) = 6` (unconditional) | `LowHalfMul3Challenge.lean`, `mc_lowMul3` | stated; deliberate `sorry` |
 
-The open case `λ = 1` is stated as (`LowHalfMul3/Assembly.lean`):
+Each case is stated as (`LowHalfMul3/Assembly.lean`):
 
 ```lean
 def LambdaCase (lam : Nat) : Prop :=
@@ -85,6 +87,8 @@ lake env lean LowHalfMul3Challenge.lean    # the unconditional statement (report
 | `LowHalfMul3/Derivative.lean`, `Contraction.lean`, `LemmaTwo.lean`, `CrossPart.lean`, `Product.lean`, `LineDerivative.lean`, `LemmaThree.lean`, `Types.lean`, `MainTheorem.lean` | The `λ = 4` proof (Lemmas 1–11 and Theorem 12 of the `λ = 4` note) |
 | `LowHalfMul3/LambdaThree.lean`, `Coset.lean`, `LemmaA.lean`, `LemmaC.lean` | The `λ = 3` proof: reduction, the general coset lemma (B3a/B3b), Lemma A and Lemma C for spaces without a good direction |
 | `LowHalfMul3/LambdaTwo.lean` | The `λ = 2` reduction to `TwoClaim`; Proposition `onehigh` inside `Λ²(U)`; `g₂` cannot place `z₁` outside `Λ²(U)` |
+| `LowHalfMul3/OneHigh.lean` | Parts 1 and 2 of `TwoClaim`: the good direction of `S`, and the cube sum in `ker l` that excludes form (a) |
+| `LowHalfMul3/LambdaOne*.lean` | The `λ = 1` proof (merged from the `lambda1` branch), from `TwoClaim` and the five shared statements of `LambdaOneBase.lean` |
 | `AxiomAudit.lean` | `#print axioms` for every theorem listed |
 | `LowHalfMul3Challenge.lean` | The statement `MC(lowMul3) = 6` (deliberate `sorry`) |
 | `comparator.json` | Palomar Comparator configuration: Challenge module, Solution module (not written yet), the theorem `mc_lowMul3`, the three standard axioms |

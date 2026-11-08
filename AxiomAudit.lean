@@ -30,13 +30,24 @@ all modules of the library:
 * `LowHalfMul3.LemmaA`
 * `LowHalfMul3.LemmaC`
 * `LowHalfMul3.LambdaTwo`
+* `LowHalfMul3.OneHigh`
+* `LowHalfMul3.LambdaOneBase`
+* `LowHalfMul3.LambdaOneTail`
+* `LowHalfMul3.LambdaOneCore`
+* `LowHalfMul3.LambdaOneEarly`
+* `LowHalfMul3.LambdaOneParity`
+* `LowHalfMul3.LambdaOneOrdinary`
+* `LowHalfMul3.LambdaOneAssembly`
+* `LowHalfMul3.LambdaOne`
 
 The main results are `upper`, `mc_eq_six_of_no_five`, `normal_form_five`,
 `lambdaCase_five`, `starFree` / `lambdaCase_four`, `b3Claim`, `badClaim`,
 `lambdaCase_three`, `mc_eq_six_of_lambda_one_two`, `lambdaCase_two_of` and
-`mc_eq_six_of_twoClaim`. Helper lemmas that are not listed are covered by the closures
-of the listed results that use them. The statements still open (`LambdaCase 1`, and
-`TwoClaim`, which gives `LambdaCase 2`) are printed in full at the end.
+`mc_eq_six_of_twoClaim` and `lambdaCase_one_of`. Helper lemmas that are not listed are
+covered by the closures of the listed results that use them. The statements still open
+(`TwoClaim`, which gives `LambdaCase 2`, and the five shared statements of
+`LowHalfMul3.LambdaOneBase`, which with `TwoClaim` give `LambdaCase 1`) are printed in
+full at the end.
 `LowHalfMul3Challenge.lean` is a separate statement environment and is deliberately not
 imported: its single theorem is a `sorry`.
 -/
@@ -515,8 +526,75 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #check @mc_eq_six_of_twoClaim
 #print axioms mc_eq_six_of_twoClaim
 
+-- TwoClaim, parts 1 and 2 (OneHigh.lean).
+#check @goodDir_Q2
+#print axioms goodDir_Q2
+#check @goodDir_S
+#print axioms goodDir_S
+#check @z2_not_mem_S_sup
+#print axioms z2_not_mem_S_sup
+#check @formA_zero
+#print axioms formA_zero
+#check @csum_add
+#print axioms csum_add
+#check @csum_phi_basis
+#print axioms csum_phi_basis
+#check @csum_phi_mul
+#print axioms csum_phi_mul
+#check @csum_phi
+#print axioms csum_phi
+#check @csum_z2
+#print axioms csum_z2
+#check @lin_linANF_eq
+#print axioms lin_linANF_eq
+#check @dotv_cpt
+#print axioms dotv_cpt
+#check @dotv_l_cpt
+#print axioms dotv_l_cpt
+#check @eval_z2_cpt
+#print axioms eval_z2_cpt
+#check @eval_z1_cpt
+#print axioms eval_z1_cpt
+#check @eval_p0_cpt
+#print axioms eval_p0_cpt
+#check @tf_three_cancel
+#print axioms tf_three_cancel
+#check @eval_cpt_of_mem
+#print axioms eval_cpt_of_mem
+#check @formA_one
+#print axioms formA_one
+#check @Q3span_swap
+#print axioms Q3span_swap
+#check @ext_coord_of_phi
+#print axioms ext_coord_of_phi
+#check @formA_one_of_phi
+#print axioms formA_one_of_phi
+
+-- LambdaCase 1 (merged lambda1 branch).
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.first_normal_form
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.first_normal_form
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.quadratic_first_le
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.quadratic_first_le
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.twoTail_of_twoClaim
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.twoTail_of_twoClaim
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.cosetBase_plusZ1_core
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.cosetBase_plusZ1_core
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.early_z1_core
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.early_z1_core
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.ordinary_pair_noPlace
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.ordinary_pair_noPlace
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.noncore_noNextZ2
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.noncore_noNextZ2
+#check @UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_one_of
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_one_of
+
 -- The open statements, printed in full.
 #print TwoClaim
+#print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.LastFactorLowIdeal
+#print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.IdealExtract
+#print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.Q2NotTwoWedges
+#print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.FeedbackNoPlaceModLow
+#print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.FeedbackNormal
 #print OneHigh
 #print BadClaim
 #print B3Claim
