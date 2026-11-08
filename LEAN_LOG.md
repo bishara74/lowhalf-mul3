@@ -1342,3 +1342,45 @@ plan is the general last-factor rigidity (`k ≡ 1` modulo `(a₀b₀)`), `Ideal
 ones (202 + 15 for `λ = 2` step 1 + 8 for `λ = 1`) are unchanged, and the 21 new ones
 are all `[propext, Classical.choice, Quot.sound]`.
 
+### Phase 7, step 3: `FeedbackNormal` and `Q2NotTwoWedges`
+
+**New module `LowHalfMul3/Shared.lean`.** It proves two of the five shared
+statements of `LowHalfMul3.LambdaOneBase`, exactly as stated there.
+
+* `feedbackNormal : FeedbackNormal`. Given `F, H ∈ A + ⟨g⟩` and `F H + T ∈ A + ⟨g⟩`
+  with `1 ∈ A`, write `F = F' + s g`, `H = H' + t g` and `F H + T = a + σ g`.
+  * `s = t = 0`: the first alternative, with factors `F', H'`.
+  * `(s, t) = (0, 1)`: `k = F' + σ`, `a' = H'`. `(1, 0)`: `k = H' + σ`, `a' = F'`.
+  * `s = t = 1`: since `g g = g`, `(F' + g)(H' + g) = (F' + H' + 1)(g + F')`; take
+    `k = F' + H' + 1 + σ`, `a' = F'`.
+  * In each mixed case `k (g + a') + T = a + σ a' ∈ A`. Each identity is checked
+    pointwise (`anf_ext_eval`) by a 64-case `decide` over `F₂` (`f2_norm01`,
+    `f2_norm10`, `f2_norm11`).
+* `q2NotTwoWedges : Q2NotTwoWedges`. `q₂ + ε Z₁ + α P₀ + l ∧ r = a ∧ b` is impossible.
+  * Four linear forms on `F₂⁶` have a common nonzero zero `e`. This is
+    `exists_orth4`, rank–nullity via `LinearMap.ker_ne_bot_of_finrank_lt` for the
+    `4 × 6` matrix with rows `l, r, a, b`.
+  * `ι_e` kills both wedges (`iota_kill`), so `ι_e (q₂ + ε Z₁ + α P₀) = 0`.
+  * But `q₂ + ε Z₁ + α P₀` has zero radical: `q2_iota_ne_zero`, a `decide` over the
+    63 nonzero `e` and 4 pairs `(ε, α)`.
+  * Divergence: the paper states Lemma `rankext` with 4-forms (`P ∧ θ ≠ Ω`). Here
+    the rank statement is proved directly through the radical, and no 4-forms are
+    defined.
+
+`lake build` green (1756 jobs). The audit prints 254 axiom closures: the 246 earlier
+ones are unchanged, and the 8 new ones are all `[propext, Classical.choice, Quot.sound]`.
+
+**Remaining.** `LastFactorLowIdeal`, `IdealExtract`, `FeedbackNoPlaceModLow`, then
+`TwoClaim` form (b).
+* `LastFactorLowIdeal` was checked exhaustively in Python on all 7200 admissible
+  `(d, l, b)` (`OffLowSpan b`, `¬CoreHi`), with no violations.
+* Three local shortcuts fail and were rejected:
+  * rigidity on the hyperplane `a₀ = 0` alone fails in all 7200 cases;
+  * a single external slice fails for all 2048 shapes;
+  * `U`-transversal 4-flat certificates leave 5,837,280 of 7,358,208 non-rigid
+    multipliers uncovered.
+* So the Lean proof follows the paper's global argument:
+  * `D_q k ≡ 1` is excluded by the ordinary pair (`ordinary_pair_noPlace`,
+    `formA_zero`, `formA_one_of_phi`);
+  * otherwise affine annihilation makes `k` depend only on `(a₀, b₀)`;
+  * the fibers then finish.

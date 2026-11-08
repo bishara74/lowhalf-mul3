@@ -22,6 +22,7 @@ public import LowHalfMul3.LemmaC
 public import LowHalfMul3.LambdaTwo
 public import LowHalfMul3.OneHigh
 public import LowHalfMul3.LambdaOne
+public import LowHalfMul3.Shared
 
 @[expose] public section
 
@@ -108,7 +109,11 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
   `lambdaCase_one_of : TwoClaim → LastFactorLowIdeal → IdealExtract → Q2NotTwoWedges →
   FeedbackNoPlaceModLow → FeedbackNormal → LambdaCase 1`.
 
-The lower bound is therefore reduced, in Lean, to `TwoClaim` and the five shared
-statements in `LowHalfMul3.LambdaOneBase`
+* `LowHalfMul3.Shared` proves two of the five shared statements:
+  `feedbackNormal : FeedbackNormal` and `q2NotTwoWedges : Q2NotTwoWedges`.
+
+The lower bound is therefore reduced, in Lean, to `TwoClaim` and the remaining shared
+statements in `LowHalfMul3.LambdaOneBase` (`LastFactorLowIdeal`, `IdealExtract`,
+`FeedbackNoPlaceModLow`)
 (`mc_eq_six_of_twoClaim : LambdaCase 1 → TwoClaim → MC(lowMul3) = 6`).
 -/

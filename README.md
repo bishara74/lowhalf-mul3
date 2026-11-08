@@ -28,7 +28,8 @@ human-readable lower-bound proof and formalizes it.
 | `TwoClaim`, part 1 (`z₂ ∉ V(S) + ⟨f h⟩`) and part 2 (last-gate form (a)) | `z2_not_mem_S_sup`, `formA_zero`, `formA_one_of_phi` (`LowHalfMul3/OneHigh.lean`) | proved |
 | `TwoClaim`, last-gate form (b) `k (f h + F) + z₂ ∈ V(S)` | — | **open** |
 | `λ = 1`, reduced to `TwoClaim` and five shared statements | `lambdaCase_one_of` (`LowHalfMul3/LambdaOne.lean`) | proved |
-| `LastFactorLowIdeal`, `IdealExtract`, `Q2NotTwoWedges`, `FeedbackNoPlaceModLow`, `FeedbackNormal` | `LowHalfMul3/LambdaOneBase.lean` | **open** |
+| `FeedbackNormal`, `Q2NotTwoWedges` | `feedbackNormal`, `q2NotTwoWedges` (`LowHalfMul3/Shared.lean`) | proved |
+| `LastFactorLowIdeal`, `IdealExtract`, `FeedbackNoPlaceModLow` | `LowHalfMul3/LambdaOneBase.lean` | **open** |
 | `MC(lowMul3) = 6` from the two open cases | `mc_eq_six_of_lambda_one_two : LambdaCase 1 → LambdaCase 2 → MC(lowMul3) = 6` | proved |
 | `MC(lowMul3) = 6` (unconditional) | `LowHalfMul3Challenge.lean`, `mc_lowMul3` | stated; deliberate `sorry` |
 
@@ -89,6 +90,7 @@ lake env lean LowHalfMul3Challenge.lean    # the unconditional statement (report
 | `LowHalfMul3/LambdaTwo.lean` | The `λ = 2` reduction to `TwoClaim`; Proposition `onehigh` inside `Λ²(U)`; `g₂` cannot place `z₁` outside `Λ²(U)` |
 | `LowHalfMul3/OneHigh.lean` | Parts 1 and 2 of `TwoClaim`: the good direction of `S`, and the cube sum in `ker l` that excludes form (a) |
 | `LowHalfMul3/LambdaOne*.lean` | The `λ = 1` proof (merged from the `lambda1` branch), from `TwoClaim` and the five shared statements of `LambdaOneBase.lean` |
+| `LowHalfMul3/Shared.lean` | Shared statements for `λ = 2` and `λ = 1`: `FeedbackNormal` (normalizing a feedback product) and `Q2NotTwoWedges` (the rank part of Lemma `rankext`) |
 | `AxiomAudit.lean` | `#print axioms` for every theorem listed |
 | `LowHalfMul3Challenge.lean` | The statement `MC(lowMul3) = 6` (deliberate `sorry`) |
 | `comparator.json` | Palomar Comparator configuration: Challenge module, Solution module (not written yet), the theorem `mc_lowMul3`, the three standard axioms |

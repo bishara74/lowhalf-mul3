@@ -39,11 +39,13 @@ all modules of the library:
 * `LowHalfMul3.LambdaOneOrdinary`
 * `LowHalfMul3.LambdaOneAssembly`
 * `LowHalfMul3.LambdaOne`
+* `LowHalfMul3.Shared`
 
 The main results are `upper`, `mc_eq_six_of_no_five`, `normal_form_five`,
 `lambdaCase_five`, `starFree` / `lambdaCase_four`, `b3Claim`, `badClaim`,
 `lambdaCase_three`, `mc_eq_six_of_lambda_one_two`, `lambdaCase_two_of` and
-`mc_eq_six_of_twoClaim` and `lambdaCase_one_of`. Helper lemmas that are not listed are
+`mc_eq_six_of_twoClaim`, `lambdaCase_one_of`, `feedbackNormal` and
+`q2NotTwoWedges`. Helper lemmas that are not listed are
 covered by the closures of the listed results that use them. The statements still open
 (`TwoClaim`, which gives `LambdaCase 2`, and the five shared statements of
 `LowHalfMul3.LambdaOneBase`, which with `TwoClaim` give `LambdaCase 1`) are printed in
@@ -587,14 +589,28 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.noncore_noNextZ2
 #check @UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_one_of
 #print axioms UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_one_of
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.anf_ext_eval
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.anf_ext_eval
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.f2_norm01
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.f2_norm01
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.f2_norm10
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.f2_norm10
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.f2_norm11
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.f2_norm11
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.feedbackNormal
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.feedbackNormal
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.q2_iota_ne_zero
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.q2_iota_ne_zero
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.exists_orth4
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.exists_orth4
+#check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.q2NotTwoWedges
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.q2NotTwoWedges
 
 -- The open statements, printed in full.
 #print TwoClaim
 #print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.LastFactorLowIdeal
 #print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.IdealExtract
-#print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.Q2NotTwoWedges
 #print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.FeedbackNoPlaceModLow
-#print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.FeedbackNormal
 #print OneHigh
 #print BadClaim
 #print B3Claim

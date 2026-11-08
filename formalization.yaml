@@ -277,6 +277,14 @@ alignment:
       lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_one_of
       module: LowHalfMul3.LambdaOne
       status: proved
+    - source: lambda1 branch shared statement FeedbackNormal (normalizing a feedback product)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.feedbackNormal
+      module: LowHalfMul3.Shared
+      status: proved
+    - source: lambda2_proof.tex Lemma rankext, rank part (Q2NotTwoWedges)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.q2NotTwoWedges
+      module: LowHalfMul3.Shared
+      status: proved-with-divergence
     - source: lambda2_proof.tex Proposition onehigh inside Lambda^2(U) (Lemma coset)
       lean: UnrestrictedBooleanMul.LowHalfMul3.oneHigh_of_phi
       module: LowHalfMul3.LambdaTwo
