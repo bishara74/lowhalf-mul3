@@ -72,7 +72,7 @@ status:
     inputs, and upper exhibits a six-gate unrestricted circuit computing
     lowMul3. The exact value MC(lowMul3) = 6 is NOT proved: no lower bound
     argument is formalized, and the equality appears only as the single
-    deliberate hole in Challenge.lean, which the library does not import.
+    deliberate hole in LowHalfMul3Challenge.lean, which the library does not import.
     Phases 2-4 add lower-bound machinery: the normal form, Lemma 2, Lemma 8,
     the exclusion of lambda = 5, and Theorem 12 (starFree, the
     four-linear-gate case). Phases 5-6 prove LambdaCase 3 (lambdaCase_three:
@@ -144,7 +144,7 @@ review:
     lambdaCase_three). MC(lowMul3) = 6 therefore follows in Lean from
     LambdaCase 1 and LambdaCase 2 (mc_eq_six_of_lambda_one_two); these two
     cases are not yet formalized, and the unconditional statement in
-    Challenge.lean is still a deliberate sorry. Several Lean proofs take
+    LowHalfMul3Challenge.lean is still a deliberate sorry. Several Lean proofs take
     shorter routes than the written notes (fidelity.divergences, LEAN_LOG.md).
     A supervisor review (November 2026) and two internal pre-submission audits
     of the paper (verification/audit-v1/, verification/audit-v2/) cover the
@@ -247,5 +247,5 @@ alignment:
       status: proved
     - source: exact unrestricted complexity of the 3x3 low-half product
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3
-      module: Challenge
+      module: LowHalfMul3Challenge
       status: stated

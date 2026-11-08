@@ -35,7 +35,7 @@ The main results are `upper`, `mc_eq_six_of_no_five`, `normal_form_five`,
 `lambdaCase_three` and `mc_eq_six_of_lambda_one_two`. Helper lemmas that are not
 listed are covered by the closures of the listed results that use them. The statements still open
 (`LambdaCase`, used for `λ = 1, 2`) are printed in full at the end.
-`Challenge.lean` is a separate statement environment and is deliberately not
+`LowHalfMul3Challenge.lean` is a separate statement environment and is deliberately not
 imported: its single theorem is a `sorry`.
 -/
 

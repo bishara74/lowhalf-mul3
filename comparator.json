@@ -1,0 +1,8 @@
+{
+  "challenge_module": "LowHalfMul3Challenge",
+  "solution_module": "LowHalfMul3Solution",
+  "theorem_names": [
+    "UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3"
+  ],
+  "permitted_axioms": ["propext", "Classical.choice", "Quot.sound"]
+}

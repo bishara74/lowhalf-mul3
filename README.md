@@ -27,7 +27,7 @@ human-readable lower-bound proof and formalizes it.
 | `λ = 2` | `LambdaCase 2` | **open** |
 | `λ = 1` | `LambdaCase 1` | **open** |
 | `MC(lowMul3) = 6` from the two open cases | `mc_eq_six_of_lambda_one_two : LambdaCase 1 → LambdaCase 2 → MC(lowMul3) = 6` | proved |
-| `MC(lowMul3) = 6` (unconditional) | `Challenge.lean`, `mc_lowMul3` | stated; deliberate `sorry` |
+| `MC(lowMul3) = 6` (unconditional) | `LowHalfMul3Challenge.lean`, `mc_lowMul3` | stated; deliberate `sorry` |
 
 Each open case is stated as (`LowHalfMul3/Assembly.lean`):
 
@@ -53,10 +53,10 @@ matching tag (pinned in `lake-manifest.json`).
 lake exe cache get        # optional: download the prebuilt Mathlib cache
 lake build                # builds the library LowHalfMul3 (about 1745 jobs)
 lake env lean AxiomAudit.lean   # prints the axiom closure of every listed theorem
-lake env lean Challenge.lean    # the unconditional statement (reports its one sorry)
+lake env lean LowHalfMul3Challenge.lean    # the unconditional statement (reports its one sorry)
 ```
 
-`Challenge.lean` is a separate statement file. The library does not import it.
+`LowHalfMul3Challenge.lean` is a separate statement file. The library does not import it.
 
 ## Layout
 
@@ -68,11 +68,41 @@ lake env lean Challenge.lean    # the unconditional statement (reports its one s
 | `LowHalfMul3/Derivative.lean`, `Contraction.lean`, `LemmaTwo.lean`, `CrossPart.lean`, `Product.lean`, `LineDerivative.lean`, `LemmaThree.lean`, `Types.lean`, `MainTheorem.lean` | The `λ = 4` proof (Lemmas 1–11 and Theorem 12 of the `λ = 4` note) |
 | `LowHalfMul3/LambdaThree.lean`, `Coset.lean`, `LemmaA.lean`, `LemmaC.lean` | The `λ = 3` proof: reduction, the general coset lemma (B3a/B3b), Lemma A and Lemma C for spaces without a good direction |
 | `AxiomAudit.lean` | `#print axioms` for every theorem listed |
-| `Challenge.lean` | The statement `MC(lowMul3) = 6` (deliberate `sorry`) |
+| `LowHalfMul3Challenge.lean` | The statement `MC(lowMul3) = 6` (deliberate `sorry`) |
+| `comparator.json` | Palomar Comparator configuration: Challenge module, Solution module (not written yet), the theorem `mc_lowMul3`, the three standard axioms |
+| `LICENSE` | MIT licence (the copyright line still carries the placeholder `<AUTHOR>`) |
 | `formalization.yaml` | Metadata, the paper-to-Lean correspondence and the recorded divergences |
 | `LEAN_LOG.md` | Chronological development log, with human-readable sketches wherever the Lean route differs from the paper |
 | `paper/` | Case notes (`paper/notes/lambda{1,2,3,4}_proof.tex`) and a snapshot of the merged manuscript (`paper/main.tex`); the manuscript itself is maintained at https://github.com/bishara74/lowhalf-mul3-paper |
 | `verification/` | Computational evidence: exhaustive Python checks of every lemma, SAT certificates, the internal paper audits (`audit-v1/`, `audit-v2/`), and `verification/lean-support/` (a full check of `BadClaim`); see `verification/README.md` |
+
+## Palomar submission
+
+Not submitted. The repository is prepared for Palomar's checks as follows
+(`verification/lean-support/palomar_preflight.md` records the first preflight).
+
+* All `.lean` files use the Lean module system.
+* The statement module is `LowHalfMul3Challenge` (root file
+  `LowHalfMul3Challenge.lean`). It was renamed from `Challenge` because the
+  dependency `unrestricted_boolean_mul` has a top-level `Challenge`, which Palomar
+  rejects (`challenge.module_root_shadowed`).
+* `comparator.json` names `LowHalfMul3Challenge`, a Solution module
+  `LowHalfMul3Solution`, the theorem `UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3`
+  and the axioms `propext`, `Classical.choice`, `Quot.sound`.
+
+**Still missing: the Solution module.** It cannot be written yet, because it may
+not contain `sorry` and `LambdaCase 1`, `LambdaCase 2` are open. The plan is:
+
+1. Prove `lambdaCase_one` and `lambdaCase_two`.
+2. Add `LowHalfMul3Solution.lean` with the module header, `public import
+   LowHalfMul3`, the namespace `UnrestrictedBooleanMul.LowHalfMul3`, and
+   `theorem mc_lowMul3 : MC(lowMul3) = 6 := mc_eq_six_of_lambda_one_two
+   lambdaCase_one lambdaCase_two`. Its statement must agree with the one in
+   `LowHalfMul3Challenge.lean`; Comparator checks this.
+3. Palomar runs `lake build LowHalfMul3Solution`, so `lakefile.toml` needs a
+   `[[lean_lib]]` with `name = "LowHalfMul3Solution"`, as the dependency's
+   lakefile does for its own Solution. This file is edited by the project owner.
+4. Replace `<AUTHOR>` in `LICENSE`.
 
 ## Where the Lean route differs from the paper
 

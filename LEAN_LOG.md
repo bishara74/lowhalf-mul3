@@ -1187,3 +1187,42 @@ The audit is unchanged: the same 202 theorems with the same closures, all
 `[propext, Classical.choice, Quot.sound]`. `Challenge.lean` compiles with its one
 deliberate `sorry`. Palomar's `inspect_lean_sources` reports 22 files and no issues.
 
+## Phase 7, fixes 2–4 – licence, Challenge rename, comparator configuration
+
+Each fix was followed by `lake build` and the axiom audit. The reference for the
+audit is the run after fix 1: 202 theorems, `[propext, Classical.choice, Quot.sound]`.
+
+| After | `lake build` | Audit |
+|---|---|---|
+| fix 2 (`LICENSE`) | green, 1745 jobs | 202 theorems, identical closures, all standard, no `sorryAx` |
+| fix 4 (rename) | green, 1745 jobs; `LowHalfMul3Challenge.lean` compiles, one deliberate `sorry` | 202 theorems, identical closures, all standard, no `sorryAx` |
+| fix 3 (`comparator.json`) | green, 1745 jobs | 202 theorems, identical closures, all standard, no `sorryAx` |
+
+The rename was done before `comparator.json`, so the configuration names the final
+modules from the start. No Lean source changed in these fixes, so the library was not
+recompiled; the 3 s build time is a cache hit, while the audit file is re-elaborated
+each time.
+
+* **`LICENSE`:** the MIT text of the dependency's own `LICENSE`, with the copyright
+  line `Copyright (c) 2026 <AUTHOR> and Gregory Morse`. The licence body, with the
+  copyright line removed, equals the MIT body of two independent dependencies (`Cli`
+  and `unrestricted_boolean_mul`). `<AUTHOR>` is a placeholder for the author to fill in.
+* **Rename:** `Challenge.lean` became `LowHalfMul3Challenge.lean` (`git mv`; the file
+  is byte-identical, so the statement is unchanged). The dependency has a top-level
+  `Challenge`, which Palomar rejects. No dependency has a top-level
+  `LowHalfMul3Challenge` or `LowHalfMul3Solution`. `README.md`, `formalization.yaml`
+  and the `AxiomAudit.lean` header were updated. Earlier entries of this log still say
+  `Challenge.lean`, as that was its name then.
+* **`comparator.json`:** `challenge_module` `LowHalfMul3Challenge`, `solution_module`
+  `LowHalfMul3Solution`, theorem `UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3`, axioms
+  `propext`, `Classical.choice`, `Quot.sound`. Palomar's own loader accepts it.
+* **Solution module:** left out, because it may not contain `sorry` and
+  `LambdaCase 1`, `LambdaCase 2` are open. The plan is in the README section
+  "Palomar submission": prove `lambdaCase_one` and `lambdaCase_two`, then add
+  `LowHalfMul3Solution.lean` with `mc_lowMul3 := mc_eq_six_of_lambda_one_two ..`, and a
+  `[[lean_lib]]` for it in `lakefile.toml`, because Palomar runs
+  `lake build <solution_module>`.
+
+Palomar's preparation phase, rerun on this state, reports `pending / prepared` with no
+errors and no warnings (see `verification/lean-support/palomar_preflight.md`).
+

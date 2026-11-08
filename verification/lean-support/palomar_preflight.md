@@ -1,5 +1,8 @@
 # Palomar preflight of `bishara74/lowhalf-mul3` (local, no submission)
 
+Status: failures 1–4 below were fixed in the following commits; see "Rerun after the
+fixes" at the end. Failure 5 (no Solution module) remains.
+
 Run on 7 November 2026 against the pushed commit
 `33a708d1323ca5b7ed267c374e68e7268294e072`. Nothing was submitted.
 
@@ -49,3 +52,31 @@ with the Lean kernel, NanoDa and con-ron.
   submodules or LFS. All 326 `.lean` files of `unrestricted_boolean_mul` and the five
   Mathlib modules we import already use the module system, so porting is possible.
 * **Build artifacts.** `.lake/` is git-ignored; none are committed.
+
+## Rerun after the fixes
+
+The same preparation phase (`verify_submission.py prepare`, preflight mode) was rerun on
+the working state that became the next commit. Result: status `pending`, stage
+`prepared`, no errors, no warnings. The three earlier preparation failures are gone:
+
+| Earlier failure | Now |
+|---|---|
+| `source.module_required` (22 files) | 22 files checked, no issues |
+| `license.mismatch` | `LICENSE` present; declared `MIT`, detected `MIT` |
+| `submission.invalid` (no `comparator.json`) | accepted; Challenge `LowHalfMul3Challenge`, Solution `LowHalfMul3Solution`, theorem `UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3`, three standard axioms |
+
+Failure 4 (`challenge.module_root_shadowed`, predicted) no longer applies: no dependency
+has a top-level `LowHalfMul3Challenge` or `LowHalfMul3Solution`.
+
+**Two substitutions, because the commit was not yet on GitHub.** (1) The verifier
+normally clones the commit from GitHub. Here it was given a throwaway local git copy of
+the working tree, and that copy's commit id appears in the report; it is not a commit of
+this repository. (2) Licence detection normally runs Palomar's Ruby `licensee` script,
+which is not installed here. A Python stand-in compared the licence body, without the
+copyright line, with the MIT body of the dependency's `LICENSE`. The real detector is
+stricter about the text. The preparation phase should be rerun unchanged on the pushed
+commit.
+
+**Still open (verification phase, not runnable on Windows):** `LowHalfMul3Solution.lean`
+does not exist, so `lake build LowHalfMul3Solution` and the Comparator step cannot pass
+yet. `<AUTHOR>` in `LICENSE` is a placeholder.
