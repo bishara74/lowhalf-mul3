@@ -44,12 +44,10 @@ all modules of the library:
 The main results are `upper`, `mc_eq_six_of_no_five`, `normal_form_five`,
 `lambdaCase_five`, `starFree` / `lambdaCase_four`, `b3Claim`, `badClaim`,
 `lambdaCase_three`, `mc_eq_six_of_lambda_one_two`, `lambdaCase_two_of` and
-`mc_eq_six_of_twoClaim`, `lambdaCase_one_of`, `feedbackNormal` and
-`q2NotTwoWedges`. Helper lemmas that are not listed are
-covered by the closures of the listed results that use them. The statements still open
-(`TwoClaim`, which gives `LambdaCase 2`, and the five shared statements of
-`LowHalfMul3.LambdaOneBase`, which with `TwoClaim` give `LambdaCase 1`) are printed in
-full at the end.
+`mc_eq_six_of_twoClaim`, `lambdaCase_one_of`, `feedbackNormal`,
+`q2NotTwoWedges`, `idealExtract` and `feedbackNoPlaceModLow`. The listed
+closures also cover their helper lemmas. The shared interfaces and the open
+statements `TwoClaim` and `LastFactorLowIdeal` are printed in full at the end.
 `LowHalfMul3Challenge.lean` is a separate statement environment and is deliberately not
 imported: its single theorem is a `sorry`.
 -/
@@ -607,8 +605,9 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.q2NotTwoWedges
 
 #print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.idealExtract
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.feedbackNoPlaceModLow
 
--- The open statements, printed in full.
+-- Shared interfaces and case statements, printed in full.
 #print TwoClaim
 #print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.LastFactorLowIdeal
 #print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.IdealExtract

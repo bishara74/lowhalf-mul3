@@ -29,7 +29,8 @@ human-readable lower-bound proof and formalizes it.
 | `TwoClaim`, last-gate form (b) `k (f h + F) + z₂ ∈ V(S)` | — | **open** |
 | `λ = 1`, reduced to `TwoClaim` and five shared statements | `lambdaCase_one_of` (`LowHalfMul3/LambdaOne.lean`) | proved |
 | `FeedbackNormal`, `Q2NotTwoWedges` | `feedbackNormal`, `q2NotTwoWedges` (`LowHalfMul3/Shared.lean`) | proved |
-| `LastFactorLowIdeal`, `IdealExtract`, `FeedbackNoPlaceModLow` | `LowHalfMul3/LambdaOneBase.lean` | **open** |
+| `IdealExtract`, `FeedbackNoPlaceModLow` | `idealExtract` (`LowHalfMul3/IdealExtract.lean`), `feedbackNoPlaceModLow` (`LowHalfMul3/Shared.lean`) | proved |
+| `LastFactorLowIdeal` | `LowHalfMul3/LambdaOneBase.lean` | **open** |
 | `MC(lowMul3) = 6` from the two open cases | `mc_eq_six_of_lambda_one_two : LambdaCase 1 → LambdaCase 2 → MC(lowMul3) = 6` | proved |
 | `MC(lowMul3) = 6` (unconditional) | `LowHalfMul3Challenge.lean`, `mc_lowMul3` | stated; deliberate `sorry` |
 

@@ -1,6 +1,7 @@
 module
 
-public import LowHalfMul3.LambdaOneBase
+public import LowHalfMul3.IdealExtract
+public import LowHalfMul3.LambdaOneOrdinary
 public import LowHalfMul3.LemmaA
 
 @[expose] public section
@@ -21,6 +22,8 @@ there.
   four linear forms on `F₂⁶` have a common nonzero zero (`exists_orth4`, by
   rank–nullity). But `q₂ + ε Z₁ + α P₀` has zero radical: `ι_e` of it is nonzero for
   every `e ≠ 0` (`q2_iota_ne_zero`, 256 cases).
+* `feedbackNoPlaceModLow : FeedbackNoPlaceModLow` combines quadratic ideal
+  extraction with the rank obstruction.
 -/
 
 namespace UnrestrictedBooleanMul.LowHalfMul3.LambdaOne
@@ -115,6 +118,51 @@ theorem q2NotTwoWedges : Q2NotTwoWedges := by
   have := congrArg (iota e) h
   rw [map_add, iota_kill hl hr, iota_kill ha hb, add_zero] at this
   exact this
+
+/-! ## Feedback placement modulo the low-bit ideal -/
+
+private theorem pi2_q2 : pi2 q2 = q2Form := by
+  have hcarry : pi2 (monomial carryMonomial.vars : A6) = 0 := by
+    funext i j
+    rw [pi2_apply]
+    split_ifs with hij
+    · rfl
+    · have hne : carryMonomial.vars ≠ {i, j} := by
+        intro he
+        have hc := Finset.card_insert_le i ({j} : Finset (Fin 6))
+        rw [← he, carryMonomial_card, Finset.card_singleton] at hc
+        omega
+      simp [hne]
+  have h := pi2_lowMul3_two
+  rw [show lowMul3 2 = q2 + monomial carryMonomial.vars from z2_eq_q2_add_carry,
+    map_add, hcarry, add_zero] at h
+  exact h
+
+/-- A product from the quadratic base cannot place the target modulo the low-bit ideal. -/
+theorem feedbackNoPlaceModLow : FeedbackNoPlaceModLow := by
+  intro l r f h F v hf hh hF hv hm
+  have hFv := (V4 (Slr l r)).add_mem hF hv
+  obtain ⟨π, hπ, a, b, he⟩ := idealExtract hf hh (q2_degree.add hFv.1)
+    (show ModLow (f * h) (q2 + (F + v)) by simpa only [add_assoc] using hm)
+  have hS : pi2 (F + v) + π ∈ Slr l r :=
+    (Slr l r).add_mem hFv.2 (Submodule.mem_sup_left hπ)
+  have hwedge : q2Form + (pi2 (F + v) + π) = wedge a b := by
+    rw [map_add, pi2_q2] at he
+    rw [← add_assoc, he, add_comm π (wedge a b), add_assoc, tf_add_self, add_zero]
+  obtain ⟨q, hq, z, hz, hsum⟩ := Submodule.mem_sup.mp hS
+  obtain ⟨ε, rfl⟩ := Submodule.mem_span_singleton.mp hz
+  rw [qlr_eq] at hq
+  obtain ⟨p, hp, w, hw, hqsum⟩ := Submodule.mem_sup.mp hq
+  obtain ⟨α, rfl⟩ := Submodule.mem_span_singleton.mp hp
+  obtain ⟨β, rfl⟩ := Submodule.mem_span_singleton.mp hw
+  have heq : q2Form + ε • Z1form + α • P0form + β • wedge l r = wedge a b := by
+    calc
+      _ = q2Form + ((α • P0form + β • wedge l r) + ε • Z1form) := by ac_rfl
+      _ = _ := by rw [hqsum, hsum, hwedge]
+  rcases f2_eq_zero_or_one β with rfl | rfl
+  · apply q2NotTwoWedges ε α l 0 a b
+    simpa only [wedge_zero_right, zero_smul, add_zero] using heq
+  · exact q2NotTwoWedges ε α l r a b (by simpa only [one_smul] using heq)
 
 end
 

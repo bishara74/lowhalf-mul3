@@ -1384,3 +1384,18 @@ ones are unchanged, and the 8 new ones are all `[propext, Classical.choice, Quot
     `formA_zero`, `formA_one_of_phi`);
   * otherwise affine annihilation makes `k` depend only on `(a₀, b₀)`;
   * the fibers then finish.
+
+### Shared quadratic extraction and modular feedback exclusion
+
+`IdealExtract.lean` proves `idealExtract` by an affine-factor level set.
+A constant second difference gives the correction on the low-bit ideal,
+and Lemma W extracts a wedge. This replaces the paper's comparison of
+three-forms and their supports. The independent Python check covered
+21,398,912 quotient factor pairs and 3,621,672 quadratic representatives.
+
+`Shared.lean` proves `feedbackNoPlaceModLow` by applying ideal extraction to
+`q2 + (F + v)`. The carry monomial contributes no quadratic coefficients,
+so the available correction puts the extracted wedge in `q2Form + Slr l r`.
+The rank obstruction excludes this wedge, including when the coefficient of
+`wedge l r` vanishes. This follows the paper's modular feedback argument.
+The library build and full axiom audit passed. The proof adds no finite checks.

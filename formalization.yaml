@@ -150,6 +150,10 @@ fidelity:
     factors of the last gate lie in V(S) uses a 16-point cube sum over a cube
     in ker l (P vanishes there, and V(S) restricts to a space whose products
     have no quartic term), instead of the exterior statement P ^ theta != Omega.
+    Ideal extraction normalizes one factor to be affine, corrects the
+    quadratic representative on a level set using a constant second
+    difference, and extracts the wedge via Lemma W. This replaces the
+    comparison of decomposable three-forms and their supports.
 review:
   status: self-assessed
   notes: >-
@@ -285,6 +289,14 @@ alignment:
       lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.q2NotTwoWedges
       module: LowHalfMul3.Shared
       status: proved-with-divergence
+    - source: paper/main.tex Lemma l2:lem:ideal (quadratic extraction)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.idealExtract
+      module: LowHalfMul3.IdealExtract
+      status: proved-with-divergence
+    - source: paper/main.tex feedback exclusion modulo the low-bit ideal in lambda = 1 and lambda = 2
+      lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.feedbackNoPlaceModLow
+      module: LowHalfMul3.Shared
+      status: proved
     - source: lambda2_proof.tex Proposition onehigh inside Lambda^2(U) (Lemma coset)
       lean: UnrestrictedBooleanMul.LowHalfMul3.oneHigh_of_phi
       module: LowHalfMul3.LambdaTwo
