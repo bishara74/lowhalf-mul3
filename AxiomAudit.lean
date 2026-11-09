@@ -40,12 +40,17 @@ all modules of the library:
 * `LowHalfMul3.LambdaOneAssembly`
 * `LowHalfMul3.LambdaOne`
 * `LowHalfMul3.Shared`
+* `LowHalfMul3.IdealExtract`
+* `LowHalfMul3.LastFactor`
+* `LowHalfMul3.OneHighFinish`
+* `LowHalfMul3Solution`
 
 The main results are `upper`, `mc_eq_six_of_no_five`, `normal_form_five`,
 `lambdaCase_five`, `starFree` / `lambdaCase_four`, `b3Claim`, `badClaim`,
 `lambdaCase_three`, `mc_eq_six_of_lambda_one_two`, `lambdaCase_two_of` and
 `mc_eq_six_of_twoClaim`, `lambdaCase_one_of`, `feedbackNormal`,
-`q2NotTwoWedges`, `idealExtract` and `feedbackNoPlaceModLow`. The listed
+`q2NotTwoWedges`, `idealExtract`, `feedbackNoPlaceModLow`, `lastFactorLowIdeal`,
+`twoClaim`, `lambdaCase_one`, `lambdaCase_two` and `mc_lowMul3`. The listed
 closures also cover their helper lemmas. The shared interfaces and case
 statements are printed in full at the end.
 `LowHalfMul3Challenge.lean` is a separate statement environment and is deliberately not

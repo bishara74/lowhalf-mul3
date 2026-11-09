@@ -53,7 +53,7 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
   `ι_e(Q) = 0`).
 * `LowHalfMul3.LemmaTwo` proves Lemma 2: if the first `j` gates are linear,
   the wire space before gate `j` is `V₄(Q_j)`.
-* `LowHalfMul3.Assembly` defines the open cases `LambdaCase 1/2/3` and
+* `LowHalfMul3.Assembly` defines the cases `LambdaCase 1/2/3` and
   `StarFree` (Theorem 12), proves `StarFree → LambdaCase 4`, and proves
   `mc_eq_six_of_remaining_cases`: those four statements imply `MC = 6`.
 
@@ -104,19 +104,18 @@ unrestricted XOR--AND model of `unrestricted_boolean_mul`.
   derivative argument (`noPlace_z1_two`).
 * `LowHalfMul3.OneHigh` proves parts 1 and 2 of `TwoClaim`: `z₂ ∉ V(S) + ⟨f h⟩`
   (`z2_not_mem_S_sup`), and the last-gate form `F H + σ f h + z₂ ∈ V(S)` is impossible
-  (`formA_zero`, `formA_one_of_phi`, by a 16-point cube sum in `ker l`). Form (b),
-  `k (f h + F) + z₂ ∈ V(S)`, remains.
+  (`formA_zero`, `formA_one_of_phi`, by a 16-point cube sum in `ker l`).
+  `LowHalfMul3.OneHighFinish` excludes the feedback form (b) and proves `twoClaim`.
 
 * `LowHalfMul3.LambdaOne` (with `LambdaOneBase`, `LambdaOneTail`, `LambdaOneCore`,
   `LambdaOneEarly`, `LambdaOneParity`, `LambdaOneOrdinary`, `LambdaOneAssembly`) proves
   `lambdaCase_one_of : TwoClaim → LastFactorLowIdeal → IdealExtract → Q2NotTwoWedges →
   FeedbackNoPlaceModLow → FeedbackNormal → LambdaCase 1`.
 
-* `LowHalfMul3.Shared` proves two of the five shared statements:
-  `feedbackNormal : FeedbackNormal` and `q2NotTwoWedges : Q2NotTwoWedges`.
+* `LowHalfMul3.Shared` proves feedback normalization, the rank obstruction, and
+  modular feedback exclusion. `LowHalfMul3.IdealExtract` and `LowHalfMul3.LastFactor`
+  prove ideal extraction and last-factor rigidity.
 
-The lower bound is therefore reduced, in Lean, to `TwoClaim` and the remaining shared
-statements in `LowHalfMul3.LambdaOneBase` (`LastFactorLowIdeal`, `IdealExtract`,
-`FeedbackNoPlaceModLow`)
-(`mc_eq_six_of_twoClaim : LambdaCase 1 → TwoClaim → MC(lowMul3) = 6`).
+The separate `LowHalfMul3Solution` module assembles the unconditional theorem
+`mc_lowMul3 : MC(lowMul3) = 6`.
 -/

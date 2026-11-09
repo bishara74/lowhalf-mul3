@@ -1,8 +1,8 @@
 # Palomar preflight of `bishara74/lowhalf-mul3` (local, no submission)
 
-Status: failures 1–4 below are fixed. The real preparation run on the pushed commit
-`28514d5` passes every submitter check (see the last section). Failure 5 (no Solution
-module) remains.
+Status: the Solution is complete. See the final section for the completed
+local preparation and its license-detector limitation. The earlier sections
+record the original preflight and the run on the published commit `28514d5`.
 
 Run on 7 November 2026 against the pushed commit
 `33a708d1323ca5b7ed267c374e68e7268294e072`. Nothing was submitted.
@@ -103,3 +103,30 @@ yet. `<AUTHOR>` in `LICENSE` is a placeholder.
   not known, so this is strong evidence, not Palomar's own result.
 
 The full verification phase (Linux sandbox, Comparator) still needs the Solution module.
+
+## Completed Solution, local preparation on 9 November 2026
+
+The Solution now proves `UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3`, and
+`lake build` includes its Lake library. The Challenge file is byte-identical
+to the previous Challenge. Its deliberate proof hole is confined to that file.
+
+Palomar's `scripts.verify_submission prepare` logic at revision
+`14aa8d6b3c2f14a8540605e37144560b9a00e7e7` checked the completed Lean sources
+and the final `formalization.yaml`. The preflight ran on a temporary local
+snapshot based on `3e67bf7` with the final source and metadata edits applied.
+The snapshot commit in the report identifies that local copy. The Lean files
+and metadata checked by preparation were verified against the working files.
+The local source adapter substituted only the initial clone, since the
+completed commits are unpublished.
+
+| Run | Result |
+| --- | --- |
+| Palomar license detector | `error / preflight`. The sole diagnostic was `palomar.license_detector_failed` because trusted Bundler was unavailable. |
+| Local MIT text comparison | `pending / prepared`. All 37 Lean files, metadata, toolchain, and Comparator configuration passed with zero errors and zero warnings. |
+
+For the second run, the root MIT text matched Palomar's bundled MIT text
+after normalizing whitespace and removing the copyright line. The root
+`LICENSE` has the same Git blob as in the earlier run on `28514d5`.
+The report records both runs. No Palomar submission or remote verification
+was performed. The full Comparator phase requires the Linux sandbox.
+[Machine-readable preparation report](palomar_preflight_report_complete.json)

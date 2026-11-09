@@ -1453,3 +1453,24 @@ contradicting `feedbackNoPlaceModLow`. To prove `twoClaim`, combine
 `z2_not_mem_S_sup` with `feedbackNormal` and discharge the two ordinary
 branches using `formA_zero` and `formA_one_of_phi`, and the feedback branch
 using `formB`. This follows the paper's last-gate split.
+
+### Unconditional theorem and final verification
+
+`LowHalfMul3Solution.lean` discharges `LambdaCase 1` using the completed
+`TwoClaim` and all five shared theorems, and discharges `LambdaCase 2`
+using `twoClaim`. The existing assembly theorem gives
+`UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3 : MC(lowMul3) = 6`.
+The Solution has its own Lake library and builds by default.
+
+The final `lake build` passed with 1,761 jobs. `AxiomAudit.lean` checked
+264 distinct theorems. The allowed axiom set is `propext`,
+`Classical.choice` and `Quot.sound`, and the headline theorem uses exactly
+those three. A scan of all 37 Lean source files found one deliberate
+`sorry` in `LowHalfMul3Challenge.lean` and no other proof holes or forbidden
+decision procedures. The Challenge is separate from the Solution.
+
+Palomar's local preparation checked all 37 source files and returned
+`pending / prepared` with zero errors and warnings using the MIT text
+comparison. Its original detector reported the unavailable Bundler as
+the only diagnostic. Both runs and the local adaptations are recorded in
+`verification/lean-support/palomar_preflight.md`.

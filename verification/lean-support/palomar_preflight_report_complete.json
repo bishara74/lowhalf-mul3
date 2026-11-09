@@ -1,0 +1,270 @@
+{
+  "mode": "local preparation, no submission",
+  "tool_commit": "14aa8d6b3c2f14a8540605e37144560b9a00e7e7",
+  "base_commit": "3e67bf78e3cdf7888419a462eb276d97f583f927",
+  "scratch_snapshot_commit": "76f3688f8bbe33a34135007ee032cd914a5625c3",
+  "local_adaptations": [
+    "A local clone of the scratch snapshot supplies unpublished source.",
+    "The second run checks normalized MIT text against Palomar's bundled MIT text."
+  ],
+  "reports": {
+    "bundler": {
+      "checked_at": "2026-11-09T01:06:59Z",
+      "diagnostics": [
+        {
+          "code": "palomar.license_detector_failed",
+          "explanation": "trusted Bundler executable is unavailable: /nonexistent/bundle",
+          "next_action": "Do not change the repository. Retry the same commit later; report the workflow URL if the problem recurs.",
+          "owner": "palomar",
+          "repairable": false,
+          "retryable": true,
+          "stage": "license",
+          "summary": "trusted Bundler executable is unavailable: /nonexistent/bundle"
+        }
+      ],
+      "diagnostics_schema_version": 1,
+      "errors": [
+        "trusted Bundler executable is unavailable: /nonexistent/bundle"
+      ],
+      "existing_id": null,
+      "formalization_profile_version": 4,
+      "phase": "preparation",
+      "schema_version": 1,
+      "source": {
+        "bytes": 7872203,
+        "commit": "76f3688f8bbe33a34135007ee032cd914a5625c3",
+        "repository": "bishara74/lowhalf-mul3",
+        "repository_url": "https://github.com/bishara74/lowhalf-mul3"
+      },
+      "source_requirements": {
+        "files_checked": 37,
+        "maximum_lines": 10000,
+        "module_required": true,
+        "schema_version": 1
+      },
+      "stage": "preflight",
+      "status": "error",
+      "submission": {
+        "authorization": {
+          "relationship": "maintainer"
+        },
+        "requested_paths": {
+          "comparator_config_path": "comparator.json",
+          "formalization_metadata_path": "",
+          "project_path": ""
+        },
+        "submission_id": "preflight004"
+      },
+      "verification_profile": {
+        "id": "palomar-namespace-16x32-v1",
+        "limits": {
+          "execution_budget_seconds": 19800,
+          "file_size_max_bytes": 1099511627776,
+          "job_timeout_minutes": 350,
+          "memory_high_percent": 95,
+          "memory_max_percent": 98,
+          "minimum_host_memory_bytes": 30064771072,
+          "minimum_workspace_free_bytes": 21474836480,
+          "open_files_max": 1048576,
+          "tasks_max": 32768
+        },
+        "runner": {
+          "architecture": "x86_64",
+          "label": "nscloud-ubuntu-24.04-amd64-16x32-with-features",
+          "labels": [
+            "nscloud-ubuntu-24.04-amd64-16x32-with-features",
+            "namespace-features:container.privileged=true"
+          ],
+          "provider": "namespace"
+        },
+        "sha256": "8a124c2d0f369a019e8cb807854b47a9c711f0592ed3bfcda49718dfb457fad0",
+        "trusted_tools": {
+          "bwrap_source_tag": "v0.12.0",
+          "toolchain_floor": "v4.35.0-rc2"
+        }
+      },
+      "warnings": []
+    },
+    "mit-body": {
+      "challenge": {
+        "module": "LowHalfMul3Challenge"
+      },
+      "checked_at": "2026-11-09T01:07:06Z",
+      "classification": {
+        "arxiv": [
+          {
+            "code": "cs.CC",
+            "name": "Computational Complexity"
+          }
+        ],
+        "msc2020": [
+          {
+            "code": "68Q06",
+            "name": "Networks and circuits as models of computation; circuit complexity"
+          },
+          {
+            "code": "68Q17",
+            "name": "Computational difficulty of problems (lower bounds, completeness, difficulty of approximation, etc.)"
+          },
+          {
+            "code": "94D10",
+            "name": "Boolean functions"
+          }
+        ]
+      },
+      "comparator": {
+        "challenge_module": "LowHalfMul3Challenge",
+        "definition_names": [],
+        "path": "comparator.json",
+        "permitted_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "sha256": "ead728c427574cde438556e0c8fafa19f39ab6ae1ff38682ae8cbb7197135b20",
+        "solution_module": "LowHalfMul3Solution",
+        "theorem_names": [
+          "UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3"
+        ]
+      },
+      "errors": [],
+      "existing_id": null,
+      "formalization": {
+        "automation_method_count": 1,
+        "path": "formalization.yaml",
+        "project_name": "Unrestricted Boolean multiplicative complexity of the 3x3 low-half multiplier",
+        "review_status": "self-assessed",
+        "sha256": "c23cdeec1ebdb182cc3fdabd26026f6f1f48e509e9b91a934b819cbe895e1746",
+        "source_count": 2
+      },
+      "lake_manifest": {
+        "path": "lake-manifest.json",
+        "sha256": "adde8a7d5597794776fcfc86b71547a3ef51c909f756fe26772c61ae7972c9e9"
+      },
+      "lakefile": {
+        "format": "toml",
+        "path": "lakefile.toml",
+        "sha256": "8ff7db5c0da87823b1863c6c4ab184bf7bfbe4430138b4e4729c6c5b7bcf7328"
+      },
+      "lean_toolchain": "leanprover/lean4:v4.35.0-rc3",
+      "lean_toolchain_path": "lean-toolchain",
+      "license": {
+        "declared_identifier": "MIT",
+        "detected_identifier": "MIT",
+        "path": "LICENSE",
+        "sha256": "fd11c06330aaea4e86cf412bd24477eea19509fdaddc2f2838ce84ed8ca86899"
+      },
+      "orcid_validation": {
+        "checked_at": "2026-11-09T01:07:15Z",
+        "records": [],
+        "registry": "https://orcid.org",
+        "schema_version": 1
+      },
+      "phase": "preparation",
+      "provenance": {
+        "mathematical_sources": [
+          {
+            "author_endorsement": "none",
+            "authors": [
+              {
+                "name": "Gregory Morse"
+              }
+            ],
+            "identifier": "arXiv:2608.30238v1",
+            "license": "CC-BY-4.0",
+            "location": "https://arxiv.org/html/2608.30238v1",
+            "note": "Definition 2.1 supplies the circuit model. The target here is not a target of that paper: lowMul3 keeps only the three low coefficients of the three-term product and adds the integer carry a0a1b0b1 to coefficient 2. No result of that paper is restated or reproved.",
+            "relationship": "other",
+            "title": "Unrestricted Boolean Multiplicative Complexity of Four-Term Binary Polynomial Multiplication: Rational Places, Hasse Jets, and the Failure of Nonlinear Feedback",
+            "type": "paper"
+          },
+          {
+            "authors": [
+              {
+                "name": "Bishara"
+              }
+            ],
+            "identifier": "lambda4_proof.tex",
+            "note": "Formalized: Lemma 1 (normal_form_five), Lemma 2 (wireSpace_eq_V4), Lemma 3 for the two instances used (lemma3), Lemma 4 kernel half (phi_eq_zero_iff), Lemma 6 (lemma6), Lemma 8 in the paper's form (derivative_lemma_paper), Lemma 11 as a normal form (types), and Theorem 12 (starFree, hence lambdaCase_four). Theorem 12 is proved by a shorter route than the note: a strengthened derivative lemma (Lemma 8', starFree_of_goodDir) plus Lemma 6 replaces Lemma 5, Proposition 7, the dimension half of Lemma 4 and the WLOG dim Q = 4; the three-term case follows the note. Not formalized (not needed on this route): Lemma 4 dimension half, Lemma 5, Proposition 7.",
+            "relationship": "formalizes",
+            "title": "A human proof of the four-linear-gate case for the 3x3 low-half multiplier",
+            "type": "preprint"
+          }
+        ],
+        "related_formalizations": [
+          {
+            "identifier": "https://github.com/GregoryMorse/unrestricted-boolean-mul",
+            "note": "The model, the ANF layer, the Circuit structure, MC and the aVar/bVar/Mul targets are imported from that package at the revision pinned in lake-manifest.json; they are not re-formalized here.",
+            "relationship": "depends-on"
+          }
+        ],
+        "repository_role": "substantive-development",
+        "responsible_maintainers": [
+          {
+            "name": "Bishara"
+          }
+        ],
+        "result_origin": "source-based"
+      },
+      "schema_version": 1,
+      "solution": {
+        "module": "LowHalfMul3Solution"
+      },
+      "source": {
+        "bytes": 7872203,
+        "commit": "76f3688f8bbe33a34135007ee032cd914a5625c3",
+        "repository": "bishara74/lowhalf-mul3",
+        "repository_url": "https://github.com/bishara74/lowhalf-mul3"
+      },
+      "source_requirements": {
+        "files_checked": 37,
+        "maximum_lines": 10000,
+        "module_required": true,
+        "schema_version": 1
+      },
+      "stage": "prepared",
+      "status": "pending",
+      "submission": {
+        "authorization": {
+          "relationship": "maintainer"
+        },
+        "requested_paths": {
+          "comparator_config_path": "comparator.json",
+          "formalization_metadata_path": "",
+          "project_path": ""
+        },
+        "submission_id": "preflight004"
+      },
+      "toolchain_commit": "470d5ce1400764999581fd26d5d72b00d990b0f4",
+      "verification_profile": {
+        "id": "palomar-namespace-16x32-v1",
+        "limits": {
+          "execution_budget_seconds": 19800,
+          "file_size_max_bytes": 1099511627776,
+          "job_timeout_minutes": 350,
+          "memory_high_percent": 95,
+          "memory_max_percent": 98,
+          "minimum_host_memory_bytes": 30064771072,
+          "minimum_workspace_free_bytes": 21474836480,
+          "open_files_max": 1048576,
+          "tasks_max": 32768
+        },
+        "runner": {
+          "architecture": "x86_64",
+          "label": "nscloud-ubuntu-24.04-amd64-16x32-with-features",
+          "labels": [
+            "nscloud-ubuntu-24.04-amd64-16x32-with-features",
+            "namespace-features:container.privileged=true"
+          ],
+          "provider": "namespace"
+        },
+        "sha256": "8a124c2d0f369a019e8cb807854b47a9c711f0592ed3bfcda49718dfb457fad0",
+        "trusted_tools": {
+          "bwrap_source_tag": "v0.12.0",
+          "toolchain_floor": "v4.35.0-rc2"
+        }
+      },
+      "warnings": []
+    }
+  }
+}
