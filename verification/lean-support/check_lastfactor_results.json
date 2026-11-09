@@ -1,0 +1,11 @@
+{
+  "admissible_triples_by_d": [
+    3552,
+    3648
+  ],
+  "distinct_plus_z1_spaces": 2260,
+  "target_cases": 2314240,
+  "factor_target_pairs_covered": 2369781760,
+  "positive_controls": 2,
+  "failures": 0
+}

@@ -65,6 +65,16 @@ private theorem low_product_on_plane {G : A6} (hG : DegreeLE 2 G) {a e d : Vec} 
     simpa only [hvan _ hxde zxde, hvan _ hxd zxd, hvan _ hxe zxe, h1, zero_add, mul_one]
       using h
 
+theorem quadratic_inLowIdeal {p : A6} (hp : DegreeLE 2 p) (hI : InLowIdeal p) :
+    ∃ c : F₂, p = c • P0 := by
+  obtain ⟨c, hc⟩ := low_product_on_plane hp (a := 0) (α := 0)
+    (e := unitVec 0) (d := unitVec 3) (by simp [dotv]) (by simp [dotv])
+    rfl rfl rfl (fun x _ hx => lowIdeal_iff_offFibers.mp hI x hx)
+  refine ⟨c, eval_injective 6 (funext fun x => ?_)⟩
+  change eval p x = eval (c • P0) x
+  rw [eval_smul', eval_p0]
+  exact hc x (by simp [dotv])
+
 private theorem extract_affine_right {Q : Submodule F₂ TwoForm6} (hP : P0form ∈ Q)
     {F B R : A6} (hF : F ∈ V4 Q) (hB : B ∈ affine 6) (hR : DegreeLE 2 R)
     (hm : ModLow (F * B) R) : ∃ π ∈ Q, ∃ a b : Vec, pi2 R = π + wedge a b := by

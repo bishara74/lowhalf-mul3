@@ -154,6 +154,12 @@ fidelity:
     quadratic representative on a level set using a constant second
     difference, and extracts the wedge via Lemma W. This replaces the
     comparison of decomposable three-forms and their supports.
+    Last-factor rigidity excludes a constant nonzero external difference
+    via the ordinary-pair obstruction. For independent external parts, a
+    mixed difference replaces the degree-six coefficient comparison.
+    Two low-bit fibers where the factor is one determine its free slopes.
+    The off-ideal mixed middle-bit difference excludes a residual external
+    slope on any other off-ideal fiber.
 review:
   status: self-assessed
   notes: >-
@@ -292,6 +298,10 @@ alignment:
     - source: paper/main.tex Lemma l2:lem:ideal (quadratic extraction)
       lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.idealExtract
       module: LowHalfMul3.IdealExtract
+      status: proved-with-divergence
+    - source: paper/main.tex last-factor rigidity in lambda = 1 and lambda = 2
+      lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.lastFactorLowIdeal
+      module: LowHalfMul3.LastFactor
       status: proved-with-divergence
     - source: paper/main.tex feedback exclusion modulo the low-bit ideal in lambda = 1 and lambda = 2
       lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.feedbackNoPlaceModLow

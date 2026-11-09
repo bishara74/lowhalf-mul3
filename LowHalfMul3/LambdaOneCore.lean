@@ -49,9 +49,9 @@ theorem core_const_deriv {p : A6} (hp : CoreHi p) (i : Fin 6) (hi : i = 2 ∨ i 
       · exact Or.inl (by omega)
     rw [termL_unit_of_small_or_absent i m.vars x hc, mul_zero]
 
-theorem coreHi_extGate_of_core {l b : Vec}
+theorem coreHi_extGate_of_core_any (d : F₂) {l b : Vec}
     (hl2 : l 2 = 0) (hl5 : l 5 = 0) (hb2 : b 2 = 0) (hb5 : b 5 = 0) :
-    CoreHi (ExtGate 1 l b) := by
+    CoreHi (ExtGate d l b) := by
   intro m _ hm
   obtain ⟨t⟩ := m
   have hb (i : Fin 6) (h : i = 2 ∨ i = 5) : b i = 0 := by
@@ -87,8 +87,13 @@ theorem coreHi_extGate_of_core {l b : Vec}
       · simp only [← Finset.mem_singleton.mp hi, hl e he, zero_mul, mul_zero]
       · simp only [← Finset.mem_singleton.mp hj, hb e he, zero_mul, mul_zero]
     · rw [mul_zero, mul_zero]
-  rw [extGate_one, add_mul]
+  rw [ExtGate, add_mul, smul_mul_assoc]
   simp [hm1, hm2]
+
+theorem coreHi_extGate_of_core {l b : Vec}
+    (hl2 : l 2 = 0) (hl5 : l 5 = 0) (hb2 : b 2 = 0) (hb5 : b 5 = 0) :
+    CoreHi (ExtGate 1 l b) :=
+  coreHi_extGate_of_core_any 1 hl2 hl5 hb2 hb5
 
 theorem xlow_mul_p0 (i : Fin 6) (hi : i = 0 ∨ i = 3) : X i * P0 = P0 := by
   rcases hi with rfl | rfl <;> rw [p0_monomial, X, monomial_mul] <;>

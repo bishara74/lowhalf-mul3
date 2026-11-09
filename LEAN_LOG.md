@@ -1399,3 +1399,41 @@ so the available correction puts the extracted wedge in `q2Form + Slr l r`.
 The rank obstruction excludes this wedge, including when the coefficient of
 `wedge l r` vanishes. This follows the paper's modular feedback argument.
 The library build and full axiom audit passed. The proof adds no finite checks.
+
+### Shared last-factor rigidity
+
+`LastFactor.lean` proves the exact `LastFactorLowIdeal` interface for both
+values of `d`. The exhaustive support-incidence check
+`verification/lean-support/check_lastfactor.py` covers all 7,200 admissible
+triples, 2,260 distinct spaces, and 2,314,240 target-coset elements. Both
+positive controls pass. The checker records its counts in the adjacent JSON.
+
+The Lean proof retains the global ordinary-product contradiction. If a
+constant external difference of `k) were one, the two evaluations of
+`k R = R` would give `R = k D_e R`. The derivative belongs to the quadratic
+base. The cubic-generator case uses `ordinary_pair_noPlace` with a zero second
+product, and the quadratic-generator case uses `formA_zero`.
+
+For independent external parts, take the mixed difference of
+`(1 + k) R = 0`. When `k` uses the generator, adding a multiple of `k` to
+`R` eliminates its generator term and preserves `k R = R`. The mixed
+difference then expresses the modified target as a sum of two products
+from `V4 S0` and quadratic terms, contradicting its quartic coefficient.
+When only `R` uses the generator, both external differences of `k` vanish
+and the mixed difference gives `k = 1`. This replaces the paper's direct
+degree-six and degree-five comparisons.
+
+In the remaining case, a killing external direction yields a nonconstant
+affine annihilator on the low-bit coordinates. It gives two fibers where
+`k = 1`. If `k` uses the generator, the second differences on one such
+fiber make the projected factors dependent. The generator is then a
+low-bit function times one homogeneous linear form. Comparing free slopes
+on both fibers eliminates the `z1` coefficient. A residual external slope
+on an off-ideal fiber would force its target to be affine, contradicting
+the mixed middle-bit difference there. On each off-ideal fiber the target
+is nonzero, so a constant value of `k` must be one. This is the paper's
+fiber argument expressed through first and second differences.
+
+`quadratic_inLowIdeal` specializes the existing affine-level-set proof
+to the whole cube and supplies the two-value conclusion in the quadratic
+case. The new proofs use no finite `decide` checks.
