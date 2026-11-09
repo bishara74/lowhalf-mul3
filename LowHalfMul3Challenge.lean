@@ -25,10 +25,8 @@ The target differs from `Mul 3` (the four-term polynomial product) in two
 ways: only the three low coefficients are required, and coefficient 2 carries
 the integer carry `a₀a₁b₀b₁` out of bit 1.
 
-The single theorem below is a deliberate hole. The matching upper bound
-`HasCircuit lowMul3 6` is proved in `LowHalfMul3.Upper`; the lower bound
-`¬ HasCircuit lowMul3 5` is not formalized yet, so the equality is not
-claimed as a proved result anywhere in this development.
+The theorem below is the Challenge statement. Its proof is
+`mc_lowMul3` in `LowHalfMul3Solution`.
 -/
 
 namespace UnrestrictedBooleanMul
