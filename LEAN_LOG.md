@@ -1437,3 +1437,19 @@ fiber argument expressed through first and second differences.
 `quadratic_inLowIdeal` specializes the existing affine-level-set proof
 to the whole cube and supplies the two-value conclusion in the quadratic
 case. The new proofs use no finite `decide` checks.
+
+### Phase 7 completion: form (b) and `TwoClaim`
+
+`OneHighFinish.lean` specializes `lastFactorLowIdeal` to `d = 0`. A wedge
+with nonzero cross part makes its product noncore, and the factors can
+be swapped to put an external coordinate in the right factor.
+`quadratic_inLowIdeal` gives `lastFactor_two`, the dichotomy
+`k = 1` or `k = 1 + P0`.
+
+In form (b), set `R = k (f h + F)`. Idempotence gives `k R = R`, and
+rigidity gives `k = 1` on the three off-ideal fibers. The carry is zero
+there. Thus `f h` agrees with `q2 + F + (R + z2)` modulo the ideal,
+contradicting `feedbackNoPlaceModLow`. To prove `twoClaim`, combine
+`z2_not_mem_S_sup` with `feedbackNormal` and discharge the two ordinary
+branches using `formA_zero` and `formA_one_of_phi`, and the feedback branch
+using `formB`. This follows the paper's last-gate split.

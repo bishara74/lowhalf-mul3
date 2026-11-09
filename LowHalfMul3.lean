@@ -25,6 +25,7 @@ public import LowHalfMul3.LambdaOne
 public import LowHalfMul3.Shared
 public import LowHalfMul3.IdealExtract
 public import LowHalfMul3.LastFactor
+public import LowHalfMul3.OneHighFinish
 
 @[expose] public section
 

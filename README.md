@@ -26,7 +26,7 @@ human-readable lower-bound proof and formalizes it.
 | `λ = 3` | `lambdaCase_three` | proved |
 | `λ = 2`, reduced to `TwoClaim` (Proposition `onehigh` for `P ∉ Λ²(U)`) | `lambdaCase_two_of : TwoClaim → LambdaCase 2` | proved |
 | `TwoClaim`, part 1 (`z₂ ∉ V(S) + ⟨f h⟩`) and part 2 (last-gate form (a)) | `z2_not_mem_S_sup`, `formA_zero`, `formA_one_of_phi` (`LowHalfMul3/OneHigh.lean`) | proved |
-| `TwoClaim`, last-gate form (b) `k (f h + F) + z₂ ∈ V(S)` | — | **open** |
+| `TwoClaim`, last-gate form (b), and the full claim | `formB`, `twoClaim` (`LowHalfMul3/OneHighFinish.lean`) | proved |
 | `λ = 1`, reduced to `TwoClaim` and five shared statements | `lambdaCase_one_of` (`LowHalfMul3/LambdaOne.lean`) | proved |
 | `FeedbackNormal`, `Q2NotTwoWedges` | `feedbackNormal`, `q2NotTwoWedges` (`LowHalfMul3/Shared.lean`) | proved |
 | `IdealExtract`, `FeedbackNoPlaceModLow` | `idealExtract` (`LowHalfMul3/IdealExtract.lean`), `feedbackNoPlaceModLow` (`LowHalfMul3/Shared.lean`) | proved |

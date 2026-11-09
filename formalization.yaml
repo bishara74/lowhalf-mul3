@@ -272,9 +272,13 @@ alignment:
       module: LowHalfMul3.Coset
       status: proved
     - source: lambda2_proof.tex Proposition onehigh outside Lambda^2(U) (TwoClaim)
-      lean: UnrestrictedBooleanMul.LowHalfMul3.TwoClaim
-      module: LowHalfMul3.LambdaTwo
-      status: stated
+      lean: UnrestrictedBooleanMul.LowHalfMul3.twoClaim
+      module: LowHalfMul3.OneHighFinish
+      status: proved
+    - source: lambda2_proof.tex Proposition onehigh, last-gate feedback form (b)
+      lean: UnrestrictedBooleanMul.LowHalfMul3.formB
+      module: LowHalfMul3.OneHighFinish
+      status: proved
     - source: lambda2_proof.tex Proposition onehigh, z2 not in V(S) + <g> (part 1)
       lean: UnrestrictedBooleanMul.LowHalfMul3.z2_not_mem_S_sup
       module: LowHalfMul3.OneHigh

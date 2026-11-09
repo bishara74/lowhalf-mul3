@@ -46,8 +46,8 @@ The main results are `upper`, `mc_eq_six_of_no_five`, `normal_form_five`,
 `lambdaCase_three`, `mc_eq_six_of_lambda_one_two`, `lambdaCase_two_of` and
 `mc_eq_six_of_twoClaim`, `lambdaCase_one_of`, `feedbackNormal`,
 `q2NotTwoWedges`, `idealExtract` and `feedbackNoPlaceModLow`. The listed
-closures also cover their helper lemmas. The shared interfaces and the open
-statement `TwoClaim` are printed in full at the end.
+closures also cover their helper lemmas. The shared interfaces and case
+statements are printed in full at the end.
 `LowHalfMul3Challenge.lean` is a separate statement environment and is deliberately not
 imported: its single theorem is a `sorry`.
 -/
@@ -608,6 +608,9 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.feedbackNoPlaceModLow
 #print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.quadratic_inLowIdeal
 #print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.lastFactorLowIdeal
+#print axioms lastFactor_two
+#print axioms formB
+#print axioms twoClaim
 
 -- Shared interfaces and case statements, printed in full.
 #print TwoClaim
