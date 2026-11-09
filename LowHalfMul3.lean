@@ -23,6 +23,7 @@ public import LowHalfMul3.LambdaTwo
 public import LowHalfMul3.OneHigh
 public import LowHalfMul3.LambdaOne
 public import LowHalfMul3.Shared
+public import LowHalfMul3.IdealExtract
 
 @[expose] public section
 

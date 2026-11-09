@@ -606,6 +606,8 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #check @UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.q2NotTwoWedges
 #print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.q2NotTwoWedges
 
+#print axioms UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.idealExtract
+
 -- The open statements, printed in full.
 #print TwoClaim
 #print UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.LastFactorLowIdeal
