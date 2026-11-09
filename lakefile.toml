@@ -1,6 +1,6 @@
 name = "lowhalf_mul3"
 version = "0.1.0"
-defaultTargets = ["LowHalfMul3"]
+defaultTargets = ["LowHalfMul3", "LowHalfMul3Solution"]
 
 [leanOptions]
 autoImplicit = false
@@ -12,3 +12,6 @@ rev = "c014e498e51a98529877cc256b9bcdaf5faa2e4f"
 
 [[lean_lib]]
 name = "LowHalfMul3"
+
+[[lean_lib]]
+name = "LowHalfMul3Solution"

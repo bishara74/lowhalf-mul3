@@ -1,6 +1,6 @@
 module
 
-public import LowHalfMul3
+public import LowHalfMul3Solution
 
 @[expose] public section
 
@@ -611,6 +611,11 @@ open UnrestrictedBooleanMul.LowHalfMul3
 #print axioms lastFactor_two
 #print axioms formB
 #print axioms twoClaim
+
+#print axioms lambdaCase_one
+#print axioms lambdaCase_two
+#check @mc_lowMul3
+#print axioms mc_lowMul3
 
 -- Shared interfaces and case statements, printed in full.
 #print TwoClaim
