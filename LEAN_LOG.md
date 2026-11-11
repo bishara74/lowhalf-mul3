@@ -5,13 +5,12 @@ Project: `lowhalf-mul3`. Lean 4.33.1, Mathlib `v4.33.1`, dependency
 No network use: no `lake update`, no `cache get`. `lakefile.toml` and `.lake/`
 were not modified.
 
-Build command used throughout (grants: project folder rw, `~/.elan` ro):
+Build commands run from the repository root with Lake on PATH.
 
-```
-$env:ELAN_HOME = "C:\Users\HP\.elan"
-C:\Users\HP\.elan\bin\lake.exe build            # default target LowHalfMul3
-C:\Users\HP\.elan\bin\lake.exe env lean AxiomAudit.lean
-C:\Users\HP\.elan\bin\lake.exe env lean Challenge.lean
+```sh
+lake build
+lake env lean AxiomAudit.lean
+lake env lean Challenge.lean  # historical module name
 ```
 
 ---
@@ -958,7 +957,7 @@ bad `Q₃` to the product lemma (`deg(fh) ≤ 2 ⇒ (fh)₂ ∈ ⟨f₂, h₂⟩
 Brief: `lowhalf-mul3_review.md` §6. Order: (1) `B3Claim` as a general coset
 lemma, (2) a full Python check of `BadClaim` then its formalization, (3) repo
 hygiene, (4) Palomar audit procedure. Same rules (green build, commit, stop).
-`git pull`: already at `49f1887` (paper/, verification/ present; untouched).
+`git pull`: already at `49f1887` (manuscript snapshots and verification files present at that revision).
 
 ### Step 1 – general coset lemma, `B3Claim` proved
 
@@ -1126,7 +1125,7 @@ replaces the product lemma, radical lemma and weights (step 2b). The whole of
 
 * `README.md` (new, repository root): what is proved, the open statements
   (`LambdaCase 1`, `LambdaCase 2`, the `Challenge.lean` hole), the trust base, build
-  and audit commands, the layout, and pointers to `paper/` and `verification/`.
+  and audit commands, the layout, and pointers to the manuscript and `verification/`.
 * `formalization.yaml`: `review.notes` replaced. It used to say "Phase 1 only … the
   lower bound is unverified in Lean". It now states what is kernel-checked and what is
   open. The project description now covers phases 5–6.

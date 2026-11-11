@@ -1956,7 +1956,7 @@
     ],
     "compilation": {
       "available": true,
-      "engine": "/mnt/c/Users/HP/AppData/Local/Programs/MiKTeX/miktex/bin/x64/pdflatex.exe",
+      "engine": "pdflatex.exe",
       "pages": {
         "lambda1_proof.pdf": 9,
         "lambda2_proof.pdf": 9

@@ -3,29 +3,18 @@ version: v0.4
 project:
   name: Unrestricted Boolean multiplicative complexity of the 3x3 low-half multiplier
   description: >-
-    Formalizes the target lowMul3, the three low bits of the product of two
-    3-bit integers (the product modulo 8), in the unrestricted XOR--AND
-    circuit model of arXiv:2608.30238v1, where XOR and constants are free and
-    either input of a paid AND gate may reuse arbitrary earlier nonlinear
-    wires. Phase 1 proves that the three ANF coordinates agree with integer
-    multiplication modulo 8 on all 64 inputs, and gives an explicit six-gate
-    circuit, one of whose gates reuses two earlier nonlinear wires. Phase 2
-    adds the derivative lemma (Lemma 8 of the four-gate note in paper/notes/). Phase 3 proves
-    the normal form (Lemma 1), Lemma 2, the pi2 / iota layer with Lemma 8 in
-    the paper's form, Lemma 4 (kernel) and Lemma 6, excludes lambda = 5, and
-    reduces MC(lowMul3) = 6 to four explicit statements. Phase 4 proves the
-    four-linear-gate case (StarFree, Theorem 12 of the note). Phases 5 and 6
-    prove the three-linear-gate case (lambdaCase_three), so MC(lowMul3) = 6
-    follows from LambdaCase 1 and LambdaCase 2. The development proves both
-    remaining cases, including TwoClaim and the shared modular feedback
-    lemmas. LowHalfMul3Solution.lean proves the unconditional theorem
-    mc_lowMul3.
+    The target lowMul3 is the three low bits of the product of two 3-bit integers.
+    The unrestricted XOR–AND circuit model of arXiv:2608.30238, Definition 2.1,
+    allows AND gates to reuse nonlinear intermediate outputs.
+    The development proves MC(lowMul3) = 6 using an explicit six-gate circuit
+    for the upper bound and a normal form with five cases (lambda = 5, 4, 3, 2, 1)
+    for the lower bound.
+    LowHalfMul3Solution proves mc_lowMul3 using only propext, Classical.choice
+    and Quot.sound.
   authors:
-    - name: Bshara Alhodali
-      orcid: "0009-0003-4870-8745"
+    - Bshara Alhodali  # ORCID 0009-0003-4870-8745
   responsible_maintainers:
-    - name: Bshara Alhodali
-      orcid: "0009-0003-4870-8745"
+    - Bshara Alhodali  # ORCID 0009-0003-4870-8745
   license: MIT
 classification:
   arxiv: [cs.CC]
@@ -33,35 +22,33 @@ classification:
 sources:
   - title: The multiplicative complexity of the three-bit low-half multiplier
     authors:
-      - name: Bshara Alhodali
-        orcid: "0009-0003-4870-8745"
-      - name: Gregory Morse
-        orcid: "0000-0002-0231-6557"
-    location: paper/main.tex
+      - Bshara Alhodali  # ORCID 0009-0003-4870-8745
+      - Gregory Morse  # ORCID 0000-0002-0231-6557
+    location: https://github.com/bishara74/Multiplicative-complexity-of-the-3-bit-low-half-multiplier
     type: manuscript
     relationship: formalizes
     note: >-
       Formalizes the upper bound, the circuit normal form, and all five
-      lower-bound cases (lambda = 5, 4, 3, 2, 1). Case notes are in paper/notes/.
+      lower-bound cases (lambda = 5, 4, 3, 2, 1).
   - title: >-
       Unrestricted Boolean Multiplicative Complexity of Four-Term Binary
       Polynomial Multiplication: Rational Places, Hasse Jets, and the
       Failure of Nonlinear Feedback
     authors: [Gregory Morse]
     id: arXiv:2608.30238v1
-    location: https://arxiv.org/html/2608.30238v1
+    location: https://arxiv.org/abs/2608.30238v1
     type: paper
-    relationship: uses-model-of
+    relationship: background
     note: >-
       Definition 2.1 supplies the circuit model. The target here is not a
       target of that paper: lowMul3 keeps only the three low coefficients of
       the three-term product and adds the integer carry a0a1b0b1 to
-      coefficient 2. No result of that paper is restated or reproved.
+      coefficient 2. Source-author endorsement is unrecorded.
     license: CC-BY-4.0
-    author_endorsement: none
+    author_endorsement: other
 related_formalizations:
   - id: https://github.com/GregoryMorse/unrestricted-boolean-mul
-    relationship: depends-on
+    relationship: builds-on
     note: >-
       The model, the ANF layer, the Circuit structure, MC and the aVar/bVar/Mul
       targets are imported from that package at the revision pinned in
@@ -100,230 +87,193 @@ automation:
     The author directed and reviewed the development and assumes
     responsibility. No independent human peer review is claimed.
 fidelity:
-  divergences: >-
-    lowMul3 is stated over ANF 6 while the imported aVar/bVar/Mul are stated
-    over ANF (2 * 3); these index types are definitionally equal and Lean
-    accepts the coercion-free statement. The SAT certificates and the human
-    case analysis behind the value 6 are outside this Lean development.
-    LambdaCase 3 (phase 5) follows paper/notes/lambda3_proof.tex with a shorter route:
-    the dim Q3 = 3 reduction is not used; Lemma C for Q3 with a good
-    direction and Proposition B (last gate after g3 places z1) are both
-    obtained from Lemma 8' applied to Q' = Q3 + <Z1> (iota_e Z1 = 0), instead
-    of Lemmas 5/6, D1 and Theorem 12; Lemmas A, C and D1 are needed only for
-    Q3 without a good direction (BadClaim). Lemmas B3a/B3b are proved once
-    for an abstract coset base (CosetBase: contains Aff, constant a2/b2
-    derivatives, 1, a0, b0 in the radical of the carry pairing
-    beta(u,v) = sum over U of u v), so dim Q and rank-2 generation play no
-    role; the Pluecker step of B3a is the finite statement gram_finite
-    (2^14 cases, plain decide) about U G = 0 for the 2x4 coefficient matrix
-    U and the Gram matrix G of beta, instead of the kernel-basis computation.
-    Lemma A for bad Q3 avoids the product lemma (P1-P3, radical lemma,
-    weights): a direction e with a U-component and iota_e(Q3) in <l>,
-    iota_e Z1 not in <l> (GenDir, built from the type normal forms) forces
-    a z1-placement to vanish on a hyperplane {a = alpha}; Lemma W then makes
-    Z1 + q a wedge, and goodDir_main gives a good direction.
-    Lemma C for bad Q3 avoids 4-forms and Lemma D1: along the same
-    U-direction e (UDir), D_e f and D_e h are constant on ker l, so on that
-    hyperplane D_e z2 would have degree <= 2; but the third difference over a
-    cube in ker l sees the carry derivative a0 b0 (e1 b1 + e4 a1) and equals 1.
-    LambdaCase 2 (phase 7) is reduced to one statement, TwoClaim (Proposition
-    onehigh of paper/notes/lambda2_proof.tex for P outside Lambda^2(U)), by a route that
-    does not split on deg g2 and needs neither the replacement lemma nor
-    Lemma P: if g2 places z1, then P outside Lambda^2(U) is excluded by Lemma
-    A's derivative argument (a U-direction killing P exists, GenDir), Lemma W
-    and Lemma 3, and P inside Lambda^2(U) by the coset lemma on V(S),
-    S = Q + <Z1>; otherwise g3 places z1, so the space before the last gate
-    lies in V(S) + <g2>, and Proposition onehigh finishes (inside Lambda^2(U)
-    again the coset lemma).
-    In Proposition onehigh, z2 not in V(S) + <g> uses Lemma 8' (S always has
-    a good direction) instead of the quartic part of g; the case where both
-    factors of the last gate lie in V(S) uses a 16-point cube sum over a cube
-    in ker l (P vanishes there, and V(S) restricts to a space whose products
-    have no quartic term), instead of the exterior statement P ^ theta != Omega.
-    Ideal extraction normalizes one factor to be affine, corrects the
-    quadratic representative on a level set using a constant second
-    difference, and extracts the wedge via Lemma W. This replaces the
-    comparison of decomposable three-forms and their supports.
-    Last-factor rigidity excludes a constant nonzero external difference
-    via the ordinary-pair obstruction. For independent external parts, a
-    mixed difference replaces the degree-six coefficient comparison.
-    Two low-bit fibers where the factor is one determine its free slopes.
-    The off-ideal mixed middle-bit difference excludes a residual external
-    slope on any other off-ideal fiber.
+  divergences: |-
+    - sec:preliminaries and l4:lem:support: Lean checks finite target identities and
+      splittings. The manuscript uses column carries and support arguments.
+    - toolkit:coset and toolkit:gram: Lean works over an abstract CosetBase and
+      takes differences before using a finite Gram identity. The manuscript
+      derives the identity using complementary minors of a kernel basis.
+    - l3:lem:udir, l3:lem:third and l2:lem:cube: Lean checks the direction choices
+      and the relevant cube values or sums by finite evaluation.
+    - l2:lem:rankext and l2:lem:lastfactor: Lean checks the trivial radical
+      finitely and packages the independent (0,1) last-factor case modulo
+      the low-bit ideal.
+    - l2:thm:main and l1:thm:main: Lean proves general tail reductions
+      and invokes them from normalized-circuit wrappers.
 review:
   status: self-assessed
   notes: >-
-    The upper bound, normal form, all five cases, and the unconditional
-    theorem mc_lowMul3 are kernel-checked. Several Lean proofs use shorter
-    routes recorded in fidelity.divergences and LEAN_LOG.md.
-    A supervisor review (November 2026) and two internal pre-submission audits
-    of the paper (verification/audit-v1/, verification/audit-v2/) cover the
-    mathematics; no independent
-    review of the Lean development itself is claimed.
+    The manuscript received a supervisor review, three independent
+    pre-submission audits (verification/audit-v1/, verification/audit-v2/
+    and verification/audit-v3/), and an arXiv submission audit.
+    The supplied third report reviewed the fifth draft and identified
+    two gaps due to a malformed definition, with no mathematical errors
+    across the 39 numbered statements. Its findings informed later drafts.
+    The repository records Lean kernel checks in AxiomAudit.lean.
 alignment:
   namespace: UnrestrictedBooleanMul.LowHalfMul3
   statements:
-    - source: paper/main.tex main theorem on the unrestricted multiplicative complexity
+    - source: thm:MC
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3
       module: LowHalfMul3Solution
       status: proved
-    - source: paper/main.tex case lambda = 1
+    - source: l1:thm:main
       lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_one
       module: LowHalfMul3Solution
       status: proved-with-divergence
-    - source: paper/main.tex case lambda = 2
+    - source: l2:thm:main
       lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_two
       module: LowHalfMul3Solution
       status: proved-with-divergence
-    - source: lowMul3 definition, integer semantics
+    - source: sec:preliminaries
       lean: UnrestrictedBooleanMul.LowHalfMul3.lowMul3_eval
       module: LowHalfMul3.Target
       status: proved
-    - source: six-gate upper bound
+    - source: sec:upper
       lean: UnrestrictedBooleanMul.LowHalfMul3.upper
       module: LowHalfMul3.Upper
       status: proved
-    - source: paper/notes/lambda4_proof.tex Lemma 8 (derivative lemma)
+    - source: internal Lean lemma
       lean: UnrestrictedBooleanMul.LowHalfMul3.derivative_lemma
       module: LowHalfMul3.Derivative
       status: proved-with-divergence
-    - source: paper/notes/lambda4_proof.tex Lemma 8, paper form (hypothesis iota_e(Q) = 0)
+    - source: internal Lean lemma
       lean: UnrestrictedBooleanMul.LowHalfMul3.derivative_lemma_paper
       module: LowHalfMul3.Contraction
       status: proved
-    - source: paper/notes/lambda4_proof.tex Lemma 1 (normal form), five gates
+    - source: l4:lem:normal
       lean: UnrestrictedBooleanMul.LowHalfMul3.normal_form_five
       module: LowHalfMul3.NormalForm
       status: proved
-    - source: paper/notes/lambda4_proof.tex Lemma 2
+    - source: l4:lem:Qonly
       lean: UnrestrictedBooleanMul.LowHalfMul3.wireSpace_eq_V4
       module: LowHalfMul3.LemmaTwo
       status: proved
-    - source: MC(lowMul3) = 6 from LambdaCase 1, 2, 3 and Theorem 12
+    - source: internal Lean lemma
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_eq_six_of_remaining_cases
       module: LowHalfMul3.Assembly
       status: proved
-    - source: paper/notes/lambda4_proof.tex Lemma 11 (types), as a normal form
+    - source: l4:lem:types
       lean: UnrestrictedBooleanMul.LowHalfMul3.types
       module: LowHalfMul3.Types
       status: proved
-    - source: paper/notes/lambda4_proof.tex Theorem 12 (four linear gates)
+    - source: l4:thm:main
       lean: UnrestrictedBooleanMul.LowHalfMul3.starFree
       module: LowHalfMul3.MainTheorem
       status: proved-with-divergence
-    - source: MC(lowMul3) = 6 from LambdaCase 1, 2, 3
+    - source: internal Lean lemma
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_eq_six_of_lambda_cases
       module: LowHalfMul3.MainTheorem
       status: proved
-    - source: paper/notes/lambda3_proof.tex Theorem (lambda = 3), from BadClaim and B3Claim
+    - source: l3:prop:B
       lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_three_of
       module: LowHalfMul3.LambdaThree
       status: proved-with-divergence
-    - source: paper/notes/lambda3_proof.tex Lemma C, spaces with a good direction
+    - source: l3:lem:C
       lean: UnrestrictedBooleanMul.LowHalfMul3.noPlace_of_goodDir
       module: LowHalfMul3.LambdaThree
       status: proved-with-divergence
-    - source: paper/notes/lambda3_proof.tex Lemma B3U (Z1 in Q3 implies Q3 in Lambda^2(U))
+    - source: l3:lem:B3U
       lean: UnrestrictedBooleanMul.LowHalfMul3.phi_of_Z1_mem
       module: LowHalfMul3.LambdaThree
       status: proved
-    - source: paper/notes/lambda3_proof.tex Lemmas A and C for Q3 without a good direction (BadClaim)
+    - source: internal Lean lemma
       lean: UnrestrictedBooleanMul.LowHalfMul3.badClaim
       module: LowHalfMul3.LemmaC
       status: proved-with-divergence
-    - source: paper/notes/lambda3_proof.tex Lemma C (and D1) for Q3 without a good direction
+    - source: l3:lem:third
       lean: UnrestrictedBooleanMul.LowHalfMul3.noPlace_z2_of_uDir
       module: LowHalfMul3.LemmaC
       status: proved-with-divergence
-    - source: paper/notes/lambda3_proof.tex Theorem (three linear gates)
+    - source: l3:thm:main
       lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_three
       module: LowHalfMul3.LemmaC
       status: proved-with-divergence
-    - source: MC(lowMul3) = 6 from LambdaCase 1 and LambdaCase 2
+    - source: thm:MC
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_eq_six_of_lambda_one_two
       module: LowHalfMul3.LemmaC
       status: proved
-    - source: paper/notes/lambda3_proof.tex Proposition B3 (B3Claim)
+    - source: internal Lean lemma
       lean: UnrestrictedBooleanMul.LowHalfMul3.b3Claim
       module: LowHalfMul3.Coset
       status: proved
-    - source: paper/notes/lambda3_proof.tex Lemmas B3a, B3b and Proposition B3, general form (any coset base; also lambda2 Lemma 11 and lambda1 core coset lemma)
+    - source: toolkit:coset
       lean: UnrestrictedBooleanMul.LowHalfMul3.coset_obstruction
       module: LowHalfMul3.Coset
       status: proved-with-divergence
-    - source: paper/notes/lambda3_proof.tex Lemma B3a, general form
+    - source: internal Lean lemma
       lean: UnrestrictedBooleanMul.LowHalfMul3.coset_B3a
       module: LowHalfMul3.Coset
       status: proved-with-divergence
-    - source: paper/notes/lambda3_proof.tex Lemma B3b, general form
+    - source: internal Lean lemma
       lean: UnrestrictedBooleanMul.LowHalfMul3.coset_B3b
       module: LowHalfMul3.Coset
       status: proved
-    - source: paper/notes/lambda3_proof.tex Lemma A for Q3 without a good direction (z1 conjunct of BadClaim)
+    - source: l3:lem:A
       lean: UnrestrictedBooleanMul.LowHalfMul3.noPlace_z1_bad
       module: LowHalfMul3.LemmaA
       status: proved-with-divergence
-    - source: LambdaCase 3 from BadClaim alone
+    - source: internal Lean lemma
       lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_three_of_badClaim
       module: LowHalfMul3.Coset
       status: proved
-    - source: paper/notes/lambda2_proof.tex Proposition onehigh outside Lambda^2(U) (TwoClaim)
+    - source: l2:prop:onehigh
       lean: UnrestrictedBooleanMul.LowHalfMul3.twoClaim
       module: LowHalfMul3.OneHighFinish
       status: proved
-    - source: paper/notes/lambda2_proof.tex Proposition onehigh, last-gate feedback form (b)
+    - source: l2:prop:onehigh
       lean: UnrestrictedBooleanMul.LowHalfMul3.formB
       module: LowHalfMul3.OneHighFinish
       status: proved
-    - source: paper/notes/lambda2_proof.tex Proposition onehigh, z2 not in V(S) + <g> (part 1)
+    - source: l2:lem:onebase
       lean: UnrestrictedBooleanMul.LowHalfMul3.z2_not_mem_S_sup
       module: LowHalfMul3.OneHigh
       status: proved-with-divergence
-    - source: paper/notes/lambda2_proof.tex Proposition onehigh, both factors in V(S) (part 2, Lemma rankext exterior part)
+    - source: l2:lem:cube
       lean: UnrestrictedBooleanMul.LowHalfMul3.formA_one_of_phi
       module: LowHalfMul3.OneHigh
       status: proved-with-divergence
-    - source: lambda1 branch, LambdaCase 1 from TwoClaim and five shared statements
+    - source: l1:thm:main
       lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_one_of
       module: LowHalfMul3.LambdaOne
       status: proved
-    - source: lambda1 branch shared statement FeedbackNormal (normalizing a feedback product)
+    - source: toolkit:feedback
       lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.feedbackNormal
       module: LowHalfMul3.Shared
       status: proved
-    - source: paper/notes/lambda2_proof.tex Lemma rankext, rank part (Q2NotTwoWedges)
+    - source: l2:lem:rankext
       lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.q2NotTwoWedges
       module: LowHalfMul3.Shared
       status: proved-with-divergence
-    - source: paper/main.tex Lemma l2:lem:ideal (quadratic extraction)
+    - source: l2:lem:ideal
       lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.idealExtract
       module: LowHalfMul3.IdealExtract
       status: proved-with-divergence
-    - source: paper/main.tex last-factor rigidity in lambda = 1 and lambda = 2
+    - source: l2:lem:lastfactor
       lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.lastFactorLowIdeal
       module: LowHalfMul3.LastFactor
       status: proved-with-divergence
-    - source: paper/main.tex feedback exclusion modulo the low-bit ideal in lambda = 1 and lambda = 2
+    - source: toolkit:modfeedback
       lean: UnrestrictedBooleanMul.LowHalfMul3.LambdaOne.feedbackNoPlaceModLow
       module: LowHalfMul3.Shared
       status: proved
-    - source: paper/notes/lambda2_proof.tex Proposition onehigh inside Lambda^2(U) (Lemma coset)
+    - source: l2:prop:onehigh
       lean: UnrestrictedBooleanMul.LowHalfMul3.oneHigh_of_phi
       module: LowHalfMul3.LambdaTwo
       status: proved
-    - source: paper/notes/lambda2_proof.tex, g2 cannot place z1 when P is outside Lambda^2(U)
+    - source: l2:lem:early
       lean: UnrestrictedBooleanMul.LowHalfMul3.noPlace_z1_two
       module: LowHalfMul3.LambdaTwo
       status: proved-with-divergence
-    - source: paper/notes/lambda2_proof.tex Theorem (two linear gates), from TwoClaim
+    - source: l2:thm:main
       lean: UnrestrictedBooleanMul.LowHalfMul3.lambdaCase_two_of
       module: LowHalfMul3.LambdaTwo
       status: proved-with-divergence
-    - source: MC(lowMul3) = 6 from LambdaCase 1 and TwoClaim
+    - source: internal Lean lemma
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_eq_six_of_twoClaim
       module: LowHalfMul3.LambdaTwo
       status: proved
-    - source: exact unrestricted complexity of the 3x3 low-half product
+    - source: thm:MC
       lean: UnrestrictedBooleanMul.LowHalfMul3.mc_lowMul3
       module: LowHalfMul3Challenge
       status: stated

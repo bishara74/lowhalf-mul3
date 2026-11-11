@@ -1,7 +1,7 @@
 # Verification work
 
 This folder holds the **computational** evidence for MC(lowMul3) = 6. It is separate from the
-**formal** (Lean) development at the repository root and from the written proofs in `paper/`.
+**formal** (Lean) development at the repository root and from the written proofs in the [manuscript repository](https://github.com/bishara74/Multiplicative-complexity-of-the-3-bit-low-half-multiplier).
 Nothing in this folder is needed to build or check the Lean proof.
 
 | Folder | What it is |
@@ -10,8 +10,9 @@ Nothing in this folder is needed to build or check the Lean proof.
 | `lambda2-lambda1-checks/` | Exhaustive Python checks of every lemma in the λ = 2 and λ = 1 proofs, and independent full searches showing no 5-AND circuit exists for λ = 2 or λ = 1. `README.md` inside describes each script; `results.json` has all counts. |
 | `audit-v1/` | Internal pre-submission audit of the merged paper, version 1 (`reviewed_main.tex`, the exact version audited), produced by an AI agent session that had not seen the original work: `REFEREE_REPORT.md` (36 results: 31 OK, 5 minor, 0 gaps) and its own check scripts, written from scratch. This is not external peer review. |
 | `audit-v2/` | Internal pre-submission audit of version 2 of the paper, done the same way: `REFEREE_REPORT_v2.md` (60 items: 51 OK, 9 minor, 0 gaps) and its check scripts. All nine minor items were applied in version 3. |
+| `audit-v3/` | Independent review of the fifth draft and finite proof checks. See [AUDIT_REPORT.md](audit-v3/AUDIT_REPORT.md). |
 | `lean-support/` | Exhaustive classical check of the Lean statement `BadClaim` on all 26,928 spans without a good direction, run before formalizing it. |
-| `certificates/` | SAT certificates: the original MC = 6 certificate package (LRAT, checked with `cake_lpr`), its SHA-256 manifest, the λ-case UNSAT certificates and run logs, and the RUP checkers. |
+| `certificates/` | SAT certificates: the compact LRAT archive, manifests, earlier λ-case CNFs and run logs, and RUP checkers. See [REGENERATE.md](certificates/REGENERATE.md) for archived proof scope and replay. |
 
 ## Conventions
 
