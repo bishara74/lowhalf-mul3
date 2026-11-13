@@ -11,6 +11,7 @@ project:
     for the lower bound.
     LowHalfMul3Solution proves mc_lowMul3 using only propext, Classical.choice
     and Quot.sound.
+    The accompanying paper is arXiv:2611.15992.
   authors:
     - Bshara Alhodali  # ORCID 0009-0003-4870-8745
   responsible_maintainers:
@@ -20,7 +21,7 @@ classification:
   arxiv: [cs.CC]
   msc2020: [68Q06, 68Q17, 94D10]
 sources:
-    - title: The multiplicative complexity of the three-bit low-half multiplier
+  - title: The multiplicative complexity of the three-bit low-half multiplier
     authors:
       - Bshara Alhodali  # ORCID 0009-0003-4870-8745
       - Gregory Morse  # ORCID 0000-0002-0231-6557
