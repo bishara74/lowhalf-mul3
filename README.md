@@ -1,5 +1,7 @@
 # lowhalf-mul3
 
+**Paper:** Bshara Alhodali and Gregory Morse, *The multiplicative complexity of the three-bit low-half multiplier*, [arXiv:2611.15992](https://arxiv.org/abs/2611.15992) (2026).
+
 This Lean 4 development proves that the three low bits of the product of two
 three-bit integers require exactly six AND gates in the unrestricted XOR–AND
 model. XOR and constants are free, and AND gates may reuse earlier AND outputs.
